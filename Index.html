@@ -17,12 +17,13 @@
     .home-tabs { position: fixed; z-index: 3; top: 78px; left: 16px; display: grid; gap: 8px; }
     .home-tab { min-height: 38px; padding: 0 12px; border: 1px solid #252525; border-radius: 12px; color: var(--text); background: var(--surface); cursor: pointer; }
     .home-tab:hover, .home-tab.active { border-color: var(--accent); color: var(--accent); }
-    .settings-tabs { display: flex; gap: 7px; margin: 0 0 14px; }
-    .settings-tab { padding: 7px 11px; border: 1px solid #393943; border-radius: 10px; color: var(--muted); background: transparent; cursor: pointer; }
-    .settings-tab[aria-selected="true"] { color: var(--accent); border-color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
-    .settings-pane { display: none; max-height: min(55vh, 460px); overflow-y: auto; }
+    .settings-tabs { display: flex; gap: 7px; margin: 0 0 18px; padding: 5px; border: 1px solid color-mix(in srgb, var(--text) 9%, transparent); border-radius: 13px; background: color-mix(in srgb, var(--text) 4%, transparent); }
+    .settings-tab { flex: 1; padding: 9px 11px; border: 1px solid transparent; border-radius: 9px; color: var(--muted); background: transparent; cursor: pointer; transition: color .18s, background .18s, border-color .18s; }
+    .settings-tab[aria-selected="true"] { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 35%, transparent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+    .settings-pane { display: none; max-height: min(55vh, 460px); overflow-y: auto; padding: 0 4px; }
     .settings-pane.active { display: block; }
-    .settings-select, .settings-color { width: min(180px, 48%); padding: 8px 10px; border: 1px solid #393943; border-radius: 9px; color: var(--text); background: var(--surface); }
+    .settings-select, .settings-color { width: min(190px, 48%); min-height: 40px; padding: 8px 11px; border: 1px solid color-mix(in srgb, var(--text) 16%, transparent); border-radius: 11px; color: var(--text); background: var(--surface); }
+    .settings-select:focus, .settings-color:focus-visible, .settings-tab:focus-visible, .settings-close:focus-visible, .settings-reset:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     .accent-options { display: flex; flex-wrap: wrap; gap: 8px; justify-content: flex-end; }
     .accent-choice { width: 25px; height: 25px; border: 2px solid transparent; border-radius: 50%; background: var(--swatch); cursor: pointer; }
     .accent-choice[aria-pressed="true"] { outline: 2px solid var(--text); outline-offset: 2px; }
@@ -65,6 +66,19 @@
     .shortcut .dc { color: #7078ff; }
     .notice { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); padding: 9px 14px; border: 1px solid #252525; border-radius: 12px; color: #bbb; background: #111; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s; }
     .notice.show { opacity: 1; }
+    dialog.updates-dialog { width: min(470px, calc(100% - 28px)); padding: 26px; border: 1px solid color-mix(in srgb, var(--accent) 42%, var(--text)); border-radius: 22px; color: var(--text); background: color-mix(in srgb, var(--surface) 95%, transparent); box-shadow: 0 24px 90px rgba(0,0,0,.6); backdrop-filter: blur(22px); }
+    dialog.updates-dialog::backdrop { background: rgba(0,0,0,.68); backdrop-filter: blur(6px); }
+    .updates-heading { display: flex; align-items: center; gap: 14px; margin-bottom: 20px; }
+    .updates-mark { width: 48px; height: 48px; flex: 0 0 48px; display: grid; place-items: center; border: 1px solid color-mix(in srgb, var(--accent) 35%, transparent); border-radius: 15px; color: var(--accent); background: color-mix(in srgb, var(--accent) 11%, transparent); }
+    .updates-mark svg { width: 25px; height: 25px; }
+    .updates-heading small { display: block; margin-bottom: 4px; color: var(--accent); font-size: 11px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; }
+    .updates-heading h2 { margin: 0; font-size: 24px; letter-spacing: -.6px; }
+    .updates-list { display: grid; gap: 10px; margin: 0; padding: 0; list-style: none; }
+    .updates-list li { padding: 13px 14px; border: 1px solid color-mix(in srgb, var(--text) 9%, transparent); border-radius: 13px; background: color-mix(in srgb, var(--text) 4%, transparent); }
+    .updates-list strong { display: block; margin-bottom: 4px; font-size: 14px; }
+    .updates-list span { color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .updates-dismiss { width: 100%; margin-top: 18px; padding: 11px 15px; border: 0; border-radius: 12px; color: #06110f; background: var(--accent); font-weight: 700; cursor: pointer; }
+    .updates-dismiss:hover { filter: brightness(1.08); }
     .game-view, .music-view, .anime-view, .personal-view, .browser-view { position: fixed; z-index: 1; inset: 68px 0 0; display: none; overflow-y: auto; background: #0a0a0d; }
     .game-view.show, .music-view.show, .anime-view.show, .personal-view.show { display: block; }
     .browser-view.show { display: flex; overflow: hidden; }
@@ -110,16 +124,18 @@
     .music-art { width: 52px; height: 52px; flex: 0 0 52px; display: grid; place-items: center; overflow: hidden; border-radius: 8px; color: #8fe3d0; background: linear-gradient(135deg, #223d3a, #17171b); }
     .music-art img { width: 100%; height: 100%; object-fit: cover; }
     .music-art svg { width: 24px; height: 24px; }
-    dialog.settings-dialog { width: min(520px, calc(100% - 28px)); max-height: calc(100vh - 32px); overflow-y: auto; padding: 22px; border: 1px solid rgba(220,220,240,.35); border-radius: 18px; color: var(--text); background: rgba(13,13,18,.82); box-shadow: 0 18px 70px rgba(0,0,0,.48); backdrop-filter: blur(16px); }
-    dialog.settings-dialog::backdrop { background: rgba(0,0,0,.22); backdrop-filter: blur(2px); }
-    .settings-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; }
-    .settings-head h2 { margin: 0; font-size: 22px; }
-    .settings-close { width: 34px; height: 34px; border: 1px solid #393943; border-radius: 50%; color: #ddd; background: rgba(255,255,255,.05); cursor: pointer; }
-    .setting-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 14px 0; border-top: 1px solid rgba(220,220,240,.14); }
+    dialog.settings-dialog { width: min(560px, calc(100% - 28px)); max-height: calc(100vh - 32px); overflow-y: auto; padding: 26px; border: 1px solid color-mix(in srgb, var(--accent) 30%, var(--text)); border-radius: 22px; color: var(--text); background: color-mix(in srgb, var(--surface) 94%, transparent); box-shadow: 0 24px 90px rgba(0,0,0,.55); backdrop-filter: blur(22px); }
+    dialog.settings-dialog::backdrop { background: rgba(0,0,0,.58); backdrop-filter: blur(5px); }
+    .settings-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 18px; }
+    .settings-head h2 { margin: 0; font-size: 25px; letter-spacing: -.7px; }
+    .settings-close { width: 38px; height: 38px; border: 1px solid color-mix(in srgb, var(--text) 14%, transparent); border-radius: 12px; color: var(--text); background: color-mix(in srgb, var(--text) 6%, transparent); cursor: pointer; transition: border-color .18s, color .18s, background .18s; }
+    .settings-close:hover { border-color: var(--accent); color: var(--accent); }
+    .setting-row { display: flex; align-items: center; justify-content: space-between; gap: 18px; padding: 15px 0; border-top: 1px solid color-mix(in srgb, var(--text) 10%, transparent); }
     .setting-row strong, .setting-row small { display: block; }
-    .setting-row small, .settings-note { color: #aaa; font-size: 12px; }
-    .setting-row input[type=checkbox] { width: 18px; height: 18px; accent-color: #8fe3d0; }
-    .settings-reset { margin-top: 12px; padding: 9px 13px; border: 1px solid #393943; border-radius: 10px; color: #eee; background: rgba(255,255,255,.05); cursor: pointer; }
+    .setting-row strong { font-size: 14px; }
+    .setting-row small, .settings-note { margin-top: 4px; color: var(--muted); font-size: 12px; line-height: 1.5; }
+    .setting-row input[type=checkbox] { width: 19px; height: 19px; flex: 0 0 auto; accent-color: var(--accent); }
+    .settings-reset { margin-top: 16px; padding: 10px 14px; border: 1px solid color-mix(in srgb, var(--text) 14%, transparent); border-radius: 11px; color: var(--text); background: color-mix(in srgb, var(--text) 6%, transparent); cursor: pointer; transition: border-color .18s, color .18s; }
     body.reduce-motion *, body.reduce-motion *::before, body.reduce-motion *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; transition-duration: .01ms !important; }
     h1 { color: var(--text); }
     .search, .shortcut, .home-game, .nav-pill { background-color: var(--surface); color: var(--text); }
@@ -179,7 +195,7 @@
   <header class="topbar" aria-label="Main navigation">
     <nav class="nav-group" aria-label="Orion sections">
       <button class="nav-pill" type="button" data-name="Home" aria-label="Home" title="Home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></button>
-      <button class="nav-pill" type="button" data-name="New tab" aria-label="New tab" title="New tab"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14m-7-7h14"/></svg></button>
+      <button class="nav-pill" type="button" data-name="New tab" aria-label="New tab — return home and clear search" title="New tab · Return home and clear search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14m-7-7h14"/></svg></button>
       <a class="nav-pill brand" href="#home" aria-label="Orion home"><span>Orion</span></a>
       <button class="nav-pill" type="button" data-name="Games" aria-label="Games" title="Games"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button>
       <button class="nav-pill" type="button" data-name="Music" aria-label="Music" title="Music"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
@@ -189,7 +205,7 @@
     </nav>
     <nav class="nav-group" aria-label="Utilities">
       <a class="nav-pill discord" href="https://discord.com/app" aria-label="Discord" title="Discord" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19.7 5.4a17 17 0 0 0-4.2-1.3l-.5 1a15.7 15.7 0 0 0-6 0l-.5-1a17 17 0 0 0-4.2 1.3C1.7 9.3 1 13.1 1.4 16.8a17 17 0 0 0 5.2 2.6l1.1-1.8-1.7-.8.4-.3c3.3 1.5 6.9 1.5 10.2 0l.4.3-1.7.8 1.1 1.8a17 17 0 0 0 5.2-2.6c.5-4.3-.8-8-3.5-11.4ZM8.7 14.8c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg></a>
-      <button class="nav-pill" type="button" data-name="Notifications" aria-label="Notifications" title="Notifications"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9m-8 12h4"/></svg></button>
+      <button class="nav-pill" type="button" data-name="Notifications" aria-label="Latest updates" title="Latest updates"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v2a2 2 0 0 0 2 2h2l9 5V4l-9 5H5a2 2 0 0 0-2 2Z"/><path d="m7 15 1.5 5H12l-2-6m8-6a5 5 0 0 1 0 8m2-10a8 8 0 0 1 0 12"/></svg></button>
       <button class="nav-pill" type="button" data-name="Settings" aria-label="Settings" title="Settings"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="m19.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L15 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L11 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5L19.4 13ZM13 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z" transform="translate(-1)"/></svg></button>
     </nav>
   </header>
@@ -296,6 +312,18 @@
     </section>
     <button class="settings-reset" id="reset-settings" type="button">Reset settings</button>
   </dialog>
+  <dialog class="updates-dialog" id="updates-dialog" aria-labelledby="updates-title">
+    <div class="updates-heading">
+      <div class="updates-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 11v2a2 2 0 0 0 2 2h2l9 5V4l-9 5H5a2 2 0 0 0-2 2Z"/><path d="m7 15 1.5 5H12l-2-6m8-6a5 5 0 0 1 0 8m2-10a8 8 0 0 1 0 12"/></svg></div>
+      <div><small>Orion · Latest</small><h2 id="updates-title">What’s new</h2></div>
+    </div>
+    <ul class="updates-list">
+      <li><strong>Games in the browser</strong><span>Launch a game from the library to open it in the Browser player.</span></li>
+      <li><strong>Your Personal Library</strong><span>Recently played games, music, and books are saved on this device.</span></li>
+      <li><strong>Make Orion yours</strong><span>Open Settings to adjust the theme, accent color, interface size, and more.</span></li>
+    </ul>
+    <button class="updates-dismiss" id="dismiss-updates" type="button">Got it</button>
+  </dialog>
   <div class="notice" role="status" aria-live="polite"></div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.min.js"></script>
   <script>
@@ -320,6 +348,7 @@
     const currentMusicNote = document.querySelector('#music-current-note');
     const mangaView = document.querySelector('#manga-view');
     const settingsDialog = document.querySelector('#settings-dialog');
+    const updatesDialog = document.querySelector('#updates-dialog');
     const settingsKey = 'orion-settings-v1';
     const defaultSettings = { confirmLaunch: false, reduceMotion: false, theme: 'system', accent: '#8fe3d0', size: '1', font: 'system', glass: false, searchEngine: 'google' };
     let settings = { ...defaultSettings };
@@ -697,6 +726,11 @@
       applySettings();
       try { localStorage.setItem(settingsKey, JSON.stringify(settings)); } catch {}
     }
+    function openUpdates() {
+      if (!updatesDialog.open) updatesDialog.showModal();
+    }
+    document.querySelector('#dismiss-updates').addEventListener('click', () => updatesDialog.close());
+    updatesDialog.addEventListener('click', event => { if (event.target === updatesDialog) updatesDialog.close(); });
     function openSettings() {
       document.querySelector('#confirm-launch').checked = !!settings.confirmLaunch;
       document.querySelector('#reduce-motion').checked = !!settings.reduceMotion;
@@ -888,37 +922,11 @@
       event.preventDefault();
       showSection('Home');
     });
-    function openSchoolSite() {
-      const browserWindow = window.open('about:blank', '_blank');
-      if (!browserWindow) {
-        notice.textContent = 'Allow pop-ups to open Orion Elementary in a new tab.';
-        notice.classList.add('show');
-        clearTimeout(noticeTimer);
-        noticeTimer = setTimeout(() => notice.classList.remove('show'), 3000);
-        return;
-      }
-
-      browserWindow.document.write(`<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Opening Orion Elementary</title><style>
-        *{box-sizing:border-box}body{min-height:100vh;margin:0;display:grid;place-items:center;padding:24px;background:radial-gradient(ellipse at 50% 20%,#183b50,#090d16 65%);color:#f4f7fb;font:16px system-ui,sans-serif}.card{width:min(440px,100%);padding:36px;border:1px solid #ffffff24;border-radius:24px;background:#111a26cc;box-shadow:0 24px 80px #0008;text-align:center}.mark{width:58px;height:58px;margin:0 auto 20px;display:grid;place-items:center;border-radius:18px;background:#8fe3d0;color:#10201d;font-size:28px;font-weight:800}.eyebrow{color:#8fe3d0;font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase}h1{margin:8px 0;font-size:clamp(26px,7vw,36px);letter-spacing:-1px}p{margin:0;color:#aeb9c9;line-height:1.6}.timer{margin:24px 0 10px;color:#8fe3d0;font-size:14px}.track{height:5px;overflow:hidden;border-radius:9px;background:#ffffff18}.fill{height:100%;width:0;border-radius:9px;background:#8fe3d0;animation:load 10s linear forwards}@keyframes load{to{width:100%}}a{display:inline-flex;margin-top:20px;padding:11px 17px;border-radius:12px;background:#8fe3d0;color:#10201d;font-weight:700;text-decoration:none}a:hover{background:#b2f5e7}</style></head><body><main class="card"><div class="mark" aria-hidden="true">O</div><div class="eyebrow">Orion Elementary</div><h1>Getting the site ready</h1><p>You’ll be redirected to the Orion Elementary website in a few seconds.</p><div class="timer" role="status">Opening in <strong id="count">10</strong> seconds</div><div class="track" aria-hidden="true"><div class="fill"></div></div><a href="https://orion.asdk12.org/">Open the site now</a></main><script>let remaining=10;const count=document.getElementById('count');const timer=setInterval(()=>{remaining-=1;count.textContent=remaining;if(remaining<=0){clearInterval(timer);location.replace('https://orion.asdk12.org/')}},1000);<\/script></body></html>`);
-      browserWindow.document.close();
-      browserWindow.document.body.innerHTML = `<iframe title="Orion Elementary website" src="https://orion.asdk12.org/"></iframe><div id="site-countdown" role="status">Opening the full site in <strong>10</strong> seconds</div>`;
-      browserWindow.document.head.insertAdjacentHTML('beforeend', `<style>html,body{width:100%;height:100%;margin:0;overflow:hidden;font-family:system-ui,sans-serif}iframe{width:100%;height:100%;border:0}#site-countdown{position:fixed;top:16px;left:50%;transform:translateX(-50%);padding:12px 18px;border:1px solid #ffffff40;border-radius:14px;background:#102033e8;color:#fff;box-shadow:0 8px 30px #0005}#site-countdown strong{color:#efcc47}</style>`);
-      let secondsLeft = 10;
-      const countdownLabel = browserWindow.document.querySelector('#site-countdown strong');
-      const redirectTimer = setInterval(() => {
-        if (browserWindow.closed) { clearInterval(redirectTimer); return; }
-        secondsLeft -= 1;
-        countdownLabel.textContent = secondsLeft;
-        if (secondsLeft <= 0) {
-          clearInterval(redirectTimer);
-          browserWindow.location.replace('https://orion.asdk12.org/');
-        }
-      }, 1000);
-    }
     document.querySelectorAll('[data-name]').forEach(button => {
       button.addEventListener('click', () => {
         const name = button.dataset.name;
         if (name === 'Settings') { openSettings(); return; }
+        if (name === 'Notifications') { openUpdates(); return; }
         if (['Games', 'Music', 'Library'].includes(name)) { showSection(name); return; }
         if (name === 'Manga') { showSection('Manga'); return; }
         if (name === 'Browser') { showSection('Browser'); return; }
@@ -940,6 +948,7 @@
         document.querySelector('.search input').focus();
       }
     });
+    openUpdates();
   </script>
 </body>
 </html>
