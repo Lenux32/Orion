@@ -1,0 +1,1 @@
+Orion has a web search bar, quick links, game and music libraries, movie and anime service links, and a Manga & Books section with an embedded book preview. You can also customize its theme, accent color, font, interface size, and motion settings. I also like wifiskeleton
