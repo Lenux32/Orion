@@ -65,8 +65,23 @@
     .shortcut .dc { color: #7078ff; }
     .notice { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); padding: 9px 14px; border: 1px solid #252525; border-radius: 12px; color: #bbb; background: #111; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s; }
     .notice.show { opacity: 1; }
-    .game-view, .music-view, .anime-view, .personal-view { position: fixed; z-index: 1; inset: 68px 0 0; display: none; overflow-y: auto; background: #0a0a0d; }
+    .game-view, .music-view, .anime-view, .personal-view, .browser-view { position: fixed; z-index: 1; inset: 68px 0 0; display: none; overflow-y: auto; background: #0a0a0d; }
     .game-view.show, .music-view.show, .anime-view.show, .personal-view.show { display: block; }
+    .browser-view.show { display: flex; overflow: hidden; }
+    .browser-sidebar { width: 220px; flex: 0 0 220px; padding: 24px 14px; border-right: 1px solid #292929; background: var(--surface); }
+    .browser-brand { display: flex; align-items: center; gap: 10px; margin: 0 8px 24px; font-size: 18px; font-weight: 700; }
+    .browser-brand img { width: 34px; height: 34px; border-radius: 9px; object-fit: cover; }
+    .browser-tabs { display: grid; gap: 8px; }
+    .browser-tab { width: 100%; padding: 11px 12px; border: 1px solid transparent; border-radius: 11px; color: var(--muted); text-align: left; background: transparent; cursor: pointer; }
+    .browser-tab.active, .browser-tab:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
+    .browser-main { min-width: 0; flex: 1; display: flex; flex-direction: column; padding: 20px; }
+    .browser-address { padding: 10px 14px; border: 1px solid #292929; border-radius: 12px; color: var(--muted); background: var(--surface); font-size: 13px; }
+    .browser-stage { position: relative; min-height: 0; flex: 1; display: grid; place-items: center; margin-top: 14px; border: 1px solid #292929; border-radius: 16px; background: var(--page-bg); }
+    .browser-unavailable { max-width: 420px; padding: 28px; text-align: center; }
+    .browser-unavailable .browser-mark { width: 58px; height: 58px; display: grid; place-items: center; margin: 0 auto 18px; border: 1px solid #383838; border-radius: 18px; color: var(--accent); background: var(--surface); font-size: 28px; }
+    .browser-unavailable h2 { margin: 0 0 9px; font-size: 25px; }
+    .browser-unavailable p { margin: 0; color: var(--muted); line-height: 1.6; }
+    @media (max-width: 540px) { .browser-sidebar { width: 145px; flex-basis: 145px; padding: 18px 8px; } .browser-brand { margin: 0 4px 18px; font-size: 15px; } .browser-brand img { width: 28px; height: 28px; } .browser-main { padding: 12px; } }
     .personal-view { background: var(--page-bg); }
     .personal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
     .personal-card { display: flex; min-height: 150px; flex-direction: column; align-items: stretch; gap: 10px; padding: 14px; border: 1px solid #292929; border-radius: 14px; background: var(--surface); }
@@ -193,16 +208,35 @@
     </nav>
   </main>
   <section class="game-view" id="games-view" aria-label="Games launcher">
-    <div class="game-player" id="game-player" hidden>
-      <div class="game-player-head"><strong id="game-player-title">Game</strong><button id="game-back" type="button">Back to library</button></div>
-      <iframe class="game-frame" id="game-frame" title="Game player" allow="fullscreen; gamepad; autoplay; orientation-lock" allowfullscreen sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads"></iframe>
-    </div>
     <div class="library">
       <div class="library-head">
         <div><h2>Game library <span class="library-count" id="game-count" aria-live="polite"></span></h2><p>Choose a game to play in the embedded player.</p></div>
         <input class="library-search" id="game-search" type="search" placeholder="Search games…" aria-label="Search games">
       </div>
       <div class="game-grid" id="game-grid"></div>
+    </div>
+  </section>
+  <section class="browser-view" id="browser-view" aria-label="Orion browser">
+    <aside class="browser-sidebar">
+      <div class="browser-brand"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7bDRV4wlKQmkMvHzQO-N4PPy9Szxavd3jItkEb0BoDil14qlpbdpwUxk:https://art.pixilart.com/sr5zbaa22c0e3daws3.png&s=10" alt=""><span>Orion</span></div>
+      <nav class="browser-tabs" aria-label="Browser tabs">
+        <button class="browser-tab active" type="button" aria-current="page">Tab 1 · Home</button>
+        <button class="browser-tab" id="browser-games-tab" type="button">Tab 2 · Games</button>
+      </nav>
+    </aside>
+    <div class="browser-main">
+      <div class="browser-address" aria-label="Address bar">Orion browser · Preview</div>
+      <div class="browser-stage">
+        <div class="browser-unavailable" id="browser-unavailable">
+          <div class="browser-mark" aria-hidden="true">O</div>
+          <h2>Under construction</h2>
+          <p>The Orion browser is not available right now. Please check back later.</p>
+        </div>
+        <div class="game-player" id="game-player" hidden>
+          <div class="game-player-head"><strong id="game-player-title">Game</strong><button id="game-back" type="button">Back to library</button></div>
+          <iframe class="game-frame" id="game-frame" title="Game player" allow="fullscreen; gamepad; autoplay; orientation-lock" allowfullscreen sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads"></iframe>
+        </div>
+      </div>
     </div>
   </section>
   <section class="music-view" id="music-view" aria-label="Music library">
@@ -267,6 +301,7 @@
   <script>
     const notice = document.querySelector('.notice');
     const gamesView = document.querySelector('#games-view');
+    const browserView = document.querySelector('#browser-view');
     const gameGrid = document.querySelector('#game-grid');
     const gameSearch = document.querySelector('#game-search');
     const gameCount = document.querySelector('#game-count');
@@ -748,6 +783,8 @@
     async function launchGame(filename) {
       if (settings.confirmLaunch && !window.confirm(`Launch ${gameName(filename)} in the embedded player?`)) return;
       rememberPersonalItem('game', filename, gameName(filename));
+      showSection('Browser');
+      document.querySelector('#browser-unavailable').hidden = true;
       const base = CRA_GAMES.has(filename) ? CRA_BASE : COOL_BASE;
       gamePlayerTitle.textContent = gameName(filename);
       gameFrame.srcdoc = '<!doctype html><html><body style="font-family:system-ui;text-align:center;padding:2rem">Loading game…</body></html>';
@@ -766,6 +803,7 @@
         gameFrame.srcdoc = html;
       } catch (error) {
         gamePlayer.hidden = true;
+        document.querySelector('#browser-unavailable').hidden = false;
         gamesView.classList.remove('playing');
         notice.textContent = `Could not load ${gameName(filename)}; check the connection or game source`;
         notice.classList.add('show');
@@ -777,8 +815,11 @@
     document.querySelector('#game-back').addEventListener('click', () => {
       gameFrame.srcdoc = '';
       gamePlayer.hidden = true;
+      document.querySelector('#browser-unavailable').hidden = false;
       gamesView.classList.remove('playing');
+      showSection('Games');
     });
+    document.querySelector('#browser-games-tab').addEventListener('click', () => showSection('Games'));
 
     gameSearch.addEventListener('input', renderGames);
     musicSearch.addEventListener('input', renderMusic);
@@ -817,11 +858,11 @@
     });
 
     const personalView = document.querySelector('#personal-view');
-    const sectionViews = [gamesView, musicView, mangaView, personalView];
+    const sectionViews = [gamesView, musicView, mangaView, personalView, browserView];
     function showSection(name) {
       sectionViews.forEach(view => view.classList.remove('show'));
       document.body.classList.remove('game-open', 'music-open', 'section-open');
-      const viewByName = { Games: gamesView, Music: musicView, Manga: mangaView, Library: personalView };
+      const viewByName = { Games: gamesView, Music: musicView, Manga: mangaView, Library: personalView, Browser: browserView };
       const view = viewByName[name];
       if (!view) return;
       document.body.classList.add('section-open');
@@ -880,7 +921,7 @@
         if (name === 'Settings') { openSettings(); return; }
         if (['Games', 'Music', 'Library'].includes(name)) { showSection(name); return; }
         if (name === 'Manga') { showSection('Manga'); return; }
-        if (name === 'Browser') { openSchoolSite(); return; }
+        if (name === 'Browser') { showSection('Browser'); return; }
         if (name === 'Home' || name === 'New tab') {
           showSection('Home');
           if (name === 'New tab') { searchInput.value = ''; searchInput.focus(); }
