@@ -65,8 +65,17 @@
     .shortcut .dc { color: #7078ff; }
     .notice { position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%); padding: 9px 14px; border: 1px solid #252525; border-radius: 12px; color: #bbb; background: #111; font-size: 12px; opacity: 0; pointer-events: none; transition: opacity .2s; }
     .notice.show { opacity: 1; }
-    .game-view, .music-view, .anime-view { position: fixed; z-index: 1; inset: 68px 0 0; display: none; overflow-y: auto; background: #0a0a0d; }
-    .game-view.show, .music-view.show, .anime-view.show { display: block; }
+    .game-view, .music-view, .anime-view, .personal-view { position: fixed; z-index: 1; inset: 68px 0 0; display: none; overflow-y: auto; background: #0a0a0d; }
+    .game-view.show, .music-view.show, .anime-view.show, .personal-view.show { display: block; }
+    .personal-view { background: var(--page-bg); }
+    .personal-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 12px; }
+    .personal-card { display: flex; min-height: 150px; flex-direction: column; align-items: stretch; gap: 10px; padding: 14px; border: 1px solid #292929; border-radius: 14px; background: var(--surface); }
+    .personal-card-open { flex: 1; border: 0; color: var(--text); text-align: left; background: transparent; cursor: pointer; }
+    .personal-card-open strong, .personal-card-open span { display: block; }
+    .personal-card-open span { margin-top: 6px; color: var(--muted); font-size: 12px; }
+    .personal-card-remove, .personal-clear { align-self: flex-start; padding: 7px 10px; border: 1px solid #393943; border-radius: 9px; color: var(--muted); background: var(--raised); cursor: pointer; }
+    .personal-card-remove:hover, .personal-clear:hover { border-color: var(--accent); color: var(--accent); }
+    .personal-empty { grid-column: 1 / -1; padding: 36px 12px; color: var(--muted); text-align: center; }
     .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 12px; margin-top: 20px; }
     .media-card { display: flex; min-height: 130px; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px; border: 1px solid #292929; border-radius: 14px; color: #eee; text-decoration: none; background: linear-gradient(145deg, #17171b, #101012); transition: border-color .18s, transform .18s; }
     .media-card:hover { border-color: #626271; transform: translateY(-2px); }
@@ -116,6 +125,8 @@
     .music-track-copy small, .music-status { color: #999; font-size: 12px; }
     .music-player { position: sticky; bottom: 0; display: flex; align-items: center; gap: 14px; padding: 14px 18px; border: 1px solid #292929; border-radius: 14px; background: rgba(17,17,17,.96); backdrop-filter: blur(12px); }
     .music-player audio { width: min(500px, 55vw); }
+    .music-embed { width: min(500px, 55vw); height: 80px; border: 0; border-radius: 10px; background: var(--surface); }
+    .music-embed[hidden] { display: none; }
     .music-current-art { width: 42px; height: 42px; flex: 0 0 42px; object-fit: cover; border-radius: 8px; background: #202026; }
     .music-empty { padding: 32px 10px; color: #999; text-align: center; }
     body.music-open, body.section-open { overflow: hidden; }
@@ -158,6 +169,7 @@
       <button class="nav-pill" type="button" data-name="Games" aria-label="Games" title="Games"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button>
       <button class="nav-pill" type="button" data-name="Music" aria-label="Music" title="Music"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
       <button class="nav-pill" type="button" data-name="Manga" aria-label="Manga" title="Manga"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.5C9.5 4.8 6.5 4.5 3.5 5.5v14c3-1 6-.7 8.5 1 2.5-1.7 5.5-2 8.5-1v-14c-3-1-6-.7-8.5 1Z"/><path d="M12 7v13.5M6.5 9h2m-2 3h2m7-3h2m-2 3h2"/></svg></button>
+      <button class="nav-pill" type="button" data-name="Library" aria-label="Personal Library" title="Personal Library"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h8m-8 4h8"/></svg></button>
       <button class="nav-pill" type="button" data-name="Browser" aria-label="Browser" title="Browser"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></button>
     </nav>
     <nav class="nav-group" aria-label="Utilities">
@@ -183,7 +195,7 @@
   <section class="game-view" id="games-view" aria-label="Games launcher">
     <div class="game-player" id="game-player" hidden>
       <div class="game-player-head"><strong id="game-player-title">Game</strong><button id="game-back" type="button">Back to library</button></div>
-      <iframe class="game-frame" id="game-frame" title="Game player" allow="fullscreen; gamepad" allowfullscreen sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads"></iframe>
+      <iframe class="game-frame" id="game-frame" title="Game player" allow="fullscreen; gamepad; autoplay; orientation-lock" allowfullscreen sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads"></iframe>
     </div>
     <div class="library">
       <div class="library-head">
@@ -200,7 +212,7 @@
         <input class="library-search" id="music-search" type="search" placeholder="Search music…" aria-label="Search music">
       </div>
       <div class="music-list" id="music-list"></div>
-      <div class="music-player"><img class="music-current-art" id="music-current-art" alt="" hidden><span class="music-note" id="music-current-note" aria-hidden="true">♫</span><strong id="now-playing">Select a song to play</strong><audio id="music-audio" controls preload="metadata"></audio></div>
+      <div class="music-player"><img class="music-current-art" id="music-current-art" alt="" hidden><span class="music-note" id="music-current-note" aria-hidden="true">♫</span><strong id="now-playing">Select a song to play</strong><audio id="music-audio" controls preload="metadata"></audio><input id="local-mp3-file" type="file" accept="audio/*,.mp3" hidden><iframe class="music-embed" id="music-embed" title="Embedded music player" allow="autoplay" sandbox="allow-scripts allow-same-origin allow-presentation" hidden></iframe></div>
     </div>
   </section>
   <section class="anime-view" id="manga-view" aria-label="Manga and books">
@@ -216,6 +228,12 @@
         <div class="book-preview-head"><strong>Diary of a Wimpy Kid: Hot Mess</strong><button id="close-book-preview" type="button">Close preview</button></div>
         <iframe title="Diary of a Wimpy Kid: Hot Mess preview" loading="lazy" allow="autoplay" src="https://drive.google.com/file/d/1nisLgTB99HdWvLD8_jos2UD7OFBahdqe/preview"></iframe>
       </div>
+    </div>
+  </section>
+  <section class="personal-view" id="personal-view" aria-label="Personal library">
+    <div class="library">
+      <div class="library-head"><div><h2>Personal Library</h2><p>Recently played games and music are saved on this device.</p></div><button class="personal-clear" id="clear-personal-library" type="button">Clear history</button></div>
+      <div class="personal-grid" id="personal-grid" aria-live="polite"></div>
     </div>
   </section>
   <dialog class="settings-dialog" id="settings-dialog" aria-labelledby="settings-title">
@@ -261,6 +279,7 @@
     const musicCount = document.querySelector('#music-count');
     const musicStatus = document.querySelector('#music-status');
     const musicAudio = document.querySelector('#music-audio');
+    const musicEmbed = document.querySelector('#music-embed');
     const nowPlaying = document.querySelector('#now-playing');
     const currentMusicArt = document.querySelector('#music-current-art');
     const currentMusicNote = document.querySelector('#music-current-note');
@@ -274,6 +293,12 @@
     let musicTracks = [];
     let musicLoaded = false;
     let currentMusicTrack = null;
+    const personalItemsKey = 'orion-personal-library-v1';
+    let personalItems = [];
+    try {
+      const savedItems = JSON.parse(localStorage.getItem(personalItemsKey) || '[]');
+      if (Array.isArray(savedItems)) personalItems = savedItems.filter(item => item && ['game', 'music', 'book'].includes(item.type) && typeof item.id === 'string').slice(0, 30);
+    } catch {}
 
     const CRA_BASE = 'https://raw.githubusercontent.com/Cra-Z-Gaming/VUSL/main/HTML_Games/';
     const COOL_BASE = 'https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/';
@@ -393,11 +418,64 @@
       return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
     }
 
+    function savePersonalItems() {
+      try { localStorage.setItem(personalItemsKey, JSON.stringify(personalItems)); } catch {}
+      renderPersonalLibrary();
+    }
+    function rememberPersonalItem(type, id, title, detail = '') {
+      personalItems = [{ type, id, title, detail }, ...personalItems.filter(item => !(item.type === type && item.id === id))].slice(0, 30);
+      savePersonalItems();
+    }
+    function renderPersonalLibrary() {
+      const grid = document.querySelector('#personal-grid');
+      if (!grid) return;
+      grid.replaceChildren();
+      if (!personalItems.length) {
+        const empty = document.createElement('p');
+        empty.className = 'personal-empty';
+        empty.textContent = 'Your library is empty. Play a game or music track and it will show up here.';
+        grid.append(empty);
+        return;
+      }
+      personalItems.forEach(item => {
+        const card = document.createElement('article');
+        card.className = 'personal-card';
+        const open = document.createElement('button');
+        open.type = 'button';
+        open.className = 'personal-card-open';
+        const title = document.createElement('strong');
+        title.textContent = item.title;
+        const detail = document.createElement('span');
+        detail.textContent = item.type === 'game' ? 'Game · Play again' : item.type === 'music' ? 'Music · Play again' : 'Book · Continue reading';
+        open.append(title, detail);
+        open.addEventListener('click', () => openPersonalItem(item));
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.className = 'personal-card-remove';
+        remove.textContent = 'Remove';
+        remove.setAttribute('aria-label', `Remove ${item.title} from your library`);
+        remove.addEventListener('click', () => {
+          personalItems = personalItems.filter(saved => !(saved.type === item.type && saved.id === item.id));
+          savePersonalItems();
+        });
+        card.append(open, remove);
+        grid.append(card);
+      });
+    }
+
     const MUSIC_OWNER = 'Cra-Z-Gaming';
     const MUSIC_REPO = 'mzk';
     const MUSIC_BRANCH = 'main';
     const AUDIO_FILE = /\.(mp3|wav|ogg|flac|m4a|aac|opus|weba)$/i;
     const encodePath = path => path.split('/').map(encodeURIComponent).join('/');
+    const localMp3Picker = document.querySelector('#local-mp3-file');
+    const customMusicTracks = [{
+      path: 'whore.mp3',
+      title: 'Whore',
+      folder: 'Choose your MP3 file',
+      url: '',
+      localFile: true
+    }];
 
     const musicArtUrl = path => path ? `https://github.com/${MUSIC_OWNER}/${MUSIC_REPO}/raw/refs/heads/${MUSIC_BRANCH}/${encodePath(path)}` : '';
     const normalizedArtName = value => value.toLowerCase().replace(/\.[^.]+$/, '').replace(/[^a-z0-9]+/g, '');
@@ -464,6 +542,7 @@
         const row = document.createElement('button');
         row.type = 'button';
         row.className = 'music-track';
+        row.dataset.trackPath = track.path;
         const art = document.createElement('span');
         art.className = 'music-art';
         if (track.art) {
@@ -487,7 +566,32 @@
         copy.append(title, folder);
         row.append(art, copy);
         row.addEventListener('click', () => {
+          if (track.localFile && !track.url) {
+            musicStatus.textContent = 'Choose the Whore MP3 file from your device to play it here.';
+            localMp3Picker.click();
+            return;
+          }
+          if (track.external) {
+            currentMusicTrack = track;
+            rememberPersonalItem('music', track.path, track.title);
+            musicAudio.pause();
+            musicAudio.hidden = true;
+            musicEmbed.src = track.url;
+            musicEmbed.hidden = false;
+            nowPlaying.textContent = track.title;
+            currentMusicArt.src = track.art;
+            currentMusicArt.hidden = false;
+            currentMusicNote.hidden = true;
+            document.querySelectorAll('.music-track.active').forEach(item => item.classList.remove('active'));
+            row.classList.add('active');
+            musicStatus.textContent = `Playing ${track.title} by wifiskeleton in the embedded player.`;
+            return;
+          }
+          musicEmbed.src = 'about:blank';
+          musicEmbed.hidden = true;
+          musicAudio.hidden = false;
           currentMusicTrack = track;
+          rememberPersonalItem('music', track.path, track.title);
           musicAudio.src = track.url;
           nowPlaying.textContent = track.title;
           currentMusicArt.hidden = !track.art;
@@ -506,6 +610,8 @@
     async function loadMusic() {
       if (musicLoaded) return;
       musicStatus.textContent = 'Loading music library…';
+      musicTracks = [...customMusicTracks];
+      renderMusic();
       try {
         const response = await fetch(`https://api.github.com/repos/${MUSIC_OWNER}/${MUSIC_REPO}/git/trees/${MUSIC_BRANCH}?recursive=1`);
         if (!response.ok) throw new Error(`GitHub returned ${response.status}`);
@@ -526,12 +632,14 @@
             };
           })
           .sort((a, b) => a.title.localeCompare(b.title));
+        musicTracks.push(...customMusicTracks);
         musicLoaded = true;
         musicStatus.textContent = 'Choose a track to start playback.';
         renderMusic();
       } catch (error) {
-        musicStatus.textContent = `Could not load the music library: ${error.message}`;
-        musicList.replaceChildren();
+        musicTracks = [...customMusicTracks];
+        musicStatus.textContent = `Could not load the online library: ${error.message}. Custom tracks are still available.`;
+        renderMusic();
       }
     }
 
@@ -595,6 +703,7 @@
     const openBookPreview = document.querySelector('#open-book-preview');
     const closeBookPreview = document.querySelector('#close-book-preview');
     openBookPreview.addEventListener('click', () => {
+      rememberPersonalItem('book', 'hot-mess', 'Diary of a Wimpy Kid: Hot Mess');
       bookPreview.hidden = false;
       openBookPreview.setAttribute('aria-expanded', 'true');
       bookPreview.scrollIntoView({ behavior: settings.reduceMotion ? 'auto' : 'smooth', block: 'start' });
@@ -638,6 +747,7 @@
 
     async function launchGame(filename) {
       if (settings.confirmLaunch && !window.confirm(`Launch ${gameName(filename)} in the embedded player?`)) return;
+      rememberPersonalItem('game', filename, gameName(filename));
       const base = CRA_GAMES.has(filename) ? CRA_BASE : COOL_BASE;
       gamePlayerTitle.textContent = gameName(filename);
       gameFrame.srcdoc = '<!doctype html><html><body style="font-family:system-ui;text-align:center;padding:2rem">Loading game…</body></html>';
@@ -648,7 +758,11 @@
         if (!response.ok) throw new Error(`HTTP ${response.status}`);
         let html = await response.text();
         const baseTag = `<base href="${base}">`;
-        html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1>${baseTag}`) : `<!doctype html><head>${baseTag}</head>${html}`;
+        if (/<base\b[^>]*>/i.test(html)) html = html.replace(/<base\b[^>]*>/i, baseTag);
+        else html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1>${baseTag}`) : `<!doctype html><head>${baseTag}</head>${html}`;
+        if (!/<meta\s+name=["']viewport["']/i.test(html)) {
+          html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1><meta name="viewport" content="width=device-width, initial-scale=1">`) : html;
+        }
         gameFrame.srcdoc = html;
       } catch (error) {
         gamePlayer.hidden = true;
@@ -669,21 +783,65 @@
     gameSearch.addEventListener('input', renderGames);
     musicSearch.addEventListener('input', renderMusic);
     musicAudio.addEventListener('error', () => {
-      musicStatus.textContent = 'Could not play this track. Check the file source or select another song.';
+      musicStatus.textContent = currentMusicTrack && currentMusicTrack.localFile
+        ? 'The selected file could not be played. Choose a valid MP3 or audio file and try again.'
+        : 'Could not play this track. Check the file source or select another song.';
+    });
+    localMp3Picker.addEventListener('change', () => {
+      const file = localMp3Picker.files && localMp3Picker.files[0];
+      if (!file) return;
+      const track = customMusicTracks[0];
+      if (track.url.startsWith('blob:')) URL.revokeObjectURL(track.url);
+      track.url = URL.createObjectURL(file);
+      track.folder = file.name;
+      currentMusicTrack = track;
+      rememberPersonalItem('music', track.path, track.title);
+      musicEmbed.src = 'about:blank';
+      musicEmbed.hidden = true;
+      musicAudio.hidden = false;
+      musicAudio.src = track.url;
+      nowPlaying.textContent = track.title;
+      currentMusicArt.hidden = true;
+      currentMusicNote.hidden = false;
+      musicStatus.textContent = `Playing ${track.title} from ${file.name}.`;
+      musicAudio.play().catch(() => {
+        musicStatus.textContent = 'The selected file could not be played. Choose a valid MP3 or audio file and try again.';
+      });
+      localMp3Picker.value = '';
     });
     renderGames();
+    renderPersonalLibrary();
+    document.querySelector('#clear-personal-library').addEventListener('click', () => {
+      personalItems = [];
+      savePersonalItems();
+    });
 
-    const sectionViews = [gamesView, musicView, mangaView];
+    const personalView = document.querySelector('#personal-view');
+    const sectionViews = [gamesView, musicView, mangaView, personalView];
     function showSection(name) {
       sectionViews.forEach(view => view.classList.remove('show'));
       document.body.classList.remove('game-open', 'music-open', 'section-open');
-      const viewByName = { Games: gamesView, Music: musicView, Manga: mangaView };
+      const viewByName = { Games: gamesView, Music: musicView, Manga: mangaView, Library: personalView };
       const view = viewByName[name];
       if (!view) return;
       document.body.classList.add('section-open');
       view.classList.add('show');
       if (name === 'Games') document.body.classList.add('game-open');
-      if (name === 'Music') { document.body.classList.add('music-open'); loadMusic(); }
+      if (name === 'Music') { document.body.classList.add('music-open'); return loadMusic(); }
+      if (name === 'Library') renderPersonalLibrary();
+    }
+    async function openPersonalItem(item) {
+      if (item.type === 'game') {
+        showSection('Games');
+        launchGame(item.id);
+      } else if (item.type === 'music') {
+        await showSection('Music');
+        const trackRow = [...musicList.querySelectorAll('.music-track')].find(row => row.dataset.trackPath === item.id);
+        if (trackRow) trackRow.click();
+      } else if (item.type === 'book') {
+        showSection('Manga');
+        openBookPreview.click();
+      }
     }
     document.querySelector('.brand').addEventListener('click', event => {
       event.preventDefault();
@@ -720,7 +878,7 @@
       button.addEventListener('click', () => {
         const name = button.dataset.name;
         if (name === 'Settings') { openSettings(); return; }
-        if (['Games', 'Music'].includes(name)) { showSection(name); return; }
+        if (['Games', 'Music', 'Library'].includes(name)) { showSection(name); return; }
         if (name === 'Manga') { showSection('Manga'); return; }
         if (name === 'Browser') { openSchoolSite(); return; }
         if (name === 'Home' || name === 'New tab') {
