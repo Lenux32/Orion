@@ -170,13 +170,15 @@
     .library-search { width: min(290px, 100%); height: 42px; padding: 0 14px; border: 1px solid #282828; border-radius: 12px; outline: none; color: #eee; background: #111; }
     .library-search:focus { border-color: #555; }
     .game-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(132px, 1fr)); gap: 10px; }
-    .game-player { position: absolute; inset: 0; display: flex; flex-direction: column; padding: 14px; background: var(--page-bg); }
+    .game-player { position: absolute; inset: 12px; display: flex; flex-direction: column; padding: 14px; border: 1px solid color-mix(in srgb, var(--accent) 20%, #292929); border-radius: 20px; background: var(--surface); box-shadow: 0 18px 60px rgba(0,0,0,.28); }
     .game-player[hidden] { display: none; }
     .game-view.playing .library { display: none; }
-    .game-player-head { display: flex; min-height: 42px; align-items: center; justify-content: space-between; gap: 12px; }
-    .game-player-head button { padding: 8px 12px; border: 1px solid #393943; border-radius: 10px; color: var(--text); background: var(--surface); cursor: pointer; }
+    .game-player-head { display: flex; min-height: 44px; align-items: center; justify-content: space-between; gap: 12px; }
+    .game-player-title { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .game-player-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .game-player-head button { padding: 8px 12px; border: 1px solid #393943; border-radius: 10px; color: var(--text); background: var(--raised); cursor: pointer; }
     .game-player-head button:hover { border-color: var(--accent); color: var(--accent); }
-    .game-frame { width: 100%; flex: 1; min-height: 0; margin-top: 10px; border: 1px solid #292929; border-radius: 12px; background: #fff; }
+    .game-frame { width: 100%; flex: 1; min-height: 0; margin-top: 10px; border: 1px solid #292929; border-radius: 14px; background: #fff; }
     .game-card { min-width: 0; padding: 0; overflow: hidden; border: 1px solid #222; border-radius: 14px; color: #eee; text-align: left; background: linear-gradient(145deg, #151515, #0e0e0e); cursor: pointer; transition: transform .18s, border-color .18s, background .18s; }
     .game-card:hover { transform: translateY(-3px); border-color: #555; background: #191919; }
     .game-card:disabled { opacity: .55; cursor: wait; transform: none; }
@@ -249,7 +251,7 @@
           <p>The Orion browser is not available right now. Please check back later.</p>
         </div>
         <div class="game-player" id="game-player" hidden>
-          <div class="game-player-head"><strong id="game-player-title">Game</strong><button id="game-back" type="button">Back to library</button></div>
+          <div class="game-player-head"><strong class="game-player-title" id="game-player-title">Game</strong><div class="game-player-actions"><button id="game-open-blank" type="button">Open in about:blank</button><button id="game-fullscreen" type="button">Full screen</button><button id="game-back" type="button">Back to library</button></div></div>
           <iframe class="game-frame" id="game-frame" title="Game player" allow="fullscreen; gamepad; autoplay; orientation-lock" allowfullscreen sandbox="allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads"></iframe>
         </div>
       </div>
@@ -336,6 +338,7 @@
     const gamePlayer = document.querySelector('#game-player');
     const gamePlayerTitle = document.querySelector('#game-player-title');
     const gameFrame = document.querySelector('#game-frame');
+    let currentGameHtml = '';
     const musicView = document.querySelector('#music-view');
     const musicList = document.querySelector('#music-list');
     const musicSearch = document.querySelector('#music-search');
@@ -834,6 +837,7 @@
         if (!/<meta\s+name=["']viewport["']/i.test(html)) {
           html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1><meta name="viewport" content="width=device-width, initial-scale=1">`) : html;
         }
+        currentGameHtml = html;
         gameFrame.srcdoc = html;
       } catch (error) {
         gamePlayer.hidden = true;
@@ -846,8 +850,41 @@
       }
     }
 
+    document.querySelector('#game-open-blank').addEventListener('click', () => {
+      if (!currentGameHtml) return;
+      const popup = window.open('about:blank', '_blank');
+      if (!popup) {
+        notice.textContent = 'Allow pop-ups to open the game in a new tab.';
+        notice.classList.add('show');
+        clearTimeout(noticeTimer);
+        noticeTimer = setTimeout(() => notice.classList.remove('show'), 3000);
+        return;
+      }
+      popup.document.title = `${gamePlayerTitle.textContent} · Orion`;
+      popup.document.body.style.cssText = 'margin:0;background:#08080a;overflow:hidden';
+      const frame = popup.document.createElement('iframe');
+      frame.title = gamePlayerTitle.textContent;
+      frame.setAttribute('allow', 'fullscreen; gamepad; autoplay; orientation-lock');
+      frame.setAttribute('allowfullscreen', '');
+      frame.setAttribute('sandbox', 'allow-scripts allow-forms allow-pointer-lock allow-popups allow-downloads');
+      frame.style.cssText = 'display:block;width:100vw;height:100vh;border:0;background:#fff';
+      frame.srcdoc = currentGameHtml;
+      popup.document.body.append(frame);
+    });
+    document.querySelector('#game-fullscreen').addEventListener('click', async () => {
+      try {
+        if (document.fullscreenElement) await document.exitFullscreen();
+        else await gameFrame.requestFullscreen();
+      } catch {
+        notice.textContent = 'Full screen is not available in this browser.';
+        notice.classList.add('show');
+        clearTimeout(noticeTimer);
+        noticeTimer = setTimeout(() => notice.classList.remove('show'), 3000);
+      }
+    });
     document.querySelector('#game-back').addEventListener('click', () => {
       gameFrame.srcdoc = '';
+      currentGameHtml = '';
       gamePlayer.hidden = true;
       document.querySelector('#browser-unavailable').hidden = false;
       gamesView.classList.remove('playing');
