@@ -236,7 +236,7 @@
   </section>
   <section class="browser-view" id="browser-view" aria-label="Orion browser">
     <aside class="browser-sidebar">
-      <div class="browser-brand"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7bDRV4wlKQmkMvHzQO-N4PPy9Szxavd3jItkEb0BoDil14qlpbdpwUxk:https://art.pixilart.com/sr5zbaa22c0e3daws3.png&s=10" alt=""><span>Orion</span></div>
+      <div class="browser-brand"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7bDRV4wlKQmkMvHzQO-N4PPy9Szxavd3jItkEb0BoDil14qlpbdpwUxk:https://art.pixilart.com/sr5zbaa22c0e3daws3.png&s=10" alt=""></div>
       <nav class="browser-tabs" aria-label="Browser tabs">
         <button class="browser-tab active" type="button" aria-current="page">Tab 1 · Home</button>
         <button class="browser-tab" id="browser-games-tab" type="button">Tab 2 · Games</button>
@@ -972,8 +972,15 @@
         if (name === 'Manga') { showSection('Manga'); return; }
         if (name === 'Browser') {
           const popup = window.open('about:blank', '_blank');
-          if (popup) popup.location.href = 'https://codehs.com/sandbox/boltstudios/new-sandbox-program-1/run';
-          else {
+          if (popup) {
+            const frame = popup.document.createElement('iframe');
+            frame.src = 'https://codehs.com/sandbox/id/javascript-graphics-iuLbYl/embed/?display_mode=displayOnly&read_only=True&show_file_tree=False';
+            frame.title = 'CodeHS project';
+            frame.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0';
+            popup.document.title = 'Browser';
+            popup.document.body.style.cssText = 'margin:0;overflow:hidden';
+            popup.document.body.append(frame);
+          } else {
             notice.textContent = 'Allow pop-ups to open the browser page.';
             notice.classList.add('show');
             clearTimeout(noticeTimer);
