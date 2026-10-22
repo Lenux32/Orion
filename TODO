@@ -1,0 +1,23 @@
+# TODO
+
+## Split the page into maintainable files
+
+- [ ] Move the contents of the `<style>` block in `index.html` into `styles.css`, then link it with `<link rel="stylesheet" href="styles.css">`.
+- [ ] Move the inline `<script>` code into `app.js`, then load it with `<script src="app.js" defer></script>`.
+- [ ] Move editable catalogs and configuration out of `app.js` into JSON files. Good first candidates are the game filename list and game cover URLs; keep rendering and interaction logic in JavaScript.
+- [ ] Update the app to load the JSON with `fetch()` and handle loading or parse errors gracefully. If the project is hosted as a static site, check that the host serves JSON files with the correct paths and that the page is opened from a web server rather than directly as a `file://` URL.
+- [ ] Keep the existing music catalog behavior in mind: it currently loads from the GitHub API at runtime, so decide whether that should remain remote or become a locally maintained JSON catalog.
+- [ ] Use clear relative paths for local files so the project works from the repository root and when hosted in a subdirectory.
+- [ ] After each move, check that the page still works: navigation, search, settings, game launch, music, and the personal library.
+
+## Possible starting structure
+
+```text
+index.html
+styles.css
+app.js
+data/
+  games.json
+```
+
+Split the code in small steps and keep `index.html` focused on page structure.
