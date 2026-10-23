@@ -190,6 +190,61 @@
     body.game-open { overflow: hidden; }
     body.game-open .home { display: none; }
     @media (max-width: 540px) { .topbar { top: 10px; left: 10px; right: auto; gap: 7px; padding: 8px; border-radius: 20px; } .nav-group { gap: 6px; } .nav-pill { min-width: 38px; height: 38px; padding: 0 10px; } .brand { padding: 0 12px 0 9px; } .home { padding: 68px 12px 28px 78px; } .music-player { flex-wrap: wrap; } .music-player audio { width: 100%; } }
+
+    /* Orion's obsidian-inspired dashboard refresh */
+    :root { --accent: #bd8cff; --surface: #11101a; --raised: #1b1826; --page-bg: #09080e; }
+    :root[data-theme="light"] { --surface: #fff; --raised: #efebf6; }
+    body { background-image: radial-gradient(ellipse at 50% 0%, rgba(98, 48, 143, .17), transparent 48%); }
+    body::before { opacity: .13; background-size: 28px 28px; }
+    .atmosphere::before { background: radial-gradient(ellipse at 18% 75%, rgba(91, 58, 135, .24), transparent 42%), radial-gradient(ellipse at 82% 58%, rgba(49, 62, 111, .2), transparent 42%), radial-gradient(ellipse at 50% 100%, rgba(143, 94, 190, .13), transparent 48%); }
+    .topbar { top: 16px; right: 20px; left: 20px; bottom: auto; flex-direction: row; justify-content: space-between; gap: 18px; padding: 10px 13px; border-color: rgba(196, 160, 255, .15); border-radius: 18px; background: color-mix(in srgb, var(--surface) 84%, transparent); box-shadow: 0 12px 40px rgba(0,0,0,.24); }
+    .nav-group { flex-direction: row; gap: 7px; }
+    .nav-pill { min-width: 42px; height: 42px; padding: 0 12px; border: 1px solid transparent; border-radius: 13px; color: var(--muted); background: transparent; }
+    .nav-pill:hover, .nav-pill.active { transform: none; border-color: color-mix(in srgb, var(--accent) 28%, transparent); color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent); }
+    .nav-pill.brand { gap: 9px; padding: 0 15px 0 8px; color: var(--text); font-size: 16px; }
+    .nav-pill.brand:hover { color: var(--accent); }
+    .obsidian-logo { width: 36px; height: 36px; flex: 0 0 36px; display: block; filter: drop-shadow(0 4px 10px rgba(132, 77, 192, .3)); }
+    .home { min-height: 100svh; padding: 100px 24px 40px; transform: none; }
+    .home-title { gap: 16px; margin-bottom: 28px; }
+    .home-title .obsidian-logo { width: clamp(50px, 7vw, 68px); height: clamp(50px, 7vw, 68px); }
+    h1 { font-size: clamp(48px, 7vw, 68px); letter-spacing: -3.5px; }
+    .search { width: min(620px, calc(100vw - 36px)); height: 60px; gap: 14px; padding: 0 16px 0 22px; border: 1px solid rgba(196, 160, 255, .16); border-radius: 18px; background: color-mix(in srgb, var(--surface) 92%, transparent); box-shadow: 0 12px 38px rgba(0,0,0,.2); }
+    .search:focus-within { border-color: color-mix(in srgb, var(--accent) 68%, transparent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 11%, transparent); }
+    .enter { border: 1px solid rgba(255,255,255,.06); border-radius: 9px; background: var(--raised); }
+    .shortcuts { gap: 12px; margin-top: 20px; }
+    .shortcut { width: 84px; height: 88px; border: 1px solid rgba(196, 160, 255, .11); border-radius: 17px; background: color-mix(in srgb, var(--surface) 90%, transparent); }
+    .shortcut:hover { border-color: color-mix(in srgb, var(--accent) 45%, transparent); background: var(--raised); }
+    .game-view, .music-view, .anime-view, .personal-view, .browser-view { inset: 82px 0 0; background: var(--page-bg); }
+    .library, .music-library { padding-top: 34px; }
+    .library h2, .music-library h2 { letter-spacing: -1px; }
+    .game-card, .media-card, .personal-card { border-color: rgba(196, 160, 255, .12); border-radius: 16px; background: linear-gradient(145deg, color-mix(in srgb, var(--surface) 94%, #302044), var(--surface)); }
+    .game-card:hover, .media-card:hover { border-color: color-mix(in srgb, var(--accent) 55%, transparent); }
+    .game-card img { height: 96px; }
+    .library-search { border-color: rgba(196, 160, 255, .16); border-radius: 12px; color: var(--text); background: var(--surface); }
+    .library-search:focus { border-color: var(--accent); }
+    .browser-sidebar { background: var(--surface); }
+    .browser-brand { min-height: 38px; color: var(--text); }
+    .browser-brand .obsidian-logo { width: 34px; height: 34px; }
+    @media (max-width: 700px) {
+      .topbar { left: 10px; right: 10px; gap: 8px; padding: 7px; overflow-x: auto; }
+      .nav-group { flex: 0 0 auto; gap: 3px; }
+      .nav-pill { min-width: 38px; height: 38px; padding: 0 9px; }
+      .nav-pill.brand { padding: 0 10px 0 6px; }
+      .nav-pill.brand span { display: none; }
+      .nav-pill.discord { display: none; }
+      .home { padding: 88px 14px 28px; }
+      .shortcuts { flex-wrap: wrap; justify-content: center; }
+      .shortcut { width: 72px; height: 78px; }
+      .game-view, .music-view, .anime-view, .personal-view, .browser-view { inset: 70px 0 0; }
+    }
+    @media (max-width: 420px) {
+      .browser-sidebar { width: 115px; flex-basis: 115px; }
+      .browser-brand { margin-inline: 2px; }
+      .browser-brand .obsidian-logo { width: 28px; height: 28px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .atmosphere::before, .atmosphere::after { animation: none; }
+    }
   </style>
 </head>
 <body>
@@ -198,7 +253,7 @@
     <nav class="nav-group" aria-label="Orion sections">
       <button class="nav-pill" type="button" data-name="Home" aria-label="Home" title="Home"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg></button>
       <button class="nav-pill" type="button" data-name="New tab" aria-label="New tab — return home and clear search" title="New tab · Return home and clear search"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 5v14m-7-7h14"/></svg></button>
-      <a class="nav-pill brand" href="#home" aria-label="Orion home"><span>Orion</span></a>
+      <a class="nav-pill brand" href="#home" aria-label="Orion home"><svg class="obsidian-logo" viewBox="0 0 48 48" role="img" aria-label="Obsidian block"><path fill="#9b65cf" d="M24 3 44 14 24 25 4 14Z"/><path fill="#56347d" d="M4 14 24 25v21L4 35Z"/><path fill="#302143" d="m44 14-20 11v21l20-11Z"/><path fill="#c49aea" d="m24 7 13 7-5 3-13-7Z" opacity=".65"/><path fill="#7951a0" d="m8 16 12 7v4L8 20Z" opacity=".8"/><path fill="#4a3265" d="m27 28 13-7v4l-13 7Z" opacity=".8"/><path fill="#1e1729" d="m8 29 12 7v4L8 33Z" opacity=".7"/></svg><span>Orion</span></a>
       <button class="nav-pill" type="button" data-name="Games" aria-label="Games" title="Games"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button>
       <button class="nav-pill" type="button" data-name="Music" aria-label="Music" title="Music"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
       <button class="nav-pill" type="button" data-name="Manga" aria-label="Manga" title="Manga"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.5C9.5 4.8 6.5 4.5 3.5 5.5v14c3-1 6-.7 8.5 1 2.5-1.7 5.5-2 8.5-1v-14c-3-1-6-.7-8.5 1Z"/><path d="M12 7v13.5M6.5 9h2m-2 3h2m7-3h2m-2 3h2"/></svg></button>
@@ -212,7 +267,7 @@
     </nav>
   </header>
   <main class="home" id="home">
-    <div class="home-title"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7bDRV4wlKQmkMvHzQO-N4PPy9Szxavd3jItkEb0BoDil14qlpbdpwUxk:https://art.pixilart.com/sr5zbaa22c0e3daws3.png&s=10" alt=""><h1>Orion</h1></div>
+    <div class="home-title"><svg class="obsidian-logo" viewBox="0 0 48 48" role="img" aria-label="Obsidian block"><path fill="#9b65cf" d="M24 3 44 14 24 25 4 14Z"/><path fill="#56347d" d="M4 14 24 25v21L4 35Z"/><path fill="#302143" d="m44 14-20 11v21l20-11Z"/><path fill="#c49aea" d="m24 7 13 7-5 3-13-7Z" opacity=".65"/><path fill="#7951a0" d="m8 16 12 7v4L8 20Z" opacity=".8"/><path fill="#4a3265" d="m27 28 13-7v4l-13 7Z" opacity=".8"/><path fill="#1e1729" d="m8 29 12 7v4L8 33Z" opacity=".7"/></svg><h1>Orion</h1></div>
     <form class="search" action="https://www.google.com/search" method="get" role="search">
       <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.3"/><path d="m15.5 15.5 4 4"/></svg>
       <input type="search" name="q" aria-label="Search the web" placeholder="we have manga too..." autocomplete="off" spellcheck="false" />
@@ -236,7 +291,7 @@
   </section>
   <section class="browser-view" id="browser-view" aria-label="Orion browser">
     <aside class="browser-sidebar">
-      <div class="browser-brand"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7bDRV4wlKQmkMvHzQO-N4PPy9Szxavd3jItkEb0BoDil14qlpbdpwUxk:https://art.pixilart.com/sr5zbaa22c0e3daws3.png&s=10" alt=""></div>
+      <div class="browser-brand"><svg class="obsidian-logo" viewBox="0 0 48 48" role="img" aria-label="Obsidian block"><path fill="#9b65cf" d="M24 3 44 14 24 25 4 14Z"/><path fill="#56347d" d="M4 14 24 25v21L4 35Z"/><path fill="#302143" d="m44 14-20 11v21l20-11Z"/><path fill="#c49aea" d="m24 7 13 7-5 3-13-7Z" opacity=".65"/><path fill="#7951a0" d="m8 16 12 7v4L8 20Z" opacity=".8"/><path fill="#4a3265" d="m27 28 13-7v4l-13 7Z" opacity=".8"/><path fill="#1e1729" d="m8 29 12 7v4L8 33Z" opacity=".7"/></svg><span>Orion</span></div>
       <nav class="browser-tabs" aria-label="Browser tabs">
         <button class="browser-tab active" type="button" aria-current="page">Tab 1 · Home</button>
         <button class="browser-tab" id="browser-games-tab" type="button">Tab 2 · Games</button>
@@ -357,7 +412,7 @@
     const settingsDialog = document.querySelector('#settings-dialog');
     const updatesDialog = document.querySelector('#updates-dialog');
     const settingsKey = 'orion-settings-v1';
-    const defaultSettings = { confirmLaunch: false, reduceMotion: false, theme: 'system', accent: '#8fe3d0', size: '1', font: 'system', glass: false, searchEngine: 'google' };
+    const defaultSettings = { confirmLaunch: false, reduceMotion: false, theme: 'system', accent: '#bd8cff', size: '1', font: 'system', glass: false, searchEngine: 'google' };
     let settings = { ...defaultSettings };
     try { settings = { ...settings, ...JSON.parse(localStorage.getItem(settingsKey) || '{}') }; } catch {}
     let noticeTimer;
@@ -374,34 +429,77 @@
     const CRA_BASE = 'https://raw.githubusercontent.com/Cra-Z-Gaming/VUSL/main/HTML_Games/';
     const COOL_BASE = 'https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/';
     const CRA_GAMES = new Set([
-      '1.5.html', '1.8.html', '12minibattles.html', '1on1tennis.html', '2048cupcakes.html',
-      '8ballclassic.html', 'ageofwar2.html', 'amongus.html', 'angrybirds.html',
-      'angrybirdsshowdown.html', 'awesometanks2.html', 'backrooms.html', 'badicecream.html',
-      'badpiggies.html', 'baseballbros.html', 'basketrandom.html', 'bitplanes.htm',
-      'blockysnakes.html', 'bloonsTD.html', 'bloonsTD2.html', 'bloonsTD5.html',
-      'blumgirocket.html', 'bobtherobber.html', 'breakingthebank.html', 'bubbleshooter.html',
-      'candycrush.html', 'capybaraclicker.html', 'carkingarena.html', 'chess.html',
-      'circloO2.html', 'clashofvikings.html', 'cookieclicker.htm', 'crazycars.html',
-      'dadish2.html', 'dadish3.html', 'ducklife4.html', 'eagleride.html', 'earntodie2.html',
-      'eggycar.html', 'escapingtheprison.html', 'fancypantsadventure.html',
-      'fireboyandwatergirl2.html', 'fireboyandwatergirl3.html', 'footballlegends.html',
-      'freerider3.html', 'fruitninja.html', 'geometrydash.html', 'getawayshootout.htm',
-      'hillclimbracinglite.html', 'holeio.html', 'houseofhazards.html', 'hoverracerdrive.html',
-      'idlebreakout.html', 'johnnytrigger.html', 'jumpingshell.html', 'learntofly.html',
-      'learntofly2.html', 'leveldevil.html', 'mergeroundracers.html', 'motox3m.htm',
-      'motox3m2.html', 'motox3mpoolparty.html', 'motox3mspookyland.html', 'motox3mwinter.html',
-      'ovo.html', 'papasbakeria.html', 'papasburgeria.html', 'papascupcakeria.html',
-      'papasdonuteria.html', 'papasfreezeria.html', 'papaspancakeria.html', 'papaspastaria.html',
-      'papaspizzeria.html', 'parkingfury.html', 'polytrack.html', 'poorbunny.html',
-      'ragdollarchers.htm', 'ragdollsoccer.html', 'retrobowl.html', 'retrobowlcollege.html',
-      'retrohighway.html', 'retropingpong.html', 'riddleschool.html', 'riddleschool3.html',
-      'riddleschool4.html', 'riddleschool5.html', 'rooftopsnipers2.html', 'run2.html',
-      'slope.html', 'sm64.html', 'snowballio.html', 'spaceiskey.html', 'spacewaves.html',
-      'speedstars.html', 'sprunki.html', 'stateio.html', 'stickmerge.html',
-      'superliquidsoccer.html', 'tabletennisworldtour.html', 'territorialio.html',
-      'theimpossiblequiz.html', 'theimpossiblequiz2.html', 'thisistheonlylevel.html',
-      'timeshooter2.html', 'tinyfishing.html', 'vexx3m2.html', 'wheely.html',
-      'worldshardestgame2.html', 'wrestlebros.html'
+      '1-on-1-tennis.html', '1.12.html', '1.12_WASM.html', '1.5.html', '1.8.html',
+      '1.8_WASM.html', '10-minutes-till-dawn.html', '12-mini-battles.html', '1v1.lol.html', '2048-cupcakes.html',
+      '2048.html', '3D-flight-simulator.html', '3d-free-kick.html', '8-ball-classic.html', '9007199254740992.html',
+      'Alpha_1.2.6.html', 'Beta_1.3.html', 'Indev.html', 'agar-io-lite.html', 'age-of-war-2.html',
+      'age-of-war.html', 'ages-of-conflict.html', 'among-us.html', 'angry-birds-showdown.html', 'angry-birds-space.html',
+      'angry-birds.html', 'awesome-tanks-2.html', 'awesome-tanks.html', 'backrooms.html', 'bacon-may-die.html',
+      'bad-ice-cream-2.html', 'bad-ice-cream-3.html', 'bad-ice-cream.html', 'bad-parenting.html', 'bad-piggies.html',
+      'bad-time-simulator.html', 'baldis-basics.html', 'bank-robbery-2.html', 'bank-robbery-3.html', 'baseball-bros.html',
+      'basket-bros.html', 'basket-random.html', 'basketball-legends.html', 'basketball-stars.html', 'big-ice-tower-tiny-square.html',
+      'big-neon-tower-tiny-square.html', 'big-tower-tiny-square-2.html', 'big-tower-tiny-square.html', 'bit-planes.html', 'bitlife.html',
+      'blocky-snakes.html', 'bloons-TD-2.html', 'bloons-TD-3.html', 'bloons-TD-4.html', 'bloons-TD-5.html',
+      'bloons-TD.html', 'bloxorz.html', 'blumgi-racers.html', 'blumgi-rocket.html', 'bob-the-robber-2.html',
+      'bob-the-robber-5.html', 'bob-the-robber.html', 'bouncy-motors.html', 'bow-masters.html', 'boxel-rebound.html',
+      'boxing-random.html', 'breaking-the-bank.html', 'bubble-shooter.html', 'burrito-bison-launcha-libre.html', 'candy-crush.html',
+      'capybara-clicker.html', 'car-drawing.html', 'car-king-arena.html', 'chaos-faction-2.html', 'chess.html',
+      'choppy-orc.html', 'circloO-2.html', 'circloO.html', 'clash-of-vikings.html', 'cleanup-io.html',
+      'cluster-rush.html', 'cookie-clicker.html', 'coreball.html', 'crazy-cars.html', 'crazy-cattle-3D.html',
+      'crazy-crash-landing.html', 'crazy-motorcycle.html', 'crossy-road.html', 'cut-the-rope-2.html', 'cut-the-rope-holiday-gift.html',
+      'cut-the-rope-time-travel.html', 'cut-the-rope.html', 'dadish-2.html', 'dadish-3.html', 'dadish.html',
+      'deadly-descent.html', 'death-chase.html', 'death-run-3D.html', 'demolition-derby-crash-racing.html', 'doodle-jump.html',
+      'draw-climber.html', 'dreadhead-parkour.html', 'drift-boss.html', 'drift-hunters-pro.html', 'drive-mad.html',
+      'duck-life-2.html', 'duck-life-3.html', 'duck-life-4.html', 'duck-life-5.html', 'duck-life.html',
+      'ducklings-io.html', 'eagle-ride.html', 'earn-to-die-2.html', 'earn-to-die.html', 'eggy-car.html',
+      'elastic-face.html', 'escape-road-2.html', 'escape-road-3.html', 'escape-road.html', 'escaping-the-prison.html',
+      'eugenes-life.html', 'evil-glitch.html', 'fancy-pants-adventure-2.html', 'fancy-pants-adventure.html', 'fireblob.html',
+      'fireboy-and-watergirl-2.html', 'fireboy-and-watergirl-3.html', 'fireboy-and-watergirl-4.html', 'fireboy-and-watergirl.html', 'flappy-bird.html',
+      'fleeing-the-complex.html', 'flood-runner-2.html', 'flood-runner-3.html', 'flood-runner-4.html', 'fnaf-2.html',
+      'fnaf-3.html', 'fnaf-4.html', 'fnaf-sister-location.html', 'fnaf.html', 'football-bros.html',
+      'football-legends.html', 'free-rider-3.html', 'friday-night-funkin.html', 'fruit-ninja.html', 'funny-battle-2.html',
+      'funny-battle.html', 'funny-mad-racing.html', 'funny-shooter-2.html', 'geometry-dash-lite.html', 'geometry-dash.html',
+      'geometry-vibes.html', 'get-on-top.html', 'getaway-shootout.html', 'gladi-hoppers.html', 'google-baseball.html',
+      'google-dino.html', 'granny-2.html', 'granny.html', 'guess-their-answer.html', 'hanger-2.html',
+      'happy-wheels.html', 'helix-jump.html', 'highway-traffic.html', 'hill-climb-racing-lite.html', 'hole-io.html',
+      'house-of-hazards.html', 'hover-racer-drive.html', 'ice-dodo.html', 'idle-breakout.html', 'idle-dice.html',
+      'infiltrating-the-airship.html', 'iron-snout.html', 'jacksmith.html', 'jetpack-joyride.html', 'johnny-trigger.html',
+      'jumping-shell.html', 'karate-bros.html', 'kart-bros.html', 'kittytoy.html', 'learn-to-fly-2.html',
+      'learn-to-fly-3.html', 'learn-to-fly-idle.html', 'learn-to-fly.html', 'level-devil.html', 'little-alchemy-2.html',
+      'madalin-stunt-cars-2.html', 'madness-project-nexus.html', 'melon-playground.html', 'merge-round-racers.html', 'minesweeper.html',
+      'monkey-mart.html', 'monster-tracks.html', 'motherload.html', 'moto-x3m-2.html', 'moto-x3m-3.html',
+      'moto-x3m-pool-party.html', 'moto-x3m-spooky-land.html', 'moto-x3m-winter.html', 'moto-x3m.html', 'murder.html',
+      'noob-miner.html', 'openTTD.html', 'opposite-day.html', 'ovo-2.html', 'ovo-3-dimensions.html',
+      'ovo.html', 'pac-man.html', 'papas-bakeria.html', 'papas-burgeria.html', 'papas-cheeseria.html',
+      'papas-cupcakeria.html', 'papas-donuteria.html', 'papas-freezeria.html', 'papas-hot-doggeria.html', 'papas-pancakeria.html',
+      'papas-pastaria.html', 'papas-pizzeria.html', 'papas-scooperia.html', 'papas-sushiria.html', 'papas-taco-mia.html',
+      'papas-wingeria.html', 'paper-io-2.html', 'parking-fury-2.html', 'parking-fury-3.html', 'parking-fury.html',
+      'picos-school.html', 'ping-pong-chaos.html', 'pixel-speedrun.html', 'plants-vs-zombies.html', 'plonky.html',
+      'polytrack.html', 'poor-bunny.html', 'pou.html', 'ragdoll-archers.html', 'ragdoll-hit.html',
+      'ragdoll-soccer.html', 'red-ball-4-vol-1.html', 'red-ball-4-vol-2.html', 'red-ball-4-vol-3.html', 'retro-bowl-college.html',
+      'retro-bowl.html', 'retro-highway.html', 'retro-ping-pong.html', 'riddle-school-2.html', 'riddle-school-3.html',
+      'riddle-school-4.html', 'riddle-school-5.html', 'riddle-school.html', 'riddle-transfer-2.html', 'riddle-transfer.html',
+      'rocket-soccer-derby.html', 'rooftop-run.html', 'rooftop-snipers-2.html', 'rooftop-snipers.html', 'run-2.html',
+      'run-3.html', 'run.html', 'sand-game.html', 'sandbox-city.html', 'short-life.html',
+      'six-cats-under.html', 'slope-2-player.html', 'slope-3.html', 'slope.html', 'slow-roads.html',
+      'sm-63.html', 'sm-64.html', 'snail-bob-2.html', 'snail-bob-3.html', 'snail-bob-4.html',
+      'snail-bob-5.html', 'snail-bob-6.html', 'snail-bob-7.html', 'snail-bob-8.html', 'snail-bob.html',
+      'snow-rider.html', 'snow-road.html', 'snowball-io.html', 'soccer-bros.html', 'soccer-random.html',
+      'space-is-key-2.html', 'space-is-key.html', 'space-waves.html', 'spacebar-clicker.html', 'speed-stars.html',
+      'sprunki.html', 'stack.html', 'stacktris.html', 'state-io.html', 'stealing-the-diamond.html',
+      'stick-archers-battle.html', 'stick-fighter.html', 'stick-merge.html', 'stickman-hook.html', 'subway-surfers-beijing.html',
+      'subway-surfers-havana.html', 'subway-surfers-san-francisco.html', 'super-bike-the-champion.html', 'super-liquid-soccer.html', 'super-star-car.html',
+      'superhot.html', 'table-tennis-world-tour.html', 'tag.html', 'tanuki-sunset.html', 'tap-road.html',
+      'temple-of-boom.html', 'temple-run-2.html', 'territorial-io.html', 'tetrominoes.html', 'the-impossible-quiz-2.html',
+      'the-impossible-quiz.html', 'there-is-no-g.html', 'they-are-coming.html', 'this-is-the-only-level-too.html', 'this-is-the-only-level.html',
+      'time-shooter-2.html', 'time-shooter-3.html', 'tiny-fishing.html', 'tomb-of-the-mask.html', 'trap-the-cat.html',
+      'trivia-crack.html', 'tube-jumpers.html', 'tunnel-rush.html', 'unicycle-hero.html', 'vex-4.html',
+      'vex-5.html', 'vex-6.html', 'vex-7.html', 'vex-8.html', 'vex-x3m-2.html',
+      'vex-x3m.html', 'volley-random.html', 'war-the-knights.html', 'we-become-what-we-behold.html', 'wheelie-bike.html',
+      'wheely-2.html', 'wheely-3.html', 'wheely-4.html', 'wheely-5.html', 'wheely-6.html',
+      'wheely-7.html', 'wheely-8.html', 'wheely.html', 'wordle-unlimited.html', 'worlds-hardest-game-2.html',
+      'worlds-hardest-game-3.html', 'worlds-hardest-game.html', 'wrestle-bros.html', 'yohoho-io.html', 'zombie-rush.html',
+      'zrist.html',
     ]);
     const games = [...new Set([
       ...CRA_GAMES,
@@ -451,35 +549,271 @@
     ])];
     const gameName = (filename) => filename.replace(/\.(html|htm)$/i, '').replace(/([a-z])([0-9])/ig, '$1 $2').replace(/[._]/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
     const GAME_IMAGES = {
-      'geometrydash.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/geometrydash.jpg',
-      'slope.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/slope.jfif',
-      'retrobowl.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/retrobowl.jpg',
+      '10-minutes-till-dawn.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/10%20minutes.jpg',
+      '10minutestilldawn.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/10%20minutes.jpg',
       '1v1.lol.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg',
-      'monkeymart.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/monkey%20mart.jpg',
-      'eggycar.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/eggy%20car.jpg',
-      'amongus.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp',
-      'bloonsTD5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd5.jpg',
-      'polytrack.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/polytrack.jpg',
-      'fruitninja.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fruit%20ninja.jpg',
-      'basketrandom.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/basket%20random.jpg',
+      '2048.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/2048.png',
+      '2048-cupcakes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/2048%20cupcakes.avif',
       '2048cupcakes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/2048%20cupcakes.avif',
-      'chess.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/chess.jpg',
+      '8-ball-classic.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/8ball.webp',
+      '8ballclassic.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/8ball.webp',
+      'age-of-war.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/age%20of%20war.jpg',
+      'age-of-war-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/age%20of%20war%202.jpg',
+      'ageofwar.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/age%20of%20war.jpg',
+      'ageofwar2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/age%20of%20war%202.jpg',
+      'among-us.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp',
+      'amongus.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp',
+      'angry-birds.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/angrybirds.webp',
+      'angry-birds-showdown.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/angry%20birds%20showdown.webp',
+      'angry-birds-space.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/angrybirdsspace.webp',
+      'backrooms.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/backrooms.png',
+      'bacon-may-die.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/baconmaydie.png',
+      'baconmaydie.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/baconmaydie.png',
+      'bad-ice-cream.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream.jpg',
+      'bad-ice-cream-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream%202.png',
+      'bad-ice-cream-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream%203.png',
+      'bad-piggies.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bad%20piggies.jpg',
+      'bad-parenting.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/badparenting.jpg',
+      'badparenting.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/badparenting.jpg',
+      'baldis-basics.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/baldi.jpg',
+      'baldisbasics.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/baldi.jpg',
+      'baseball-bros.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/baseball%20bros.avif',
+      'baseballbros.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/baseball%20bros.avif',
+      'basket-bros.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png',
+      'basketbros.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png',
+      'basket-random.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/basket%20random.jpg',
+      'basketrandom.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/basket%20random.jpg',
+      'basketball-legends.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketballlegends.jpg',
+      'bit-planes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bitplanes.png',
+      'bitplanes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bitplanes.png',
+      'bitlife.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bitlife.webp',
+      'blocky-snakes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/blocky%20snakes.jpg',
+      'blockysnakes.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/blocky%20snakes.jpg',
+      'bloons-TD.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd.jpg',
+      'bloons-TD-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd2.jpg',
+      'bloons-TD-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd%203.jpg',
+      'bloons-TD-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd%204.jpg',
+      'bloons-TD-5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd5.jpg',
+      'bloonsTD3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd%203.jpg',
+      'bloonsTD4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd%204.jpg',
+      'bloonsTD5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd5.jpg',
+      'bloxorz.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bloxorz.jpg',
+      'bob-the-robber.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bob%20the%20robber.jpg',
+      'bob-the-robber-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bobtherobber2.jpg',
+      'bobtherobber2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bobtherobber2.jpg',
+      'bow-masters.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bowmasters.jpg',
+      'bowmasters.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bowmasters.jpg',
+      'boxing-random.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/boxing%20random.png',
+      'boxingrandom.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/boxing%20random.png',
+      'breaking-the-bank.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/breaking%20the%20bank.jpg',
+      'bubble-shooter.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bubbleshooter.jpg',
+      'chess.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/chess.png',
+      'choppy-orc.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/choppy%20orc.jpg',
+      'circloO.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/circleo.webp',
+      'circloO-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/circloo2.jpeg',
+      'cluster-rush.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/cluster%20rush.jpg',
+      'clusterrush.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/cluster%20rush.jpg',
+      'cookie-clicker.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/cookieclicker.jpg',
       'cookieclicker.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/cookieclicker.jpg',
+      'crossy-road.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/crossy%20road.jpg',
       'crossyroad.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/crossy%20road.jpg',
+      'crazy-cattle-3D.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/crazycattle.jpg',
+      'crazycattle3D.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/crazycattle.jpg',
+      'dadish.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/dadish.jpg',
+      'dadish-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/dadish2.webp',
       'dadish2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/dadish2.webp',
+      'dadish-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/dadish%203.png',
+      'death-run-3D.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/deathrun3d.jfif',
+      'deathrun3D.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/deathrun3d.jfif',
+      'doodle-jump.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/doodlejump.png',
+      'doodlejump.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/doodlejump.png',
+      'drift-boss.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drift%20boss.png',
+      'driftboss.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drift%20boss.png',
+      'drive-mad.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drive%20mad.png',
+      'drivemad.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drive%20mad.png',
+      'duck-life.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife.jfif',
+      'duck-life-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife2.jfif',
+      'duck-life-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife3.jfif',
+      'duck-life-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife4.jfif',
+      'ducklife.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife.jfif',
+      'ducklife2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife2.jfif',
+      'ducklife3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife3.jfif',
       'ducklife4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife4.jfif',
+      'earntodie.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/earn%20to%20die.jpg',
+      'earn-to-die.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/earn%20to%20die.jpg',
+      'eggycar.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/eggy%20car.jpg',
+      'escape-road.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/escape%20road.avif',
+      'escaperoad.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/escape%20road.avif',
+      'escape-road-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/escaperoad2.jpeg',
+      'escaperoad2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/escaperoad2.jpeg',
+      'evil-glitch.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/evilglitch.png',
+      'evilglitch.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/evilglitch.png',
+      'fancy-pants-adventure.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fancypants.png',
+      'fancy-pants-adventure-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fancy%20pants%202.png',
+      'fancypantsadventure2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fancy%20pants%202.png',
+      'fnaf.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf.jpg',
+      'fnaf-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf2.jpg',
+      'fnaf2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf2.jpg',
+      'fnaf-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf3.jpg',
+      'fnaf3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf3.jpg',
+      'fnaf-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/fnaf-4/thumb.png',
+      'fnaf4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/fnaf-4/thumb.png',
+      'flappy-bird.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png',
+      'flappybird.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png',
+      'fruit-ninja.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fruit%20ninja.jpg',
+      'fruitninja.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fruit%20ninja.jpg',
+      'geometry-dash.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/geometrydash.jpg',
+      'geometry-dash-lite.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/geometrydash.jpg',
+      'geometrydash.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/geometrydash.jpg',
+      'gladihoppers.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/gladihoppers.jpg',
       'granny.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/granny.jpg',
+      'granny-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/granny%202.jpg',
+      'granny2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/granny%202.jpg',
+      'happy-wheels.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/happy%20wheelsa.jpg',
       'happywheels.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/happy%20wheelsa.jpg',
+      'helix-jump.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/helix%20jump.jpg',
+      'helixjump.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/helix%20jump.jpg',
+      'hole-io.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/Hole-Io.avif',
       'holeio.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/Hole-Io.avif',
+      'idle-breakout.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/idle%20breakout.png',
       'idlebreakout.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/idle%20breakout.png',
+      'infiltrating-the-airship.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/infiltrating%20the%20airship.jpg',
+      'jetpack-joyride.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/jetpack.jpg',
+      'jetpackjoyride.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/jetpack.jpg',
+      'johnny-trigger.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/johnnytrigger.png',
+      'johnnytrigger.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/johnnytrigger.png',
+      'learn-to-fly.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/learn%20to%20fly.jpg',
+      'learn-to-fly-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/learn%20to%20fly%202.jpg',
+      'learn-to-fly-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/learn%20to%20fly%203.jpg',
+      'learntofly3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/learn%20to%20fly%203.jpg',
+      'madness-project-nexus.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/madness.jpg',
+      'melon-playground.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/melonplayground.png',
+      'melonplayground.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/melonplayground.png',
+      'monkey-mart.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/monkey%20mart.jpg',
+      'monkeymart.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/monkey%20mart.jpg',
+      'motherload.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/motherload.jpg',
+      'moto-x3m.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m.jpg',
+      'moto-x3m-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m%202.jpg',
+      'moto-x3m-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m%203.jpg',
       'motox3m.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m.jpg',
       'motox3m2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m%202.jpg',
+      'motox3m3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m%203.jpg',
+      'moto-x3m-pool-party.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/moto%20x3m%20pool%20party.jpg',
+      'moto-x3m-spooky-land.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/motospooky.png',
+      'murder.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/murder.webp',
       'ovo.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/ovo.jpg',
+      'ovo-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/ovo%202.avif',
+      'ovo2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/ovo%202.avif',
+      'ovo-3-dimensions.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/ovodimensions.png',
+      'ovo3dimensions.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/ovodimensions.png',
+      'pac-man.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/pacman.png',
+      'pacman.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/pacman.png',
+      'papas-bakeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20bake.jpg',
+      'papas-burgeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20burgeria.jpg',
+      'papas-cheeseria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20cheese.webp',
+      'papas-cupcakeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papascupcake.jpg',
+      'papas-donuteria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20donut.jpg',
+      'papas-freezeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20freezeria.jpg',
+      'papas-hot-doggeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20hotdog.jpg',
+      'papas-pancakeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20pancake.jpg',
+      'papas-pastaria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20pasta.jpg',
+      'papas-pizzeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20pizza.jpg',
+      'papas-scooperia.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20scooperia.jpg',
+      'papas-sushiria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/sushi.jpg',
+      'papas-taco-mia.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20taco.jpg',
+      'papas-wingeria.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20wing.jpg',
+      'paper-io-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/paperio2.jpg',
+      'paperio2.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/paperio2.jpg',
+      'parking-fury.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/parking%20fury.png',
+      'parking-fury-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/parking%20fury%202.jpg',
+      'parking-fury-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/parking%20fury%203.webp',
+      'parkingfury2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/parking%20fury%202.jpg',
+      'parkingfury3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/parking%20fury%203.webp',
+      'plants-vs-zombies.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/plantsvszombies.jpg',
+      'plantsvszombies.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/plantsvszombies.jpg',
+      'polytrack.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/polytrack.jpg',
+      'pou.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/pou.webp',
+      'retro-bowl.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/retrobowl.jpg',
+      'retrobowl.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/retrobowl.jpg',
       'retrobowlcollege.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/retro-bowl-college/unnamed.png',
+      'riddle-school.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool1.jfif',
+      'riddle-school-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool2.jfif',
+      'riddle-school-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool3.jfif',
+      'riddle-school-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool4.jfif',
+      'riddle-school-5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool5.jfif',
+      'riddleschool2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddleschool2.jfif',
+      'riddle-transfer.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddletransfer.jfif',
+      'riddle-transfer-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddletransfer2.jfif',
+      'riddletransfer.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddletransfer.jfif',
+      'riddletransfer2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/riddletransfer2.jfif',
+      'rocket-soccer-derby.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/rocket.webp',
+      'rocketsoccerderby.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/rocket.webp',
+      'run.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%20original.jpg',
+      'run-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%202.jpg',
       'run2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%202.jpg',
+      'run-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png',
+      'run3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png',
+      'slope.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/slope.jfif',
+      'slope-2-player.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/slope%202%20player.jpg',
+      'slope2player.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/slope%202%20player.jpg',
+      'snow-rider.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/snowrider3d.jpg',
+      'snowrider.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/snowrider3d.jpg',
+      'space-is-key.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/space%20is%20key.png',
+      'space-is-key-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/space%20is%20key%202.png',
+      'space-waves.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/spacewave.webp',
       'spacewaves.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/spacewave.webp',
+      'stickman-hook.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/stickman-hook/unnamed.jpg',
+      'stickmanhook.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/stickman-hook/unnamed.jpg',
+      'subway-surfers-beijing.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/subway%20surfers.jpg',
+      'subwaysurfersbeijing.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/subway%20surfers.jpg',
+      'subway-surfers-havana.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/subway%20surfers%20havana.webp',
+      'subwaysurfershavana.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/subway%20surfers%20havana.webp',
+      'subway-surfers-san-francisco.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/subway%20surfers.jpg',
+      'subwaysurferssanfrancisco.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/subway%20surfers.jpg',
+      'superhot.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/superhot.jpg',
+      'tanuki-sunset.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/tanuki%20sunset.png',
+      'temple-run-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/temple%20run%202.jpg',
+      'templerun2.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/temple%20run%202.jpg',
+      'tiny-fishing.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/tiny%20fishing.jpg',
       'tinyfishing.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/tiny%20fishing.jpg',
-      'wheely.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely.jpg'
+      'tomb-of-the-mask.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/tombofthemask.png',
+      'tombofthemask.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/tombofthemask.png',
+      'vex-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%204.jpg',
+      'vex-5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%205.jpg',
+      'vex-6.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%206.jpg',
+      'vex-7.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%207.jpg',
+      'vex-8.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%208.webp',
+      'vex4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%204.jpg',
+      'vex5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%205.jpg',
+      'vex6.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%206.jpg',
+      'vex7.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%207.jpg',
+      'vex8.htm': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%208.webp',
+      'vex-x3m.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/vexx3m.jpg',
+      'vexx3m.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/vexx3m.jpg',
+      'volley-random.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/volley%20random.webp',
+      'volleyrandom.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/volley%20random.webp',
+      'we-become-what-we-behold.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/webecomewhatwebehold.png',
+      'webecomewhatwebehold.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/webecomewhatwebehold.png',
+      'wheely.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely.jpg',
+      'wheely-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%202.jpg',
+      'wheely-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%203.webp',
+      'wheely-4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%204.jpg',
+      'wheely-5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%205.webp',
+      'wheely-6.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%206.jpg',
+      'wheely-7.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%207.jpg',
+      'wheely-8.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%208.jpg',
+      'wheely2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%202.jpg',
+      'wheely3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%203.webp',
+      'wheely4.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%204.jpg',
+      'wheely5.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%205.webp',
+      'wheely6.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%206.jpg',
+      'wheely7.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%207.jpg',
+      'wheely8.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/wheely%208.jpg',
+      'worlds-hardest-game.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/worlds%20hardest%20game.jpg',
+      'worlds-hardest-game-2.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/worlds%20hardest%20game%202.png',
+      'worlds-hardest-game-3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/world-s-hardest-game-3.png',
+      'worldshardestgame.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/worlds%20hardest%20game.jpg',
+      'worldshardestgame3.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/world-s-hardest-game-3.png'
     };
     games.sort((a, b) => Number(!GAME_IMAGES[a]) - Number(!GAME_IMAGES[b]) || gameName(a).localeCompare(gameName(b)));
 
@@ -970,24 +1304,7 @@
         if (name === 'Notifications') { openUpdates(); return; }
         if (['Games', 'Music', 'Library'].includes(name)) { showSection(name); return; }
         if (name === 'Manga') { showSection('Manga'); return; }
-        if (name === 'Browser') {
-          const popup = window.open('about:blank', '_blank');
-          if (popup) {
-            const frame = popup.document.createElement('iframe');
-            frame.src = 'https://codehs.com/sandbox/id/javascript-graphics-iuLbYl/embed/?display_mode=displayOnly&read_only=True&show_file_tree=False';
-            frame.title = 'CodeHS project';
-            frame.style.cssText = 'position:fixed;inset:0;width:100%;height:100%;border:0';
-            popup.document.title = 'Browser';
-            popup.document.body.style.cssText = 'margin:0;overflow:hidden';
-            popup.document.body.append(frame);
-          } else {
-            notice.textContent = 'Allow pop-ups to open the browser page.';
-            notice.classList.add('show');
-            clearTimeout(noticeTimer);
-            noticeTimer = setTimeout(() => notice.classList.remove('show'), 3000);
-          }
-          return;
-        }
+        if (name === 'Browser') { showSection('Browser'); return; }
         if (name === 'Home' || name === 'New tab') {
           showSection('Home');
           if (name === 'New tab') { searchInput.value = ''; searchInput.focus(); }
