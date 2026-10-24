@@ -34,7 +34,13 @@
     .atmosphere::before { background: radial-gradient(ellipse at 22% 78%, rgba(96, 132, 153, .2), transparent 43%), radial-gradient(ellipse at 76% 62%, rgba(119, 91, 148, .18), transparent 40%), radial-gradient(ellipse at 50% 100%, rgba(143, 227, 208, .14), transparent 48%); filter: blur(42px); animation: fog-drift 26s ease-in-out infinite alternate; }
     .atmosphere::after { inset: 0; opacity: .58; background-image: radial-gradient(3px 3px at 24px 42px, rgba(210, 240, 255, .7) 50%, transparent 100%), radial-gradient(2.5px 2.5px at 88px 116px, rgba(255, 255, 255, .6) 50%, transparent 100%), radial-gradient(3px 3px at 158px 72px, rgba(143, 227, 208, .62) 50%, transparent 100%), radial-gradient(2px 2px at 198px 178px, rgba(255, 255, 255, .55) 50%, transparent 100%); background-size: 220px 240px; animation: particles-rise 18s linear infinite; mask-image: linear-gradient(to top, transparent, black 18%, black 82%, transparent); }
     @keyframes fog-drift { from { transform: translate3d(-2%, 2%, 0) scale(1); } to { transform: translate3d(2%, -2%, 0) scale(1.08); } }
-    @keyframes particles-rise { from { background-position: 0 0; } to { background-position: 0 -240px; } }
+    @keyframes particles-rise {
+      0% { background-position: 0 0; }
+      25% { background-position: 32px -60px; }
+      50% { background-position: -18px -120px; }
+      75% { background-position: 38px -180px; }
+      100% { background-position: 0 -240px; }
+    }
     button, a, input { font: inherit; }
     button { color: inherit; }
     .topbar { position: fixed; z-index: 2; top: 16px; bottom: auto; left: 16px; right: auto; display: flex; flex-direction: column; align-items: center; gap: 10px; padding: 10px; border: 1px solid color-mix(in srgb, var(--text) 10%, transparent); border-radius: 24px; background: color-mix(in srgb, var(--surface) 88%, transparent); backdrop-filter: blur(14px); }
@@ -145,6 +151,16 @@
     .game-view, .music-view { background: var(--page-bg); }
     .game-card, .music-track { color: var(--text); background: var(--surface); }
     .settings-reset:hover { border-color: var(--accent); color: var(--accent); }
+    .credits-card { position: relative; overflow: hidden; padding: 22px; border: 1px solid color-mix(in srgb, var(--accent) 24%, transparent); border-radius: 18px; background: radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--accent) 17%, transparent), transparent 45%), color-mix(in srgb, var(--text) 4%, transparent); }
+    .credits-kicker { display: inline-flex; align-items: center; gap: 7px; margin-bottom: 11px; color: var(--accent); font-size: 11px; font-weight: 750; letter-spacing: .14em; text-transform: uppercase; }
+    .credits-card h3 { margin: 0 0 8px; font-size: 22px; letter-spacing: -.6px; }
+    .credits-card > p { max-width: 430px; margin: 0; color: var(--muted); font-size: 13px; line-height: 1.65; }
+    .credits-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; margin-top: 18px; }
+    .credits-item { padding: 12px; border: 1px solid color-mix(in srgb, var(--text) 9%, transparent); border-radius: 12px; background: color-mix(in srgb, var(--surface) 75%, transparent); }
+    .credits-item strong, .credits-item span { display: block; }
+    .credits-item strong { margin-bottom: 4px; font-size: 12px; }
+    .credits-item span { color: var(--muted); font-size: 11px; line-height: 1.45; }
+    @media (max-width: 420px) { .credits-grid { grid-template-columns: 1fr; } }
     .music-library { width: min(900px, 100%); margin: 0 auto; padding: 30px 22px 48px; }
     .music-library h2 { margin: 0 0 7px; font-size: clamp(24px, 4vw, 34px); letter-spacing: -1.2px; }
     .music-list { display: grid; gap: 8px; margin-top: 20px; }
@@ -258,7 +274,7 @@
       <button class="nav-pill" type="button" data-name="Music" aria-label="Music" title="Music"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg></button>
       <button class="nav-pill" type="button" data-name="Manga" aria-label="Manga" title="Manga"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 6.5C9.5 4.8 6.5 4.5 3.5 5.5v14c3-1 6-.7 8.5 1 2.5-1.7 5.5-2 8.5-1v-14c-3-1-6-.7-8.5 1Z"/><path d="M12 7v13.5M6.5 9h2m-2 3h2m7-3h2m-2 3h2"/></svg></button>
       <button class="nav-pill" type="button" data-name="Library" aria-label="Personal Library" title="Personal Library"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v17H6.5A2.5 2.5 0 0 1 4 17.5z"/><path d="M4 17.5A2.5 2.5 0 0 1 6.5 15H20M8 7h8m-8 4h8"/></svg></button>
-      <button class="nav-pill" type="button" data-name="Browser" aria-label="Browser" title="Browser"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></button>
+      <button class="nav-pill" type="button" data-name="Browser" aria-label="Game player" title="Game player"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg></button>
     </nav>
     <nav class="nav-group" aria-label="Utilities">
       <a class="nav-pill discord" href="https://discord.com/app" aria-label="Discord" title="Discord" target="_blank" rel="noopener"><svg class="icon" viewBox="0 0 24 24" fill="currentColor"><path d="M19.7 5.4a17 17 0 0 0-4.2-1.3l-.5 1a15.7 15.7 0 0 0-6 0l-.5-1a17 17 0 0 0-4.2 1.3C1.7 9.3 1 13.1 1.4 16.8a17 17 0 0 0 5.2 2.6l1.1-1.8-1.7-.8.4-.3c3.3 1.5 6.9 1.5 10.2 0l.4.3-1.7.8 1.1 1.8a17 17 0 0 0 5.2-2.6c.5-4.3-.8-8-3.5-11.4ZM8.7 14.8c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Zm6.6 0c-1 0-1.8-.9-1.8-2s.8-2 1.8-2 1.8.9 1.8 2-.8 2-1.8 2Z"/></svg></a>
@@ -293,17 +309,17 @@
     <aside class="browser-sidebar">
       <div class="browser-brand"><svg class="obsidian-logo" viewBox="0 0 48 48" role="img" aria-label="Obsidian block"><path fill="#9b65cf" d="M24 3 44 14 24 25 4 14Z"/><path fill="#56347d" d="M4 14 24 25v21L4 35Z"/><path fill="#302143" d="m44 14-20 11v21l20-11Z"/><path fill="#c49aea" d="m24 7 13 7-5 3-13-7Z" opacity=".65"/><path fill="#7951a0" d="m8 16 12 7v4L8 20Z" opacity=".8"/><path fill="#4a3265" d="m27 28 13-7v4l-13 7Z" opacity=".8"/><path fill="#1e1729" d="m8 29 12 7v4L8 33Z" opacity=".7"/></svg><span>Orion</span></div>
       <nav class="browser-tabs" aria-label="Browser tabs">
-        <button class="browser-tab active" type="button" aria-current="page">Tab 1 · Home</button>
-        <button class="browser-tab" id="browser-games-tab" type="button">Tab 2 · Games</button>
+        <button class="browser-tab active" type="button" aria-current="page">Game player</button>
+        <button class="browser-tab" id="browser-games-tab" type="button">Game library</button>
       </nav>
     </aside>
     <div class="browser-main">
-      <div class="browser-address" aria-label="Address bar">Orion browser · Preview</div>
+      <div class="browser-address" aria-label="Game player status">Orion game player · Ready</div>
       <div class="browser-stage">
         <div class="browser-unavailable" id="browser-unavailable">
-          <div class="browser-mark" aria-hidden="true">O</div>
-          <h2>Under construction</h2>
-          <p>The Orion browser is not available right now. Please check back later.</p>
+          <div class="browser-mark" aria-hidden="true">▶</div>
+          <h2>Choose a game</h2>
+          <p>This player is just for games. Open the game library, choose a title, and it will load here.</p>
         </div>
         <div class="game-player" id="game-player" hidden>
           <div class="game-player-head"><strong class="game-player-title" id="game-player-title">Game</strong><div class="game-player-actions"><button id="game-open-blank" type="button">Open in about:blank</button><button id="game-fullscreen" type="button">Full screen</button><button id="game-back" type="button">Back to library</button></div></div>
@@ -365,7 +381,15 @@
       <label class="setting-row"><span><strong>Frosted glass panels</strong><small>Make panels and buttons translucent.</small></span><input id="glass-ui" type="checkbox"></label>
     </section>
     <section class="settings-pane" data-settings-pane="credits">
-      <p class="settings-note">Orion — a customizable home page. Game sources and music artwork are provided by their respective repositories.</p>
+      <div class="credits-card">
+        <span class="credits-kicker">✦ Made for your space</span>
+        <h3>Orion, your way.</h3>
+        <p>A personal launchpad for games, music, manga, and the things you use every day.</p>
+        <div class="credits-grid">
+          <div class="credits-item"><strong>Built-in libraries</strong><span>Game listings and music sources are provided by their respective repositories.</span></div>
+          <div class="credits-item"><strong>Your settings</strong><span>Theme, accent, font, and preferences stay saved on this device.</span></div>
+        </div>
+      </div>
     </section>
     <button class="settings-reset" id="reset-settings" type="button">Reset settings</button>
   </dialog>
@@ -375,7 +399,7 @@
       <div><small>Orion · Latest</small><h2 id="updates-title">What’s new</h2></div>
     </div>
     <ul class="updates-list">
-      <li><strong>Games in the browser</strong><span>Launch a game from the library to open it in the Browser player.</span></li>
+      <li><strong>A cleaner game library</strong><span>Duplicate titles are removed. Choose a game and it opens directly in the dedicated Browser game player.</span></li>
       <li><strong>Your Personal Library</strong><span>Recently played games, music, and books are saved on this device.</span></li>
       <li><strong>Make Orion yours</strong><span>Open Settings to adjust the theme, accent color, interface size, and more.</span></li>
     </ul>
@@ -397,7 +421,9 @@
     const gamePlayer = document.querySelector('#game-player');
     const gamePlayerTitle = document.querySelector('#game-player-title');
     const gameFrame = document.querySelector('#game-frame');
+    let currentGameUrl = '';
     let currentGameHtml = '';
+    let gameLaunchId = 0;
     const musicView = document.querySelector('#music-view');
     const musicList = document.querySelector('#music-list');
     const musicSearch = document.querySelector('#music-search');
@@ -500,8 +526,27 @@
       'wheely-7.html', 'wheely-8.html', 'wheely.html', 'wordle-unlimited.html', 'worlds-hardest-game-2.html',
       'worlds-hardest-game-3.html', 'worlds-hardest-game.html', 'wrestle-bros.html', 'yohoho-io.html', 'zombie-rush.html',
       'zrist.html',
+      // Additional titles and source filenames from the newer VUSL list.
+      '1.5.html', '1.8.html', '12minibattles.html', '1on1tennis.html', '2048cupcakes.html',
+      '8ballclassic.html', 'ageofwar2.html', 'amongus.html', 'angrybirds.html', 'angrybirdsshowdown.html',
+      'awesometanks2.html', 'badicecream.html', 'badpiggies.html', 'bitplanes.htm', 'bloonsTD.html',
+      'bloonsTD2.html', 'blumgirocket.html', 'breakingthebank.html', 'bubbleshooter.html', 'candycrush.html',
+      'capybaraclicker.html', 'carkingarena.html', 'circloO2.html', 'clashofvikings.html', 'cookieclicker.htm',
+      'crazycars.html', 'dadish2.html', 'dadish3.html', 'eagleride.html', 'earntodie2.html',
+      'escapingtheprison.html', 'fancypantsadventure.html', 'fireboyandwatergirl2.html', 'fireboyandwatergirl3.html',
+      'freerider3.html', 'getawayshootout.htm', 'hillclimbracinglite.html', 'houseofhazards.html',
+      'hoverracerdrive.html', 'jumpingshell.html', 'learntofly.html', 'learntofly2.html', 'leveldevil.html',
+      'mergeroundracers.html', 'motox3m.htm', 'motox3mpoolparty.html', 'motox3mspookyland.html',
+      'motox3mwinter.html', 'papasbakeria.html', 'papasburgeria.html', 'papascupcakeria.html',
+      'papasdonuteria.html', 'papasfreezeria.html', 'papaspancakeria.html', 'papaspastaria.html',
+      'papaspizzeria.html', 'parkingfury.html', 'poorbunny.html', 'ragdollarchers.htm', 'ragdollsoccer.html',
+      'retrobowlcollege.html', 'retrohighway.html', 'retropingpong.html', 'riddleschool.html',
+      'riddleschool3.html', 'riddleschool4.html', 'riddleschool5.html', 'rooftopsnipers2.html', 'sm64.html',
+      'snowballio.html', 'speedstars.html', 'stickmerge.html', 'superliquidsoccer.html',
+      'tabletennisworldtour.html', 'territorialio.html', 'theimpossiblequiz2.html', 'timeshooter2.html',
+      'vexx3m2.html', 'worldshardestgame2.html', 'wrestlebros.html',
     ]);
-    const games = [...new Set([
+    const gameFiles = [
       ...CRA_GAMES,
       '1.12.html', '10minutestilldawn.html', '1on1soccer.html', '1v1.lol.html', '2048.html',
       '3Dflightsimulator.html', 'Alpha_1.2.6.html', 'Beta_1.3.html', 'Indev.html', 'agariolite.html',
@@ -546,8 +591,14 @@
       'wartheknights.html', 'webecomewhatwebehold.html', 'wheeliebike.html', 'wheely2.html',
       'wheely3.html', 'wheely4.html', 'wheely5.html', 'wheely6.html', 'wheely7.html', 'wheely8.html',
       'wordleunlimited.html', 'worldshardestgame.html', 'worldshardestgame3.html', 'zombierush.html'
-    ])];
+    ];
     const gameName = (filename) => filename.replace(/\.(html|htm)$/i, '').replace(/([a-z])([0-9])/ig, '$1 $2').replace(/[._]/g, ' ').replace(/\b\w/g, char => char.toUpperCase());
+    const uniqueGames = new Map();
+    gameFiles.forEach(filename => {
+      const key = gameName(filename).toLowerCase().replace(/[^a-z0-9]/g, '');
+      if (!uniqueGames.has(key)) uniqueGames.set(key, filename);
+    });
+    const games = [...uniqueGames.values()];
     const GAME_IMAGES = {
       '10-minutes-till-dawn.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/10%20minutes.jpg',
       '10minutestilldawn.html': 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/10%20minutes.jpg',
@@ -1157,34 +1208,83 @@
 
     async function launchGame(filename) {
       if (settings.confirmLaunch && !window.confirm(`Launch ${gameName(filename)} in the embedded player?`)) return;
+      const launchId = ++gameLaunchId;
+      const gamePopup = window.open('about:blank', '_blank');
+      if (gamePopup) {
+        gamePopup.document.open();
+        gamePopup.document.write('<!doctype html><title>Loading game…</title><body style="margin:0;background:#09080e;color:#eee;font:16px system-ui;display:grid;place-items:center;height:100vh">Fetching game code…</body>');
+        gamePopup.document.close();
+      }
       rememberPersonalItem('game', filename, gameName(filename));
       showSection('Browser');
       document.querySelector('#browser-unavailable').hidden = true;
       const base = CRA_GAMES.has(filename) ? CRA_BASE : COOL_BASE;
+      const alternateBase = base === CRA_BASE ? COOL_BASE : CRA_BASE;
+      currentGameUrl = base + encodeURIComponent(filename);
+      currentGameHtml = '';
       gamePlayerTitle.textContent = gameName(filename);
-      gameFrame.srcdoc = '<!doctype html><html><body style="font-family:system-ui;text-align:center;padding:2rem">Loading game…</body></html>';
       gamePlayer.hidden = false;
       gamesView.classList.add('playing');
+      gameFrame.srcdoc = '<!doctype html><title>Loading game…</title><body style="margin:0;background:#09080e;color:#eee;font:16px system-ui;display:grid;place-items:center;height:100vh">Fetching game code…</body>';
+      notice.textContent = `Fetching ${gameName(filename)}…`;
+      notice.classList.add('show');
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(() => notice.classList.remove('show'), 2500);
+
       try {
-        const response = await fetch(base + encodeURIComponent(filename));
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        let html = await response.text();
-        const baseTag = `<base href="${base}">`;
-        if (/<base\b[^>]*>/i.test(html)) html = html.replace(/<base\b[^>]*>/i, baseTag);
-        else html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1>${baseTag}`) : `<!doctype html><head>${baseTag}</head>${html}`;
-        if (!/<meta\s+name=["']viewport["']/i.test(html)) {
-          html = /<head[^>]*>/i.test(html) ? html.replace(/<head([^>]*)>/i, `<head$1><meta name="viewport" content="width=device-width, initial-scale=1">`) : html;
+        let html = '';
+        let sourceUrl = '';
+        let lastError;
+        for (const sourceBase of [base, alternateBase]) {
+          const candidateUrl = sourceBase + encodeURIComponent(filename);
+          try {
+            const response = await fetch(candidateUrl);
+            if (!response.ok) throw new Error(`Source returned ${response.status}`);
+            html = await response.text();
+            sourceUrl = candidateUrl;
+            break;
+          } catch (error) {
+            lastError = error;
+          }
         }
+        if (!sourceUrl) throw lastError || new Error('Game source unavailable');
+        if (launchId !== gameLaunchId) {
+          if (gamePopup && !gamePopup.closed) gamePopup.close();
+          return;
+        }
+        currentGameUrl = sourceUrl;
+        const safeBaseUrl = currentGameUrl.replace(/&/g, '&amp;').replace(/"/g, '&quot;');
+        const baseTag = `<base href="${safeBaseUrl}">`;
+        const head = html.match(/<head\b[^>]*>/i);
+        html = head ? html.replace(head[0], head[0] + baseTag) : `${baseTag}${html}`;
         currentGameHtml = html;
         gameFrame.srcdoc = html;
+        notice.classList.remove('show');
+        if (gamePopup && !gamePopup.closed) {
+          gamePopup.document.open();
+          gamePopup.document.write(html);
+          gamePopup.document.close();
+        } else if (!gamePopup) {
+          notice.textContent = 'Allow pop-ups to open the game in about:blank. It is also available in the Browser game player.';
+          notice.classList.add('show');
+          clearTimeout(noticeTimer);
+          noticeTimer = setTimeout(() => notice.classList.remove('show'), 4000);
+        }
       } catch (error) {
-        gamePlayer.hidden = true;
-        document.querySelector('#browser-unavailable').hidden = false;
-        gamesView.classList.remove('playing');
-        notice.textContent = `Could not load ${gameName(filename)}; check the connection or game source`;
+        if (launchId !== gameLaunchId) {
+          if (gamePopup && !gamePopup.closed) gamePopup.close();
+          return;
+        }
+        gameFrame.srcdoc = '<!doctype html><title>Game unavailable</title><body style="margin:0;padding:24px;background:#09080e;color:#eee;font:16px system-ui"><h2>Could not fetch this game</h2><p>The game host may block cross-origin requests, or the source may be unavailable. Try another title.</p></body>';
+        if (gamePopup && !gamePopup.closed) {
+          gamePopup.document.open();
+          gamePopup.document.write('<!doctype html><title>Game unavailable</title><body style="margin:0;padding:24px;background:#09080e;color:#eee;font:16px system-ui"><h2>Could not fetch this game</h2><p>The game source may block browser requests or be unavailable. Try another title.</p></body>');
+          gamePopup.document.close();
+        }
+        notice.textContent = `Could not fetch ${gameName(filename)}. The game source may block browser requests.`;
         notice.classList.add('show');
         clearTimeout(noticeTimer);
-        noticeTimer = setTimeout(() => notice.classList.remove('show'), 3000);
+        noticeTimer = setTimeout(() => notice.classList.remove('show'), 5000);
       }
     }
 
@@ -1221,7 +1321,8 @@
       }
     });
     document.querySelector('#game-back').addEventListener('click', () => {
-      gameFrame.srcdoc = '';
+      gameFrame.src = 'about:blank';
+      currentGameUrl = '';
       currentGameHtml = '';
       gamePlayer.hidden = true;
       document.querySelector('#browser-unavailable').hidden = false;
@@ -1271,6 +1372,15 @@
     function showSection(name) {
       sectionViews.forEach(view => view.classList.remove('show'));
       document.body.classList.remove('game-open', 'music-open', 'section-open');
+      if (name === 'Games') {
+        gameLaunchId++;
+        gameFrame.src = 'about:blank';
+        currentGameUrl = '';
+        currentGameHtml = '';
+        gamePlayer.hidden = true;
+        document.querySelector('#browser-unavailable').hidden = false;
+        gamesView.classList.remove('playing');
+      }
       const viewByName = { Games: gamesView, Music: musicView, Manga: mangaView, Library: personalView, Browser: browserView };
       const view = viewByName[name];
       if (!view) return;
