@@ -1,1 +1,576 @@
-edward
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lunara — Home</title>
+  <style>
+    :root{color-scheme:dark;--bg:#100707;--panel:#251313;--line:#4d2021;--text:#f4eeee;--muted:#b79c9c;--red:#ff3346}
+    *{box-sizing:border-box} body{margin:0;min-height:100vh;background:var(--bg);color:var(--text);font:15px/1.45 Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;overflow:hidden}
+    .browser{height:50px;display:flex;align-items:center;gap:20px;padding:0 18px;background:#180909;color:#b9a1a1;border-bottom:1px solid #351515;font-size:14px}
+    .berry{width:21px;height:23px;display:block}.nav{display:flex;gap:22px}.toolbar-icon{width:17px;height:17px;display:block;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}.nav .toolbar-icon{color:#b9a1a1}.address{height:38px;max-width:620px;flex:1;border:1px solid #552021;border-radius:14px;background:#291616;display:flex;align-items:center;padding:0 15px;gap:14px;color:#eee}.address kbd{margin-left:auto;border:1px solid #633033;border-radius:5px;padding:1px 7px;color:#9b7777;font-size:11px}.tools{margin-left:auto;display:flex;align-items:center;gap:19px;color:#a88e8e}.tools .toolbar-icon{width:16px;height:16px}
+    main{position:relative;height:calc(100vh - 50px);margin:0 10px 10px;border:1px solid #401819;border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at 18% 63%,rgba(0,235,220,.18),transparent 15%),radial-gradient(ellipse at 30% 34%,rgba(4,255,32,.09),transparent 19%),radial-gradient(ellipse at 74% 85%,rgba(0,180,40,.09),transparent 16%),#0e0606}
+    .glow{position:absolute;inset:20% 8% 5%;pointer-events:none;filter:blur(22px);opacity:.65;background:radial-gradient(ellipse at 9% 57%,#00e8ec 0 3%,transparent 10%),radial-gradient(ellipse at 22% 38%,#00ad71 0 2%,transparent 13%),radial-gradient(ellipse at 27% 27%,#12400a 0 2%,transparent 12%),radial-gradient(ellipse at 68% 81%,#08732b 0 2%,transparent 13%)}
+    .home{position:absolute;left:50%;top:27%;transform:translateX(-50%);width:min(540px,calc(100% - 36px));text-align:center}.brand{margin:0;color:var(--red);font-weight:850;letter-spacing:-3px;font-size:clamp(48px,6vw,76px);line-height:1}.brand .mini{font-size:19px;vertical-align:top;letter-spacing:0}.tagline{margin:8px 0 26px;font-weight:650;font-size:16px}.search{height:59px;border:1px solid #5a2627;border-radius:20px;background:#241313;display:flex;align-items:center;gap:13px;padding:0 20px;color:#b89c9c;text-align:left}.search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;font:inherit}.search input::placeholder{color:#b89c9c}.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}.tile{height:110px;border:1px solid #4b1d1e;border-radius:17px;background:rgba(13,7,7,.7);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#f7f1f1;text-decoration:none;font-size:13px;font-weight:650;transition:.18s}.tile:hover{background:#281516;transform:translateY(-2px)}.icon{width:31px;height:31px;display:block;line-height:1}.icon svg{display:block;width:100%;height:100%}.featured-game{position:relative;height:100px;display:block;overflow:hidden;padding:0;text-align:left;font:inherit;background:#171016;cursor:pointer}.featured-game img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s,opacity .25s}.featured-game::after{position:absolute;inset:35% 0 0;content:"";background:linear-gradient(transparent,rgba(5,5,8,.9))}.featured-game span{position:absolute;z-index:1;left:12px;right:8px;bottom:10px;color:#fff;font-size:14px;font-weight:700;text-shadow:0 1px 5px #000}.featured-game:hover img{transform:scale(1.06);opacity:.85}
+    .promo{position:absolute;right:11px;bottom:11px;width:340px;padding:12px 16px 14px;border-radius:15px;border:1px solid #9e3437;background:#3b1d1d;box-shadow:0 8px 28px #0006;text-align:left}.promo-head{display:flex;justify-content:space-between;align-items:center;font-weight:750}.close{background:none;border:0;color:#bd9999;cursor:pointer}.promo p{margin:6px 0 12px;color:#c7aaaa;font-size:13px}.promo a{display:inline-block;background:#fff;color:#171111;text-decoration:none;border-radius:10px;padding:8px 15px;font-size:12px;font-weight:750}
+    .games-panel{position:absolute;z-index:3;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#100909}.games-panel.open{display:block}.music-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(420px,calc(100% - 36px));max-height:calc(100% - 36px);display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.music-panel.open{display:flex}.music-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.music-actions{display:flex;gap:9px;padding:12px}.music-pick,.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}.music-pick{background:#d92f45;border-color:transparent;font-weight:700}.music-list{flex:1;min-height:70px;overflow:auto;padding:0 12px 12px}.music-track{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:9px;background:transparent;color:#ddd;text-align:left;cursor:pointer}.music-track:hover,.music-track.active{background:#ffffff12}.music-track.active{color:#ff8790}.music-track span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-audio{display:block;width:calc(100% - 24px);margin:0 12px 12px}.music-note{padding:0 14px 12px;color:#ae9699;font-size:11px}.games-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 auto 22px;max-width:1000px}.games-head h2{margin:0;font-size:clamp(24px,4vw,36px)}.games-actions{display:flex;align-items:center;gap:10px}.games-search{width:min(250px,45vw);height:40px;padding:0 12px;border:1px solid #552021;border-radius:10px;color:#fff;background:#241313;font:inherit}.games-close,.game-back{border:1px solid #552021;border-radius:10px;padding:9px 12px;color:#f4eeee;background:#241313;cursor:pointer}.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px;max-width:1000px;margin:auto}.game-card{overflow:hidden;padding:0;border:1px solid #4b1d1e;border-radius:13px;color:#f7f1f1;text-align:left;background:#1b1010;cursor:pointer}.game-card:hover{border-color:#ff3346;transform:translateY(-2px)}.game-card img{display:block;width:100%;height:92px;object-fit:cover;background:#251616}.game-card strong{display:block;padding:9px;font-size:13px}
+    @media(max-width:650px){.games-head{align-items:flex-start;flex-direction:column}.games-actions{width:100%}.games-search{flex:1;width:auto}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card img{height:82px}.games-panel{padding:18px 12px}}
+    @media(max-width:650px){.browser{gap:12px;padding:0 12px}.nav{gap:12px}.tools{display:none}.address{font-size:12px}.home{top:22%}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{height:88px}.featured-game{height:88px}.promo{width:min(340px,calc(100% - 24px));right:12px;bottom:12px}}
+    .toolbar-button{width:28px;height:28px;display:grid;place-items:center;padding:0;border:0;border-radius:7px;color:inherit;background:transparent;cursor:pointer}.toolbar-button:hover{color:#fff;background:#ffffff12}.ai-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(560px,calc(100% - 36px));height:min(680px,calc(100% - 36px));display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.ai-panel.open{display:flex}.ai-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.ai-head strong{font-size:15px}.ai-close{border:0;border-radius:8px;padding:5px 10px;color:#ddd;background:#ffffff12;cursor:pointer}.ai-messages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.ai-message{max-width:88%;padding:10px 13px;border-radius:13px;background:#29191c;white-space:pre-wrap;overflow-wrap:anywhere}.ai-message.user{align-self:flex-end;background:#63303a}.ai-message.error{color:#ffabb3}.ai-compose{display:flex;gap:9px;padding:12px;border-top:1px solid #ffffff12}.ai-compose textarea{flex:1;min-width:0;max-height:110px;resize:vertical;padding:10px;border:1px solid #553038;border-radius:11px;color:#fff;background:#241719;font:inherit}.ai-send{padding:0 15px;border:0;border-radius:11px;color:#fff;background:#d92f45;font-weight:700;cursor:pointer}.ai-send:disabled{opacity:.6;cursor:wait}.ai-key-note{padding:0 14px 10px;color:#ae9699;font-size:11px}
+    /* Polished glass toolbar and cleaner home-page surfaces */
+    .browser{position:relative;z-index:10;background:rgba(16,7,7,.36);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09);color:#d5c5c7}
+    /* Full music-library overlay inspired by the supplied MZK interface */
+    .music-panel{inset:0;right:0;top:0;width:auto;max-height:none;display:none;grid-template-columns:220px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px;padding:8px;border:0;border-radius:0;background:#0a0a0c;color:#f3f1f6;box-shadow:none;overflow:hidden}
+    .music-panel.open{display:grid}.music-sidebar,.music-main,.music-playerbar{border:1px solid #2b2b33;border-radius:14px;background:#151518}.music-sidebar{grid-row:1;padding:18px 10px;display:flex;flex-direction:column;gap:5px;overflow:auto}.music-logo{padding:0 12px 12px;font:700 25px Georgia,serif}.music-nav{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;color:#9d9aa8;background:transparent;text-align:left;cursor:pointer}.music-nav:hover,.music-nav.active{color:#f3f1f6;background:#202026}.music-main{grid-column:2;grid-row:1;min-width:0;overflow:auto}.music-toolbar{position:sticky;top:0;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 20px 10px;background:#151518}.music-search{flex:1 1 220px;max-width:440px;height:42px;padding:0 15px;border:1px solid #2b2b33;border-radius:24px;color:#f3f1f6;background:#202026;font:inherit}.music-content{max-width:1180px;padding:10px 20px 28px}.music-content h2{margin:10px 0 4px;font:700 32px Georgia,serif}.music-status{margin:0;color:#9d9aa8;font-size:13px}.music-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;margin-top:16px}.music-album{padding:10px;border:1px solid transparent;border-radius:12px;color:#f3f1f6;background:transparent;text-align:left;cursor:pointer}.music-album:hover{background:#202026}.music-album img,.music-art-placeholder{display:grid;width:100%;aspect-ratio:1;object-fit:cover;place-items:center;border-radius:9px;background:linear-gradient(135deg,#3b6f66,#202026);font:700 40px Georgia,serif}.music-album strong,.music-album small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-album strong{margin-top:9px;font-size:14px}.music-album small{color:#9d9aa8;font-size:12px}.music-track-list{display:grid;gap:3px;margin-top:12px}.music-track-row{display:flex;align-items:center;gap:11px;width:100%;min-height:54px;padding:7px 10px;border:0;border-radius:9px;color:#f3f1f6;background:transparent;text-align:left;cursor:pointer}.music-track-row:hover,.music-track-row.active{background:#202026}.music-track-row.active{color:#8fe3d0}.music-track-index{width:25px;color:#9d9aa8;text-align:center}.music-track-copy{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-track-copy small{display:block;color:#9d9aa8;font-size:12px}.music-empty{padding:44px 12px;color:#9d9aa8;text-align:center}.music-playerbar{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:10px 16px}.music-now{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-now small{display:block;color:#9d9aa8}.music-playerbar audio{width:min(520px,55%);height:38px}.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}
+    @media(max-width:700px){.music-panel{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto}.music-sidebar{grid-row:1;flex-direction:row;align-items:center;padding:7px;overflow-x:auto}.music-logo{padding:0 10px;font-size:20px}.music-nav{width:auto;white-space:nowrap}.music-main{grid-column:1;grid-row:2}.music-toolbar{padding:10px}.music-content{padding:8px 12px 18px}.music-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.music-playerbar{grid-column:1;flex-wrap:wrap;padding:8px 10px}.music-playerbar audio{width:100%;max-width:none}.music-close{margin-left:auto}}
+    @media(prefers-reduced-motion:reduce){.music-album,.music-track-row{transition:none}}
+    .nav .toolbar-icon,.tools{color:#c7b5b8}
+    .address{border-color:rgba(255,255,255,.12);background:rgba(255,255,255,.055);box-shadow:inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(12px)}
+    .address kbd{border-color:rgba(255,255,255,.14);color:#b7a3a7}
+    main{border-color:rgba(255,255,255,.1);background:radial-gradient(ellipse at 14% 70%,rgba(0,225,220,.17),transparent 24%),radial-gradient(ellipse at 83% 18%,rgba(143,76,255,.15),transparent 27%),radial-gradient(ellipse at 72% 85%,rgba(31,190,118,.12),transparent 23%),linear-gradient(145deg,#11090e,#0c080d 58%,#090a0e)}
+    .glow{opacity:.45;filter:blur(34px)}
+    .home{top:24%;width:min(600px,calc(100% - 36px))}
+    .brand{color:#ff5268;letter-spacing:-3.5px;text-shadow:0 8px 40px rgba(255,51,70,.25)}
+    .tagline{margin:12px 0 28px;color:#d8c9ce;font-size:15px;font-weight:500;letter-spacing:.03em}
+    .search{height:62px;border-color:rgba(255,255,255,.13);border-radius:19px;background:rgba(255,255,255,.065);box-shadow:0 14px 42px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(18px);transition:border-color .2s,box-shadow .2s,background .2s}
+    .search:focus-within{border-color:rgba(255,82,104,.65);background:rgba(255,255,255,.085);box-shadow:0 0 0 4px rgba(255,82,104,.1),0 16px 44px rgba(0,0,0,.3)}
+    .search>span{font-size:25px;color:#ff8b9a}
+    .search input::placeholder{color:#b9a8ad}
+    .tiles{gap:12px;margin-top:22px}
+    .tile{border-color:rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.035);box-shadow:0 10px 28px rgba(0,0,0,.16);backdrop-filter:blur(12px);transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
+    .tile:hover{border-color:rgba(255,102,123,.42);background:rgba(255,255,255,.09);box-shadow:0 15px 34px rgba(0,0,0,.28);transform:translateY(-4px)}
+    .tile:focus-visible,.toolbar-button:focus-visible{outline:2px solid #ff7182;outline-offset:3px}
+    .promo{border-color:rgba(255,116,132,.42);background:rgba(48,24,31,.88);backdrop-filter:blur(18px);box-shadow:0 18px 48px rgba(0,0,0,.35)}
+    .music-panel,.ai-panel{border-color:rgba(255,255,255,.13);background:rgba(20,15,19,.96);backdrop-filter:blur(20px)}
+    @media(max-width:650px){.home{top:19%}.brand{letter-spacing:-2.5px}.search{height:56px}.tiles{gap:9px}.tile{border-radius:15px}}
+    @media(prefers-reduced-motion:reduce){.tile,.search{transition:none}}
+    /* Moonlit ocean scene */
+    main{isolation:isolate;border-color:rgba(160,205,255,.16);background:radial-gradient(ellipse at 50% 12%,rgba(29,49,82,.3),transparent 46%),#020307}
+    main::before{position:absolute;inset:0;z-index:0;content:"";pointer-events:none;background-image:radial-gradient(1px 1px at 12% 17%,#fff 98%,transparent),radial-gradient(1px 1px at 31% 11%,#b9d8ff 98%,transparent),radial-gradient(1.5px 1.5px at 72% 14%,#fff 98%,transparent),radial-gradient(1px 1px at 88% 28%,#d9e8ff 98%,transparent),radial-gradient(1px 1px at 60% 32%,#fff 98%,transparent),radial-gradient(1px 1px at 22% 39%,#d9e8ff 98%,transparent),radial-gradient(1px 1px at 46% 24%,#fff 98%,transparent),radial-gradient(1px 1px at 8% 51%,#c8dcff 98%,transparent),radial-gradient(1.5px 1.5px at 79% 43%,#fff 98%,transparent),radial-gradient(1px 1px at 94% 57%,#d9e8ff 98%,transparent),radial-gradient(1px 1px at 38% 55%,#fff 98%,transparent),radial-gradient(1px 1px at 67% 61%,#b9d8ff 98%,transparent);opacity:.78;animation:star-twinkle 5s ease-in-out infinite alternate}
+    @keyframes star-twinkle{to{opacity:.48}}
+    .glow{z-index:0;inset:0;filter:none;opacity:.14;background:radial-gradient(ellipse at 50% 13%,rgba(133,176,255,.4),transparent 25%)}
+    .moon{position:absolute;z-index:1;top:7%;left:50%;width:clamp(70px,10vw,118px);aspect-ratio:1;transform:translateX(-50%);border-radius:50%;background:radial-gradient(circle at 34% 30%,#fff 0,#e5edff 48%,#b6c9ed 78%,#8299c6 100%);box-shadow:0 0 22px rgba(190,213,255,.65),0 0 70px rgba(135,170,255,.3),0 0 150px rgba(107,145,233,.15);pointer-events:none}
+    .moon::before,.moon::after{position:absolute;content:"";border-radius:50%;background:rgba(115,137,179,.16);box-shadow:inset 2px 2px 7px rgba(75,91,127,.08)}
+    .moon::before{width:22%;height:18%;left:22%;top:28%}
+    .moon::after{width:14%;height:13%;right:23%;top:57%}
+    .comets{position:absolute;z-index:1;inset:0;overflow:hidden;pointer-events:none}
+    .comet{position:absolute;top:var(--top);left:var(--left);width:clamp(90px,16vw,190px);height:2px;border-radius:50%;background:linear-gradient(90deg,transparent,rgba(152,203,255,.2) 55%,#fff);box-shadow:0 0 8px rgba(165,211,255,.9);opacity:0;transform:rotate(-32deg);transform-origin:right center;animation:comet-shoot var(--duration,4s) ease-in var(--delay,0s) infinite}
+    .comet::after{position:absolute;right:-2px;top:-2px;width:6px;height:6px;border-radius:50%;content:"";background:#fff;box-shadow:0 0 12px 3px rgba(178,220,255,.9)}
+    @keyframes comet-shoot{0%,8%{opacity:0;transform:translate3d(0,0,0) rotate(-32deg)}12%{opacity:1}48%{opacity:.9}75%,100%{opacity:0;transform:translate3d(-52vw,34vh,0) rotate(-32deg)}}
+    .home{z-index:2;top:24%}
+    .promo{z-index:2}
+    @media(max-width:650px){.moon{top:6%;width:72px}.home{top:19%}.comet{width:110px}}
+    @media(prefers-reduced-motion:reduce){.comet,main::before{animation:none}.comet{display:none}}
+    /* Pitch-black interface surfaces */
+    :root{--bg:#000;--panel:#000;--line:#171717;color-scheme:dark}
+    body,.browser,main,.games-panel,.music-panel,.music-sidebar,.music-main,.music-playerbar,.ai-panel{background:#000}
+    main{border-color:#171717}
+    .address,.search,.tile,.promo,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
+    .game-card,.featured-game{background:#000}
+    .music-status,.music-empty,.music-track-copy small,.music-track-index{color:#888}
+    /* Mouse-following cat */
+    .mouse-cat{position:fixed;z-index:20;left:0;top:0;width:48px;height:48px;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0);will-change:transform;filter:drop-shadow(0 3px 8px #000)}
+    .mouse-cat.visible{opacity:1}
+    .mouse-cat svg{display:block;width:100%;height:100%;overflow:visible}
+    .cat-tail{transform-origin:11px 31px;animation:cat-tail-sway 1.1s ease-in-out infinite alternate}
+    @keyframes cat-tail-sway{to{transform:rotate(13deg)}}
+    @media(pointer:coarse){.mouse-cat{display:none}}
+    @media(prefers-reduced-motion:reduce){.cat-tail{animation:none}}
+    /* Sharper moon detail and cinematic shooting stars */
+    .moon{
+      background:
+        radial-gradient(ellipse at 31% 35%,rgba(102,119,157,.23) 0 7%,transparent 7.8%),
+        radial-gradient(ellipse at 65% 28%,rgba(115,132,169,.2) 0 4%,transparent 4.8%),
+        radial-gradient(ellipse at 68% 61%,rgba(104,120,156,.2) 0 9%,transparent 9.8%),
+        radial-gradient(ellipse at 39% 72%,rgba(112,128,163,.17) 0 5%,transparent 5.8%),
+        radial-gradient(ellipse at 52% 48%,rgba(255,255,255,.36),transparent 47%),
+        radial-gradient(circle at 34% 29%,#fff 0,#edf2ff 34%,#d5e0f7 62%,#b0c2e7 82%,#8298c8 100%);
+      box-shadow:0 0 24px rgba(190,213,255,.72),0 0 78px rgba(135,170,255,.37),0 0 155px rgba(107,145,233,.2),inset -10px -8px 20px rgba(47,63,103,.2);
+    }
+    .moon::before{width:24%;height:19%;left:22%;top:28%;background:radial-gradient(ellipse at 32% 28%,rgba(249,251,255,.55),transparent 38%),radial-gradient(ellipse at 67% 69%,rgba(74,91,130,.32),rgba(115,137,179,.1) 70%);box-shadow:inset 2px 3px 7px rgba(67,82,117,.18),0 0 1px rgba(255,255,255,.3)}
+    .moon::after{width:15%;height:14%;right:23%;top:57%;background:radial-gradient(ellipse at 30% 25%,rgba(249,251,255,.48),transparent 40%),radial-gradient(ellipse at 68% 72%,rgba(74,91,130,.3),rgba(115,137,179,.1) 72%);box-shadow:inset 2px 3px 6px rgba(67,82,117,.17)}
+  </style>
+</head>
+<body>
+  <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>lunara://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M3 9h18l-1.5 12h-15L3 9zM3 9l2-5h14l2 5M9 9v12M15 9v12"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></div></header>
+  <main>
+    <div class="glow"></div>
+    <div class="moon" aria-hidden="true"></div>
+    <div class="comets" aria-hidden="true">
+      <span class="comet" style="--top:16%;--left:88%;--delay:0s;--duration:5.4s"></span>
+      <span class="comet" style="--top:34%;--left:68%;--delay:2.1s;--duration:6.2s"></span>
+      <span class="comet" style="--top:9%;--left:48%;--delay:4.3s;--duration:5.8s"></span>
+      <span class="comet" style="--top:48%;--left:98%;--delay:6.7s;--duration:6.5s"></span>
+      <span class="comet" style="--top:26%;--left:30%;--delay:8.9s;--duration:5.6s"></span>
+    </div>
+    <section class="home" aria-label="Lunara search home">
+      <h1 class="brand">Lunara<span class="mini"></span></h1>
+      <p class="tagline">your personal launchpad</p>
+      <form class="search" action="https://www.google.com/search" method="get"><span aria-hidden="true">⌕</span><input name="q" placeholder="Search the web or enter a URL..." aria-label="Search" /></form>
+      <nav class="tiles" aria-label="Featured games">
+        <button class="tile featured-game" type="button" data-game-file="1v1.lol.html" aria-label="Play 1v1.LOL"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg" alt="" loading="lazy"><span>1v1.LOL</span></button>
+        <button class="tile featured-game" type="button" data-game-file="among-us.html" aria-label="Play Among Us"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp" alt="" loading="lazy"><span>Among Us</span></button>
+        <button class="tile featured-game" type="button" data-game-file="bad-ice-cream.html" aria-label="Play Bad Ice Cream"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream.jpg" alt="" loading="lazy"><span>Bad Ice Cream</span></button>
+        <button class="tile featured-game" type="button" data-game-file="basket-bros.html" aria-label="Play Basket Bros"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png" alt="" loading="lazy"><span>Basket Bros</span></button>
+      </nav>
+    </section>
+    <section class="games-panel" id="games-panel" aria-label="Games library">
+      <div class="games-head"><h2>Game library</h2><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
+      <div class="games-grid" id="games-grid"></div>
+    </section>
+    <section class="music-panel" id="music-panel" aria-label="Music library" aria-hidden="true">
+      <aside class="music-sidebar"><div class="music-logo">mzk</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
+      <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
+      <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio></div>
+    </section>
+    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><strong>Lunara AI</strong><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message">Hi! Ask me something.</div></div><div class="ai-key-note">Using the Gemini key included in your pasted code.</div><form class="ai-compose" id="ai-form"><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
+    <aside class="promo" id="promo"><div class="promo-head"><span>Lunara+</span><button class="close" aria-label="Close promotion" onclick="document.getElementById('promo').remove()">×</button></div><p>Go ad-free on Lunara, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
+  </main>
+  <div class="mouse-cat" id="mouse-cat" aria-hidden="true">
+    <svg viewBox="0 0 64 56" xmlns="http://www.w3.org/2000/svg">
+      <path class="cat-tail" d="M14 34C3 32 5 20 14 21" fill="none" stroke="#f2edf2" stroke-width="5" stroke-linecap="round"/>
+      <ellipse cx="29" cy="39" rx="16" ry="9" fill="#f2edf2"/>
+      <path d="m18 23 2-14 11 8 11-8 2 14c0 10-6 16-13 16s-13-6-13-16Z" fill="#f2edf2" stroke="#171217" stroke-width="2" stroke-linejoin="round"/>
+      <path d="m22 18 1-5 5 4m8 0 5-4 1 5" fill="#f08da4"/>
+      <ellipse cx="26" cy="24" rx="2" ry="2.8" fill="#171217"/><ellipse cx="38" cy="24" rx="2" ry="2.8" fill="#171217"/>
+      <path d="m30 29 2 2 2-2m-2 2v2m0 0-3 2m3-2 3 2M18 29l8 1m-8 2 8 1m20-4-8 1m8 2-8 1" fill="none" stroke="#171217" stroke-width="1.4" stroke-linecap="round"/>
+      <circle cx="24" cy="29" r="2" fill="#f3a1b2" opacity=".75"/><circle cx="40" cy="29" r="2" fill="#f3a1b2" opacity=".75"/>
+    </svg>
+  </div>
+  <script>
+    const mouseCat = document.querySelector('#mouse-cat');
+    let catX = 0, catY = 0, targetCatX = 0, targetCatY = 0, catFrame = 0;
+    function moveCat() {
+      catX += (targetCatX - catX) * 0.18;
+      catY += (targetCatY - catY) * 0.18;
+      mouseCat.style.transform = `translate3d(${catX}px, ${catY}px, 0) translate(-50%, -50%)`;
+      if (Math.abs(targetCatX - catX) + Math.abs(targetCatY - catY) > 0.5) {
+        catFrame = requestAnimationFrame(moveCat);
+      } else {
+        catFrame = 0;
+      }
+    }
+    window.addEventListener('pointermove', event => {
+      if (event.pointerType === 'touch') return;
+      targetCatX = event.clientX;
+      targetCatY = event.clientY;
+      mouseCat.classList.add('visible');
+      if (!catFrame) {
+        catX = targetCatX;
+        catY = targetCatY;
+        catFrame = requestAnimationFrame(moveCat);
+      }
+    });
+    window.addEventListener('pointerout', event => {
+      if (!event.relatedTarget) mouseCat.classList.remove('visible');
+    });
+
+    const CRA_BASE = 'https://raw.githubusercontent.com/Cra-Z-Gaming/VUSL/main/HTML_Games/';
+    const COOL_BASE = 'https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/';
+    const CRA_GAMES = new Set([
+      '1v1.lol.html', 'among-us.html', 'angry-birds.html', 'bad-ice-cream.html', 'basket-bros.html',
+      'bloons-TD-5.html', 'bloxorz.html', 'cookie-clicker.html', 'crossy-road.html', 'dadish.html',
+      'doodle-jump.html', 'drift-boss.html', 'drive-mad.html', 'duck-life.html', 'fnaf.html',
+      'geometry-dash.html', 'granny.html', 'happy-wheels.html', 'jetpack-joyride.html', 'moto-x3m.html',
+      'pac-man.html', 'papas-freezeria.html', 'retro-bowl.html', 'slope.html', 'subway-surfers-beijing.html',
+      'temple-run-2.html', 'tiny-fishing.html', 'vex-5.html'
+    ]);
+    let games = [
+      ['1v1.lol.html', '1v1.LOL', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg'],
+      ['among-us.html', 'Among Us', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp'],
+      ['bad-ice-cream.html', 'Bad Ice Cream', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream.jpg'],
+      ['basket-bros.html', 'Basket Bros', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png'],
+      ['bloons-TD-5.html', 'Bloons TD 5', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/btd5.jpg'],
+      ['bloxorz.html', 'Bloxorz', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/bloxorz.jpg'],
+      ['cookie-clicker.html', 'Cookie Clicker', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/cookieclicker.jpg'],
+      ['crossy-road.html', 'Crossy Road', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/crossy%20road.jpg'],
+      ['dadish.html', 'Dadish', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/dadish.jpg'],
+      ['doodle-jump.html', 'Doodle Jump', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/doodlejump.png'],
+      ['drift-boss.html', 'Drift Boss', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drift%20boss.png'],
+      ['drive-mad.html', 'Drive Mad', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/drive%20mad.png'],
+      ['duck-life.html', 'Duck Life', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/ducklife.jfif'],
+      ['fnaf.html', 'Five Nights at Freddy’s', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/fnaf.jpg'],
+      ['geometry-dash.html', 'Geometry Dash', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/geometrydash.jpg'],
+      ['granny.html', 'Granny', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/granny.jpg'],
+      ['happy-wheels.html', 'Happy Wheels', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/happy%20wheelsa.jpg'],
+      ['jetpack-joyride.html', 'Jetpack Joyride', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/jetpack.jpg'],
+      ['moto-x3m.html', 'Moto X3M', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/moto%20x3m.jpg'],
+      ['pac-man.html', 'Pac-Man', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/pacman.png'],
+      ['papas-freezeria.html', 'Papa’s Freezeria', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/papas%20freezeria.jpg'],
+      ['retro-bowl.html', 'Retro Bowl', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/retrobowl.jpg'],
+      ['slope.html', 'Slope', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/slope.jfif'],
+      ['subway-surfers-beijing.html', 'Subway Surfers', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/subway%20surfers.jpg'],
+      ['temple-run-2.html', 'Temple Run 2', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/temple%20run%202.jpg'],
+      ['tiny-fishing.html', 'Tiny Fishing', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/tiny%20fishing.jpg'],
+      ['vex-5.html', 'Vex 5', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%205.jpg'],
+      ['2048.html', '2048', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/2048.png'],
+      ['flappybird.html', 'Flappy Bird', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png'],
+      ['run3.html', 'Run 3', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png']
+    ].map(([file, name, image]) => ({ file, name, image }));
+    const featuredGamesByFile = new Map(games.map(game => [game.file, game]));
+    let catalogLoaded = false;
+    function displayGameName(filename) {
+      return filename.replace(/\.(html?|htm)$/i, '').replace(/([a-z])([0-9])/ig, '$1 $2').replace(/[._-]+/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase());
+    }
+    function fallbackGameCover(name) {
+      const safeName = name.replace(/[&<>]/g, '');
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#3d1821"/><stop offset="1" stop-color="#161016"/></linearGradient></defs><rect width="320" height="180" fill="url(#g)"/><circle cx="270" cy="25" r="90" fill="#ff3346" opacity=".22"/><path d="M0 150 90 90l60 42 60-48 110 76v20H0" fill="#ff3346" opacity=".17"/><text x="18" y="105" fill="#fff" font-family="Arial,sans-serif" font-size="24" font-weight="700">${safeName}</text></svg>`;
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+    async function discoverGames() {
+      if (catalogLoaded) return;
+      catalogLoaded = true;
+      const repositories = [
+        { api: 'https://api.github.com/repos/Cra-Z-Gaming/VUSL/git/trees/main?recursive=1', base: CRA_BASE, prefix: 'HTML_Games/' },
+        { api: 'https://api.github.com/repos/CoolDude2349/Offline-HTML-Games-Pack/git/trees/master?recursive=1', base: COOL_BASE, prefix: 'offline/' }
+      ];
+      await Promise.all(repositories.map(async source => {
+        try {
+          const response = await fetch(source.api);
+          if (!response.ok) return;
+          const result = await response.json();
+          (result.tree || []).forEach(item => {
+            if (item.type !== 'blob' || !/\.html?$/i.test(item.path) || !item.path.startsWith(source.prefix)) return;
+            const file = item.path.slice(source.prefix.length);
+            const featured = featuredGamesByFile.get(file);
+            if (games.some(game => game.file.toLowerCase() === file.toLowerCase())) return;
+            const name = displayGameName(file.split('/').pop());
+            games.push({ file, name, image: featured ? featured.image : fallbackGameCover(name), base: source.base });
+          });
+        } catch (error) {
+          // Keep the featured games available if a repository catalog is unreachable.
+        }
+      }));
+      games.sort((a, b) => a.name.localeCompare(b.name));
+      renderGames();
+    }
+
+    const gamesPanel = document.querySelector('#games-panel');
+    function gameUrl(game, base) { return base + game.file.split('/').map(encodeURIComponent).join('/'); }
+    async function openGame(game) {
+      const primaryBase = game.base || (CRA_GAMES.has(game.file) ? CRA_BASE : COOL_BASE);
+      const sourceBases = [primaryBase, primaryBase === CRA_BASE ? COOL_BASE : CRA_BASE];
+      const gameTab = window.open('about:blank', '_blank');
+      if (!gameTab) return;
+      gamesPanel.classList.remove('open');
+      gameTab.document.write('<!doctype html><title>Loading ' + game.name.replace(/[<>]/g, '') + '…</title><body style="margin:0;background:#100909;color:#f4eeee;font:16px system-ui;padding:24px">Fetching game code…</body>');
+      gameTab.document.close();
+      let sourceUrl = '';
+      try {
+        let html = '';
+        let lastError;
+        for (const base of sourceBases) {
+          const candidateUrl = gameUrl(game, base);
+          try {
+            const response = await fetch(candidateUrl);
+            if (!response.ok) throw new Error('Source returned ' + response.status);
+            html = await response.text();
+            sourceUrl = candidateUrl;
+            break;
+          } catch (error) {
+            lastError = error;
+          }
+        }
+        if (!sourceUrl) throw lastError || new Error('Game source is unavailable.');
+        const baseTag = '<base href="' + new URL('.', sourceUrl).href + '">';
+        if (/<head\b[^>]*>/i.test(html)) html = html.replace(/<head\b[^>]*>/i, match => match + baseTag);
+        else html = '<head>' + baseTag + '</head>' + html;
+        gameTab.document.open();
+        gameTab.document.write(html);
+        gameTab.document.close();
+      } catch (error) {
+        gameTab.document.open();
+        gameTab.document.write('<!doctype html><title>Game unavailable</title><body style="margin:0;background:#100909;color:#f4eeee;font:16px system-ui;padding:24px"><h2>Could not fetch ' + game.name.replace(/[&<>]/g, '') + '</h2><p>The game source may be unavailable or cross-origin requests may be blocked.</p></body>');
+        gameTab.document.close();
+      }
+    }
+    document.querySelectorAll('.featured-game').forEach(tile => {
+      const game = games.find(item => item.file === tile.dataset.gameFile);
+      if (game) tile.addEventListener('click', () => openGame(game));
+    });
+    function renderGames() {
+      const query = document.querySelector('#games-search').value.trim().toLowerCase();
+      const grid = document.querySelector('#games-grid');
+      grid.replaceChildren();
+      games.filter(game => game.name.toLowerCase().includes(query)).forEach(game => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'game-card';
+        const image = document.createElement('img');
+        image.src = game.image;
+        image.alt = game.name + ' cover';
+        image.loading = 'lazy';
+        const title = document.createElement('strong');
+        title.textContent = game.name;
+        card.append(image, title);
+        card.addEventListener('click', () => openGame(game));
+        grid.append(card);
+      });
+    }
+    function showGamesLibrary(event) {
+      if (event) event.preventDefault();
+      renderGames();
+      gamesPanel.classList.add('open');
+      discoverGames();
+    }
+    document.querySelector('#open-games-toolbar').addEventListener('click', showGamesLibrary);
+    document.querySelector('#games-close').addEventListener('click', () => gamesPanel.classList.remove('open'));
+    document.querySelector('#games-search').addEventListener('input', renderGames);
+    const musicPanel = document.querySelector('#music-panel');
+    const musicInput = document.querySelector('#music-files');
+    const musicAudio = document.querySelector('#music-audio');
+    const musicContent = document.querySelector('#music-content');
+    const musicStatus = document.querySelector('#music-status');
+    const musicSearch = document.querySelector('#music-search');
+    const musicNow = document.querySelector('#music-now');
+    const MUSIC_OWNER = 'Cra-Z-Gaming';
+    const MUSIC_REPO = 'mzk';
+    const MUSIC_BRANCH = 'main';
+    const MUSIC_AUDIO_EXT = /\.(mp3|wav|ogg|flac|m4a|aac|opus|weba)$/i;
+    let musicTracks = [];
+    let musicGroups = [];
+    let localMusicUrls = [];
+    let activeMusicTrack = null;
+    let musicQueue = [];
+    let activeMusicTab = 'All';
+    let musicLoaded = false;
+    const musicPathUrl = path => 'https://github.com/' + MUSIC_OWNER + '/' + MUSIC_REPO + '/raw/refs/heads/' + MUSIC_BRANCH + '/' + path.split('/').map(encodeURIComponent).join('/');
+    function openMusic() {
+      musicPanel.classList.add('open');
+      musicPanel.setAttribute('aria-hidden', 'false');
+      loadMusicLibrary();
+    }
+    function closeMusic() {
+      musicPanel.classList.remove('open');
+      musicPanel.setAttribute('aria-hidden', 'true');
+    }
+    function playMusic(track) {
+      if (!track) return;
+      activeMusicTrack = track;
+      musicAudio.src = track.url;
+      musicNow.replaceChildren(document.createTextNode(track.title));
+      const subtitle = document.createElement('small');
+      subtitle.textContent = track.group || 'Single';
+      musicNow.append(subtitle);
+      musicAudio.play().catch(() => { musicStatus.textContent = 'Playback was blocked. Press Play in the audio controls.'; });
+      updateMusicRows();
+    }
+    function updateMusicRows() {
+      document.querySelectorAll('.music-track-row').forEach((row, index) => {
+        const track = row._track;
+        row.classList.toggle('active', track === activeMusicTrack);
+        row.querySelector('.music-track-index').textContent = track === activeMusicTrack && !musicAudio.paused ? 'Ⅱ' : String(index + 1);
+      });
+    }
+    function showMusicTracks(tracks, heading) {
+      musicQueue = tracks;
+      musicContent.replaceChildren();
+      const title = document.createElement('h2');
+      title.textContent = heading;
+      const list = document.createElement('div');
+      list.className = 'music-track-list';
+      tracks.forEach((track, index) => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row._track = track;
+        row.className = 'music-track-row' + (track === activeMusicTrack ? ' active' : '');
+        const number = document.createElement('span');
+        number.className = 'music-track-index';
+        number.textContent = track === activeMusicTrack && !musicAudio.paused ? 'Ⅱ' : String(index + 1);
+        const copy = document.createElement('span');
+        copy.className = 'music-track-copy';
+        copy.textContent = track.title;
+        const detail = document.createElement('small');
+        detail.textContent = track.group || 'Single';
+        copy.append(detail);
+        row.append(number, copy);
+        row.addEventListener('click', () => {
+          if (track === activeMusicTrack && !musicAudio.paused) musicAudio.pause();
+          else playMusic(track);
+        });
+        list.append(row);
+      });
+      musicContent.append(title, list);
+      if (!tracks.length) {
+        const empty = document.createElement('p');
+        empty.className = 'music-empty';
+        empty.textContent = musicLoaded ? 'No music matches your search.' : 'Loading music library…';
+        musicContent.append(empty);
+      }
+    }
+    function renderMusicLibrary() {
+      const query = musicSearch.value.trim().toLowerCase();
+      const visible = musicTracks.filter(track => (activeMusicTab === 'All' || track.tab === activeMusicTab || (activeMusicTab === 'Local' && track.local)) && (!query || (track.title + ' ' + track.group).toLowerCase().includes(query)));
+      musicStatus.textContent = musicLoaded ? visible.length + (visible.length === 1 ? ' track' : ' tracks') : 'Loading music library…';
+      document.querySelectorAll('[data-music-tab]').forEach(button => button.classList.toggle('active', button.dataset.musicTab === activeMusicTab));
+      if (activeMusicTab === 'Albums' && !query) {
+        musicContent.replaceChildren();
+        const heading = document.createElement('h2');
+        heading.textContent = 'Albums';
+        const grid = document.createElement('div');
+        grid.className = 'music-grid';
+        const albumGroups = musicGroups.filter(group => group.tracks.some(track => visible.includes(track)));
+        albumGroups.forEach(group => {
+          const card = document.createElement('button');
+          card.type = 'button';
+          card.className = 'music-album';
+          const art = group.cover ? document.createElement('img') : document.createElement('span');
+          if (group.cover) { art.src = group.cover; art.alt = ''; art.loading = 'lazy'; }
+          else { art.className = 'music-art-placeholder'; art.textContent = group.name.slice(0, 1).toUpperCase() || '♪'; }
+          const name = document.createElement('strong');
+          name.textContent = group.name;
+          const count = document.createElement('small');
+          count.textContent = group.tracks.length + (group.tracks.length === 1 ? ' track' : ' tracks');
+          card.append(art, name, count);
+          card.addEventListener('click', () => showMusicTracks(group.tracks, group.name));
+          grid.append(card);
+        });
+        musicContent.append(heading, grid);
+        if (!albumGroups.length) {
+          const empty = document.createElement('p');
+          empty.className = 'music-empty';
+          empty.textContent = musicLoaded ? 'No albums match your search.' : 'Loading music library…';
+          musicContent.append(empty);
+        }
+        return;
+      }
+      showMusicTracks(visible, activeMusicTab === 'Local' ? 'Local files' : activeMusicTab === 'Singles' ? 'Singles' : 'All songs');
+    }
+    async function loadMusicLibrary() {
+      if (musicLoaded) return;
+      musicStatus.textContent = 'Loading music library…';
+      try {
+        const response = await fetch('https://api.github.com/repos/' + MUSIC_OWNER + '/' + MUSIC_REPO + '/git/trees/' + MUSIC_BRANCH + '?recursive=1');
+        if (!response.ok) throw new Error('GitHub returned ' + response.status);
+        const result = await response.json();
+        const musicImages = (result.tree || []).filter(item => item.type === 'blob' && /\.(jpe?g|png|webp|gif|avif)$/i.test(item.path)).map(item => item.path);
+        musicTracks = (result.tree || []).filter(item => item.type === 'blob' && MUSIC_AUDIO_EXT.test(item.path) && /^(Singles|Albums)\//i.test(item.path)).map(item => {
+          const parts = item.path.split('/');
+          const filename = parts.pop();
+          return { path: item.path, title: filename.replace(/\.[^.]+$/, '').replace(/_/g, ' '), group: parts.slice(1).join(' / ') || 'Single', tab: /^Albums\//i.test(item.path) ? 'Albums' : 'Singles', url: musicPathUrl(item.path) };
+        }).sort((a, b) => a.title.localeCompare(b.title));
+        const albums = new Map();
+        musicTracks.filter(track => track.tab === 'Albums').forEach(track => {
+          if (!albums.has(track.group)) albums.set(track.group, []);
+          albums.get(track.group).push(track);
+        });
+        musicGroups = [...albums].map(([name, tracks]) => {
+          const albumName = name.split(' / ').pop() || 'Album';
+          const folder = 'Albums/' + name + '/';
+          const coverPath = musicImages.find(path => path.startsWith(folder) && /(^|\/)(cover|folder|album|front|art|artwork)\.(jpe?g|png|webp|gif|avif)$/i.test(path))
+            || musicImages.find(path => path.startsWith('Artwork/') && path.replace(/^Artwork\//, '').replace(/\.[^.]+$/, '').toLowerCase() === albumName.toLowerCase());
+          return { name: albumName, tracks, cover: coverPath ? musicPathUrl(coverPath) : '' };
+        });
+        musicLoaded = true;
+        musicStatus.textContent = 'Choose a track to start playback.';
+        renderMusicLibrary();
+      } catch (error) {
+        musicLoaded = true;
+        musicStatus.textContent = 'Could not load music library: ' + error.message;
+        renderMusicLibrary();
+      }
+    }
+    document.querySelector('#open-music').addEventListener('click', openMusic);
+    document.querySelector('#music-close').addEventListener('click', closeMusic);
+    document.querySelectorAll('[data-music-tab]').forEach(button => button.addEventListener('click', () => {
+      if (button.dataset.musicTab === 'Local') { musicInput.click(); return; }
+      activeMusicTab = button.dataset.musicTab;
+      renderMusicLibrary();
+    }));
+    musicSearch.addEventListener('input', renderMusicLibrary);
+    musicInput.addEventListener('change', () => {
+      localMusicUrls.forEach(url => URL.revokeObjectURL(url));
+      localMusicUrls = [];
+      const files = Array.from(musicInput.files || []);
+      const locals = files.map(file => {
+        const url = URL.createObjectURL(file);
+        localMusicUrls.push(url);
+        return { title: file.name.replace(/\.[^.]+$/, ''), group: 'Local file', tab: 'Local', url, local: true };
+      });
+      musicTracks = musicTracks.filter(track => !track.local).concat(locals);
+      activeMusicTab = 'Local';
+      renderMusicLibrary();
+      if (locals.length) playMusic(locals[0]);
+      musicInput.value = '';
+    });
+    musicAudio.addEventListener('play', updateMusicRows);
+    musicAudio.addEventListener('pause', updateMusicRows);
+    musicAudio.addEventListener('ended', () => {
+      const next = musicQueue[musicQueue.indexOf(activeMusicTrack) + 1];
+      if (next) playMusic(next);
+    });
+    window.addEventListener('beforeunload', () => localMusicUrls.forEach(url => URL.revokeObjectURL(url)));
+    const aiPanel = document.querySelector('#ai-panel');
+    const aiMessages = document.querySelector('#ai-messages');
+    const aiInput = document.querySelector('#ai-input');
+    const aiSend = document.querySelector('#ai-send');
+    const aiHistory = [];
+    const _KD = [38, 60, 3, 50, 23, 83, 59, 99, 1, 45, 64, 78, 2, 13, 89, 45, 108, 77, 31, 42, 102, 56, 2, 30, 7, 73, 67, 14, 52, 74, 54, 64, 42, 59, 92, 86, 4, 33, 91, 27, 3, 27, 90, 85, 5, 15, 88, 91, 22, 7, 6, 26, 90];
+    const _KM = 'gm-suki-7';
+    function getPastedGeminiKey() {
+      return _KD.map((code, index) => String.fromCharCode(code ^ _KM.charCodeAt(index % _KM.length))).join('');
+    }
+    function addAiMessage(text, role, isError) {
+      const message = document.createElement('div');
+      message.className = 'ai-message' + (role === 'user' ? ' user' : '') + (isError ? ' error' : '');
+      message.textContent = text;
+      aiMessages.append(message);
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+      return message;
+    }
+    function openAiChat() {
+      aiPanel.classList.add('open');
+      aiPanel.setAttribute('aria-hidden', 'false');
+      aiInput.focus();
+    }
+    document.querySelector('#open-ai').addEventListener('click', openAiChat);
+    document.querySelector('#open-ai-chat').addEventListener('click', openAiChat);
+    document.querySelector('#ai-close').addEventListener('click', () => {
+      aiPanel.classList.remove('open');
+      aiPanel.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelector('#ai-form').addEventListener('submit', async event => {
+      event.preventDefault();
+      const prompt = aiInput.value.trim();
+      if (!prompt || aiSend.disabled) return;
+      addAiMessage(prompt, 'user');
+      aiInput.value = '';
+      aiSend.disabled = true;
+      aiSend.textContent = '…';
+      const pending = addAiMessage('Thinking…', 'assistant');
+      const models = ['gemini-3.8-flash', 'gemini-3.6-flash', 'gemini-3.5-flash-lite'];
+      let answer = '';
+      let lastError = '';
+      for (const model of models) {
+        try {
+          const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'x-goog-api-key': getPastedGeminiKey() },
+            body: JSON.stringify({ contents: [...aiHistory, { role: 'user', parts: [{ text: prompt }] }] })
+          });
+          const result = await response.json();
+          if (!response.ok) throw new Error(result.error && result.error.message || 'Gemini request failed (' + response.status + ').');
+          answer = (result.candidates || []).flatMap(candidate => candidate.content && candidate.content.parts || []).map(part => part.text || '').join('');
+          if (!answer) throw new Error('Gemini returned an empty response.');
+          aiHistory.push({ role: 'user', parts: [{ text: prompt }] }, { role: 'model', parts: [{ text: answer }] });
+          break;
+        } catch (error) {
+          lastError = error.message || 'Could not reach Gemini.';
+        }
+      }
+      pending.textContent = answer || ('Could not get a reply: ' + lastError);
+      if (!answer) pending.classList.add('error');
+      aiMessages.scrollTop = aiMessages.scrollHeight;
+      aiSend.disabled = false;
+      aiSend.textContent = 'Send';
+      aiInput.focus();
+    });
+    aiInput.addEventListener('keydown', event => {
+      if (event.key === 'Enter' && !event.shiftKey) {
+        event.preventDefault();
+        document.querySelector('#ai-form').requestSubmit();
+      }
+    });
+  </script>
+</body>
+</html>
