@@ -118,10 +118,33 @@
     .search:focus-within{background:rgba(255,255,255,.035)}
     .brand{color:#f5f5f7}
     @media(prefers-reduced-motion:reduce){.particle{animation:none;display:none}}
+    /* Settings panel */
+    .settings-panel{position:absolute;z-index:7;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,38px);background:#050507;color:#f3f1f6}
+    .settings-panel.open{display:block}.settings-inner{width:min(820px,100%);margin:auto}.settings-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:22px}.settings-head h2{margin:0;font-size:clamp(27px,4vw,36px)}.settings-head p{margin:5px 0 0;color:#aaa8b3}.settings-close,.settings-action,.settings-save{border:1px solid #33333b;border-radius:10px;padding:9px 12px;color:#f3f1f6;background:#17171b;cursor:pointer}.settings-close:hover,.settings-action:hover{background:#24242a}.settings-card{margin:13px 0;padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.settings-card h3{margin:0 0 6px;font-size:17px}.settings-card p{margin:4px 0 13px;color:#aaa8b3;font-size:13px}.settings-actions{display:flex;flex-wrap:wrap;gap:9px}.settings-action{display:inline-flex;align-items:center;gap:7px}.settings-label{display:grid;gap:6px;margin:13px 0;color:#dedde4;font-size:13px}.settings-label input,.settings-label select,.settings-label textarea{width:100%;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.settings-label textarea{min-height:74px;resize:vertical}.settings-save{border-color:#aaa;background:#eee;color:#111;font-weight:700}.settings-note{color:#85838e!important;font-size:12px!important}.settings-check{display:flex;align-items:center;gap:9px;margin:12px 0;color:#ddd}
+    @media(max-width:650px){.settings-panel{padding:18px 12px}.settings-card{padding:14px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile){display:none}}
+    /* Login-required profile screen */
+    .profile-panel{position:absolute;z-index:8;inset:0;display:none;place-items:center;padding:20px;background:#050507;color:#f3f1f6;text-align:center}
+    .profile-panel.open{display:grid}.profile-card{width:min(420px,100%);padding:36px 28px;border:1px solid #292930;border-radius:18px;background:#101013;box-shadow:0 24px 80px #0009}.profile-lock{font-size:48px;line-height:1}.profile-card h2{margin:14px 0 6px;font-size:28px}.profile-card p{margin:0;color:#aaa8b3}.profile-actions{display:flex;justify-content:center;gap:10px;margin-top:24px}.profile-action{min-width:110px;padding:10px 16px;border:1px solid #33333b;border-radius:10px;color:#f3f1f6;background:#17171b;font:inherit;font-weight:700;cursor:pointer}.profile-action.primary{border-color:#eee;color:#111;background:#eee}.profile-action:hover{filter:brightness(1.15)}.profile-status{min-height:1.45em;margin-top:14px!important;color:#aaa8b3;font-size:13px}
+    /* Full-page AI chat view */
+    .ai-panel{inset:0;right:0;top:0;width:auto;height:auto;border:0;border-radius:0;background:#050507;box-shadow:none}
+    .ai-head,.ai-messages,.ai-compose,.ai-key-note{width:min(900px,100%);margin-left:auto;margin-right:auto}
+    .ai-head{width:100%;padding:16px max(18px,calc((100% - 900px)/2));background:#050507}
+    .ai-messages{width:min(900px,100%);padding:24px 18px}
+    .ai-compose{padding:14px 18px 18px}
+    .ai-key-note{padding:0 18px 10px}
+    @media(max-width:650px){.ai-head{padding:13px 16px}.ai-messages{padding:16px}.ai-compose{padding:12px 16px}.ai-key-note{padding:0 16px 10px}}
+    /* Leaderboard view */
+    .leaderboard-panel{position:absolute;z-index:9;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
+    .leaderboard-panel.open{display:block}.leaderboard-inner{width:min(1120px,100%);margin:auto}.leaderboard-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.leaderboard-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.leaderboard-head p{margin:4px 0 0;color:#9d9aa8}.leaderboard-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.leaderboard-close:hover{background:#24242a}.leaderboard-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.leaderboard-card,.scores-card,.champion-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.leaderboard-card h3,.scores-card h3{margin:0 0 12px;font-size:18px}.leaderboard-entry{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;min-height:52px;border-top:1px solid #ffffff0d}.leaderboard-rank{color:#9c99a6;font-size:13px}.leaderboard-avatar{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;color:#e5e0ff;background:linear-gradient(135deg,#594978,#292433);font-size:12px;font-weight:750}.leaderboard-user{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.leaderboard-score{color:#c4bed2;font-variant-numeric:tabular-nums}.scores-card{margin-top:14px}.scores-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px}.scores-table-wrap{overflow:auto}.scores-table{width:100%;border-collapse:collapse;text-align:left}.scores-table th,.scores-table td{padding:10px 12px;border-top:1px solid #ffffff10}.scores-table th{color:#aaa8b3;font-size:12px;text-transform:uppercase;letter-spacing:.06em}.scores-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}.scores-submit{border:1px solid #42404a;border-radius:9px;padding:8px 11px;color:#fff;background:#222127;cursor:pointer}.scores-submit:hover{background:#302d37}.scores-status{min-height:1.4em;margin:9px 0 0;color:#aaa8b3;font-size:13px}.champion-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.champion-card strong{font-size:18px}.leaderboard-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:18px 2px;color:#92909b;font-size:13px}.leaderboard-footer a{margin-right:12px;color:#c7c3d0;text-decoration:none}.leaderboard-footer a:hover{color:#fff}
+    @media(max-width:650px){.leaderboard-panel{padding:18px 12px}.leaderboard-cards{grid-template-columns:1fr}.leaderboard-card,.scores-card{padding:14px}.leaderboard-head{align-items:flex-start}.leaderboard-entry{grid-template-columns:32px 1fr auto;gap:7px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-leaderboard):not(#open-tools){display:none}}
+    /* Quick utility tools */
+    .toolbox-panel{position:absolute;z-index:10;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
+    .toolbox-panel.open{display:block}.toolbox-inner{width:min(1000px,100%);margin:auto}.toolbox-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}.toolbox-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.toolbox-head p{margin:4px 0 0;color:#9d9aa8}.toolbox-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.toolbox-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.toolbox-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.toolbox-card h3{margin:0 0 5px;font-size:18px}.toolbox-card p{margin:4px 0 14px;color:#9d9aa8;font-size:13px}.toolbox-card input,.toolbox-card textarea,.toolbox-card select{min-width:0;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.toolbox-card textarea{width:100%;min-height:150px;resize:vertical}.tool-calculator{display:grid;grid-template-columns:1fr auto 1fr auto;gap:8px;align-items:center}.tool-calculator select,.tool-calculator button{padding:9px 11px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b;font:inherit}.tool-calculator button,.timer-button{cursor:pointer}.tool-result{min-height:1.5em;margin-top:12px!important;color:#ddd!important;font-weight:700}.timer-display{margin:15px 0;font-size:42px;font-variant-numeric:tabular-nums;letter-spacing:.04em}.timer-controls{display:flex;gap:8px}.timer-button{padding:9px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b}.tool-status{min-height:1.4em;margin:8px 0 0!important;color:#8fe3d0!important;font-size:12px!important}
+    @media(max-width:650px){.toolbox-panel{padding:18px 12px}.toolbox-grid{grid-template-columns:1fr}.toolbox-card{padding:14px}.tool-calculator{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M3 9h18l-1.5 12h-15L3 9zM3 9l2-5h14l2 5M9 9v12M15 9v12"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></div></header>
+  <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-leaderboard" type="button" title="Leaderboard" aria-label="Open Leaderboard"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11h4v9M10 20V6h4v14M16 20V3h4v17"/><path d="m4 8 6-4 4 2 6-5" stroke-width="1.7"/><circle cx="4" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="1" r="1" fill="currentColor" stroke="none"/></svg></button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <div class="glow"></div>
     <div class="particles" aria-hidden="true">
@@ -145,6 +168,43 @@
         <button class="tile featured-game" type="button" data-game-file="bad-ice-cream.html" aria-label="Play Bad Ice Cream"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream.jpg" alt="" loading="lazy"><span>Bad Ice Cream</span></button>
         <button class="tile featured-game" type="button" data-game-file="basket-bros.html" aria-label="Play Basket Bros"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png" alt="" loading="lazy"><span>Basket Bros</span></button>
       </nav>
+    </section>
+    <section class="settings-panel" id="settings-panel" aria-label="Settings" aria-hidden="true">
+      <div class="settings-inner">
+        <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your experience with stealth features</p></div><button class="settings-close" id="settings-close" type="button">Close</button></div>
+        <section class="settings-card"><h3>🚀 About:Blank Mode</h3><p>Open the site in a new about:blank window. This disguises your study session by opening it in a blank page, making it harder to detect in browser history or tab previews.</p><div class="settings-actions"><button class="settings-action" type="button" data-launch="class2">🔓 Launch in About:Blank (Class2)</button><button class="settings-action" type="button" data-launch="class3">🔓 Launch in About:Blank (Class3)</button><button class="settings-action" type="button" data-launch="blank">🔓 Launch in About:Blank</button><button class="settings-action" type="button" data-launch="blob">🔓 Launch in Blob Mode</button><button class="settings-action" type="button" data-open-class="class2">🎓 Open Class2</button><button class="settings-action" type="button" data-open-class="class3">🎓 Open Class3</button></div><label class="settings-check"><input id="apps-about-blank" type="checkbox" checked> Open apps in about:blank</label><p class="settings-note">Class launch buttons open a copy of this page with the chosen tab title. Popup blocking may prevent new windows.</p></section>
+        <section class="settings-card"><h3>📥 Download Website</h3><div class="settings-actions"><button class="settings-action" type="button" data-download="html">📥 Download Website</button><button class="settings-action" type="button" data-download="svg">📥 Download Website as SVG</button><button class="settings-action" type="button" data-download="xs">📥 Download Website XS</button></div></section>
+        <section class="settings-card"><h3>📜 Scroll Feed Settings</h3><label class="settings-label">Algorithm<select id="feed-algorithm"><option>Random</option><option>Newest</option><option>Popular</option></select></label><label class="settings-label">Categories (comma-separated)<textarea id="feed-categories" placeholder="horror, puzzle, racing, 2-player"></textarea></label><p class="settings-note">Empty = show all. Unknown categories are silently ignored.</p><div class="settings-actions"><button class="settings-save" id="save-feed" type="button">✓ Save Feed Settings</button><button class="settings-action" id="save-open-feed" type="button">📜 Save and Open Feed</button></div><p class="settings-note" id="settings-status" role="status" aria-live="polite"></p></section>
+        <section class="settings-card"><h3>🎭 Tab Cloak</h3><p>Cloak your Tab! Choosing a title changes the tab title; choosing an icon link changes the tab icon.</p><label class="settings-label">Tab Title<input id="cloak-title" type="text" value="Classes - Google Classroom"></label><label class="settings-label">Tab Icon URL<input id="cloak-icon" type="url" value="https://ssl.gstatic.com/classroom/favicon.png"></label><button class="settings-save" id="apply-cloak" type="button">✓ Add</button></section>
+      </div>
+    </section>
+    <section class="profile-panel" id="profile-panel" aria-label="Profile" aria-hidden="true">
+      <div class="profile-card">
+        <div class="profile-lock" aria-hidden="true">🔒</div>
+        <h2>Login Required</h2>
+        <p>You need to be logged in to access Profile</p>
+        <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
+        <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+    <section class="leaderboard-panel" id="leaderboard-panel" aria-label="Leaderboard" aria-hidden="true">
+      <div class="leaderboard-inner">
+        <header class="leaderboard-head"><div><h2>Leaderboard</h2><p>Time Champions</p></div><button class="leaderboard-close" id="leaderboard-close" type="button">Home</button></header>
+        <div class="leaderboard-cards" id="leaderboard-cards"></div>
+        <section class="scores-card" aria-labelledby="class-scores-title"><div class="scores-toolbar"><h3 id="class-scores-title">🥇 Class High Scores! 🥇</h3><button class="scores-submit" id="submit-app-score" type="button">Submit App Score</button></div><div class="scores-table-wrap"><table class="scores-table"><thead><tr><th>Class Title</th><th>User</th><th>Score</th></tr></thead><tbody id="scores-table-body"></tbody></table></div><p class="scores-status" id="scores-status" role="status" aria-live="polite"></p></section>
+        <div class="champion-card"><span>🏆 Champion Avatar</span><strong>HWIXY · Ultimate Champion</strong><span>12 high scores</span><span>DuckMath · Math Class</span><span>Level Up Your Math Skills</span><span>Master math through fun problems and challenges. Compete, learn, and earn rewards while becoming a math champion! 🦆✨</span></div>
+        <footer class="leaderboard-footer"><nav aria-label="Social links"><a href="#tiktok">TikTok</a><a href="#duck-pond">Duck Pond</a><a href="#instagram">Instagram</a><a href="#youtube">YouTube</a><a href="#linkedin">LinkedIn</a></nav><span>Pages</span></footer>
+      </div>
+    </section>
+    <section class="toolbox-panel" id="toolbox-panel" aria-label="Tools" aria-hidden="true">
+      <div class="toolbox-inner">
+        <header class="toolbox-head"><div><h2>Tools</h2><p>Simple utilities for quick calculations, notes, and focus sessions.</p></div><button class="toolbox-close" id="toolbox-close" type="button">Home</button></header>
+        <div class="toolbox-grid">
+          <section class="toolbox-card"><h3>🧮 Calculator</h3><p>Calculate with two numbers and a basic operation.</p><form class="tool-calculator" id="tool-calculator"><input id="calc-first" type="number" step="any" placeholder="First number" aria-label="First number" required><select id="calc-operation" aria-label="Operation"><option value="+">+</option><option value="-">−</option><option value="*">×</option><option value="/">÷</option></select><input id="calc-second" type="number" step="any" placeholder="Second number" aria-label="Second number" required><button type="submit">Calculate</button></form><p class="tool-result" id="calc-result" role="status" aria-live="polite"></p></section>
+          <section class="toolbox-card"><h3>📝 Quick Notes</h3><p>Notes save automatically in this browser.</p><textarea id="tool-notes" placeholder="Write a note…" aria-label="Quick notes"></textarea><p class="tool-status" id="notes-status" role="status" aria-live="polite"></p></section>
+          <section class="toolbox-card"><h3>⏱️ Focus Timer</h3><p>A lightweight countdown for focus sessions.</p><label class="settings-label" for="timer-minutes">Duration (minutes)<input id="timer-minutes" type="number" min="1" max="180" value="25"></label><div class="timer-display" id="timer-display" role="timer" aria-live="off">25:00</div><div class="timer-controls"><button class="timer-button" id="timer-start" type="button">Start</button><button class="timer-button" id="timer-reset" type="button">Reset</button></div><p class="tool-status" id="timer-status" role="status" aria-live="polite"></p></section>
+        </div>
+      </div>
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
       <div class="games-head"><h2>Game library</h2><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
@@ -239,11 +299,343 @@
       renderGames();
     }
 
+    const settingsPanel = document.querySelector('#settings-panel');
+    const settingsStatus = document.querySelector('#settings-status');
+    function openSettings() {
+      settingsPanel.classList.add('open');
+      settingsPanel.setAttribute('aria-hidden', 'false');
+      try {
+        const saved = JSON.parse(localStorage.getItem('kitsune-feed-settings') || '{}');
+        document.querySelector('#feed-algorithm').value = saved.algorithm || 'Random';
+        document.querySelector('#feed-categories').value = saved.categories || '';
+        document.querySelector('#apps-about-blank').checked = saved.appsAboutBlank !== false;
+      } catch (error) { /* Keep the visible defaults if storage is unavailable. */ }
+    }
+    function closeSettings() {
+      settingsPanel.classList.remove('open');
+      settingsPanel.setAttribute('aria-hidden', 'true');
+    }
+    function saveFeedSettings() {
+      const settings = {
+        algorithm: document.querySelector('#feed-algorithm').value,
+        categories: document.querySelector('#feed-categories').value.trim(),
+        appsAboutBlank: document.querySelector('#apps-about-blank').checked
+      };
+      try { localStorage.setItem('kitsune-feed-settings', JSON.stringify(settings)); } catch (error) { /* The settings still work for this page session. */ }
+      settingsStatus.textContent = 'Feed settings saved on this device.';
+      return settings;
+    }
+    function currentPageHtml(title) {
+      const html = '<!doctype html>\n' + document.documentElement.outerHTML;
+      const base = '<base href="' + location.href.replace(/[&<>\"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\"': '&quot;' }[character])) + '">';
+      let page = html;
+      if (/<head\b[^>]*>/i.test(page)) page = page.replace(/<head\b[^>]*>/i, match => match + base);
+      else page = '<head>' + base + '</head>' + page;
+      if (title) page = page.replace(/<title>[^<]*<\/title>/i, '<title>' + title.replace(/[&<>]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' }[character])) + '</title>');
+      return page;
+    }
+    function launchPage(mode, title) {
+      const page = currentPageHtml(title);
+      if (mode === 'blob') {
+        const url = URL.createObjectURL(new Blob([page], { type: 'text/html' }));
+        const tab = window.open(url, '_blank');
+        if (!tab) URL.revokeObjectURL(url);
+        else setTimeout(() => URL.revokeObjectURL(url), 60000);
+        return;
+      }
+      const tab = window.open('about:blank', '_blank');
+      if (!tab) { settingsStatus.textContent = 'Allow popups to open a new tab.'; return; }
+      tab.document.open();
+      tab.document.write(page);
+      tab.document.close();
+    }
+    function downloadFile(name, content, type) {
+      const url = URL.createObjectURL(new Blob([content], { type }));
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = name;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }
+    document.querySelector('#open-settings').addEventListener('click', openSettings);
+    document.querySelector('#settings-close').addEventListener('click', closeSettings);
+    const profilePanel = document.querySelector('#profile-panel');
+    document.querySelector('#open-profile').addEventListener('click', () => {
+      profilePanel.classList.add('open');
+      profilePanel.setAttribute('aria-hidden', 'false');
+      document.querySelector('#profile-status').textContent = '';
+    });
+    document.querySelector('#profile-home').addEventListener('click', () => {
+      profilePanel.classList.remove('open');
+      profilePanel.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelector('#profile-sign-in').addEventListener('click', () => {
+      document.querySelector('#profile-status').textContent = 'Sign-in is not available yet.';
+    });
+    document.querySelectorAll('[data-launch]').forEach(button => button.addEventListener('click', () => {
+      const title = button.dataset.launch === 'class2' ? 'Class2' : button.dataset.launch === 'class3' ? 'Class3' : '';
+      launchPage(button.dataset.launch === 'blob' ? 'blob' : 'blank', title);
+    }));
+    document.querySelectorAll('[data-open-class]').forEach(button => button.addEventListener('click', () => launchPage('blank', button.dataset.openClass === 'class2' ? 'Class2' : 'Class3')));
+    document.querySelectorAll('[data-download]').forEach(button => button.addEventListener('click', () => {
+      const kind = button.dataset.download;
+      const page = currentPageHtml();
+      if (kind === 'svg') {
+        const escaped = page.replace(/[&<>\"]/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\\"': '&quot;' }[character]));
+        downloadFile('kitsune-website.svg', '<svg xmlns="http://www.w3.org/2000/svg" xmlns:xhtml="http://www.w3.org/1999/xhtml" width="1440" height="900"><foreignObject width="100%" height="100%"><xhtml:iframe xmlns="http://www.w3.org/1999/xhtml" style="width:100%;height:100%;border:0" srcdoc="' + escaped + '"></xhtml:iframe></foreignObject></svg>', 'image/svg+xml');
+      } else {
+        downloadFile(kind === 'xs' ? 'kitsune-website-xs.html' : 'kitsune-website.html', page, 'text/html');
+      }
+    }));
+    document.querySelector('#save-feed').addEventListener('click', saveFeedSettings);
+    document.querySelector('#save-open-feed').addEventListener('click', () => {
+      saveFeedSettings();
+      settingsStatus.textContent = 'Feed settings saved. The feed view is not available on this page yet.';
+    });
+    document.querySelector('#apps-about-blank').addEventListener('change', saveFeedSettings);
+    document.querySelector('#apply-cloak').addEventListener('click', () => {
+      const title = document.querySelector('#cloak-title').value.trim();
+      const icon = document.querySelector('#cloak-icon').value.trim();
+      if (title) document.title = title;
+      let favicon = document.querySelector('link[data-cloak-icon]');
+      if (icon) {
+        if (!favicon) { favicon = document.createElement('link'); favicon.rel = 'icon'; favicon.dataset.cloakIcon = 'true'; document.head.append(favicon); }
+        favicon.href = icon;
+      } else if (favicon) favicon.remove();
+      settingsStatus.textContent = 'Tab title and icon updated.';
+    });
+
+    const leaderboardCategories = [
+      { title: 'Time Champions', subtitle: 'time champions', rows: [['sansiscool5817','110,685'],['0.qho2wg0afg','106,175'],['0.f8s1w0m5cni','72,560'],['0.fbvperdfzog','71,075'],['Rottaherra','67,330']] },
+      { title: 'Streaks', subtitle: 'streaks', rows: [['DimiRxle','17'],['♡BUN♡','17'],['0.l6bd38qa09d','11'],['0.2bz8d1533hk','7'],['0.pg61tk4paqi','5']] },
+      { title: 'Dabloons This Week', subtitle: 'dabloons this week', rows: [['0.q8t4xmqtzr','8,297'],['0.13rmhfqsgbfi','8,070'],['0.32d52xoqrj','6,473'],['0.97nlrw47o1','6,207'],['0.m5jhes98vzc','4,244']] },
+      { title: 'Top Classes', subtitle: 'top classes', rows: [['0.f74m8385np','346'],['lich','299'],['0.avjcjjl05xc','295'],['JaCORN','293'],['0.zys1nbkfvwi','272']] }
+    ];
+    const highScoreRows = `2048\tChickenlittle909\t3885968
+arrow-master\tChickenlittle909\t172
+baldis-basics\tsansiscool5817\t6
+basketball-stars\tHWIXY\t48
+e-life-simulator\tJaCORN\t107
+burrito-bison\tHWIXY\t12828
+soviet-sniper\tfibsh\t18106
+cross-roads\tHWIXY\t195
+doodle-jump\tHenry_Capy\t18225
+draw-the-bridge\tsansiscool5817\t31
+drift-boss\tChickenlittle909\t70020
+eggy-car\tChickenlittle909\t8107
+endless-lake\tHWIXY\t489
+five-nights-at-freddys\t0.08f5l9k53tf5\t5
+flappy-circle\tAkram\t167
+flappy-bird\tbernardo1289\t522
+cool-game\tMallard\t25402
+hole.io\tggclicker\t539
+math-duck\tBigFatRat\t18
+moto-x3m-winter\tfibsh\t75
+moto-x3m\tHWIXY\t66
+pac-man\tHenry_Capy\t18780
+run-3\tJaCORN\t682
+crazy-roll\tHWIXY\t6682
+smash-karts\tCookieIsToJuicy\t5960
+snow-rider-3d\tChickenlittle909\t546
+spiral-roll\tI_am_me\t508387
+subway-runner-barcelona\tMiguelfj10\t898320
+tanuki-sunset\tfibsh\t33195
+temple-run-2\tRhysMccastle\t111565
+eagle-craft\tcandylove.1\t1e+98
+awesome-tanks\tbobcooler\t15
+awesome-tanks-2\tbobcooler\t154650
+freeway-fury-2\tMallard\t161600
+the-impossible-quiz-2\tggclicker\t39
+swords-and-sandals-2\tMallard\t116040
+the-binding-of-isaac\tgod_gamer\t101
+the-impossible-quiz\tHWIXY\t110
+the-worlds-hardest-game\tdookiechip13\t30
+masked-special-forces\tyenzowashere\t147793
+time-shooter-2\twavee\t20
+gun-spin\tAkram\t753295
+ovo\tHWIXY\t45
+football-legends\tharperpaulis67\t82
+helix-jump\tRhysMccastle\t12971
+dune\t1224EMallorySt32503\t294
+deadly-descent\tsansiscool5817\t50476
+marble-skies\tfirego4232\t2119
+bridge-race\tduckduckducksahur\t1050
+duck-life-5\tsansiscool5817\t6101
+moto-x3m-3\tHWIXY\t66
+moto-x3m-spooky-land\tfibsh\t66
+ragdoll-archers\tJaCORN\t1205
+blocky-puzzle\tChickenlittle909\t23982
+obby-but-youre-on-a-bike\tHWIXY\t100
+race-survival-arena-king\tKingBob\t764
+thorns-and-ballons\tAkram\t75
+escape-car\tCLEVERSHARK\t1247
+ducklingsio\tggclicker\t60
+ragdoll-hit\tmIkAeL:p\t5132
+cod-zombies-portable\tsansiscool5817\t34180
+buckshot-roulette\tbobcooler\t67305
+grow-a-garden\tTacoLlamaGaming\t1000150
+steal-a-brainrot\tTc_Brayden\t152300000000
+golf-orbit\tRoad2No.1DuckMath\t4243
+red-ball-4\tBailalo.Gozalo\t1300
+growden-io\tTc_Brayden\t7310428
+plants-vs-brainrots\tTc_Brayden\t2500000
+wheelie-bike\tbernardo1289\t6272
+basket-bros\tKingBob123\t45
+highway-traffic\tRoad2No.1DuckMath\t13501500
+fast-food-manager\tggclicker\t13327
+crown-defense\tPollitoConAllioli\t15
+stack-fire-ball\tJaCORN\t1863
+spacebar-clicker\tHWIXY\t7822000000000
+steal-brainrot-heist\tduckduckducksahur\t445000001200
+life-simulator\tHWIXY\t116
+snek-io\tChickenlittle909\t1000000000000
+ducky-clicker\tI_am_me\t609450`;
+    function renderLeaderboard() {
+      const cards = document.querySelector('#leaderboard-cards');
+      cards.replaceChildren();
+      leaderboardCategories.forEach(category => {
+        const card = document.createElement('section');
+        card.className = 'leaderboard-card';
+        const heading = document.createElement('h3');
+        heading.textContent = category.title;
+        card.append(heading);
+        category.rows.forEach(([user, score], index) => {
+          const row = document.createElement('div');
+          row.className = 'leaderboard-entry';
+          const rank = document.createElement('span');
+          rank.className = 'leaderboard-rank';
+          rank.textContent = '#' + (index + 1);
+          const identity = document.createElement('span');
+          identity.style.cssText = 'display:flex;align-items:center;gap:10px;min-width:0';
+          const avatar = document.createElement('span');
+          avatar.className = 'leaderboard-avatar';
+          avatar.setAttribute('aria-label', 'User avatar');
+          avatar.textContent = user.slice(0, 2).toUpperCase();
+          const name = document.createElement('span');
+          name.className = 'leaderboard-user';
+          name.textContent = user;
+          identity.append(avatar, name);
+          const value = document.createElement('strong');
+          value.className = 'leaderboard-score';
+          value.textContent = score;
+          row.append(rank, identity, value);
+          card.append(row);
+        });
+        cards.append(card);
+      });
+      const body = document.querySelector('#scores-table-body');
+      body.replaceChildren();
+      highScoreRows.split('\n').forEach(line => {
+        const [app, user, score] = line.split('\t');
+        if (!app || !user || !score) return;
+        const row = document.createElement('tr');
+        [app, user, score].forEach((value, index) => {
+          const cell = document.createElement('td');
+          cell.textContent = value;
+          if (index === 2) cell.style.textAlign = 'right';
+          row.append(cell);
+        });
+        body.append(row);
+      });
+    }
+    const leaderboardPanel = document.querySelector('#leaderboard-panel');
+    document.querySelector('#open-leaderboard').addEventListener('click', () => {
+      renderLeaderboard();
+      leaderboardPanel.classList.add('open');
+      leaderboardPanel.setAttribute('aria-hidden', 'false');
+    });
+    document.querySelector('#leaderboard-close').addEventListener('click', () => {
+      leaderboardPanel.classList.remove('open');
+      leaderboardPanel.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelector('#submit-app-score').addEventListener('click', () => {
+      document.querySelector('#scores-status').textContent = 'Sign in to submit an app score.';
+    });
+
+    const toolboxPanel = document.querySelector('#toolbox-panel');
+    function closeTools() {
+      toolboxPanel.classList.remove('open');
+      toolboxPanel.setAttribute('aria-hidden', 'true');
+    }
+    document.querySelector('#open-tools').addEventListener('click', () => {
+      toolboxPanel.classList.add('open');
+      toolboxPanel.setAttribute('aria-hidden', 'false');
+      try { document.querySelector('#tool-notes').value = localStorage.getItem('kitsune-quick-notes') || ''; } catch (error) { /* Notes remain usable for this session. */ }
+    });
+    document.querySelector('#toolbox-close').addEventListener('click', closeTools);
+    document.querySelector('#tool-calculator').addEventListener('submit', event => {
+      event.preventDefault();
+      const first = Number(document.querySelector('#calc-first').value);
+      const second = Number(document.querySelector('#calc-second').value);
+      const operation = document.querySelector('#calc-operation').value;
+      let result;
+      if (operation === '+') result = first + second;
+      else if (operation === '-') result = first - second;
+      else if (operation === '*') result = first * second;
+      else result = second === 0 ? 'Cannot divide by zero' : first / second;
+      document.querySelector('#calc-result').textContent = 'Result: ' + result;
+    });
+    document.querySelector('#tool-notes').addEventListener('input', event => {
+      try {
+        localStorage.setItem('kitsune-quick-notes', event.target.value);
+        document.querySelector('#notes-status').textContent = 'Saved on this device.';
+      } catch (error) { document.querySelector('#notes-status').textContent = 'Could not save notes in this browser.'; }
+    });
+    const timerMinutes = document.querySelector('#timer-minutes');
+    const timerDisplay = document.querySelector('#timer-display');
+    const timerStatus = document.querySelector('#timer-status');
+    let timerRemaining = 25 * 60;
+    let timerInterval = null;
+    function drawTimer() {
+      const minutes = Math.floor(timerRemaining / 60);
+      const seconds = timerRemaining % 60;
+      timerDisplay.textContent = String(minutes).padStart(2, '0') + ':' + String(seconds).padStart(2, '0');
+    }
+    function resetTimer() {
+      clearInterval(timerInterval);
+      timerInterval = null;
+      const minutes = Math.max(1, Math.min(180, Number(timerMinutes.value) || 25));
+      timerMinutes.value = minutes;
+      timerRemaining = minutes * 60;
+      drawTimer();
+      timerStatus.textContent = '';
+      document.querySelector('#timer-start').textContent = 'Start';
+    }
+    timerMinutes.addEventListener('change', resetTimer);
+    document.querySelector('#timer-reset').addEventListener('click', resetTimer);
+    document.querySelector('#timer-start').addEventListener('click', () => {
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerStatus.textContent = 'Timer paused.';
+        document.querySelector('#timer-start').textContent = 'Resume';
+        return;
+      }
+      if (timerRemaining <= 0) resetTimer();
+      timerStatus.textContent = 'Focus session in progress.';
+      document.querySelector('#timer-start').textContent = 'Pause';
+      timerInterval = setInterval(() => {
+        timerRemaining -= 1;
+        drawTimer();
+        if (timerRemaining <= 0) {
+          clearInterval(timerInterval);
+          timerInterval = null;
+          timerStatus.textContent = 'Time is up!';
+          document.querySelector('#timer-start').textContent = 'Start';
+        }
+      }, 1000);
+    });
+
     const gamesPanel = document.querySelector('#games-panel');
     function gameUrl(game, base) { return base + game.file.split('/').map(encodeURIComponent).join('/'); }
     async function openGame(game) {
       const primaryBase = game.base || (CRA_GAMES.has(game.file) ? CRA_BASE : COOL_BASE);
       const sourceBases = [primaryBase, primaryBase === CRA_BASE ? COOL_BASE : CRA_BASE];
+      if (!document.querySelector('#apps-about-blank').checked) {
+        gamesPanel.classList.remove('open');
+        window.open(gameUrl(game, primaryBase), '_blank');
+        return;
+      }
       const gameTab = window.open('about:blank', '_blank');
       if (!gameTab) return;
       gamesPanel.classList.remove('open');
