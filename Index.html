@@ -78,9 +78,6 @@
     .search,.tile,.promo,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
     .game-card,.featured-game{background:#000}
     .music-status,.music-empty,.music-track-copy small,.music-track-index{color:#888}
-    /* Soft cursor-driven light flowing out of the background */
-    .flow-canvas{position:fixed;inset:0;z-index:1;width:100vw;height:100vh;pointer-events:none}
-    @media(pointer:coarse),(prefers-reduced-motion:reduce){.flow-canvas{display:none}}
     /* Kitsune home refresh */
     body{background:#000}
     main{border-color:rgba(255,255,255,.08);background:#000}
@@ -175,6 +172,39 @@
     .game-card:hover .game-card-overlay,.game-card:focus-visible .game-card-overlay{opacity:1}
     .game-card:focus-visible{outline:2px solid #fff;outline-offset:3px}
     @media(hover:none){.game-card-overlay{background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:1;justify-content:flex-end;align-items:flex-start}.game-card-play{display:none}}
+    /* Cinematic foxfire game-loading screen */
+    .game-loading{overflow:hidden;background:radial-gradient(ellipse at 50% 48%,rgba(255,112,61,.14),transparent 35%),radial-gradient(ellipse at 50% 100%,rgba(255,179,76,.08),transparent 55%),rgba(4,4,7,.92);backdrop-filter:blur(12px)}
+    .game-loading::before,.game-loading::after{position:absolute;content:"";width:clamp(180px,35vw,360px);aspect-ratio:1;border:1px solid rgba(255,177,91,.12);border-radius:50%;box-shadow:0 0 70px rgba(255,119,62,.08),inset 0 0 55px rgba(255,157,72,.05);animation:fox-ring 7s ease-in-out infinite}
+    .game-loading::after{width:clamp(260px,52vw,540px);animation-delay:-3.5s;opacity:.55}
+    .game-loading-card{z-index:1;width:min(410px,100%);padding:36px 28px;border-color:rgba(255,177,91,.24);background:linear-gradient(145deg,rgba(31,22,20,.94),rgba(12,12,16,.94));box-shadow:0 28px 100px #000b,0 0 55px rgba(255,111,53,.08)}
+    .game-loading-mark{width:68px;height:68px;border-radius:22px;color:#ffe0a0;background:radial-gradient(circle at 35% 25%,rgba(255,223,157,.28),transparent 52%),linear-gradient(145deg,rgba(255,104,67,.28),rgba(255,187,91,.1));box-shadow:0 0 36px rgba(255,142,72,.18),inset 0 1px rgba(255,255,255,.18);font-size:30px}
+    .game-loading h2{font-size:23px;letter-spacing:-.025em}
+    .game-loading p{line-height:1.55}
+    .game-loading-track{position:relative;height:5px;margin:24px 0 13px;overflow:hidden;border-radius:999px;background:rgba(255,255,255,.08)}
+    .game-loading-track::after{width:28%;background:linear-gradient(90deg,#ff654b,#ffb65f,#ffe6a0);filter:drop-shadow(0 0 8px rgba(255,158,78,.75))}
+    .game-loading.error .game-loading-mark{background:rgba(255,101,80,.14)}
+    @keyframes fox-ring{50%{transform:scale(1.08) rotate(8deg);opacity:.45}}
+    @media(prefers-reduced-motion:reduce){.game-loading::before,.game-loading::after{animation:none}}
+    /* Image-led music cards, purple ambience, and the requested background */
+    main{background:linear-gradient(180deg,rgba(4,3,10,.52),rgba(4,3,10,.78)),url("https://github.com/Lenux32/Orion/blob/main/Game%20images/pipeline.90227d73%20(1)%20(1).webp?raw=true") center/cover no-repeat}
+    .home .tiles{display:none}
+    .home{top:31%}
+    .particle{background:rgba(210,185,255,var(--opacity,.6));box-shadow:0 0 12px rgba(177,130,255,.8)}
+    .music-content h2{margin-top:12px}
+    .music-grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:14px}
+    .music-art-card{position:relative;display:block;aspect-ratio:1;padding:0;overflow:hidden;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:#17131f;color:#fff;text-align:left;cursor:pointer}
+    .music-art-card img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}
+    .music-art-card:hover img,.music-art-card:focus-visible img{transform:scale(1.06)}
+    .music-art-card:focus-visible{outline:2px solid #d9bcff;outline-offset:3px}
+    .music-art-overlay{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;gap:4px;padding:12px;background:linear-gradient(transparent 35%,rgba(0,0,0,.82));opacity:0;transition:opacity .2s}
+    .music-art-overlay strong,.music-art-overlay small{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .music-art-overlay small{color:#ddd;font-size:12px}
+    .music-art-card:hover .music-art-overlay,.music-art-card:focus-visible .music-art-overlay{opacity:1}
+    @media(hover:none){.music-art-overlay{opacity:1}}
+    @media(max-width:700px){.home{top:27%}.music-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    /* Transparent glass navigation and a soft lilac glass wordmark */
+    .browser{background:rgba(10,8,18,.12);border-bottom-color:rgba(226,210,255,.14);backdrop-filter:blur(22px) saturate(135%);-webkit-backdrop-filter:blur(22px) saturate(135%)}
+    .brand{background:linear-gradient(115deg,#f4eaff 8%,#d9c0ff 48%,#b99aff 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 22px rgba(202,171,255,.28),0 0 48px rgba(173,139,255,.16);-webkit-text-stroke:1px rgba(243,231,255,.14)}
   </style>
 </head>
 <body>
@@ -202,8 +232,36 @@
       <i class="particle" style="--x:89%;--size:4px;--delay:-1s;--duration:20s;--drift:-35px"></i>
       <i class="particle" style="--x:94%;--size:2px;--delay:-9s;--duration:13s;--drift:25px"></i>
       <i class="particle" style="--x:98%;--size:3px;--delay:-5s;--duration:16s;--drift:-22px"></i>
+      <i class="particle" style="--x:2%;--size:3px;--delay:-4s;--duration:17s;--drift:30px"></i>
+      <i class="particle" style="--x:6%;--size:2px;--delay:-13s;--duration:14s;--drift:-25px"></i>
+      <i class="particle" style="--x:11%;--size:4px;--delay:-8s;--duration:19s;--drift:34px"></i>
+      <i class="particle" style="--x:16%;--size:2px;--delay:-1s;--duration:15s;--drift:-20px"></i>
+      <i class="particle" style="--x:21%;--size:3px;--delay:-10s;--duration:18s;--drift:28px"></i>
+      <i class="particle" style="--x:26%;--size:2px;--delay:-6s;--duration:13s;--drift:-32px"></i>
+      <i class="particle" style="--x:31%;--size:4px;--delay:-14s;--duration:20s;--drift:23px"></i>
+      <i class="particle" style="--x:36%;--size:2px;--delay:-3s;--duration:16s;--drift:-27px"></i>
+      <i class="particle" style="--x:41%;--size:3px;--delay:-11s;--duration:18s;--drift:31px"></i>
+      <i class="particle" style="--x:46%;--size:2px;--delay:-7s;--duration:14s;--drift:-24px"></i>
+      <i class="particle" style="--x:51%;--size:4px;--delay:-2s;--duration:19s;--drift:35px"></i>
+      <i class="particle" style="--x:56%;--size:2px;--delay:-12s;--duration:15s;--drift:-29px"></i>
+      <i class="particle" style="--x:61%;--size:3px;--delay:-5s;--duration:17s;--drift:22px"></i>
+      <i class="particle" style="--x:66%;--size:2px;--delay:-15s;--duration:21s;--drift:-34px"></i>
+      <i class="particle" style="--x:71%;--size:4px;--delay:-8s;--duration:16s;--drift:26px"></i>
+      <i class="particle" style="--x:76%;--size:2px;--delay:-3s;--duration:14s;--drift:-21px"></i>
+      <i class="particle" style="--x:81%;--size:3px;--delay:-13s;--duration:20s;--drift:33px"></i>
+      <i class="particle" style="--x:86%;--size:2px;--delay:-6s;--duration:15s;--drift:-28px"></i>
+      <i class="particle" style="--x:91%;--size:4px;--delay:-10s;--duration:18s;--drift:24px"></i>
+      <i class="particle" style="--x:96%;--size:2px;--delay:-2s;--duration:13s;--drift:-31px"></i>
+      <i class="particle" style="--x:7%;--size:2px;--delay:-16s;--duration:22s;--drift:19px"></i>
+      <i class="particle" style="--x:18%;--size:3px;--delay:-9s;--duration:19s;--drift:-36px"></i>
+      <i class="particle" style="--x:28%;--size:2px;--delay:-4s;--duration:16s;--drift:29px"></i>
+      <i class="particle" style="--x:43%;--size:3px;--delay:-17s;--duration:21s;--drift:-22px"></i>
+      <i class="particle" style="--x:57%;--size:2px;--delay:-9s;--duration:17s;--drift:32px"></i>
+      <i class="particle" style="--x:68%;--size:3px;--delay:-1s;--duration:15s;--drift:-26px"></i>
+      <i class="particle" style="--x:78%;--size:2px;--delay:-14s;--duration:20s;--drift:21px"></i>
+      <i class="particle" style="--x:87%;--size:3px;--delay:-7s;--duration:18s;--drift:-33px"></i>
+      <i class="particle" style="--x:99%;--size:2px;--delay:-12s;--duration:16s;--drift:27px"></i>
     </div>
-    <canvas class="flow-canvas" id="flow-canvas" aria-hidden="true"></canvas>
     <section class="home" aria-label="Lunara search home">
       <h1 class="brand">Kitsune<span class="mini"></span></h1>
       <p class="tagline" id="home-tagline">Touch grass? In this economy?</p>
@@ -280,77 +338,6 @@
     <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span></div><p>Go ad-free on Kitsune, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
-    const flowCanvas = document.querySelector('#flow-canvas');
-    const flowContext = flowCanvas.getContext('2d');
-    const flowParticles = [];
-    let flowWidth = 0;
-    let flowHeight = 0;
-    let flowFrame = 0;
-    let lastPointer = null;
-    function resizeFlowCanvas() {
-      const bounds = flowCanvas.getBoundingClientRect();
-      const scale = Math.min(window.devicePixelRatio || 1, 2);
-      flowWidth = bounds.width;
-      flowHeight = bounds.height;
-      flowCanvas.width = Math.round(flowWidth * scale);
-      flowCanvas.height = Math.round(flowHeight * scale);
-      flowContext.setTransform(scale, 0, 0, scale, 0, 0);
-    }
-    function animateFlow() {
-      flowContext.clearRect(0, 0, flowWidth, flowHeight);
-      for (let i = flowParticles.length - 1; i >= 0; i--) {
-        const particle = flowParticles[i];
-        particle.life -= 1 / 60;
-        if (particle.life <= 0) {
-          flowParticles.splice(i, 1);
-          continue;
-        }
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.vx *= 0.985;
-        particle.vy *= 0.985;
-        const fade = particle.life / particle.maxLife;
-        const radius = particle.radius * (0.55 + fade * 0.75);
-        const gradient = flowContext.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, radius * 4);
-        gradient.addColorStop(0, `hsla(${particle.hue}, 95%, 82%, ${fade * 0.42})`);
-        gradient.addColorStop(1, `hsla(${particle.hue}, 95%, 65%, 0)`);
-        flowContext.fillStyle = gradient;
-        flowContext.beginPath();
-        flowContext.arc(particle.x, particle.y, radius * 4, 0, Math.PI * 2);
-        flowContext.fill();
-      }
-      if (flowParticles.length) flowFrame = requestAnimationFrame(animateFlow);
-      else flowFrame = 0;
-    }
-    function emitFlow(event) {
-      const bounds = flowCanvas.getBoundingClientRect();
-      const point = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
-      if (point.x < 0 || point.y < 0 || point.x > bounds.width || point.y > bounds.height) {
-        lastPointer = null;
-        return;
-      }
-      const previous = lastPointer || point;
-      const dx = point.x - previous.x;
-      const dy = point.y - previous.y;
-      const distance = Math.hypot(dx, dy);
-      const steps = Math.max(1, Math.min(24, Math.ceil(distance / 5)));
-      for (let step = 1; step <= steps; step++) {
-        const x = previous.x + dx * step / steps;
-        const y = previous.y + dy * step / steps;
-        for (let count = 0; count < 3; count++) {
-          const life = 0.8 + Math.random() * 0.8;
-          flowParticles.push({ x, y, vx: -dx * 0.025 + (Math.random() - 0.5) * 1.5, vy: -dy * 0.025 + (Math.random() - 0.5) * 1.5, radius: 5 + Math.random() * 10, life, maxLife: life, hue: 12 + Math.random() * 38 });
-        }
-      }
-      if (flowParticles.length > 360) flowParticles.splice(0, flowParticles.length - 360);
-      lastPointer = point;
-      if (!flowFrame && flowParticles.length) flowFrame = requestAnimationFrame(animateFlow);
-    }
-    resizeFlowCanvas();
-    window.addEventListener('resize', resizeFlowCanvas);
-    document.addEventListener('pointermove', emitFlow);
-    document.addEventListener('pointerleave', () => { lastPointer = null; });
-
     const homeTagline = document.querySelector('#home-tagline');
     const homeTaglines = ['Touch grass? In this economy?', 'One more tab won’t hurt.', 'Your side quest starts here.', 'Loading motivation… please wait.', 'The vibes are buffering.', 'Productivity, but make it cozy.', 'You came. You clicked. You forgot why.', 'A tiny break? Technically research.'];
     let taglineIndex = 0;
@@ -922,8 +909,11 @@ ducky-clicker\tI_am_me\t609450`;
       return '<head>' + baseTag + '</head>' + html;
     }
     async function loadGameIntoFrame(tab) {
+      clearTimeout(tab.loadTimer);
       tab.loading = true;
       tab.error = '';
+      tab.directFallback = false;
+      tab.documentAssigned = false;
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       const cached = await readCachedGame(tab.game);
       if (cached && typeof cached.html === 'string') {
@@ -949,12 +939,19 @@ ducky-clicker\tI_am_me\t609450`;
           // Try the alternate catalog if this source is unavailable.
         }
       }
-      tab.loading = false;
-      tab.error = 'Could not fetch the game source. It may be unavailable or block access.';
+      // If fetching is blocked by CORS, let the browser navigate to the raw game page directly.
+      const directUrl = gameUrl(tab.game, gameSourceBases(tab.game)[0]);
+      tab.loading = true;
+      tab.error = '';
+      tab.directFallback = true;
+      tab.documentAssigned = true;
+      if (tab.frame.isConnected) tab.frame.src = directUrl;
+      tab.loadTimer = setTimeout(() => {
+        if (!tab.loading) return;
+        tab.error = 'This game is taking longer than expected to load.';
+        updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      }, 20000);
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
-      if (tab.frame.isConnected) {
-        tab.frame.srcdoc = '<!doctype html><html><head><meta charset="utf-8"><style>html,body{height:100%;margin:0;background:#08080b;color:#ddd;font:16px system-ui}body{display:grid;place-items:center;text-align:center;padding:24px;box-sizing:border-box}</style></head><body>Could not fetch the game source. It may be unavailable or block access.</body></html>';
-      }
     }
     const gamePlayer = document.querySelector('#game-player');
     const gameFrames = document.querySelector('#game-frames');
@@ -1038,8 +1035,11 @@ ducky-clicker\tI_am_me\t609450`;
       gameFrames.append(frame);
       const tab = { game, frame, loading: true, error: '' };
       frame.addEventListener('load', () => {
-        if (tab.error) return;
+        if (!tab.documentAssigned || (tab.error && !tab.directFallback)) return;
+        clearTimeout(tab.loadTimer);
         tab.loading = false;
+        tab.error = '';
+        tab.directFallback = false;
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       });
       openGameTabs.push(tab);
@@ -1224,6 +1224,35 @@ ducky-clicker\tI_am_me\t609450`;
       });
       return matchingArt ? musicPathUrl(matchingArt) : '';
     }
+    function musicPlaceholderArt(label) {
+      const initials = (label || '♪').trim().slice(0, 1).toUpperCase() || '♪';
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 320"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#564176"/><stop offset="1" stop-color="#17131f"/></linearGradient></defs><rect width="320" height="320" fill="url(#g)"/><circle cx="250" cy="55" r="120" fill="#d6b5ff" opacity=".13"/><text x="160" y="205" text-anchor="middle" fill="#eadbff" font-size="120" font-family="Georgia,serif">' + initials + '</text></svg>';
+      return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
+    }
+    function createMusicArtCard(title, subtitle, artwork, onClick) {
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'music-art-card';
+      card.setAttribute('aria-label', title + (subtitle ? ' — ' + subtitle : ''));
+      const image = document.createElement('img');
+      image.src = artwork || musicPlaceholderArt(title);
+      image.alt = '';
+      image.loading = 'lazy';
+      image.onerror = () => { image.onerror = null; image.src = musicPlaceholderArt(title); };
+      const overlay = document.createElement('span');
+      overlay.className = 'music-art-overlay';
+      const name = document.createElement('strong');
+      name.textContent = title;
+      overlay.append(name);
+      if (subtitle) {
+        const detail = document.createElement('small');
+        detail.textContent = subtitle;
+        overlay.append(detail);
+      }
+      card.append(image, overlay);
+      card.addEventListener('click', onClick);
+      return card;
+    }
     function showMusicTracks(tracks, heading) {
       musicQueue = tracks;
       musicContent.replaceChildren();
@@ -1232,19 +1261,7 @@ ducky-clicker\tI_am_me\t609450`;
       const grid = document.createElement('div');
       grid.className = 'music-grid';
       tracks.forEach(track => {
-        const card = document.createElement('button');
-        card.type = 'button';
-        card.className = 'music-album' + (track === activeMusicTrack ? ' active' : '');
-        const artwork = musicArtworkForTrack(track);
-        const art = artwork ? document.createElement('img') : document.createElement('span');
-        if (artwork) { art.src = artwork; art.alt = ''; art.loading = 'lazy'; }
-        else { art.className = 'music-art-placeholder'; art.textContent = '♪'; }
-        const name = document.createElement('strong');
-        name.textContent = track.title;
-        const detail = document.createElement('small');
-        detail.textContent = track.group || 'Single';
-        card.append(art, name, detail);
-        card.addEventListener('click', () => {
+        const card = createMusicArtCard(track.title, track.group || 'Single', musicArtworkForTrack(track), () => {
           if (track === activeMusicTrack && !musicAudio.paused) musicAudio.pause();
           else playMusic(track);
         });
@@ -1271,19 +1288,8 @@ ducky-clicker\tI_am_me\t609450`;
         grid.className = 'music-grid';
         const albumGroups = musicGroups.filter(group => group.tracks.some(track => visible.includes(track)));
         albumGroups.forEach(group => {
-          const card = document.createElement('button');
-          card.type = 'button';
-          card.className = 'music-album';
-          const art = group.cover ? document.createElement('img') : document.createElement('span');
-          if (group.cover) { art.src = group.cover; art.alt = ''; art.loading = 'lazy'; }
-          else { art.className = 'music-art-placeholder'; art.textContent = group.name.slice(0, 1).toUpperCase() || '♪'; }
-          const name = document.createElement('strong');
-          name.textContent = group.name;
-          const count = document.createElement('small');
-          count.textContent = group.tracks.length + (group.tracks.length === 1 ? ' track' : ' tracks');
-          card.append(art, name, count);
-          card.addEventListener('click', () => showMusicTracks(group.tracks, group.name));
-          grid.append(card);
+          const count = group.tracks.length + (group.tracks.length === 1 ? ' track' : ' tracks');
+          grid.append(createMusicArtCard(group.name, count, group.cover, () => showMusicTracks(group.tracks, group.name)));
         });
         musicContent.append(heading, grid);
         if (!albumGroups.length) {
