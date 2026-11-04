@@ -18,7 +18,7 @@
     @media(max-width:650px){.browser{gap:12px;padding:0 12px}.nav{gap:12px}.tools{display:none}.address{font-size:12px}.home{top:22%}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{height:88px}.featured-game{height:88px}.promo{width:min(340px,calc(100% - 24px));right:12px;bottom:12px}}
     .toolbar-button{width:28px;height:28px;display:grid;place-items:center;padding:0;border:0;border-radius:7px;color:inherit;background:transparent;cursor:pointer}.toolbar-button:hover{color:#fff;background:#ffffff12}.ai-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(560px,calc(100% - 36px));height:min(680px,calc(100% - 36px));display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.ai-panel.open{display:flex}.ai-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.ai-head strong{font-size:15px}.ai-close{border:0;border-radius:8px;padding:5px 10px;color:#ddd;background:#ffffff12;cursor:pointer}.ai-messages{flex:1;overflow:auto;padding:16px;display:flex;flex-direction:column;gap:12px}.ai-message{max-width:88%;padding:10px 13px;border-radius:13px;background:#29191c;white-space:pre-wrap;overflow-wrap:anywhere}.ai-message.user{align-self:flex-end;background:#63303a}.ai-message.error{color:#ffabb3}.ai-compose{display:flex;gap:9px;padding:12px;border-top:1px solid #ffffff12}.ai-compose textarea{flex:1;min-width:0;max-height:110px;resize:vertical;padding:10px;border:1px solid #553038;border-radius:11px;color:#fff;background:#241719;font:inherit}.ai-send{padding:0 15px;border:0;border-radius:11px;color:#fff;background:#d92f45;font-weight:700;cursor:pointer}.ai-send:disabled{opacity:.6;cursor:wait}.ai-key-note{padding:0 14px 10px;color:#ae9699;font-size:11px}
     /* Polished glass toolbar and cleaner home-page surfaces */
-    .browser{position:relative;z-index:10;background:rgba(16,7,7,.36);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09);color:#d5c5c7}
+    .browser{position:relative;z-index:10;background:rgba(0,0,0,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid rgba(255,255,255,.09);color:#d5c5c7}
     /* Full music-library overlay inspired by the supplied MZK interface */
     .music-panel{inset:0;right:0;top:0;width:auto;max-height:none;display:none;grid-template-columns:220px minmax(0,1fr);grid-template-rows:minmax(0,1fr) auto;gap:8px;padding:8px;border:0;border-radius:0;background:#0a0a0c;color:#f3f1f6;box-shadow:none;overflow:hidden}
     .music-panel.open{display:grid}.music-sidebar,.music-main,.music-playerbar{border:1px solid #2b2b33;border-radius:14px;background:#151518}.music-sidebar{grid-row:1;padding:18px 10px;display:flex;flex-direction:column;gap:5px;overflow:auto}.music-logo{padding:0 12px 12px;font:700 25px Georgia,serif}.music-nav{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;color:#9d9aa8;background:transparent;text-align:left;cursor:pointer}.music-nav:hover,.music-nav.active{color:#f3f1f6;background:#202026}.music-main{grid-column:2;grid-row:1;min-width:0;overflow:auto}.music-toolbar{position:sticky;top:0;z-index:1;display:flex;flex-wrap:wrap;align-items:center;gap:10px;padding:16px 20px 10px;background:#151518}.music-search{flex:1 1 220px;max-width:440px;height:42px;padding:0 15px;border:1px solid #2b2b33;border-radius:24px;color:#f3f1f6;background:#202026;font:inherit}.music-content{max-width:1180px;padding:10px 20px 28px}.music-content h2{margin:10px 0 4px;font:700 32px Georgia,serif}.music-status{margin:0;color:#9d9aa8;font-size:13px}.music-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:10px;margin-top:16px}.music-album{padding:10px;border:1px solid transparent;border-radius:12px;color:#f3f1f6;background:transparent;text-align:left;cursor:pointer}.music-album:hover{background:#202026}.music-album img,.music-art-placeholder{display:grid;width:100%;aspect-ratio:1;object-fit:cover;place-items:center;border-radius:9px;background:linear-gradient(135deg,#3b6f66,#202026);font:700 40px Georgia,serif}.music-album strong,.music-album small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-album strong{margin-top:9px;font-size:14px}.music-album small{color:#9d9aa8;font-size:12px}.music-track-list{display:grid;gap:3px;margin-top:12px}.music-track-row{display:flex;align-items:center;gap:11px;width:100%;min-height:54px;padding:7px 10px;border:0;border-radius:9px;color:#f3f1f6;background:transparent;text-align:left;cursor:pointer}.music-track-row:hover,.music-track-row.active{background:#202026}.music-track-row.active{color:#8fe3d0}.music-track-index{width:25px;color:#9d9aa8;text-align:center}.music-track-copy{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-track-copy small{display:block;color:#9d9aa8;font-size:12px}.music-empty{padding:44px 12px;color:#9d9aa8;text-align:center}.music-playerbar{grid-column:1/-1;display:flex;align-items:center;gap:14px;padding:10px 16px}.music-now{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-now small{display:block;color:#9d9aa8}.music-playerbar audio{width:min(520px,55%);height:38px}.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}
@@ -31,14 +31,22 @@
     .glow{opacity:.45;filter:blur(34px)}
     .home{top:24%;width:min(600px,calc(100% - 36px))}
     .brand{color:#ff5268;letter-spacing:-3.5px;text-shadow:0 8px 40px rgba(255,51,70,.25)}
-    .tagline{margin:12px 0 28px;color:#d8c9ce;font-size:15px;font-weight:500;letter-spacing:.03em}
+    .tagline{margin:12px 0 28px;color:#d8c9ce;font-size:15px;font-weight:500;letter-spacing:.03em;min-height:1.45em}.ai-attach{align-self:flex-end;padding:0 12px;border:1px solid #553038;border-radius:11px;color:#ddd;background:#241719;cursor:pointer}.ai-attachments{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 10px}.ai-attachment{position:relative;width:64px;height:64px}.ai-attachment img{width:100%;height:100%;object-fit:cover;border-radius:8px}.ai-attachment button{position:absolute;top:-6px;right:-6px;width:22px;height:22px;border:0;border-radius:50%;color:#fff;background:#63303a;cursor:pointer}.ai-compose textarea{flex:1;min-width:0;max-height:110px;resize:vertical;padding:10px;border:1px solid #553038;border-radius:11px;color:#fff;background:#241719;font:inherit}
     .search{height:62px;border-color:rgba(255,255,255,.13);border-radius:19px;background:rgba(255,255,255,.065);box-shadow:0 14px 42px rgba(0,0,0,.24),inset 0 1px rgba(255,255,255,.05);backdrop-filter:blur(18px);transition:border-color .2s,box-shadow .2s,background .2s}
     .search:focus-within{border-color:rgba(255,82,104,.65);background:rgba(255,255,255,.085);box-shadow:0 0 0 4px rgba(255,82,104,.1),0 16px 44px rgba(0,0,0,.3)}
     .search>span{font-size:25px;color:#ff8b9a}
     .search input::placeholder{color:#b9a8ad}
     .tiles{gap:12px;margin-top:22px}
     .tile{border-color:rgba(255,255,255,.1);border-radius:18px;background:rgba(255,255,255,.035);box-shadow:0 10px 28px rgba(0,0,0,.16);backdrop-filter:blur(12px);transition:transform .2s,border-color .2s,background .2s,box-shadow .2s}
-    .tile:hover{border-color:rgba(255,102,123,.42);background:rgba(255,255,255,.09);box-shadow:0 15px 34px rgba(0,0,0,.28);transform:translateY(-4px)}
+    .tile:hover{border-color:rgba(255,255,255,.2);background:rgba(255,255,255,.07);box-shadow:0 15px 34px rgba(0,0,0,.28);transform:translateY(-4px)}
+    .featured-game{height:auto;min-height:0;display:flex;flex-direction:column;gap:0;padding:0;overflow:hidden}
+    .featured-game img{width:100%;aspect-ratio:1.5;height:auto;object-fit:cover}
+    .featured-game::after{display:none}
+    .featured-game span{position:static;display:block;padding:9px 6px 10px;color:#f7f1f1;text-align:center;text-shadow:none}
+    .game-card:hover{border-color:rgba(255,255,255,.2);transform:translateY(-2px)}
+    .music-grid{grid-template-columns:repeat(auto-fill,minmax(145px,1fr))}
+    .music-art-placeholder{color:#f5c27a;background:radial-gradient(circle at 30% 25%,#6d452d,#21191a 68%,#111)}
+    @media(max-width:650px){.featured-game{height:auto}.featured-game img{height:auto;aspect-ratio:1.5}.featured-game span{padding:7px 4px;font-size:12px}}
     .tile:focus-visible,.toolbar-button:focus-visible{outline:2px solid #ff7182;outline-offset:3px}
     .promo{border-color:rgba(255,116,132,.42);background:rgba(48,24,31,.88);backdrop-filter:blur(18px);box-shadow:0 18px 48px rgba(0,0,0,.35)}
     .music-panel,.ai-panel{border-color:rgba(255,255,255,.13);background:rgba(20,15,19,.96);backdrop-filter:blur(20px)}
@@ -63,19 +71,16 @@
     @media(prefers-reduced-motion:reduce){.comet,main::before{animation:none}.comet{display:none}}
     /* Pitch-black interface surfaces */
     :root{--bg:#000;--panel:#000;--line:#171717;color-scheme:dark}
-    body,.browser,main,.games-panel,.music-panel,.music-sidebar,.music-main,.music-playerbar,.ai-panel{background:#000}
+    body,main,.games-panel,.music-panel,.music-sidebar,.music-main,.music-playerbar,.ai-panel{background:#000}
+    .browser{background:rgba(0,0,0,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
     main{border-color:#171717}
-    .address,.search,.tile,.promo,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
+    .address{background:rgba(255,255,255,.035);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
+    .search,.tile,.promo,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
     .game-card,.featured-game{background:#000}
     .music-status,.music-empty,.music-track-copy small,.music-track-index{color:#888}
-    /* Mouse-following cat */
-    .mouse-cat{position:fixed;z-index:20;left:0;top:0;width:48px;height:48px;pointer-events:none;opacity:0;transform:translate3d(-50%,-50%,0);will-change:transform;filter:drop-shadow(0 3px 8px #000)}
-    .mouse-cat.visible{opacity:1}
-    .mouse-cat svg{display:block;width:100%;height:100%;overflow:visible}
-    .cat-tail{transform-origin:11px 31px;animation:cat-tail-sway 1.1s ease-in-out infinite alternate}
-    @keyframes cat-tail-sway{to{transform:rotate(13deg)}}
-    @media(pointer:coarse){.mouse-cat{display:none}}
-    @media(prefers-reduced-motion:reduce){.cat-tail{animation:none}}
+    /* Soft cursor-driven light flowing out of the background */
+    .flow-canvas{position:fixed;inset:0;z-index:1;width:100vw;height:100vh;pointer-events:none}
+    @media(pointer:coarse),(prefers-reduced-motion:reduce){.flow-canvas{display:none}}
     /* Kitsune home refresh */
     body{background:#000}
     main{border-color:rgba(255,255,255,.08);background:#000}
@@ -121,10 +126,10 @@
     /* Settings panel */
     .settings-panel{position:absolute;z-index:7;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,38px);background:#050507;color:#f3f1f6}
     .settings-panel.open{display:block}.settings-inner{width:min(820px,100%);margin:auto}.settings-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:22px}.settings-head h2{margin:0;font-size:clamp(27px,4vw,36px)}.settings-head p{margin:5px 0 0;color:#aaa8b3}.settings-close,.settings-action,.settings-save{border:1px solid #33333b;border-radius:10px;padding:9px 12px;color:#f3f1f6;background:#17171b;cursor:pointer}.settings-close:hover,.settings-action:hover{background:#24242a}.settings-card{margin:13px 0;padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.settings-card h3{margin:0 0 6px;font-size:17px}.settings-card p{margin:4px 0 13px;color:#aaa8b3;font-size:13px}.settings-actions{display:flex;flex-wrap:wrap;gap:9px}.settings-action{display:inline-flex;align-items:center;gap:7px}.settings-label{display:grid;gap:6px;margin:13px 0;color:#dedde4;font-size:13px}.settings-label input,.settings-label select,.settings-label textarea{width:100%;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.settings-label textarea{min-height:74px;resize:vertical}.settings-save{border-color:#aaa;background:#eee;color:#111;font-weight:700}.settings-note{color:#85838e!important;font-size:12px!important}.settings-check{display:flex;align-items:center;gap:9px;margin:12px 0;color:#ddd}
-    @media(max-width:650px){.settings-panel{padding:18px 12px}.settings-card{padding:14px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile){display:none}}
+    @media(max-width:650px){.settings-panel{padding:18px 12px}.settings-card{padding:14px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-global-chat){display:none}}
     /* Login-required profile screen */
     .profile-panel{position:absolute;z-index:8;inset:0;display:none;place-items:center;padding:20px;background:#050507;color:#f3f1f6;text-align:center}
-    .profile-panel.open{display:grid}.profile-card{width:min(420px,100%);padding:36px 28px;border:1px solid #292930;border-radius:18px;background:#101013;box-shadow:0 24px 80px #0009}.profile-lock{font-size:48px;line-height:1}.profile-card h2{margin:14px 0 6px;font-size:28px}.profile-card p{margin:0;color:#aaa8b3}.profile-actions{display:flex;justify-content:center;gap:10px;margin-top:24px}.profile-action{min-width:110px;padding:10px 16px;border:1px solid #33333b;border-radius:10px;color:#f3f1f6;background:#17171b;font:inherit;font-weight:700;cursor:pointer}.profile-action.primary{border-color:#eee;color:#111;background:#eee}.profile-action:hover{filter:brightness(1.15)}.profile-status{min-height:1.45em;margin-top:14px!important;color:#aaa8b3;font-size:13px}
+    .profile-panel.open{display:grid}.profile-card{width:min(420px,100%);padding:36px 28px;border:1px solid #292930;border-radius:18px;background:#101013;box-shadow:0 24px 80px #0009}.profile-lock{display:grid;width:58px;height:58px;margin:auto;place-items:center;color:#d8d5e2}.profile-lock svg{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.profile-card h2{margin:14px 0 6px;font-size:28px}.profile-card p{margin:0;color:#aaa8b3}.profile-actions{display:flex;justify-content:center;gap:10px;margin-top:24px}.profile-action{min-width:110px;padding:10px 16px;border:1px solid #33333b;border-radius:10px;color:#f3f1f6;background:#17171b;font:inherit;font-weight:700;cursor:pointer}.profile-action.primary{border-color:#eee;color:#111;background:#eee}.profile-action:hover{filter:brightness(1.15)}.profile-status{min-height:1.45em;margin-top:14px!important;color:#aaa8b3;font-size:13px}
     /* Full-page AI chat view */
     .ai-panel{inset:0;right:0;top:0;width:auto;height:auto;border:0;border-radius:0;background:#050507;box-shadow:none}
     .ai-head,.ai-messages,.ai-compose,.ai-key-note{width:min(900px,100%);margin-left:auto;margin-right:auto}
@@ -136,31 +141,72 @@
     /* Leaderboard view */
     .leaderboard-panel{position:absolute;z-index:9;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
     .leaderboard-panel.open{display:block}.leaderboard-inner{width:min(1120px,100%);margin:auto}.leaderboard-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.leaderboard-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.leaderboard-head p{margin:4px 0 0;color:#9d9aa8}.leaderboard-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.leaderboard-close:hover{background:#24242a}.leaderboard-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.leaderboard-card,.scores-card,.champion-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.leaderboard-card h3,.scores-card h3{margin:0 0 12px;font-size:18px}.leaderboard-entry{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;min-height:52px;border-top:1px solid #ffffff0d}.leaderboard-rank{color:#9c99a6;font-size:13px}.leaderboard-avatar{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;color:#e5e0ff;background:linear-gradient(135deg,#594978,#292433);font-size:12px;font-weight:750}.leaderboard-user{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.leaderboard-score{color:#c4bed2;font-variant-numeric:tabular-nums}.scores-card{margin-top:14px}.scores-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px}.scores-table-wrap{overflow:auto}.scores-table{width:100%;border-collapse:collapse;text-align:left}.scores-table th,.scores-table td{padding:10px 12px;border-top:1px solid #ffffff10}.scores-table th{color:#aaa8b3;font-size:12px;text-transform:uppercase;letter-spacing:.06em}.scores-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}.scores-submit{border:1px solid #42404a;border-radius:9px;padding:8px 11px;color:#fff;background:#222127;cursor:pointer}.scores-submit:hover{background:#302d37}.scores-status{min-height:1.4em;margin:9px 0 0;color:#aaa8b3;font-size:13px}.champion-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.champion-card strong{font-size:18px}.leaderboard-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:18px 2px;color:#92909b;font-size:13px}.leaderboard-footer a{margin-right:12px;color:#c7c3d0;text-decoration:none}.leaderboard-footer a:hover{color:#fff}
-    @media(max-width:650px){.leaderboard-panel{padding:18px 12px}.leaderboard-cards{grid-template-columns:1fr}.leaderboard-card,.scores-card{padding:14px}.leaderboard-head{align-items:flex-start}.leaderboard-entry{grid-template-columns:32px 1fr auto;gap:7px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-leaderboard):not(#open-tools){display:none}}
+    @media(max-width:650px){.leaderboard-panel{padding:18px 12px}.leaderboard-cards{grid-template-columns:1fr}.leaderboard-card,.scores-card{padding:14px}.leaderboard-head{align-items:flex-start}.leaderboard-entry{grid-template-columns:32px 1fr auto;gap:7px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-leaderboard):not(#open-tools):not(#open-global-chat){display:none}}
     /* Quick utility tools */
     .toolbox-panel{position:absolute;z-index:10;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
     .toolbox-panel.open{display:block}.toolbox-inner{width:min(1000px,100%);margin:auto}.toolbox-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}.toolbox-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.toolbox-head p{margin:4px 0 0;color:#9d9aa8}.toolbox-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.toolbox-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.toolbox-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.toolbox-card h3{margin:0 0 5px;font-size:18px}.toolbox-card p{margin:4px 0 14px;color:#9d9aa8;font-size:13px}.toolbox-card input,.toolbox-card textarea,.toolbox-card select{min-width:0;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.toolbox-card textarea{width:100%;min-height:150px;resize:vertical}.tool-calculator{display:grid;grid-template-columns:1fr auto 1fr auto;gap:8px;align-items:center}.tool-calculator select,.tool-calculator button{padding:9px 11px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b;font:inherit}.tool-calculator button,.timer-button{cursor:pointer}.tool-result{min-height:1.5em;margin-top:12px!important;color:#ddd!important;font-weight:700}.timer-display{margin:15px 0;font-size:42px;font-variant-numeric:tabular-nums;letter-spacing:.04em}.timer-controls{display:flex;gap:8px}.timer-button{padding:9px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b}.tool-status{min-height:1.4em;margin:8px 0 0!important;color:#8fe3d0!important;font-size:12px!important}
     @media(max-width:650px){.toolbox-panel{padding:18px 12px}.toolbox-grid{grid-template-columns:1fr}.toolbox-card{padding:14px}.tool-calculator{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr) auto}}
+    /* In-page game tabs */
+    .game-player{position:fixed;z-index:11;inset:50px 0 0;display:none;grid-template-rows:auto auto minmax(0,1fr);background:#08080b;color:#f3f1f6}
+    .game-player.open{display:grid}.game-player-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 14px;border-bottom:1px solid #292930}.game-player-head strong{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.game-player-actions{display:flex;gap:8px}.game-player-button{border:1px solid #33333b;border-radius:9px;padding:8px 11px;color:#f3f1f6;background:#17171b;cursor:pointer}.game-player-button:hover{background:#24242a}.game-tab-strip{display:flex;gap:6px;overflow-x:auto;padding:8px 10px;border-bottom:1px solid #292930;background:#101013}.game-tab{display:flex;align-items:center;gap:8px;min-width:0;max-width:220px;padding:7px 9px;border:1px solid transparent;border-radius:9px;color:#aaa8b3;background:transparent;cursor:pointer}.game-tab.active{border-color:#383840;color:#fff;background:#202026}.game-tab-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.game-tab-close{padding:0 3px;border:0;color:inherit;background:transparent;font-size:17px;cursor:pointer}.game-frames{position:relative;min-height:0;background:#000}.game-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}.game-frame[hidden]{display:none}.game-player-empty{display:grid;height:100%;place-items:center;color:#aaa8b3;text-align:center}.game-loading{position:absolute;z-index:2;inset:0;display:grid;place-items:center;padding:20px;background:radial-gradient(ellipse at 50% 45%,rgba(255,141,62,.12),transparent 48%),#08080b;text-align:center}.game-loading[hidden]{display:none}.game-loading-card{width:min(380px,100%);padding:32px 24px;border:1px solid rgba(255,179,106,.2);border-radius:20px;background:rgba(18,16,18,.88);box-shadow:0 24px 80px #0009;backdrop-filter:blur(16px)}.game-loading-mark{display:grid;width:58px;height:58px;margin:0 auto 18px;place-items:center;border:1px solid rgba(255,177,91,.3);border-radius:18px;color:#ffc276;background:linear-gradient(145deg,rgba(255,122,64,.2),rgba(255,194,101,.06));font-size:26px;animation:game-loading-pulse 1.8s ease-in-out infinite}.game-loading h2{margin:0 0 6px;font-size:21px}.game-loading p{margin:0;color:#aaa8b3;font-size:13px}.game-loading-track{height:4px;margin:22px 0 12px;overflow:hidden;border-radius:99px;background:#ffffff14}.game-loading-track::after{display:block;width:38%;height:100%;border-radius:inherit;content:"";background:linear-gradient(90deg,#ff654b,#ffd16b);animation:game-loading-progress 1.35s ease-in-out infinite}.game-loading.error .game-loading-mark{color:#ff9488;border-color:#ff655044;background:#ff655018;animation:none}.game-loading.error .game-loading-track{display:none}.game-loading.error p{margin-top:10px;color:#ffc1b8}@keyframes game-loading-pulse{50%{transform:translateY(-3px);box-shadow:0 0 28px rgba(255,150,70,.24)}}@keyframes game-loading-progress{0%{transform:translateX(-110%)}100%{transform:translateX(290%)}}@media(prefers-reduced-motion:reduce){.game-loading-mark,.game-loading-track::after{animation:none}}
+    .game-player-button:disabled{opacity:.45;cursor:not-allowed}.game-controls-wrap{position:relative}.game-controls-panel{position:absolute;z-index:4;top:calc(100% + 8px);right:0;display:none;width:min(280px,calc(100vw - 24px));padding:12px;border:1px solid #ffffff24;border-radius:13px;background:rgba(16,15,19,.96);box-shadow:0 14px 40px #0009;backdrop-filter:blur(16px)}.game-controls-panel.open{display:grid;gap:8px}.game-controls-panel strong{padding:2px 4px 5px;font-size:13px}.game-controls-panel button{width:100%;padding:9px 10px;border:1px solid #ffffff18;border-radius:9px;color:#f3f1f6;background:#ffffff09;text-align:left;cursor:pointer}.game-controls-panel button:hover{background:#ffffff16}.game-loading-card{position:relative}.game-loading-mark{font-family:system-ui,sans-serif}.game-loading-track{height:5px;background:linear-gradient(90deg,#ffffff0a,#ffffff18,#ffffff0a);background-size:200% 100%;animation:game-loading-shimmer 1.5s linear infinite}.game-loading-track::after{width:32%;background:linear-gradient(90deg,#ff654b,#ffc276,#ffe3a0);filter:drop-shadow(0 0 7px rgba(255,164,91,.6));animation:game-loading-progress 1.45s ease-in-out infinite}.game-loading-detail{display:block;margin-top:7px!important;color:#85838e!important;font-size:12px!important}@keyframes game-loading-shimmer{to{background-position:-200% 0}}@media(max-width:650px){.game-player-head{padding:8px}.game-player-button{padding:7px 8px;font-size:12px}.game-tab{max-width:160px}.game-controls-panel{position:fixed;top:108px;right:8px}}
+    /* Let the background effects show through every app view and tab surface. */
+    .settings-panel,.profile-panel,.leaderboard-panel,.toolbox-panel,.games-panel,.game-player,.music-panel,.ai-panel{background:rgba(5,5,8,.62);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
+    .settings-card,.profile-card,.leaderboard-card,.scores-card,.champion-card,.toolbox-card,.music-sidebar,.music-main,.music-playerbar,.game-player-head,.game-tab-strip,.game-tab.active,.game-player-button,.settings-close,.settings-action,.settings-save,.leaderboard-close,.toolbox-close,.games-close,.games-search,.music-search,.music-close,.ai-compose textarea{background-color:rgba(255,255,255,.045);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+    .game-frames,.game-tab{background:transparent}
+    /* Kitsune foxfire palette: ember red, orange, and warm gold */
+    body{background:radial-gradient(ellipse at 12% 88%,rgba(255,75,28,.11),transparent 34%),radial-gradient(ellipse at 88% 12%,rgba(255,177,48,.09),transparent 32%),#000}
+    main{background:radial-gradient(ellipse at 16% 82%,rgba(255,71,27,.14),transparent 34%),radial-gradient(ellipse at 83% 18%,rgba(255,176,46,.12),transparent 36%),radial-gradient(ellipse at 52% 60%,rgba(150,35,20,.08),transparent 48%),#000}
+    .brand{background:linear-gradient(100deg,#ff6248 8%,#ff9b38 52%,#ffd36b 94%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 34px rgba(255,126,53,.2)}
+    .search:focus-within{border-color:rgba(255,157,76,.55);box-shadow:0 0 0 4px rgba(255,130,55,.09),0 16px 44px rgba(0,0,0,.3)}
+    .search>span{color:#ffb35c}
+    .tile:hover{border-color:rgba(255,164,91,.38)}
+    .particle{background:rgba(255,192,106,var(--opacity,.6));box-shadow:0 0 10px rgba(255,117,54,.62)}
+    .global-chat-panel{position:absolute;z-index:12;inset:0;display:none;place-items:center;padding:18px;background:rgba(5,5,8,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}.global-chat-panel.open{display:grid}.global-chat-card{display:flex;flex-direction:column;width:min(680px,100%);height:min(720px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(15,13,14,.78);box-shadow:0 24px 80px #0008}.global-chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #ffffff14}.global-chat-head h2{margin:0;font-size:22px}.global-chat-head p{margin:3px 0 0;color:#aaa8b3;font-size:13px}.global-chat-close,.global-chat-compose button{padding:9px 13px;border:1px solid #ffffff24;border-radius:9px;color:#fff;background:#ffffff0c;cursor:pointer}.global-chat-notice{margin:12px 16px 0;padding:10px 12px;border:1px solid #ffffff12;border-radius:10px;color:#c2bbc1;background:#ffffff08;font-size:12px}.global-chat-messages{flex:1;overflow:auto;padding:14px 16px}.global-chat-message{margin:0 0 10px;padding:9px 11px;border-radius:10px;background:#ffffff0b;overflow-wrap:anywhere}.global-chat-message strong{margin-right:8px;color:#ffbd78}.global-chat-message time{float:right;color:#888;font-size:11px}.global-chat-compose{display:flex;gap:9px;padding:12px;border-top:1px solid #ffffff14}.global-chat-compose input{flex:1;min-width:0;padding:11px 12px;border:1px solid #ffffff20;border-radius:10px;color:#fff;background:#0008;font:inherit}.global-chat-compose button{border-color:#ffad6544;background:#ffad6518;font-weight:700}.profile-panel .settings-label{margin:18px 0;color:#dedde4;text-align:left}#profile-name-wrap[hidden],.profile-actions [hidden]{display:none}
+    @media(max-width:650px){.global-chat-panel{padding:10px}.global-chat-card{height:100%;max-height:720px}.global-chat-compose{padding:9px}}
+    /* Image-first game cards: reveal the title and play cue over artwork. */
+    .game-card{position:relative;aspect-ratio:1.5;min-height:100px;padding:0;overflow:hidden;border:0;border-radius:13px;background:transparent;text-align:left;cursor:pointer}
+    .game-card img{width:100%;height:100%;object-fit:cover;transition:transform .25s}
+    .game-card-overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;background:rgba(0,0,0,.62);opacity:0;transition:opacity .2s}
+    .game-card-overlay strong{display:block;padding:0;color:#fff;font-size:14px;text-align:center}
+    .game-card-play{display:inline-flex;align-items:center;gap:6px;padding:7px 12px;border:1px solid #ffffff75;border-radius:999px;color:#fff;background:#ffffff18;font-size:12px;font-weight:700}
+    .game-card-play svg{width:14px;height:14px;fill:currentColor}
+    .game-card:hover img,.game-card:focus-visible img{transform:scale(1.05)}
+    .game-card:hover .game-card-overlay,.game-card:focus-visible .game-card-overlay{opacity:1}
+    .game-card:focus-visible{outline:2px solid #fff;outline-offset:3px}
+    @media(hover:none){.game-card-overlay{background:linear-gradient(transparent,rgba(0,0,0,.72));opacity:1;justify-content:flex-end;align-items:flex-start}.game-card-play{display:none}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-leaderboard" type="button" title="Leaderboard" aria-label="Open Leaderboard"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V11h4v9M10 20V6h4v14M16 20V3h4v17"/><path d="m4 8 6-4 4 2 6-5" stroke-width="1.7"/><circle cx="4" cy="8" r="1" fill="currentColor" stroke="none"/><circle cx="10" cy="4" r="1" fill="currentColor" stroke="none"/><circle cx="14" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="20" cy="1" r="1" fill="currentColor" stroke="none"/></svg></button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-leaderboard" type="button" title="Leaderboard" aria-label="Open Leaderboard"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5"/></svg></button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <div class="glow"></div>
     <div class="particles" aria-hidden="true">
-      <i class="particle" style="--x:7%;--size:2px;--delay:-2s;--duration:13s;--drift:35px"></i>
-      <i class="particle" style="--x:16%;--size:3px;--delay:-9s;--duration:16s;--drift:-28px"></i>
-      <i class="particle" style="--x:28%;--size:2px;--delay:-5s;--duration:12s;--drift:24px"></i>
-      <i class="particle" style="--x:39%;--size:4px;--delay:-12s;--duration:18s;--drift:-35px"></i>
-      <i class="particle" style="--x:51%;--size:2px;--delay:-7s;--duration:14s;--drift:30px"></i>
-      <i class="particle" style="--x:63%;--size:3px;--delay:-3s;--duration:17s;--drift:-24px"></i>
-      <i class="particle" style="--x:74%;--size:2px;--delay:-11s;--duration:13s;--drift:32px"></i>
-      <i class="particle" style="--x:86%;--size:3px;--delay:-6s;--duration:15s;--drift:-31px"></i>
-      <i class="particle" style="--x:95%;--size:2px;--delay:-1s;--duration:12s;--drift:20px"></i>
+      <i class="particle" style="--x:4%;--size:2px;--delay:-2s;--duration:13s;--drift:35px"></i>
+      <i class="particle" style="--x:9%;--size:3px;--delay:-9s;--duration:16s;--drift:-28px"></i>
+      <i class="particle" style="--x:14%;--size:2px;--delay:-5s;--duration:12s;--drift:24px"></i>
+      <i class="particle" style="--x:19%;--size:4px;--delay:-12s;--duration:18s;--drift:-35px"></i>
+      <i class="particle" style="--x:24%;--size:2px;--delay:-7s;--duration:14s;--drift:30px"></i>
+      <i class="particle" style="--x:29%;--size:3px;--delay:-3s;--duration:17s;--drift:-24px"></i>
+      <i class="particle" style="--x:34%;--size:2px;--delay:-11s;--duration:13s;--drift:32px"></i>
+      <i class="particle" style="--x:39%;--size:3px;--delay:-6s;--duration:15s;--drift:-31px"></i>
+      <i class="particle" style="--x:44%;--size:2px;--delay:-1s;--duration:12s;--drift:20px"></i>
+      <i class="particle" style="--x:49%;--size:3px;--delay:-8s;--duration:16s;--drift:-26px"></i>
+      <i class="particle" style="--x:54%;--size:2px;--delay:-4s;--duration:13s;--drift:29px"></i>
+      <i class="particle" style="--x:59%;--size:4px;--delay:-13s;--duration:19s;--drift:-33px"></i>
+      <i class="particle" style="--x:64%;--size:2px;--delay:-6s;--duration:14s;--drift:22px"></i>
+      <i class="particle" style="--x:69%;--size:3px;--delay:-10s;--duration:17s;--drift:-30px"></i>
+      <i class="particle" style="--x:74%;--size:2px;--delay:-3s;--duration:12s;--drift:27px"></i>
+      <i class="particle" style="--x:79%;--size:3px;--delay:-12s;--duration:18s;--drift:-24px"></i>
+      <i class="particle" style="--x:84%;--size:2px;--delay:-7s;--duration:15s;--drift:31px"></i>
+      <i class="particle" style="--x:89%;--size:4px;--delay:-1s;--duration:20s;--drift:-35px"></i>
+      <i class="particle" style="--x:94%;--size:2px;--delay:-9s;--duration:13s;--drift:25px"></i>
+      <i class="particle" style="--x:98%;--size:3px;--delay:-5s;--duration:16s;--drift:-22px"></i>
     </div>
+    <canvas class="flow-canvas" id="flow-canvas" aria-hidden="true"></canvas>
     <section class="home" aria-label="Lunara search home">
       <h1 class="brand">Kitsune<span class="mini"></span></h1>
-      <p class="tagline">your personal launchpad</p>
+      <p class="tagline" id="home-tagline">Touch grass? In this economy?</p>
       <form class="search" action="https://www.google.com/search" method="get"><span aria-hidden="true">⌕</span><input name="q" placeholder="Search the web or enter a URL..." aria-label="Search" /></form>
       <nav class="tiles" aria-label="Featured games">
         <button class="tile featured-game" type="button" data-game-file="1v1.lol.html" aria-label="Play 1v1.LOL"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg" alt="" loading="lazy"><span>1v1.LOL</span></button>
@@ -173,6 +219,7 @@
       <div class="settings-inner">
         <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your experience with stealth features</p></div><button class="settings-close" id="settings-close" type="button">Close</button></div>
         <section class="settings-card"><h3>🚀 About:Blank Mode</h3><p>Open the site in a new about:blank window. This disguises your study session by opening it in a blank page, making it harder to detect in browser history or tab previews.</p><div class="settings-actions"><button class="settings-action" type="button" data-launch="class2">🔓 Launch in About:Blank (Class2)</button><button class="settings-action" type="button" data-launch="class3">🔓 Launch in About:Blank (Class3)</button><button class="settings-action" type="button" data-launch="blank">🔓 Launch in About:Blank</button><button class="settings-action" type="button" data-launch="blob">🔓 Launch in Blob Mode</button><button class="settings-action" type="button" data-open-class="class2">🎓 Open Class2</button><button class="settings-action" type="button" data-open-class="class3">🎓 Open Class3</button></div><label class="settings-check"><input id="apps-about-blank" type="checkbox" checked> Open apps in about:blank</label><p class="settings-note">Class launch buttons open a copy of this page with the chosen tab title. Popup blocking may prevent new windows.</p></section>
+        <section class="settings-card"><h3>🔒 Privacy</h3><p>Remove this site’s saved Kitsune settings and quick notes from this browser. This does not clear browser history, other sites’ data, or data stored elsewhere.</p><div class="settings-actions"><button class="settings-action" id="clear-kitsune-data" type="button">Clear Kitsune saved data</button></div><p class="settings-note" id="privacy-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>📥 Download Website</h3><div class="settings-actions"><button class="settings-action" type="button" data-download="html">📥 Download Website</button><button class="settings-action" type="button" data-download="svg">📥 Download Website as SVG</button><button class="settings-action" type="button" data-download="xs">📥 Download Website XS</button></div></section>
         <section class="settings-card"><h3>📜 Scroll Feed Settings</h3><label class="settings-label">Algorithm<select id="feed-algorithm"><option>Random</option><option>Newest</option><option>Popular</option></select></label><label class="settings-label">Categories (comma-separated)<textarea id="feed-categories" placeholder="horror, puzzle, racing, 2-player"></textarea></label><p class="settings-note">Empty = show all. Unknown categories are silently ignored.</p><div class="settings-actions"><button class="settings-save" id="save-feed" type="button">✓ Save Feed Settings</button><button class="settings-action" id="save-open-feed" type="button">📜 Save and Open Feed</button></div><p class="settings-note" id="settings-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>🎭 Tab Cloak</h3><p>Cloak your Tab! Choosing a title changes the tab title; choosing an icon link changes the tab icon.</p><label class="settings-label">Tab Title<input id="cloak-title" type="text" value="Classes - Google Classroom"></label><label class="settings-label">Tab Icon URL<input id="cloak-icon" type="url" value="https://ssl.gstatic.com/classroom/favicon.png"></label><button class="settings-save" id="apply-cloak" type="button">✓ Add</button></section>
@@ -180,11 +227,20 @@
     </section>
     <section class="profile-panel" id="profile-panel" aria-label="Profile" aria-hidden="true">
       <div class="profile-card">
-        <div class="profile-lock" aria-hidden="true">🔒</div>
-        <h2>Login Required</h2>
-        <p>You need to be logged in to access Profile</p>
-        <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
+        <div class="profile-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div>
+        <h2 id="profile-heading">Your Profile</h2>
+        <p id="profile-description">Choose a display name for this browser.</p>
+        <label class="settings-label" id="profile-name-wrap">Display name<input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name"></label>
+        <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
         <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
+      </div>
+    </section>
+    <section class="global-chat-panel" id="global-chat-panel" aria-label="Global chat" aria-hidden="true">
+      <div class="global-chat-card">
+        <header class="global-chat-head"><div><h2>Global Chat</h2><p>Chat preview across tabs in this browser</p></div><button class="global-chat-close" id="global-chat-close" type="button">Close</button></header>
+        <p class="global-chat-notice">This is a local preview: messages sync between tabs on this browser only. To share chat with friends using a link, this page needs a server or messaging service.</p>
+        <div class="global-chat-messages" id="global-chat-messages" aria-live="polite"></div>
+        <form class="global-chat-compose" id="global-chat-form"><input id="global-chat-input" type="text" maxlength="500" placeholder="Write a message…" aria-label="Chat message" required><button type="submit">Send</button></form>
       </div>
     </section>
     <section class="leaderboard-panel" id="leaderboard-panel" aria-label="Leaderboard" aria-hidden="true">
@@ -206,6 +262,11 @@
         </div>
       </div>
     </section>
+    <section class="game-player" id="game-player" aria-label="Game tabs" aria-hidden="true">
+      <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><strong>Game controls</strong><button id="game-control-fullscreen" type="button">⛶ Enter fullscreen</button><button id="game-control-reload" type="button">↻ Reload game</button><button id="game-player-fallback" type="button">↗ Open game in a new tab</button></div></div><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
+      <div class="game-tab-strip" id="game-tab-strip" role="tablist" aria-label="Open games"></div>
+      <div class="game-frames" id="game-frames"><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p></div></div></div>
+    </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
       <div class="games-head"><h2>Game library</h2><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
       <div class="games-grid" id="games-grid"></div>
@@ -215,10 +276,89 @@
       <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
       <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio></div>
     </section>
-    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><strong>Kitsune AI</strong><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message">Hi! Ask me something.</div></div><div class="ai-key-note">Using the Gemini key included in your pasted code.</div><form class="ai-compose" id="ai-form"><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
-    <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span><button class="close" aria-label="Close promotion" onclick="document.getElementById('promo').remove()">×</button></div><p>Go ad-free on Kitsune, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
+    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><strong>Kitsune AI</strong><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message">Hi! Ask me something.</div></div><div class="ai-key-note">Messages and attached images are sent to Gemini. This page also contains its API key.</div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
+    <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span></div><p>Go ad-free on Kitsune, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
+    const flowCanvas = document.querySelector('#flow-canvas');
+    const flowContext = flowCanvas.getContext('2d');
+    const flowParticles = [];
+    let flowWidth = 0;
+    let flowHeight = 0;
+    let flowFrame = 0;
+    let lastPointer = null;
+    function resizeFlowCanvas() {
+      const bounds = flowCanvas.getBoundingClientRect();
+      const scale = Math.min(window.devicePixelRatio || 1, 2);
+      flowWidth = bounds.width;
+      flowHeight = bounds.height;
+      flowCanvas.width = Math.round(flowWidth * scale);
+      flowCanvas.height = Math.round(flowHeight * scale);
+      flowContext.setTransform(scale, 0, 0, scale, 0, 0);
+    }
+    function animateFlow() {
+      flowContext.clearRect(0, 0, flowWidth, flowHeight);
+      for (let i = flowParticles.length - 1; i >= 0; i--) {
+        const particle = flowParticles[i];
+        particle.life -= 1 / 60;
+        if (particle.life <= 0) {
+          flowParticles.splice(i, 1);
+          continue;
+        }
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+        particle.vx *= 0.985;
+        particle.vy *= 0.985;
+        const fade = particle.life / particle.maxLife;
+        const radius = particle.radius * (0.55 + fade * 0.75);
+        const gradient = flowContext.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, radius * 4);
+        gradient.addColorStop(0, `hsla(${particle.hue}, 95%, 82%, ${fade * 0.42})`);
+        gradient.addColorStop(1, `hsla(${particle.hue}, 95%, 65%, 0)`);
+        flowContext.fillStyle = gradient;
+        flowContext.beginPath();
+        flowContext.arc(particle.x, particle.y, radius * 4, 0, Math.PI * 2);
+        flowContext.fill();
+      }
+      if (flowParticles.length) flowFrame = requestAnimationFrame(animateFlow);
+      else flowFrame = 0;
+    }
+    function emitFlow(event) {
+      const bounds = flowCanvas.getBoundingClientRect();
+      const point = { x: event.clientX - bounds.left, y: event.clientY - bounds.top };
+      if (point.x < 0 || point.y < 0 || point.x > bounds.width || point.y > bounds.height) {
+        lastPointer = null;
+        return;
+      }
+      const previous = lastPointer || point;
+      const dx = point.x - previous.x;
+      const dy = point.y - previous.y;
+      const distance = Math.hypot(dx, dy);
+      const steps = Math.max(1, Math.min(24, Math.ceil(distance / 5)));
+      for (let step = 1; step <= steps; step++) {
+        const x = previous.x + dx * step / steps;
+        const y = previous.y + dy * step / steps;
+        for (let count = 0; count < 3; count++) {
+          const life = 0.8 + Math.random() * 0.8;
+          flowParticles.push({ x, y, vx: -dx * 0.025 + (Math.random() - 0.5) * 1.5, vy: -dy * 0.025 + (Math.random() - 0.5) * 1.5, radius: 5 + Math.random() * 10, life, maxLife: life, hue: 12 + Math.random() * 38 });
+        }
+      }
+      if (flowParticles.length > 360) flowParticles.splice(0, flowParticles.length - 360);
+      lastPointer = point;
+      if (!flowFrame && flowParticles.length) flowFrame = requestAnimationFrame(animateFlow);
+    }
+    resizeFlowCanvas();
+    window.addEventListener('resize', resizeFlowCanvas);
+    document.addEventListener('pointermove', emitFlow);
+    document.addEventListener('pointerleave', () => { lastPointer = null; });
+
+    const homeTagline = document.querySelector('#home-tagline');
+    const homeTaglines = ['Touch grass? In this economy?', 'One more tab won’t hurt.', 'Your side quest starts here.', 'Loading motivation… please wait.', 'The vibes are buffering.', 'Productivity, but make it cozy.', 'You came. You clicked. You forgot why.', 'A tiny break? Technically research.'];
+    let taglineIndex = 0;
+    setInterval(() => {
+      taglineIndex = (taglineIndex + 1) % homeTaglines.length;
+      homeTagline.textContent = homeTaglines[taglineIndex];
+    }, 4500);
+
     const CRA_BASE = 'https://raw.githubusercontent.com/Cra-Z-Gaming/VUSL/main/HTML_Games/';
     const COOL_BASE = 'https://raw.githubusercontent.com/CoolDude2349/Offline-HTML-Games-Pack/refs/heads/master/offline/';
     const CRA_GAMES = new Set([
@@ -266,16 +406,14 @@
     function displayGameName(filename) {
       return filename.replace(/\.(html?|htm)$/i, '').replace(/([a-z])([0-9])/ig, '$1 $2').replace(/[._-]+/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase());
     }
-    function fallbackGameCover(name) {
-      const safeName = name.replace(/[&<>]/g, '');
-      const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#3d1821"/><stop offset="1" stop-color="#161016"/></linearGradient></defs><rect width="320" height="180" fill="url(#g)"/><circle cx="270" cy="25" r="90" fill="#ff3346" opacity=".22"/><path d="M0 150 90 90l60 42 60-48 110 76v20H0" fill="#ff3346" opacity=".17"/><text x="18" y="105" fill="#fff" font-family="Arial,sans-serif" font-size="24" font-weight="700">${safeName}</text></svg>`;
+    function fallbackGameCover() {
+      const svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 180"><defs><linearGradient id="g" x2="1" y2="1"><stop stop-color="#33231c"/><stop offset="1" stop-color="#111"/></linearGradient></defs><rect width="320" height="180" fill="url(#g)"/><circle cx="265" cy="30" r="90" fill="#ffad65" opacity=".18"/><path d="M0 150 90 90l60 42 60-48 110 76v20H0" fill="#ff6248" opacity=".16"/></svg>';
       return 'data:image/svg+xml;charset=UTF-8,' + encodeURIComponent(svg);
     }
     async function discoverGames() {
       if (catalogLoaded) return;
       catalogLoaded = true;
       const repositories = [
-        { api: 'https://api.github.com/repos/Cra-Z-Gaming/VUSL/git/trees/main?recursive=1', base: CRA_BASE, prefix: 'HTML_Games/' },
         { api: 'https://api.github.com/repos/CoolDude2349/Offline-HTML-Games-Pack/git/trees/master?recursive=1', base: COOL_BASE, prefix: 'offline/' }
       ];
       await Promise.all(repositories.map(async source => {
@@ -301,7 +439,14 @@
 
     const settingsPanel = document.querySelector('#settings-panel');
     const settingsStatus = document.querySelector('#settings-status');
+    function closeAllPanels() {
+      document.querySelectorAll('.settings-panel, .profile-panel, .global-chat-panel, .leaderboard-panel, .toolbox-panel, .games-panel, .game-player, .music-panel, .ai-panel').forEach(panel => {
+        panel.classList.remove('open');
+        panel.setAttribute('aria-hidden', 'true');
+      });
+    }
     function openSettings() {
+      closeAllPanels();
       settingsPanel.classList.add('open');
       settingsPanel.setAttribute('aria-hidden', 'false');
       try {
@@ -359,8 +504,33 @@
     }
     document.querySelector('#open-settings').addEventListener('click', openSettings);
     document.querySelector('#settings-close').addEventListener('click', closeSettings);
+    document.querySelector('#clear-kitsune-data').addEventListener('click', () => {
+      const privacyStatus = document.querySelector('#privacy-status');
+      try {
+        Object.keys(localStorage).filter(key => key.startsWith('kitsune-')).forEach(key => localStorage.removeItem(key));
+        privacyStatus.textContent = 'Kitsune saved settings and notes were cleared from this browser.';
+      } catch (error) {
+        privacyStatus.textContent = 'Could not clear Kitsune data in this browser.';
+      }
+    });
     const profilePanel = document.querySelector('#profile-panel');
+    const profileNameInput = document.querySelector('#profile-name');
+    const profileNameWrap = document.querySelector('#profile-name-wrap');
+    function currentProfileName() {
+      try { return localStorage.getItem('kitsune-profile-user') || ''; } catch (error) { return ''; }
+    }
+    function updateProfileView() {
+      const name = currentProfileName();
+      document.querySelector('#profile-heading').textContent = name ? 'Welcome, ' + name : 'Your Profile';
+      document.querySelector('#profile-description').textContent = name ? 'Signed in on this browser.' : 'Choose a display name for this browser.';
+      profileNameWrap.hidden = Boolean(name);
+      document.querySelector('#profile-sign-in').hidden = Boolean(name);
+      document.querySelector('#profile-sign-out').hidden = !name;
+      if (name) profileNameInput.value = name;
+    }
     document.querySelector('#open-profile').addEventListener('click', () => {
+      closeAllPanels();
+      updateProfileView();
       profilePanel.classList.add('open');
       profilePanel.setAttribute('aria-hidden', 'false');
       document.querySelector('#profile-status').textContent = '';
@@ -370,7 +540,81 @@
       profilePanel.setAttribute('aria-hidden', 'true');
     });
     document.querySelector('#profile-sign-in').addEventListener('click', () => {
-      document.querySelector('#profile-status').textContent = 'Sign-in is not available yet.';
+      const name = profileNameInput.value.trim().replace(/\s+/g, ' ');
+      if (name.length < 2) {
+        document.querySelector('#profile-status').textContent = 'Enter a display name with at least 2 characters.';
+        return;
+      }
+      try { localStorage.setItem('kitsune-profile-user', name); }
+      catch (error) {
+        document.querySelector('#profile-status').textContent = 'Could not save your profile in this browser.';
+        return;
+      }
+      updateProfileView();
+      document.querySelector('#profile-status').textContent = 'You are signed in on this browser. This is a local profile, not a secure online account.';
+    });
+    document.querySelector('#profile-sign-out').addEventListener('click', () => {
+      try { localStorage.removeItem('kitsune-profile-user'); } catch (error) { /* Continue with the signed-out view. */ }
+      profileNameInput.value = '';
+      updateProfileView();
+      document.querySelector('#profile-status').textContent = 'Signed out on this browser.';
+    });
+
+    const globalChatPanel = document.querySelector('#global-chat-panel');
+    const globalChatMessages = document.querySelector('#global-chat-messages');
+    const globalChatInput = document.querySelector('#global-chat-input');
+    const GLOBAL_CHAT_KEY = 'kitsune-local-chat-messages';
+    let localChatSession = [];
+    function readLocalChat() {
+      try {
+        const saved = JSON.parse(localStorage.getItem(GLOBAL_CHAT_KEY) || '[]');
+        localChatSession = Array.isArray(saved) ? saved.slice(-100) : [];
+      } catch (error) { /* Use this page's temporary chat if storage is unavailable. */ }
+      return localChatSession;
+    }
+    function renderLocalChat() {
+      globalChatMessages.replaceChildren();
+      readLocalChat().forEach(message => {
+        if (!message || typeof message.text !== 'string' || typeof message.name !== 'string') return;
+        const row = document.createElement('p');
+        row.className = 'global-chat-message';
+        const author = document.createElement('strong');
+        author.textContent = message.name;
+        const stamp = document.createElement('time');
+        const date = new Date(message.time);
+        stamp.textContent = Number.isNaN(date.getTime()) ? '' : date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+        const text = document.createElement('span');
+        text.textContent = message.text;
+        row.append(author, stamp, document.createElement('br'), text);
+        globalChatMessages.append(row);
+      });
+      globalChatMessages.scrollTop = globalChatMessages.scrollHeight;
+    }
+    document.querySelector('#open-global-chat').addEventListener('click', () => {
+      closeAllPanels();
+      globalChatPanel.classList.add('open');
+      globalChatPanel.setAttribute('aria-hidden', 'false');
+      renderLocalChat();
+      globalChatInput.focus();
+    });
+    document.querySelector('#global-chat-close').addEventListener('click', () => {
+      globalChatPanel.classList.remove('open');
+      globalChatPanel.setAttribute('aria-hidden', 'true');
+    });
+    document.querySelector('#global-chat-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const text = globalChatInput.value.trim();
+      if (!text) return;
+      const messages = readLocalChat();
+      messages.push({ name: currentProfileName() || 'Guest', text, time: new Date().toISOString() });
+      localChatSession = messages.slice(-100);
+      try { localStorage.setItem(GLOBAL_CHAT_KEY, JSON.stringify(localChatSession)); }
+      catch (error) { /* Keep the new message visible for this page session. */ }
+      globalChatInput.value = '';
+      renderLocalChat();
+    });
+    window.addEventListener('storage', event => {
+      if (event.key === GLOBAL_CHAT_KEY && globalChatPanel.classList.contains('open')) renderLocalChat();
     });
     document.querySelectorAll('[data-launch]').forEach(button => button.addEventListener('click', () => {
       const title = button.dataset.launch === 'class2' ? 'Class2' : button.dataset.launch === 'class3' ? 'Class3' : '';
@@ -540,6 +784,7 @@ ducky-clicker\tI_am_me\t609450`;
     }
     const leaderboardPanel = document.querySelector('#leaderboard-panel');
     document.querySelector('#open-leaderboard').addEventListener('click', () => {
+      closeAllPanels();
       renderLeaderboard();
       leaderboardPanel.classList.add('open');
       leaderboardPanel.setAttribute('aria-hidden', 'false');
@@ -558,6 +803,7 @@ ducky-clicker\tI_am_me\t609450`;
       toolboxPanel.setAttribute('aria-hidden', 'true');
     }
     document.querySelector('#open-tools').addEventListener('click', () => {
+      closeAllPanels();
       toolboxPanel.classList.add('open');
       toolboxPanel.setAttribute('aria-hidden', 'false');
       try { document.querySelector('#tool-notes').value = localStorage.getItem('kitsune-quick-notes') || ''; } catch (error) { /* Notes remain usable for this session. */ }
@@ -628,48 +874,253 @@ ducky-clicker\tI_am_me\t609450`;
 
     const gamesPanel = document.querySelector('#games-panel');
     function gameUrl(game, base) { return base + game.file.split('/').map(encodeURIComponent).join('/'); }
-    async function openGame(game) {
-      const primaryBase = game.base || (CRA_GAMES.has(game.file) ? CRA_BASE : COOL_BASE);
-      const sourceBases = [primaryBase, primaryBase === CRA_BASE ? COOL_BASE : CRA_BASE];
-      if (!document.querySelector('#apps-about-blank').checked) {
-        gamesPanel.classList.remove('open');
-        window.open(gameUrl(game, primaryBase), '_blank');
+    function gameSourceBases(game) {
+      if (game.base) return [game.base];
+      const primary = CRA_GAMES.has(game.file) ? CRA_BASE : COOL_BASE;
+      return [primary, primary === CRA_BASE ? COOL_BASE : CRA_BASE];
+    }
+    let gameCacheDbPromise;
+    function openGameCache() {
+      if (!('indexedDB' in window)) return Promise.resolve(null);
+      if (!gameCacheDbPromise) {
+        gameCacheDbPromise = new Promise(resolve => {
+          const request = indexedDB.open('KitsuneGameCache', 1);
+          request.onupgradeneeded = () => {
+            if (!request.result.objectStoreNames.contains('games')) request.result.createObjectStore('games');
+          };
+          request.onsuccess = () => resolve(request.result);
+          request.onerror = () => resolve(null);
+          request.onblocked = () => resolve(null);
+        });
+      }
+      return gameCacheDbPromise;
+    }
+    async function readCachedGame(game) {
+      const db = await openGameCache();
+      if (!db) return null;
+      for (const base of gameSourceBases(game)) {
+        const entry = await new Promise(resolve => {
+          const request = db.transaction('games', 'readonly').objectStore('games').get(gameUrl(game, base));
+          request.onsuccess = () => resolve(request.result || null);
+          request.onerror = () => resolve(null);
+        });
+        if (entry) return entry;
+      }
+      return null;
+    }
+    async function cacheGame(game, base, entry) {
+      const db = await openGameCache();
+      if (!db) return;
+      await new Promise(resolve => {
+        const request = db.transaction('games', 'readwrite').objectStore('games').put(entry, gameUrl(game, base));
+        request.onsuccess = request.onerror = () => resolve();
+      });
+    }
+    function prepareGameHtml(html, url) {
+      const baseTag = '<base href="' + new URL('.', url).href + '">';
+      if (/<head[^>]*>/i.test(html)) return html.replace(/<head[^>]*>/i, match => match + baseTag);
+      return '<head>' + baseTag + '</head>' + html;
+    }
+    async function loadGameIntoFrame(tab) {
+      tab.loading = true;
+      tab.error = '';
+      updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      const cached = await readCachedGame(tab.game);
+      if (cached && typeof cached.html === 'string') {
+        if (tab.frame.isConnected) {
+          tab.documentAssigned = true;
+          tab.frame.srcdoc = prepareGameHtml(cached.html, gameUrl(tab.game, cached.base));
+        }
         return;
       }
-      const gameTab = window.open('about:blank', '_blank');
-      if (!gameTab) return;
-      gamesPanel.classList.remove('open');
-      gameTab.document.write('<!doctype html><title>Loading ' + game.name.replace(/[<>]/g, '') + '…</title><body style="margin:0;background:#100909;color:#f4eeee;font:16px system-ui;padding:24px">Fetching game code…</body>');
-      gameTab.document.close();
-      let sourceUrl = '';
-      try {
-        let html = '';
-        let lastError;
-        for (const base of sourceBases) {
-          const candidateUrl = gameUrl(game, base);
-          try {
-            const response = await fetch(candidateUrl);
-            if (!response.ok) throw new Error('Source returned ' + response.status);
-            html = await response.text();
-            sourceUrl = candidateUrl;
-            break;
-          } catch (error) {
-            lastError = error;
+      for (const base of gameSourceBases(tab.game)) {
+        const url = gameUrl(tab.game, base);
+        try {
+          const response = await fetch(url);
+          if (!response.ok) throw new Error('Game source returned ' + response.status);
+          const html = await response.text();
+          await cacheGame(tab.game, base, { html, base });
+          if (tab.frame.isConnected) {
+            tab.documentAssigned = true;
+            tab.frame.srcdoc = prepareGameHtml(html, url);
           }
+          return;
+        } catch (error) {
+          // Try the alternate catalog if this source is unavailable.
         }
-        if (!sourceUrl) throw lastError || new Error('Game source is unavailable.');
-        const baseTag = '<base href="' + new URL('.', sourceUrl).href + '">';
-        if (/<head\b[^>]*>/i.test(html)) html = html.replace(/<head\b[^>]*>/i, match => match + baseTag);
-        else html = '<head>' + baseTag + '</head>' + html;
-        gameTab.document.open();
-        gameTab.document.write(html);
-        gameTab.document.close();
-      } catch (error) {
-        gameTab.document.open();
-        gameTab.document.write('<!doctype html><title>Game unavailable</title><body style="margin:0;background:#100909;color:#f4eeee;font:16px system-ui;padding:24px"><h2>Could not fetch ' + game.name.replace(/[&<>]/g, '') + '</h2><p>The game source may be unavailable or cross-origin requests may be blocked.</p></body>');
-        gameTab.document.close();
+      }
+      tab.loading = false;
+      tab.error = 'Could not fetch the game source. It may be unavailable or block access.';
+      updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      if (tab.frame.isConnected) {
+        tab.frame.srcdoc = '<!doctype html><html><head><meta charset="utf-8"><style>html,body{height:100%;margin:0;background:#08080b;color:#ddd;font:16px system-ui}body{display:grid;place-items:center;text-align:center;padding:24px;box-sizing:border-box}</style></head><body>Could not fetch the game source. It may be unavailable or block access.</body></html>';
       }
     }
+    const gamePlayer = document.querySelector('#game-player');
+    const gameFrames = document.querySelector('#game-frames');
+    const gameLoading = document.querySelector('#game-loading');
+    function updateGameLoading(tab) {
+      if (!tab || (!tab.loading && !tab.error)) {
+        gameLoading.hidden = true;
+        gameLoading.classList.remove('error');
+        return;
+      }
+      gameLoading.hidden = false;
+      const failed = Boolean(tab.error);
+      gameLoading.classList.toggle('error', failed);
+      document.querySelector('#game-loading-title').textContent = failed ? 'Game could not load' : 'Preparing ' + tab.game.name;
+      document.querySelector('#game-loading-message').textContent = failed ? tab.error : 'Fetching game files…';
+      document.querySelector('#game-loading-detail').textContent = failed ? 'Try another game or check back later.' : 'This may take a moment.';
+      gameLoading.querySelector('.game-loading-mark').textContent = failed ? '!' : '狐';
+    }
+    const gameTabStrip = document.querySelector('#game-tab-strip');
+    const openGameTabs = [];
+    let activeGameTab = null;
+    function renderGameTabs() {
+      gameTabStrip.replaceChildren();
+      openGameTabs.forEach(tab => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'game-tab' + (tab === activeGameTab ? ' active' : '');
+        button.setAttribute('role', 'tab');
+        button.setAttribute('aria-selected', String(tab === activeGameTab));
+        const name = document.createElement('span');
+        name.className = 'game-tab-name';
+        name.textContent = tab.game.name;
+        const close = document.createElement('span');
+        close.className = 'game-tab-close';
+        close.textContent = '×';
+        close.setAttribute('role', 'button');
+        close.setAttribute('aria-label', 'Close ' + tab.game.name);
+        button.append(name, close);
+        button.addEventListener('click', event => {
+          if (event.target === close) {
+            event.stopPropagation();
+            const index = openGameTabs.indexOf(tab);
+            tab.frame.remove();
+            openGameTabs.splice(index, 1);
+            if (activeGameTab === tab) activeGameTab = openGameTabs[Math.max(0, index - 1)] || openGameTabs[0] || null;
+            if (activeGameTab) activateGameTab(activeGameTab);
+            else {
+              gameFrames.innerHTML = '<div class="game-player-empty">Choose a game from the library to open a tab.</div>';
+              gamePlayer.classList.remove('open');
+              gamePlayer.setAttribute('aria-hidden', 'true');
+            }
+            renderGameTabs();
+            return;
+          }
+          activateGameTab(tab);
+        });
+        gameTabStrip.append(button);
+      });
+    }
+    function activateGameTab(tab) {
+      activeGameTab = tab;
+      openGameTabs.forEach(item => { item.frame.hidden = item !== tab; });
+      updateGameLoading(tab);
+      document.querySelector('#game-player-title').textContent = tab.game.name;
+      gamePlayer.classList.add('open');
+      gamePlayer.setAttribute('aria-hidden', 'false');
+      renderGameTabs();
+    }
+    function openGame(game) {
+      const existing = openGameTabs.find(tab => tab.game.file === game.file);
+      if (existing) {
+        activateGameTab(existing);
+        return;
+      }
+      const frame = document.createElement('iframe');
+      frame.className = 'game-frame';
+      frame.title = game.name;
+      frame.allowFullscreen = true;
+      frame.setAttribute('allow', 'autoplay; fullscreen; gamepad');
+      gameFrames.querySelector('.game-player-empty')?.remove();
+      gameFrames.append(frame);
+      const tab = { game, frame, loading: true, error: '' };
+      frame.addEventListener('load', () => {
+        if (tab.error) return;
+        tab.loading = false;
+        updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      });
+      openGameTabs.push(tab);
+      activateGameTab(tab);
+      loadGameIntoFrame(tab);
+    }
+    function launchGameInBlank(game) {
+      const gameTab = window.open('about:blank', '_blank');
+      if (!gameTab) return;
+      gameTab.document.open();
+      gameTab.document.write('<!doctype html><title>Loading game…</title><p style="font:16px system-ui;color:#ddd;background:#08080b;padding:24px">Loading game source…</p>');
+      gameTab.document.close();
+      gamesPanel.classList.remove('open');
+      (async () => {
+        const cached = await readCachedGame(game);
+        if (cached && typeof cached.html === 'string') {
+          gameTab.document.open();
+          gameTab.document.write(prepareGameHtml(cached.html, gameUrl(game, cached.base)));
+          gameTab.document.close();
+          return;
+        }
+        for (const base of gameSourceBases(game)) {
+          const url = gameUrl(game, base);
+          try {
+            const response = await fetch(url);
+            if (!response.ok) throw new Error('Game source returned ' + response.status);
+            const html = await response.text();
+            await cacheGame(game, base, { html, base });
+            gameTab.document.open();
+            gameTab.document.write(prepareGameHtml(html, url));
+            gameTab.document.close();
+            return;
+          } catch (error) {
+            // Try the alternate source if this one cannot be fetched.
+          }
+        }
+        gameTab.document.open();
+        gameTab.document.write('<!doctype html><title>Game unavailable</title><p style="font:16px system-ui;color:#ddd;background:#08080b;padding:24px">Could not fetch the game source. It may be unavailable or block access.</p>');
+        gameTab.document.close();
+      })();
+    }
+    const gameControlsToggle = document.querySelector('#game-controls-toggle');
+    const gameControlsPanel = document.querySelector('#game-controls-panel');
+    function closeGameControls() {
+      gameControlsPanel.classList.remove('open');
+      gameControlsToggle.setAttribute('aria-expanded', 'false');
+    }
+    gameControlsToggle.addEventListener('click', () => {
+      const open = !gameControlsPanel.classList.contains('open');
+      gameControlsPanel.classList.toggle('open', open);
+      gameControlsToggle.setAttribute('aria-expanded', String(open));
+    });
+    const gameFullscreenButton = document.querySelector('#game-control-fullscreen');
+    function updateGameFullscreenLabel() {
+      gameFullscreenButton.textContent = document.fullscreenElement === activeGameTab?.frame ? '⛶ Exit fullscreen' : '⛶ Enter fullscreen';
+    }
+    document.addEventListener('fullscreenchange', updateGameFullscreenLabel);
+    gameFullscreenButton.addEventListener('click', () => {
+      closeGameControls();
+      if (!activeGameTab) return;
+      const frame = activeGameTab.frame;
+      if (document.fullscreenElement) document.exitFullscreen?.().catch(() => {});
+      else if (frame.requestFullscreen) frame.requestFullscreen().catch(() => {});
+      updateGameFullscreenLabel();
+    });
+    document.querySelector('#game-control-reload').addEventListener('click', () => {
+      closeGameControls();
+      if (activeGameTab) loadGameIntoFrame(activeGameTab);
+    });
+    document.querySelector('#game-player-fallback').addEventListener('click', () => {
+      closeGameControls();
+      if (activeGameTab) launchGameInBlank(activeGameTab.game);
+    });
+    document.addEventListener('click', event => {
+      if (!event.target.closest('.game-controls-wrap')) closeGameControls();
+    });
+    document.querySelector('#game-player-home').addEventListener('click', () => {
+      closeGameControls();
+      gamePlayer.classList.remove('open');
+      gamePlayer.setAttribute('aria-hidden', 'true');
+    });
     document.querySelectorAll('.featured-game').forEach(tile => {
       const game = games.find(item => item.file === tile.dataset.gameFile);
       if (game) tile.addEventListener('click', () => openGame(game));
@@ -684,17 +1135,29 @@ ducky-clicker\tI_am_me\t609450`;
         card.className = 'game-card';
         const image = document.createElement('img');
         image.src = game.image;
-        image.alt = game.name + ' cover';
+        image.alt = '';
         image.loading = 'lazy';
+        image.onerror = () => {
+          image.onerror = null;
+          image.src = fallbackGameCover();
+        };
+        const overlay = document.createElement('span');
+        overlay.className = 'game-card-overlay';
         const title = document.createElement('strong');
         title.textContent = game.name;
-        card.append(image, title);
+        const play = document.createElement('span');
+        play.className = 'game-card-play';
+        play.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg> Play';
+        overlay.append(title, play);
+        card.setAttribute('aria-label', 'Play ' + game.name);
+        card.append(image, overlay);
         card.addEventListener('click', () => openGame(game));
         grid.append(card);
       });
     }
     function showGamesLibrary(event) {
       if (event) event.preventDefault();
+      closeAllPanels();
       renderGames();
       gamesPanel.classList.add('open');
       discoverGames();
@@ -715,6 +1178,7 @@ ducky-clicker\tI_am_me\t609450`;
     const MUSIC_AUDIO_EXT = /\.(mp3|wav|ogg|flac|m4a|aac|opus|weba)$/i;
     let musicTracks = [];
     let musicGroups = [];
+    let musicArtworkPaths = [];
     let localMusicUrls = [];
     let activeMusicTrack = null;
     let musicQueue = [];
@@ -722,6 +1186,7 @@ ducky-clicker\tI_am_me\t609450`;
     let musicLoaded = false;
     const musicPathUrl = path => 'https://github.com/' + MUSIC_OWNER + '/' + MUSIC_REPO + '/raw/refs/heads/' + MUSIC_BRANCH + '/' + path.split('/').map(encodeURIComponent).join('/');
     function openMusic() {
+      closeAllPanels();
       musicPanel.classList.add('open');
       musicPanel.setAttribute('aria-hidden', 'false');
       loadMusicLibrary();
@@ -748,35 +1213,44 @@ ducky-clicker\tI_am_me\t609450`;
         row.querySelector('.music-track-index').textContent = track === activeMusicTrack && !musicAudio.paused ? 'Ⅱ' : String(index + 1);
       });
     }
+    function musicArtworkForTrack(track) {
+      const album = musicGroups.find(group => group.tracks.includes(track));
+      if (album && album.cover) return album.cover;
+      const trackName = track.title.toLowerCase();
+      const folder = track.path ? track.path.slice(0, track.path.lastIndexOf('/') + 1).toLowerCase() : '';
+      const matchingArt = musicArtworkPaths.find(path => {
+        const lowerPath = path.toLowerCase();
+        return folder && lowerPath.startsWith(folder) && lowerPath.slice(folder.length).replace(/\.[^.]+$/, '').replace(/[_-]+/g, ' ') === trackName;
+      });
+      return matchingArt ? musicPathUrl(matchingArt) : '';
+    }
     function showMusicTracks(tracks, heading) {
       musicQueue = tracks;
       musicContent.replaceChildren();
       const title = document.createElement('h2');
       title.textContent = heading;
-      const list = document.createElement('div');
-      list.className = 'music-track-list';
-      tracks.forEach((track, index) => {
-        const row = document.createElement('button');
-        row.type = 'button';
-        row._track = track;
-        row.className = 'music-track-row' + (track === activeMusicTrack ? ' active' : '');
-        const number = document.createElement('span');
-        number.className = 'music-track-index';
-        number.textContent = track === activeMusicTrack && !musicAudio.paused ? 'Ⅱ' : String(index + 1);
-        const copy = document.createElement('span');
-        copy.className = 'music-track-copy';
-        copy.textContent = track.title;
+      const grid = document.createElement('div');
+      grid.className = 'music-grid';
+      tracks.forEach(track => {
+        const card = document.createElement('button');
+        card.type = 'button';
+        card.className = 'music-album' + (track === activeMusicTrack ? ' active' : '');
+        const artwork = musicArtworkForTrack(track);
+        const art = artwork ? document.createElement('img') : document.createElement('span');
+        if (artwork) { art.src = artwork; art.alt = ''; art.loading = 'lazy'; }
+        else { art.className = 'music-art-placeholder'; art.textContent = '♪'; }
+        const name = document.createElement('strong');
+        name.textContent = track.title;
         const detail = document.createElement('small');
         detail.textContent = track.group || 'Single';
-        copy.append(detail);
-        row.append(number, copy);
-        row.addEventListener('click', () => {
+        card.append(art, name, detail);
+        card.addEventListener('click', () => {
           if (track === activeMusicTrack && !musicAudio.paused) musicAudio.pause();
           else playMusic(track);
         });
-        list.append(row);
+        grid.append(card);
       });
-      musicContent.append(title, list);
+      musicContent.append(title, grid);
       if (!tracks.length) {
         const empty = document.createElement('p');
         empty.className = 'music-empty';
@@ -829,7 +1303,8 @@ ducky-clicker\tI_am_me\t609450`;
         const response = await fetch('https://api.github.com/repos/' + MUSIC_OWNER + '/' + MUSIC_REPO + '/git/trees/' + MUSIC_BRANCH + '?recursive=1');
         if (!response.ok) throw new Error('GitHub returned ' + response.status);
         const result = await response.json();
-        const musicImages = (result.tree || []).filter(item => item.type === 'blob' && /\.(jpe?g|png|webp|gif|avif)$/i.test(item.path)).map(item => item.path);
+        musicArtworkPaths = (result.tree || []).filter(item => item.type === 'blob' && /\.(jpe?g|png|webp|gif|avif)$/i.test(item.path)).map(item => item.path);
+        const musicImages = musicArtworkPaths;
         musicTracks = (result.tree || []).filter(item => item.type === 'blob' && MUSIC_AUDIO_EXT.test(item.path) && /^(Singles|Albums)\//i.test(item.path)).map(item => {
           const parts = item.path.split('/');
           const filename = parts.pop();
@@ -890,7 +1365,54 @@ ducky-clicker\tI_am_me\t609450`;
     const aiMessages = document.querySelector('#ai-messages');
     const aiInput = document.querySelector('#ai-input');
     const aiSend = document.querySelector('#ai-send');
+    const aiImageInput = document.querySelector('#ai-image-input');
+    const aiAttachments = document.querySelector('#ai-attachments');
+    let pendingImages = [];
     const aiHistory = [];
+    document.querySelector('#ai-attach').addEventListener('click', () => aiImageInput.click());
+    function renderAiAttachments() {
+      aiAttachments.replaceChildren();
+      pendingImages.forEach((image, index) => {
+        const preview = document.createElement('div');
+        preview.className = 'ai-attachment';
+        const thumbnail = document.createElement('img');
+        thumbnail.src = image.url;
+        thumbnail.alt = image.file.name;
+        const remove = document.createElement('button');
+        remove.type = 'button';
+        remove.textContent = '×';
+        remove.setAttribute('aria-label', 'Remove ' + image.file.name);
+        remove.addEventListener('click', () => {
+          pendingImages.splice(index, 1);
+          renderAiAttachments();
+        });
+        preview.append(thumbnail, remove);
+        aiAttachments.append(preview);
+      });
+    }
+    aiImageInput.addEventListener('change', async () => {
+      const files = Array.from(aiImageInput.files || []);
+      aiImageInput.value = '';
+      const validFiles = files.filter(file => file.type.startsWith('image/') && file.size <= 4 * 1024 * 1024);
+      const rejected = files.length - validFiles.length;
+      if (rejected) addAiMessage('Some images were skipped. Attach image files up to 4 MB each.', 'assistant', true);
+      const loaded = await Promise.all(validFiles.map(file => new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = () => resolve({ file, url: reader.result });
+        reader.onerror = () => resolve(null);
+        reader.readAsDataURL(file);
+      })));
+      pendingImages.push(...loaded.filter(Boolean));
+      renderAiAttachments();
+    });
+    function getAiWelcome() {
+      const hour = new Date().getHours();
+      if (hour < 12) return 'Good morning! ☀️ Ready to get started? Tell me what you’re working on, and we’ll tackle it together.';
+      if (hour < 18) return 'Good afternoon! 🌤️ What would you like to work on? I’m here to help you get started.';
+      if (hour < 22) return 'Good evening! 🌙 Ready to make some progress? Tell me what’s on your mind.';
+      return 'Working late? 🌙 I’m here with you. What would you like to work on?';
+    }
+    aiMessages.querySelector('.ai-message').textContent = getAiWelcome();
     const _KD = [38, 60, 3, 50, 23, 83, 59, 99, 1, 45, 64, 78, 2, 13, 89, 45, 108, 77, 31, 42, 102, 56, 2, 30, 7, 73, 67, 14, 52, 74, 54, 64, 42, 59, 92, 86, 4, 33, 91, 27, 3, 27, 90, 85, 5, 15, 88, 91, 22, 7, 6, 26, 90];
     const _KM = 'gm-suki-7';
     function getPastedGeminiKey() {
@@ -905,6 +1427,7 @@ ducky-clicker\tI_am_me\t609450`;
       return message;
     }
     function openAiChat() {
+      closeAllPanels();
       aiPanel.classList.add('open');
       aiPanel.setAttribute('aria-hidden', 'false');
       aiInput.focus();
@@ -918,9 +1441,15 @@ ducky-clicker\tI_am_me\t609450`;
     document.querySelector('#ai-form').addEventListener('submit', async event => {
       event.preventDefault();
       const prompt = aiInput.value.trim();
-      if (!prompt || aiSend.disabled) return;
-      addAiMessage(prompt, 'user');
+      if ((!prompt && !pendingImages.length) || aiSend.disabled) return;
+      const imageParts = await Promise.all(pendingImages.map(async image => ({
+        inlineData: { mimeType: image.file.type, data: image.url.split(',')[1] }
+      })));
+      const messageParts = [...(prompt ? [{ text: prompt }] : []), ...imageParts];
+      addAiMessage((prompt || 'What do you see?') + (imageParts.length ? ' [' + imageParts.length + ' image' + (imageParts.length === 1 ? '' : 's') + ' attached]' : ''), 'user');
       aiInput.value = '';
+      pendingImages = [];
+      renderAiAttachments();
       aiSend.disabled = true;
       aiSend.textContent = '…';
       const pending = addAiMessage('Thinking…', 'assistant');
@@ -932,13 +1461,13 @@ ducky-clicker\tI_am_me\t609450`;
           const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-goog-api-key': getPastedGeminiKey() },
-            body: JSON.stringify({ contents: [...aiHistory, { role: 'user', parts: [{ text: prompt }] }] })
+            body: JSON.stringify({ contents: [...aiHistory, { role: 'user', parts: messageParts }] })
           });
           const result = await response.json();
           if (!response.ok) throw new Error(result.error && result.error.message || 'Gemini request failed (' + response.status + ').');
           answer = (result.candidates || []).flatMap(candidate => candidate.content && candidate.content.parts || []).map(part => part.text || '').join('');
           if (!answer) throw new Error('Gemini returned an empty response.');
-          aiHistory.push({ role: 'user', parts: [{ text: prompt }] }, { role: 'model', parts: [{ text: answer }] });
+          aiHistory.push({ role: 'user', parts: messageParts }, { role: 'model', parts: [{ text: answer }] });
           break;
         } catch (error) {
           lastError = error.message || 'Could not reach Gemini.';
