@@ -351,6 +351,10 @@
     .notification-empty svg{width:34px;height:34px;margin-bottom:8px;fill:none;stroke:#d9bcff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
     .global-chat-compose{display:none!important}
     @media(max-width:650px){.updates-card,.notifications-card{padding:21px;border-radius:19px}.tools #open-notifications{display:grid!important}}
+    /* Keep game controls anchored over the game viewport, above the browser toolbar. */
+    .game-player{z-index:15}
+    .game-controls-wrap{position:absolute;inset:0;z-index:4;pointer-events:none}
+    .game-controls-wrap>#game-controls-toggle,.game-controls-panel{pointer-events:auto}
   </style>
 </head>
 <body>
@@ -530,7 +534,7 @@
         <button class="notifications-close" id="notifications-close" type="button">Close</button>
       </div>
     </section>
-    <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span></div><p>Go ad-free on Kitsune,unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
+    <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span><button class="close" id="promo-close" type="button" aria-label="Close Kitsune+ promotion">×</button></div><p>Go ad-free on Kitsune,unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
     const homeTagline = document.querySelector('#home-tagline');
@@ -2192,6 +2196,10 @@ ducky-clicker\tI_am_me\t609450`;
         event.preventDefault();
         document.querySelector('#ai-form').requestSubmit();
       }
+    });
+
+    document.querySelector('#promo-close').addEventListener('click', () => {
+      document.querySelector('#promo').hidden = true;
     });
 
     const updatesOverlay = document.querySelector('#updates-overlay');
