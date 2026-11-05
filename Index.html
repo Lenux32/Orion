@@ -185,6 +185,26 @@
     .game-loading.error .game-loading-mark{background:rgba(255,101,80,.14)}
     @keyframes fox-ring{50%{transform:scale(1.08) rotate(8deg);opacity:.45}}
     @media(prefers-reduced-motion:reduce){.game-loading::before,.game-loading::after{animation:none}}
+    /* Upgrade dashboard, game filters, music controls and accessibility */
+    .games-hint{margin:4px 0 0;color:#9d9aa8;font-size:12px}
+    .home-tools{display:flex;justify-content:center;align-items:center;gap:10px;margin:14px auto 0;color:#eee}
+    .home-widget{padding:7px 12px;border:1px solid rgba(255,255,255,.15);border-radius:12px;background:rgba(12,10,18,.48);backdrop-filter:blur(14px);font-size:13px}
+    .home-quicklinks{display:flex;justify-content:center;flex-wrap:wrap;gap:7px;margin-top:10px}
+    .quick-link{padding:6px 10px;border:1px solid rgba(226,210,255,.2);border-radius:999px;color:#eee8fa;background:rgba(18,14,25,.54);cursor:pointer;font:inherit;font-size:12px}
+    .quick-link:hover,.quick-link.active{border-color:#c5a5ff;background:rgba(176,139,255,.2)}
+    .games-filters{display:flex;flex-wrap:wrap;gap:8px;max-width:1000px;margin:0 auto 14px}
+    .games-filter{padding:7px 11px;border:1px solid #ffffff20;border-radius:999px;color:#ddd;background:#ffffff08;cursor:pointer}
+    .games-filter.active{border-color:#c6a5ff;color:#fff;background:#b18bff2b}
+    .game-card{outline-offset:3px}
+    .game-detail{position:fixed;z-index:14;inset:0;display:none;place-items:center;padding:18px;background:#000b;backdrop-filter:blur(12px)}
+    .game-detail.open{display:grid}.game-detail-card{width:min(440px,100%);padding:20px;border:1px solid #ffffff25;border-radius:18px;background:#17131f;color:#fff}
+    .game-detail-card img{width:100%;max-height:220px;object-fit:cover;border-radius:12px}.game-detail-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+    .game-detail-actions button,.music-control,.settings-action input{padding:8px 11px;border:1px solid #ffffff24;border-radius:9px;color:#fff;background:#ffffff0d;cursor:pointer}
+    .music-playerbar{flex-wrap:wrap}.music-extra-controls{display:flex;align-items:center;gap:6px}.music-extra-controls button{padding:7px 9px;border:1px solid #ffffff20;border-radius:8px;color:#eee;background:#ffffff0a;cursor:pointer}.music-extra-controls button.active{color:#dfc9ff;border-color:#c5a5ff}.music-extra-controls input{width:90px;accent-color:#c5a5ff}
+    .settings-import{display:none}.settings-panel input[type=color]{width:54px;height:38px;padding:3px;vertical-align:middle}
+    .music-playlist-tools{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.music-playlist-tools button{padding:7px 10px;border:1px solid #ffffff20;border-radius:9px;color:#eee;background:#ffffff0a;cursor:pointer}
+    @media(max-width:700px){.home-tools{margin-top:10px}.home-quicklinks{gap:5px}.home{width:min(660px,calc(100% - 24px))}.music-extra-controls{justify-content:center;width:100%}.music-playerbar audio{width:100%}}
+    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important}}
     /* Image-led music cards, purple ambience, and the requested background */
     main{background:linear-gradient(180deg,rgba(4,3,10,.52),rgba(4,3,10,.78)),url("https://github.com/Lenux32/Orion/blob/main/Game%20images/pipeline.90227d73%20(1)%20(1).webp?raw=true") center/cover no-repeat}
     .home .tiles{display:none}
@@ -205,11 +225,89 @@
     /* Transparent glass navigation and a soft lilac glass wordmark */
     .browser{background:rgba(10,8,18,.12);border-bottom-color:rgba(226,210,255,.14);backdrop-filter:blur(22px) saturate(135%);-webkit-backdrop-filter:blur(22px) saturate(135%)}
     .brand{background:linear-gradient(115deg,#f4eaff 8%,#d9c0ff 48%,#b99aff 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 22px rgba(202,171,255,.28),0 0 48px rgba(173,139,255,.16);-webkit-text-stroke:1px rgba(243,231,255,.14)}
+    .quick-link:hover,.games-filter.active,.music-extra-controls button.active{border-color:var(--user-accent,#c5a5ff)}
+    .game-detail-card h2{margin:14px 0 6px}.game-detail-card p{color:#bdb7c7;line-height:1.5}.home-tools[hidden]{display:none!important}
+    @media(max-width:650px){.home-quicklinks{max-width:100%;max-height:72px;overflow:auto}.home-widget{font-size:12px}.games-filters{gap:6px}.games-filter{padding:6px 9px;font-size:12px}}
+    /* Compact, polished toolbar icons and game controls */
+    .browser{gap:13px;padding-inline:14px}
+    .nav{gap:14px}
+    .tools{gap:9px}
+    .toolbar-button{width:26px;height:26px;border:1px solid transparent;color:#ded4f4;transition:color .18s,border-color .18s,background .18s,transform .18s}
+    .toolbar-button:hover{color:#fff;border-color:rgba(218,194,255,.22);background:rgba(207,177,255,.12);transform:translateY(-1px)}
+    .toolbar-icon{filter:drop-shadow(0 0 5px rgba(204,174,255,.16))}
+    .address{height:34px;border-radius:12px;padding-inline:12px;gap:10px}
+    .game-controls-game{display:block;padding:4px 5px 7px;color:#c9bdcf;font-size:12px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .game-controls-panel button{display:flex;align-items:center;gap:9px}
+    .game-control-icon{width:17px;height:17px;flex:0 0 17px;fill:none;stroke:#e4c6ff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+    .game-loading-mark{position:relative;isolation:isolate}
+    .game-loading-mark::after{position:absolute;z-index:-1;inset:-8px;border:1px solid rgba(255,194,118,.24);border-radius:27px;content:"";animation:game-loading-orbit 2.4s linear infinite}
+    .game-loading-detail{min-height:1.4em}
+    @keyframes game-loading-orbit{to{transform:rotate(360deg)}}
+    @media(max-width:650px){.browser{gap:9px;padding-inline:9px}.nav{gap:8px}.tools{gap:2px}.toolbar-button{width:25px;height:25px}.address{padding-inline:9px;gap:7px}}
+    @media(prefers-reduced-motion:reduce){.toolbar-button,.game-loading-mark::after{transition:none;animation:none}}
+    /* Compact app and game sidebar */
+    .home-quicklinks{display:none!important}
+    .side-rail{position:absolute;z-index:2;inset:12px auto 12px 12px;display:flex;width:216px;flex-direction:column;gap:14px;padding:12px;border:1px solid rgba(225,207,255,.15);border-radius:20px;background:rgba(18,15,25,.48);box-shadow:0 18px 55px #0005;backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);overflow:auto}
+    .side-profile{display:flex;align-items:center;gap:10px;width:100%;padding:9px;border:1px solid rgba(255,255,255,.1);border-radius:14px;color:#f4efff;background:rgba(255,255,255,.045);text-align:left;cursor:pointer}
+    .side-avatar{display:grid;width:42px;height:42px;flex:0 0 42px;place-items:center;overflow:hidden;border:1px solid rgba(221,197,255,.45);border-radius:50%;color:#f5eaff;background:linear-gradient(145deg,#9c77d4,#392c50);font-weight:800}
+    .side-avatar img{width:100%;height:100%;object-fit:cover}.side-profile-copy{min-width:0}.side-profile-copy strong,.side-profile-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.side-profile-copy strong{font-size:13px}.side-profile-copy small{margin-top:2px;color:#aaa2b6;font-size:11px}
+    .side-section-title{margin:2px 4px 4px;color:#9991a8;font-size:10px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}
+    .side-apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.side-app{display:flex;min-width:0;flex-direction:column;align-items:center;gap:5px;padding:9px 3px;border:1px solid transparent;border-radius:12px;color:#e9e2f1;background:rgba(255,255,255,.035);font:inherit;font-size:10px;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}.side-app:hover{transform:translateY(-2px);border-color:#d8bbff55;background:#c9a7ff18}    .side-app-icon{display:grid;width:31px;height:31px;place-items:center;border:1px solid #ffffff16;border-radius:10px;background:linear-gradient(145deg,#ffffff16,#ffffff04);font-size:17px}.side-app-icon svg{width:19px;height:19px;fill:none;stroke:#e4d5ff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.side-games{display:grid;gap:7px}.side-game{display:flex;align-items:center;gap:9px;width:100%;padding:5px;border:1px solid transparent;border-radius:12px;color:#f3eef9;background:transparent;text-align:left;cursor:pointer}.side-game:hover{border-color:#ffffff1c;background:#ffffff0b}.side-game img{width:48px;height:36px;flex:0 0 48px;object-fit:cover;border:1px solid #ffffff1b;border-radius:9px;background:#19151e}.side-game span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:650}.side-library{width:100%;padding:8px;border:1px solid rgba(221,197,255,.18);border-radius:10px;color:#e6d8ff;background:rgba(184,145,255,.09);font:inherit;font-size:11px;cursor:pointer}.side-library:hover{background:rgba(184,145,255,.17)}
+    .profile-avatar-field{display:none}.profile-panel.signed-in .profile-avatar-field{display:block}.profile-avatar-field input{width:100%;padding:8px;border:1px solid #36363f;border-radius:9px;color:#cfc6db;background:#08080a;font:inherit;font-size:12px}.profile-avatar-note{margin:5px 0 0!important;color:#85838e!important;font-size:11px!important}
+    @media(min-width:701px){.home{left:calc(50% + 108px);width:min(660px,calc(100% - 270px))}}
+    @media(max-width:700px){.side-rail{inset:8px 8px auto;width:auto;max-height:112px;flex-direction:row;align-items:center;gap:8px;padding:7px;border-radius:15px;overflow-x:auto;overflow-y:hidden}.side-profile{width:155px;flex:0 0 155px;padding:5px}.side-avatar{width:36px;height:36px;flex-basis:36px}.side-section-title{display:none}.side-apps{display:flex;flex:0 0 auto;gap:5px}.side-app{min-width:48px;padding:5px 4px;font-size:9px}.side-app-icon{width:28px;height:28px}.side-games{display:flex;flex:0 0 auto;gap:5px}.side-game{width:116px;flex:0 0 116px;gap:6px;padding:4px}.side-game img{width:40px;height:32px;flex-basis:40px}.side-game span{font-size:10px}.side-library{width:auto;flex:0 0 auto;white-space:nowrap}.home{top:30%;left:50%;width:min(660px,calc(100% - 24px))}}
+    @media(max-width:420px){.side-rail{max-height:96px}.side-profile{width:132px;flex-basis:132px}.side-avatar{width:32px;height:32px;flex-basis:32px}.side-game{width:95px;flex-basis:95px}.side-game img{width:34px;height:29px;flex-basis:34px}.home{top:28%}}
+    /* Skinny shortcut rail: compact icons on desktop, a slim strip on mobile. */
+    @media(min-width:701px){
+      .side-rail{width:68px;inset:12px auto 12px 12px;align-items:center;gap:12px;padding:10px 7px;border-radius:18px}
+      .side-profile{width:48px;justify-content:center;padding:5px}
+      .side-avatar{width:36px;height:36px;flex-basis:36px}
+      .side-profile-copy,.side-section-title{display:none}
+      .side-rail section{width:100%}
+      .side-apps{grid-template-columns:1fr;gap:5px}
+      .side-app{width:48px;min-height:44px;padding:5px 2px}
+      .side-app>span:last-child,.side-game span{display:none}
+      .side-app-icon{width:30px;height:30px}
+      .side-games{justify-items:center;gap:6px}
+      .side-game{width:48px;height:40px;justify-content:center;padding:3px}
+      .side-game img{width:38px;height:32px;flex-basis:38px;border-radius:8px}
+      .side-library{width:48px;height:34px;overflow:hidden;padding:0;font-size:0}
+      .side-library::after{content:'All';font-size:10px}
+      .home{left:calc(50% + 34px);width:min(660px,calc(100% - 110px))}
+    }
+    @media(max-width:700px){
+      .side-rail{inset:7px 8px auto;max-height:58px;min-height:0;gap:6px;padding:5px;border-radius:13px}
+      .side-profile{width:40px;flex-basis:40px;height:40px;justify-content:center;padding:3px}
+      .side-avatar{width:32px;height:32px;flex-basis:32px}
+      .side-profile-copy,.side-section-title,.side-app>span:last-child,.side-game span{display:none}
+      .side-rail section{flex:0 0 auto}
+      .side-apps,.side-games{display:flex;align-items:center;gap:4px}
+      .side-app{width:38px;min-width:38px;height:40px;min-height:40px;padding:4px;border-radius:10px}
+      .side-app-icon{width:28px;height:28px}
+      .side-game{width:39px;height:39px;flex:0 0 39px;justify-content:center;padding:2px}
+      .side-game img{width:33px;height:31px;flex-basis:33px;border-radius:8px}
+      .side-library{width:37px;height:37px;overflow:hidden;flex:0 0 37px;padding:0;font-size:0}
+      .side-library::after{content:'＋';font-size:18px}
+      .home{top:25%;left:50%;width:min(660px,calc(100% - 24px))}
+    }
+    @media(max-width:420px){.side-rail{max-height:52px}.side-app{width:34px;min-width:34px}.side-game{width:35px;flex-basis:35px}.side-game img{width:30px;height:29px;flex-basis:30px}.side-library{width:33px;flex-basis:33px}.home{top:24%}}
   </style>
 </head>
 <body>
   <header class="browser" aria-label="Browser toolbar"><svg class="berry" viewBox="0 0 32 36" aria-hidden="true"><path fill="#d9c3ff" d="M23.9 4.2a13.2 13.2 0 1 0 7.7 23.7A14.5 14.5 0 0 1 23.9 4.2Z"/><path fill="#fff0ad" d="m8 5 .9 2.2L11 8l-2.1.8L8 11l-.9-2.2L5 8l2.1-.8L8 5Zm17 18 .7 1.7 1.8.7-1.8.7L25 28l-.7-1.9-1.8-.7 1.8-.7L25 23Z"/></svg><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-leaderboard" type="button" title="Leaderboard" aria-label="Open Leaderboard"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5"/></svg></button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
+    <aside class="side-rail" aria-label="Kitsune shortcuts">
+      <button class="side-profile" id="side-profile" type="button" aria-label="Sign in or open your profile"><span class="side-avatar" id="side-avatar">狐</span><span class="side-profile-copy"><strong id="side-profile-name">Sign in</strong><small id="side-profile-hint">Set up your profile</small></span></button>
+      <section aria-label="Apps"><p class="side-section-title">Apps</p><div class="side-apps">
+        <button class="side-app" type="button" data-side-action="games"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></span><span>Games</span></button>
+        <button class="side-app" type="button" data-side-action="music"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M9 8l11-2"/></svg></span><span>Music</span></button>
+        <button class="side-app" type="button" data-side-action="ai"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v3m-4 3h8a3 3 0 0 1 3 3v4a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-4a3 3 0 0 1 3-3Z"/><path d="M9 13h.01M15 13h.01M9 16h6M3 12v4m18-4v4"/></svg></span><span>AI chat</span></button>
+        <button class="side-app" type="button" data-side-action="tools"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/></svg></span><span>Tools</span></button>
+        <button class="side-app" type="button" data-side-action="chat"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><span>Chat</span></button>
+        <button class="side-app" type="button" data-side-action="scores"><span class="side-app-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 4h8v4a4 4 0 0 1-8 0V4Zm0 2H4v2a4 4 0 0 0 4 4m8-6h4v2a4 4 0 0 1-4 4m-4 0v4m-4 4h8m-7-4h6"/></svg></span><span>Scores</span></button>
+      </div></section>
+      <section aria-label="Featured games"><p class="side-section-title">Quick play</p><div class="side-games" id="side-games"></div><button class="side-library" type="button" data-side-action="games">Browse all games&nbsp; →</button></section>
+    </aside>
     <div class="glow"></div>
     <div class="particles" aria-hidden="true">
       <i class="particle" style="--x:4%;--size:2px;--delay:-2s;--duration:13s;--drift:35px"></i>
@@ -265,7 +363,9 @@
     <section class="home" aria-label="Lunara search home">
       <h1 class="brand">Kitsune<span class="mini"></span></h1>
       <p class="tagline" id="home-tagline">Touch grass? In this economy?</p>
-      <form class="search" action="https://www.google.com/search" method="get"><span aria-hidden="true">⌕</span><input name="q" placeholder="Search the web or enter a URL..." aria-label="Search" /></form>
+      <form class="search" id="web-search" action="https://www.google.com/search" method="get"><span aria-hidden="true">⌕</span><input name="q" list="search-suggestions" placeholder="Search the web or enter a URL..." aria-label="Search" autocomplete="off" /><datalist id="search-suggestions"><option value="Popular games"></option><option value="Free online games"></option><option value="Puzzle games"></option><option value="Music"></option><option value="Study tools"></option><option value="Weather today"></option></datalist></form>
+      <div class="home-tools"><span class="home-widget" id="home-clock" aria-label="Current time"></span><span class="home-widget" id="home-date"></span></div>
+      <div class="home-quicklinks" id="home-quicklinks" aria-label="Favorite games"><span class="quick-link">Pin favorite games from the library</span></div>
       <nav class="tiles" aria-label="Featured games">
         <button class="tile featured-game" type="button" data-game-file="1v1.lol.html" aria-label="Play 1v1.LOL"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg" alt="" loading="lazy"><span>1v1.LOL</span></button>
         <button class="tile featured-game" type="button" data-game-file="among-us.html" aria-label="Play Among Us"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp" alt="" loading="lazy"><span>Among Us</span></button>
@@ -278,7 +378,7 @@
         <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your experience with stealth features</p></div><button class="settings-close" id="settings-close" type="button">Close</button></div>
         <section class="settings-card"><h3>🚀 About:Blank Mode</h3><p>Open the site in a new about:blank window. This disguises your study session by opening it in a blank page, making it harder to detect in browser history or tab previews.</p><div class="settings-actions"><button class="settings-action" type="button" data-launch="class2">🔓 Launch in About:Blank (Class2)</button><button class="settings-action" type="button" data-launch="class3">🔓 Launch in About:Blank (Class3)</button><button class="settings-action" type="button" data-launch="blank">🔓 Launch in About:Blank</button><button class="settings-action" type="button" data-launch="blob">🔓 Launch in Blob Mode</button><button class="settings-action" type="button" data-open-class="class2">🎓 Open Class2</button><button class="settings-action" type="button" data-open-class="class3">🎓 Open Class3</button></div><label class="settings-check"><input id="apps-about-blank" type="checkbox" checked> Open apps in about:blank</label><p class="settings-note">Class launch buttons open a copy of this page with the chosen tab title. Popup blocking may prevent new windows.</p></section>
         <section class="settings-card"><h3>🔒 Privacy</h3><p>Remove this site’s saved Kitsune settings and quick notes from this browser. This does not clear browser history, other sites’ data, or data stored elsewhere.</p><div class="settings-actions"><button class="settings-action" id="clear-kitsune-data" type="button">Clear Kitsune saved data</button></div><p class="settings-note" id="privacy-status" role="status" aria-live="polite"></p></section>
-        <section class="settings-card"><h3>📥 Download Website</h3><div class="settings-actions"><button class="settings-action" type="button" data-download="html">📥 Download Website</button><button class="settings-action" type="button" data-download="svg">📥 Download Website as SVG</button><button class="settings-action" type="button" data-download="xs">📥 Download Website XS</button></div></section>
+        <section class="settings-card"><h3>✨ Appearance & accessibility</h3><p>Customize this browser’s Kitsune theme and motion. Shortcuts: Ctrl/⌘+K search, Alt+G games, Alt+M music, Alt+A AI, Esc close panels.</p><label class="settings-label">Accent color<input id="theme-accent" type="color" value="#c5a5ff"></label><label class="settings-label">Background particle intensity<input id="particle-intensity" type="range" min="0" max="1" step="0.1" value="0.7"></label><label class="settings-label">Search engine<select id="search-engine"><option value="https://www.google.com/search">Google</option><option value="https://www.bing.com/search">Bing</option><option value="https://duckduckgo.com/">DuckDuckGo</option></select></label><label class="settings-check"><input id="show-home-widgets" type="checkbox" checked> Show clock and date</label><label class="settings-check"><input id="show-favorites-home" type="checkbox" checked> Show favorite games on home</label><label class="settings-check"><input id="reduce-effects" type="checkbox"> Reduce animated effects</label><div class="settings-actions"><button class="settings-action" id="save-appearance" type="button">Save appearance</button><button class="settings-action" id="export-settings" type="button">Export settings</button><button class="settings-action" id="import-settings-button" type="button">Import settings</button><input class="settings-import" id="import-settings-file" type="file" accept="application/json"></div><p class="settings-note" id="appearance-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>📜 Scroll Feed Settings</h3><label class="settings-label">Algorithm<select id="feed-algorithm"><option>Random</option><option>Newest</option><option>Popular</option></select></label><label class="settings-label">Categories (comma-separated)<textarea id="feed-categories" placeholder="horror, puzzle, racing, 2-player"></textarea></label><p class="settings-note">Empty = show all. Unknown categories are silently ignored.</p><div class="settings-actions"><button class="settings-save" id="save-feed" type="button">✓ Save Feed Settings</button><button class="settings-action" id="save-open-feed" type="button">📜 Save and Open Feed</button></div><p class="settings-note" id="settings-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>🎭 Tab Cloak</h3><p>Cloak your Tab! Choosing a title changes the tab title; choosing an icon link changes the tab icon.</p><label class="settings-label">Tab Title<input id="cloak-title" type="text" value="Classes - Google Classroom"></label><label class="settings-label">Tab Icon URL<input id="cloak-icon" type="url" value="https://ssl.gstatic.com/classroom/favicon.png"></label><button class="settings-save" id="apply-cloak" type="button">✓ Add</button></section>
       </div>
@@ -289,6 +389,7 @@
         <h2 id="profile-heading">Your Profile</h2>
         <p id="profile-description">Choose a display name for this browser.</p>
         <label class="settings-label" id="profile-name-wrap">Display name<input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name"></label>
+        <label class="settings-label profile-avatar-field">Profile picture (optional)<input id="profile-avatar-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 1 MB. It stays in this browser.</p></label>
         <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
         <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
       </div>
@@ -321,18 +422,20 @@
       </div>
     </section>
     <section class="game-player" id="game-player" aria-label="Game tabs" aria-hidden="true">
-      <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><strong>Game controls</strong><button id="game-control-fullscreen" type="button">⛶ Enter fullscreen</button><button id="game-control-reload" type="button">↻ Reload game</button><button id="game-player-fallback" type="button">↗ Open game in a new tab</button></div></div><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
+      <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><strong>Game controls</strong><span class="game-controls-game" id="game-controls-game">No game selected</span><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
       <div class="game-tab-strip" id="game-tab-strip" role="tablist" aria-label="Open games"></div>
       <div class="game-frames" id="game-frames"><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p></div></div></div>
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
-      <div class="games-head"><h2>Game library</h2><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
+      <div class="games-head"><div><h2>Game library</h2><p class="games-hint">Click to play · Double-click for info · Right-click a game to favorite</p></div><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
+      <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div>
       <div class="games-grid" id="games-grid"></div>
     </section>
+    <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
     <section class="music-panel" id="music-panel" aria-label="Music library" aria-hidden="true">
-      <aside class="music-sidebar"><div class="music-logo">mzk</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
+      <aside class="music-sidebar"><div class="music-logo">mzk</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Playlist">♥ My playlist</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
       <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
-      <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio></div>
+      <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio><div class="music-extra-controls"><button class="music-control" id="music-previous" type="button" aria-label="Previous track">⏮</button><button class="music-control" id="music-next" type="button" aria-label="Next track">⏭</button><button class="music-control" id="music-shuffle" type="button" aria-label="Toggle shuffle" aria-pressed="false">🔀</button><button class="music-control" id="music-repeat" type="button" aria-label="Toggle repeat" aria-pressed="false">↻</button><button class="music-control" id="music-save-track" type="button" aria-label="Save current track to playlist">♥ Save</button><label aria-label="Volume">🔉 <input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div></div>
     </section>
     <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><strong>Kitsune AI</strong><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message">Hi! Ask me something.</div></div><div class="ai-key-note">Messages and attached images are sent to Gemini. This page also contains its API key.</div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
     <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span></div><p>Go ad-free on Kitsune, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
@@ -356,6 +459,83 @@
       'pac-man.html', 'papas-freezeria.html', 'retro-bowl.html', 'slope.html', 'subway-surfers-beijing.html',
       'temple-run-2.html', 'tiny-fishing.html', 'vex-5.html'
     ]);
+    const ORION_GAME_ART = {
+      baloons: 'baloons-td.webp', bloons4: 'btd4 (1).webp', bomberman: 'bomberman2.webp',
+      boxing: 'boxing.webp', burgeria: 'burger.webp', burrito: 'burrito.webp',
+      candy: 'candy-crush.webp', crossy: 'crossy.webp', csgo: 'csgo.webp',
+      dadish: 'dadish.webp', deltarune: 'deltarune.webp', doge: 'dogeminer2.webp',
+      doom: 'doom.webp', drift: 'driftboss.webp', drive: 'drive.webp', duck: 'duck1.webp',
+      eggy: 'eggycar.webp', flappy: 'flapp.webp', fnf: 'fnf.webp', football: 'footbros.webp',
+      granny: 'granny.webp', happy: 'happy.webp', jetpack: 'jet.webp', moto: 'moto.webp',
+      ovo: 'ovo (1).webp', ovo2: 'ovo2.webp', ovoDimensions: 'ovodi.webp',
+      pizzeria: 'pizza.webp', run3: 'run3 (2).webp', vex5: 'vex5.webp', worldcup: 'worldcup.webp'
+    };
+    const ORION_GAME_ART_BASE = 'https://raw.githubusercontent.com/Lenux32/Orion/main/Game%20images/';
+    function orionGameImage(file, name, fallback) {
+      const normalizeGameLabel = value => value.toLowerCase().replace(/\.(html?|htm)$/i, '').replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
+      const artByExactTitle = new Map([
+        ['bloons td 5', 'baloons-td.webp'], ['btd5', 'baloons-td.webp'],
+        ['bloons td 4', 'btd4 (1).webp'], ['btd4', 'btd4 (1).webp'],
+        ['bomberman 2', 'bomberman2.webp'], ['boxing random', 'boxing.webp'],
+        ['papas burgeria', 'burger.webp'], ['papa burgeria', 'burger.webp'],
+        ['burrito bison', 'burrito.webp'], ['candy crush', 'candy-crush.webp'],
+        ['counter strike', 'csgo.webp'], ['counter strike global offensive', 'csgo.webp'], ['csgo', 'csgo.webp'],
+        ['crossy road', 'crossy.webp'], ['crossy', 'crossy.webp'],
+        ['dadish', 'dadish.webp'], ['dadish 2', 'dadish2.webp'], ['dadish 3', 'dadish3.webp'],
+        ['deltarune', 'deltarune.webp'], ['doge miner 2', 'dogeminer2.webp'],
+        ['doom', 'doom.webp'], ['drift boss', 'driftboss.webp'], ['drive mad', 'drive.webp'],
+        ['duck life', 'duck1.webp'], ['duck life 1', 'duck1.webp'], ['duck life 2', 'duck2.webp'],
+        ['duck life 3', 'duck3.webp'], ['duck life 4', 'duck4.webp'], ['duck life 5', 'duck5.webp'],
+        ['duck life 6', 'ducklife6.webp'], ['duck life 7', 'ducklife7.webp'],
+        ['eggy car', 'eggycar.webp'], ['flappy bird', 'flapp.webp'], ['friday night funkin', 'fnf.webp'], ['fnf', 'fnf.webp'],
+        ['football bros', 'footbros.webp'], ['granny', 'granny.webp'], ['happy wheels', 'happy.webp'],
+        ['jetpack joyride', 'jet.webp'], ['moto x3m', 'moto.webp'],
+        ['ovo', 'ovo (1).webp'], ['ovo 1', 'ovo (1).webp'], ['ovo 2', 'ovo2.webp'],
+        ['ovo dimensions', 'ovodi.webp'], ['ovo d', 'ovodi.webp'], ['ovod', 'ovodi.webp'], ['ovodi', 'ovodi.webp'],
+        ['papas pizzeria', 'pizza.webp'], ['papa pizzeria', 'pizza.webp'],
+        ['run 3', 'run3 (2).webp'], ['vex 5', 'vex5.webp'], ['world cup', 'worldcup.webp'], ['worldcup', 'worldcup.webp']
+      ]);
+      const exactLabels = [normalizeGameLabel(file.split('/').pop()), normalizeGameLabel(name)];
+      for (const label of exactLabels) {
+        const artwork = artByExactTitle.get(label);
+        if (artwork) return ORION_GAME_ART_BASE + encodeURIComponent(artwork).replace(/%2F/g, '/');
+      }
+      return fallback;
+      const label = (file + ' ' + name).toLowerCase().replace(/[^a-z0-9]+/g, ' ');
+      let artwork = '';
+      if (/\b(bloons?|baloons?)\s*td\s*4\b/.test(label)) artwork = ORION_GAME_ART.bloons4;
+      else if (/\b(bloons?|baloons?)\s*td\b/.test(label)) artwork = ORION_GAME_ART.baloons;
+      else if (/\bbomberman\s*2?\b/.test(label)) artwork = ORION_GAME_ART.bomberman;
+      else if (/\bboxing\s*random\b/.test(label)) artwork = ORION_GAME_ART.boxing;
+      else if (/\bpapa'?s?\s*burgeria\b|\bburgeria\b/.test(label)) artwork = ORION_GAME_ART.burgeria;
+      else if (/\bburrito\s*bison\b/.test(label)) artwork = ORION_GAME_ART.burrito;
+      else if (/\bcandy\s*crush\b/.test(label)) artwork = ORION_GAME_ART.candy;
+      else if (/\bcounter\s*strike\s*(?:global\s*offensive)?\b|\bcsgo\b/.test(label)) artwork = ORION_GAME_ART.csgo;
+      else if (/\bcrossy(?:\s+road)?\b/.test(label)) artwork = ORION_GAME_ART.crossy;
+      else if (/\bdadish\b/.test(label)) artwork = ORION_GAME_ART.dadish;
+      else if (/\bdeltarune\b/.test(label)) artwork = ORION_GAME_ART.deltarune;
+      else if (/\bdoge\s*miner\s*2?\b|\bdogeminer2\b/.test(label)) artwork = ORION_GAME_ART.doge;
+      else if (/\bdoom\b/.test(label)) artwork = ORION_GAME_ART.doom;
+      else if (/\bdrift\s*boss\b/.test(label)) artwork = ORION_GAME_ART.drift;
+      else if (/\bdrive\s*mad\b/.test(label)) artwork = ORION_GAME_ART.drive;
+      else if (/\bduck\s*life(?:\s*[1-7])?\b/.test(label)) artwork = ORION_GAME_ART.duck;
+      else if (/\beggy\s*car\b/.test(label)) artwork = ORION_GAME_ART.eggy;
+      else if (/\bflappy\s*bird\b|\bflappybird\b/.test(label)) artwork = ORION_GAME_ART.flappy;
+      else if (/\bfriday\s*night\s*funkin\b|\bfnf\b/.test(label)) artwork = ORION_GAME_ART.fnf;
+      else if (/\bfootball\s*bros\b|\bfootbros\b/.test(label)) artwork = ORION_GAME_ART.football;
+      else if (/\bgranny\b/.test(label)) artwork = ORION_GAME_ART.granny;
+      else if (/\bhappy\s*wheels\b/.test(label)) artwork = ORION_GAME_ART.happy;
+      else if (/\bjetpack\s*joyride\b/.test(label)) artwork = ORION_GAME_ART.jetpack;
+      else if (/\bmoto\s*x3m\b/.test(label)) artwork = ORION_GAME_ART.moto;
+      else if (/\bovo\s*(?:dimensions|d)\b|\bovodi\b/.test(label)) artwork = ORION_GAME_ART.ovoDimensions;
+      else if (/\bovo\s*2\b|\bovo2\b/.test(label)) artwork = ORION_GAME_ART.ovo2;
+      else if (/\bovo\b/.test(label)) artwork = ORION_GAME_ART.ovo;
+      else if (/\bpapa'?s?\s*pizzeria\b|\bpizzeria\b/.test(label)) artwork = ORION_GAME_ART.pizzeria;
+      else if (/\brun\s*3\b/.test(label)) artwork = ORION_GAME_ART.run3;
+      else if (/\bvex\s*5\b/.test(label)) artwork = ORION_GAME_ART.vex5;
+      else if (/\bworld\s*cup\b|\bworldcup\b/.test(label)) artwork = ORION_GAME_ART.worldcup;
+      return artwork ? ORION_GAME_ART_BASE + encodeURIComponent(artwork).replace(/%2F/g, '/') : fallback;
+    }
     let games = [
       ['1v1.lol.html', '1v1.LOL', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/1v1lol.jpg'],
       ['among-us.html', 'Among Us', 'https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/among%20us.webp'],
@@ -387,8 +567,49 @@
       ['2048.html', '2048', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/2048.png'],
       ['flappybird.html', 'Flappy Bird', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png'],
       ['run3.html', 'Run 3', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png']
-    ].map(([file, name, image]) => ({ file, name, image }));
+    ].map(([file, name, image]) => ({ file, name, image: orionGameImage(file, name, image) }));
+    function gameDuplicateKey(name) {
+      return name.toLowerCase().replace(/\.(html?|htm)$/i, '').replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
+    }
+    function removeDuplicateGames(list) {
+      const seenNames = new Set();
+      const seenArtwork = new Set();
+      return list.filter(game => {
+        const name = gameDuplicateKey(game.name);
+        const artwork = game.image && !game.image.startsWith('data:image/svg+xml') ? game.image : '';
+        if (seenNames.has(name) || (artwork && seenArtwork.has(artwork))) return false;
+        seenNames.add(name);
+        if (artwork) seenArtwork.add(artwork);
+        return true;
+      });
+    }
+    games = removeDuplicateGames(games);
     const featuredGamesByFile = new Map(games.map(game => [game.file, game]));
+    function renderSidebarGames() {
+      const host = document.querySelector('#side-games');
+      if (!host) return;
+      host.replaceChildren();
+      const priorityFiles = [...readGameList('kitsune-game-favorites'), ...readGameList('kitsune-recent-games')];
+      const priorityGames = priorityFiles.map(file => games.find(game => game.file === file)).filter(Boolean);
+      const picks = [...new Map([...priorityGames, ...games].map(game => [game.file, game])).values()].slice(0, 4);
+      picks.forEach(game => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'side-game';
+        button.setAttribute('aria-label', 'Play ' + game.name);
+        const image = document.createElement('img');
+        image.src = game.image;
+        image.alt = '';
+        image.loading = 'lazy';
+        image.onerror = () => { image.onerror = null; image.src = fallbackGameCover(); };
+        const name = document.createElement('span');
+        name.textContent = game.name;
+        button.append(image, name);
+        button.addEventListener('click', () => openGame(game));
+        host.append(button);
+      });
+    }
+    renderSidebarGames();
     let catalogLoaded = false;
     function displayGameName(filename) {
       return filename.replace(/\.(html?|htm)$/i, '').replace(/([a-z])([0-9])/ig, '$1 $2').replace(/[._-]+/g, ' ').replace(/\b\w/g, letter => letter.toUpperCase());
@@ -414,13 +635,16 @@
             const featured = featuredGamesByFile.get(file);
             if (games.some(game => game.file.toLowerCase() === file.toLowerCase())) return;
             const name = displayGameName(file.split('/').pop());
-            games.push({ file, name, image: featured ? featured.image : fallbackGameCover(name), base: source.base });
+            const image = featured ? featured.image : orionGameImage(file, name, fallbackGameCover(name));
+            games.push({ file, name, image, base: source.base });
           });
         } catch (error) {
           // Keep the featured games available if a repository catalog is unreachable.
         }
       }));
+      games = removeDuplicateGames(games);
       games.sort((a, b) => a.name.localeCompare(b.name));
+      renderSidebarGames();
       renderGames();
     }
 
@@ -491,6 +715,107 @@
     }
     document.querySelector('#open-settings').addEventListener('click', openSettings);
     document.querySelector('#settings-close').addEventListener('click', closeSettings);
+    const appearanceKey = 'kitsune-appearance-settings';
+    function updateHomeClock() {
+      const now = new Date();
+      document.querySelector('#home-clock').textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
+      document.querySelector('#home-date').textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+    }
+    function applyAppearance(settings) {
+      const accent = /^#[0-9a-f]{6}$/i.test(settings.accent || '') ? settings.accent : '#c5a5ff';
+      document.documentElement.style.setProperty('--user-accent', accent);
+      document.querySelector('#theme-accent').value = accent;
+      const engine = ['https://www.google.com/search', 'https://www.bing.com/search', 'https://duckduckgo.com/'].includes(settings.searchEngine) ? settings.searchEngine : 'https://www.google.com/search';
+      document.querySelector('#search-engine').value = engine;
+      document.querySelector('#web-search').action = engine;
+      document.querySelector('#particle-intensity').value = String(Math.max(0, Math.min(1, Number(settings.particleIntensity ?? 0.7))));
+      document.querySelector('.particles').style.opacity = String(Math.max(0, Math.min(1, Number(settings.particleIntensity ?? 0.7))));
+      document.querySelector('#show-home-widgets').checked = settings.widgets !== false;
+      document.querySelector('#show-favorites-home').checked = settings.favorites !== false;
+      document.querySelector('#reduce-effects').checked = settings.reducedMotion === true;
+      document.querySelector('.home-tools').hidden = settings.widgets === false;
+      let reduced = document.querySelector('#user-reduced-motion');
+      if (!reduced) { reduced = document.createElement('style'); reduced.id = 'user-reduced-motion'; document.head.append(reduced); }
+      reduced.textContent = settings.reducedMotion ? '*,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}' : '';
+      renderHomeFavorites();
+    }
+    let savedAppearance = {};
+    try { savedAppearance = JSON.parse(localStorage.getItem(appearanceKey) || '{}'); } catch (error) { /* Use defaults. */ }
+    applyAppearance(savedAppearance);
+    updateHomeClock();
+    setInterval(updateHomeClock, 15000);
+    document.querySelector('#save-appearance').addEventListener('click', () => {
+      savedAppearance = { accent: document.querySelector('#theme-accent').value, particleIntensity: Number(document.querySelector('#particle-intensity').value), searchEngine: document.querySelector('#search-engine').value, widgets: document.querySelector('#show-home-widgets').checked, favorites: document.querySelector('#show-favorites-home').checked, reducedMotion: document.querySelector('#reduce-effects').checked };
+      try { localStorage.setItem(appearanceKey, JSON.stringify(savedAppearance)); } catch (error) { /* Apply for this session regardless. */ }
+      applyAppearance(savedAppearance);
+      document.querySelector('#appearance-status').textContent = 'Appearance saved on this device.';
+    });
+    document.querySelector('#show-home-widgets').addEventListener('change', event => { document.querySelector('.home-tools').hidden = !event.target.checked; });
+    document.querySelector('#show-favorites-home').addEventListener('change', renderHomeFavorites);
+    document.querySelector('#particle-intensity').addEventListener('input', event => { document.querySelector('.particles').style.opacity = event.target.value; });
+    document.querySelector('#search-engine').addEventListener('change', event => { document.querySelector('#web-search').action = event.target.value; });
+    document.querySelector('#export-settings').addEventListener('click', () => {
+      const data = {};
+      try { Object.keys(localStorage).filter(key => key.startsWith('kitsune-')).forEach(key => { data[key] = localStorage.getItem(key); }); } catch (error) { /* Export whatever is accessible. */ }
+      downloadFile('kitsune-settings.json', JSON.stringify(data, null, 2), 'application/json');
+      document.querySelector('#appearance-status').textContent = 'Settings exported as a JSON backup.';
+    });
+    document.querySelector('#import-settings-button').addEventListener('click', () => document.querySelector('#import-settings-file').click());
+    document.querySelector('#import-settings-file').addEventListener('change', async event => {
+      const file = event.target.files && event.target.files[0]; event.target.value = '';
+      if (!file) return;
+      try {
+        const data = JSON.parse(await file.text());
+        Object.entries(data).filter(([key, value]) => key.startsWith('kitsune-') && typeof value === 'string').forEach(([key, value]) => localStorage.setItem(key, value));
+        savedAppearance = JSON.parse(localStorage.getItem(appearanceKey) || '{}'); applyAppearance(savedAppearance);
+        renderHomeFavorites();
+        document.querySelector('#appearance-status').textContent = 'Settings imported. Refresh panels to see restored preferences.';
+      } catch (error) { document.querySelector('#appearance-status').textContent = 'That backup file could not be imported.'; }
+    });
+    function rememberSearch(value) {
+      try {
+        const previous = JSON.parse(localStorage.getItem('kitsune-recent-searches') || '[]');
+        const recent = Array.isArray(previous) ? previous : [];
+        const updated = [value, ...recent.filter(item => typeof item === 'string' && item.toLowerCase() !== value.toLowerCase())].slice(0, 8);
+        localStorage.setItem('kitsune-recent-searches', JSON.stringify(updated));
+        const list = document.querySelector('#search-suggestions');
+        list.querySelectorAll('[data-recent-search]').forEach(option => option.remove());
+        updated.forEach(query => {
+          const option = document.createElement('option');
+          option.value = query;
+          option.label = 'Recent search';
+          option.dataset.recentSearch = 'true';
+          list.prepend(option);
+        });
+      } catch (error) { /* Search works even when browser storage is unavailable. */ }
+    }
+    try {
+      const recent = JSON.parse(localStorage.getItem('kitsune-recent-searches') || '[]');
+      if (Array.isArray(recent)) recent.slice(0, 8).filter(query => typeof query === 'string').reverse().forEach(query => {
+        const option = document.createElement('option');
+        option.value = query;
+        option.label = 'Recent search';
+        option.dataset.recentSearch = 'true';
+        document.querySelector('#search-suggestions').prepend(option);
+      });
+    } catch (error) { /* Use the built-in suggestions. */ }
+    document.querySelector('#web-search').addEventListener('submit', event => {
+      const field = event.currentTarget.querySelector('input[name="q"]');
+      const value = field.value.trim();
+      if (value && !/^(https?:\/\/|localhost(?::\d+)?(?:\/|$)|[\w-]+(?:\.[\w-]+)+(?:\/|$))/i.test(value)) rememberSearch(value);
+      if (/^(https?:\/\/|localhost(?::\d+)?(?:\/|$)|[\w-]+(?:\.[\w-]+)+(?:\/|$))/i.test(value)) {
+        event.preventDefault();
+        const destination = /^https?:\/\//i.test(value) ? value : 'https://' + value;
+        try { location.href = new URL(destination).href; } catch (error) { field.value = value; }
+      }
+    });
+    document.addEventListener('keydown', event => {
+      if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); document.querySelector('.search input').focus(); }
+      if (event.altKey && event.key.toLowerCase() === 'g') { event.preventDefault(); showGamesLibrary(); }
+      if (event.altKey && event.key.toLowerCase() === 'm') { event.preventDefault(); openMusic(); }
+      if (event.altKey && event.key.toLowerCase() === 'a') { event.preventDefault(); openAiChat(); }
+      if (event.key === 'Escape') { closeAllPanels(); document.querySelector('#game-detail').classList.remove('open'); document.querySelector('#game-detail').setAttribute('aria-hidden', 'true'); }
+    });
     document.querySelector('#clear-kitsune-data').addEventListener('click', () => {
       const privacyStatus = document.querySelector('#privacy-status');
       try {
@@ -506,8 +831,25 @@
     function currentProfileName() {
       try { return localStorage.getItem('kitsune-profile-user') || ''; } catch (error) { return ''; }
     }
+    function updateSidebarProfile() {
+      const name = currentProfileName();
+      const avatar = document.querySelector('#side-avatar');
+      const avatarUrl = name ? (() => { try { return localStorage.getItem('kitsune-profile-avatar') || ''; } catch (error) { return ''; } })() : '';
+      avatar.replaceChildren();
+      if (avatarUrl) {
+        const image = document.createElement('img');
+        image.src = avatarUrl;
+        image.alt = '';
+        avatar.append(image);
+      } else avatar.textContent = name ? name.trim().slice(0, 2).toUpperCase() : '狐';
+      document.querySelector('#side-profile-name').textContent = name || 'Sign in';
+      document.querySelector('#side-profile-hint').textContent = name ? 'Your local profile' : 'Set up your profile';
+      document.querySelector('#side-profile').setAttribute('aria-label', name ? 'Open profile for ' + name : 'Sign in to set up your profile');
+      profilePanel.classList.toggle('signed-in', Boolean(name));
+    }
     function updateProfileView() {
       const name = currentProfileName();
+      updateSidebarProfile();
       document.querySelector('#profile-heading').textContent = name ? 'Welcome, ' + name : 'Your Profile';
       document.querySelector('#profile-description').textContent = name ? 'Signed in on this browser.' : 'Choose a display name for this browser.';
       profileNameWrap.hidden = Boolean(name);
@@ -545,6 +887,27 @@
       profileNameInput.value = '';
       updateProfileView();
       document.querySelector('#profile-status').textContent = 'Signed out on this browser.';
+    });
+    document.querySelector('#profile-avatar-file').addEventListener('change', event => {
+      const file = event.target.files && event.target.files[0];
+      event.target.value = '';
+      if (!file) return;
+      if (!file.type.startsWith('image/') || file.size > 1024 * 1024) {
+        document.querySelector('#profile-status').textContent = 'Choose an image file up to 1 MB.';
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          localStorage.setItem('kitsune-profile-avatar', reader.result);
+          updateSidebarProfile();
+          document.querySelector('#profile-status').textContent = 'Profile picture saved in this browser.';
+        } catch (error) {
+          document.querySelector('#profile-status').textContent = 'Could not save that profile picture in this browser.';
+        }
+      };
+      reader.onerror = () => { document.querySelector('#profile-status').textContent = 'Could not read that image file.'; };
+      reader.readAsDataURL(file);
     });
 
     const globalChatPanel = document.querySelector('#global-chat-panel');
@@ -915,9 +1278,18 @@ ducky-clicker\tI_am_me\t609450`;
       tab.directFallback = false;
       tab.documentAssigned = false;
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      tab.loadingStage = 'Checking for a saved game copy…';
+      tab.loadTimer = setTimeout(() => {
+        if (!tab.loading) return;
+        tab.error = 'This game is taking longer than expected to load.';
+        updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+      }, 20000);
+      updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       const cached = await readCachedGame(tab.game);
       if (cached && typeof cached.html === 'string') {
         if (tab.frame.isConnected) {
+          tab.loadingStage = 'Opening your saved game copy…';
+          updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
           tab.documentAssigned = true;
           tab.frame.srcdoc = prepareGameHtml(cached.html, gameUrl(tab.game, cached.base));
         }
@@ -925,6 +1297,8 @@ ducky-clicker\tI_am_me\t609450`;
       }
       for (const base of gameSourceBases(tab.game)) {
         const url = gameUrl(tab.game, base);
+        tab.loadingStage = 'Downloading game files…';
+        updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
         try {
           const response = await fetch(url);
           if (!response.ok) throw new Error('Game source returned ' + response.status);
@@ -943,9 +1317,11 @@ ducky-clicker\tI_am_me\t609450`;
       const directUrl = gameUrl(tab.game, gameSourceBases(tab.game)[0]);
       tab.loading = true;
       tab.error = '';
+      tab.loadingStage = 'Opening the game source directly…';
       tab.directFallback = true;
       tab.documentAssigned = true;
       if (tab.frame.isConnected) tab.frame.src = directUrl;
+      clearTimeout(tab.loadTimer);
       tab.loadTimer = setTimeout(() => {
         if (!tab.loading) return;
         tab.error = 'This game is taking longer than expected to load.';
@@ -966,8 +1342,8 @@ ducky-clicker\tI_am_me\t609450`;
       const failed = Boolean(tab.error);
       gameLoading.classList.toggle('error', failed);
       document.querySelector('#game-loading-title').textContent = failed ? 'Game could not load' : 'Preparing ' + tab.game.name;
-      document.querySelector('#game-loading-message').textContent = failed ? tab.error : 'Fetching game files…';
-      document.querySelector('#game-loading-detail').textContent = failed ? 'Try another game or check back later.' : 'This may take a moment.';
+      document.querySelector('#game-loading-message').textContent = failed ? tab.error : (tab.loadingStage || 'Getting things ready…');
+      document.querySelector('#game-loading-detail').textContent = failed ? 'Use Controls to reload or launch this game in about:blank.' : 'Your game is being prepared. This may take a moment.';
       gameLoading.querySelector('.game-loading-mark').textContent = failed ? '!' : '狐';
     }
     const gameTabStrip = document.querySelector('#game-tab-strip');
@@ -1016,11 +1392,14 @@ ducky-clicker\tI_am_me\t609450`;
       openGameTabs.forEach(item => { item.frame.hidden = item !== tab; });
       updateGameLoading(tab);
       document.querySelector('#game-player-title').textContent = tab.game.name;
+      document.querySelector('#game-controls-game').textContent = 'Now playing: ' + tab.game.name;
       gamePlayer.classList.add('open');
       gamePlayer.setAttribute('aria-hidden', 'false');
       renderGameTabs();
     }
     function openGame(game) {
+      rememberGame(game);
+      renderHomeFavorites();
       const existing = openGameTabs.find(tab => tab.game.file === game.file);
       if (existing) {
         activateGameTab(existing);
@@ -1035,7 +1414,7 @@ ducky-clicker\tI_am_me\t609450`;
       gameFrames.append(frame);
       const tab = { game, frame, loading: true, error: '' };
       frame.addEventListener('load', () => {
-        if (!tab.documentAssigned || (tab.error && !tab.directFallback)) return;
+        if (!tab.documentAssigned) return;
         clearTimeout(tab.loadTimer);
         tab.loading = false;
         tab.error = '';
@@ -1094,7 +1473,7 @@ ducky-clicker\tI_am_me\t609450`;
     });
     const gameFullscreenButton = document.querySelector('#game-control-fullscreen');
     function updateGameFullscreenLabel() {
-      gameFullscreenButton.textContent = document.fullscreenElement === activeGameTab?.frame ? '⛶ Exit fullscreen' : '⛶ Enter fullscreen';
+      document.querySelector('#game-fullscreen-label').textContent = document.fullscreenElement === activeGameTab?.frame ? 'Exit fullscreen' : 'Enter fullscreen';
     }
     document.addEventListener('fullscreenchange', updateGameFullscreenLabel);
     gameFullscreenButton.addEventListener('click', () => {
@@ -1125,11 +1504,77 @@ ducky-clicker\tI_am_me\t609450`;
       const game = games.find(item => item.file === tile.dataset.gameFile);
       if (game) tile.addEventListener('click', () => openGame(game));
     });
+    let activeGameFilter = 'All';
+    let selectedDetailGame = null;
+    function readGameList(key) {
+      try { const value = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(value) ? value : []; }
+      catch (error) { return []; }
+    }
+    function saveGameList(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (error) { /* Keep favorites usable for this page session. */ }
+    }
+    function toggleGameFavorite(game) {
+      const favorites = readGameList('kitsune-game-favorites');
+      const next = favorites.includes(game.file) ? favorites.filter(file => file !== game.file) : [game.file, ...favorites];
+      saveGameList('kitsune-game-favorites', next);
+      renderGames();
+      renderSidebarGames();
+      renderHomeFavorites();
+    }
+    function rememberGame(game) {
+      const recent = [game.file, ...readGameList('kitsune-recent-games').filter(file => file !== game.file)].slice(0, 8);
+      saveGameList('kitsune-recent-games', recent);
+      renderSidebarGames();
+    }
+    function renderHomeFavorites() {
+      const host = document.querySelector('#home-quicklinks');
+      if (!host) return;
+      host.replaceChildren();
+      const show = document.querySelector('#show-favorites-home')?.checked;
+      const favorites = readGameList('kitsune-game-favorites').map(file => games.find(game => game.file === file)).filter(Boolean).slice(0, 5);
+      const recent = readGameList('kitsune-recent-games').map(file => games.find(game => game.file === file)).filter(Boolean).slice(0, 3);
+      [...new Map([...(show ? favorites : []), ...recent].map(game => [game.file, game])).values()].forEach(game => {
+        const link = document.createElement('button');
+        link.type = 'button'; link.className = 'quick-link';
+        link.textContent = (favorites.includes(game) ? '★ ' : '↻ ') + game.name;
+        link.addEventListener('click', () => openGame(game));
+        host.append(link);
+      });
+      if (!host.children.length) { const hint = document.createElement('span'); hint.className = 'quick-link'; hint.textContent = 'Pin favorites from the Games library'; host.append(hint); }
+    }
+    function openGameDetails(game) {
+      selectedDetailGame = game;
+      document.querySelector('#game-detail-image').src = game.image;
+      document.querySelector('#game-detail-title').textContent = game.name;
+      document.querySelector('#game-detail-description').textContent = 'Launch ' + game.name + ' in the in-page game player. Your favorites and recent games are saved only in this browser.';
+      const favorite = readGameList('kitsune-game-favorites').includes(game.file);
+      document.querySelector('#game-detail-favorite').textContent = favorite ? '★ Remove favorite' : '☆ Add favorite';
+      const detail = document.querySelector('#game-detail'); detail.classList.add('open'); detail.setAttribute('aria-hidden', 'false');
+    }
+    document.querySelector('#game-detail-close').addEventListener('click', () => { const detail = document.querySelector('#game-detail'); detail.classList.remove('open'); detail.setAttribute('aria-hidden', 'true'); });
+    document.querySelector('#game-detail-play').addEventListener('click', () => { if (selectedDetailGame) openGame(selectedDetailGame); document.querySelector('#game-detail-close').click(); });
+    document.querySelector('#game-detail-favorite').addEventListener('click', () => { if (selectedDetailGame) { toggleGameFavorite(selectedDetailGame); openGameDetails(selectedDetailGame); } });
+    document.querySelectorAll('[data-game-filter]').forEach(button => button.addEventListener('click', () => {
+      activeGameFilter = button.dataset.gameFilter;
+      document.querySelectorAll('[data-game-filter]').forEach(item => item.classList.toggle('active', item === button));
+      renderGames();
+    }));
+    function gameMatchesCategory(game, category) {
+      const name = game.name.toLowerCase();
+      if (category === 'Arcade') return /arcade|click|jump|run|flappy|pac|slope|doodle|crossy|retro|basket|1v1|moto|drift/.test(name);
+      if (category === 'Action') return /fnaf|granny|among|vex|shooter|war|combat|angry|temple|subway|ice cream/.test(name);
+      if (category === 'Puzzle') return /2048|blox|puzzle|quiz|math|bridge|brain|cookie/.test(name);
+      return true;
+    }
     function renderGames() {
       const query = document.querySelector('#games-search').value.trim().toLowerCase();
       const grid = document.querySelector('#games-grid');
       grid.replaceChildren();
-      games.filter(game => game.name.toLowerCase().includes(query)).forEach(game => {
+      const favorites = readGameList('kitsune-game-favorites');
+      const recent = readGameList('kitsune-recent-games');
+      games.filter(game => game.name.toLowerCase().includes(query))
+        .filter(game => activeGameFilter === 'All' || (activeGameFilter === 'Favorites' && favorites.includes(game.file)) || (activeGameFilter === 'Recent' && recent.includes(game.file)) || ((activeGameFilter === 'Arcade' || activeGameFilter === 'Action' || activeGameFilter === 'Puzzle') && gameMatchesCategory(game, activeGameFilter)))
+        .forEach(game => {
         const card = document.createElement('button');
         card.type = 'button';
         card.className = 'game-card';
@@ -1151,7 +1596,10 @@ ducky-clicker\tI_am_me\t609450`;
         overlay.append(title, play);
         card.setAttribute('aria-label', 'Play ' + game.name);
         card.append(image, overlay);
+        card.title = 'Click to play · Double-click for details · Right-click to favorite';
         card.addEventListener('click', () => openGame(game));
+        card.addEventListener('dblclick', event => { event.preventDefault(); openGameDetails(game); });
+        card.addEventListener('contextmenu', event => { event.preventDefault(); toggleGameFavorite(game); });
         grid.append(card);
       });
     }
@@ -1163,6 +1611,11 @@ ducky-clicker\tI_am_me\t609450`;
       discoverGames();
     }
     document.querySelector('#open-games-toolbar').addEventListener('click', showGamesLibrary);
+    document.querySelectorAll('[data-side-action]').forEach(button => button.addEventListener('click', () => {
+      const targets = { games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai', tools: '#open-tools', chat: '#open-global-chat', scores: '#open-leaderboard' };
+      document.querySelector(targets[button.dataset.sideAction])?.click();
+    }));
+    document.querySelector('#side-profile').addEventListener('click', () => document.querySelector('#open-profile').click());
     document.querySelector('#games-close').addEventListener('click', () => gamesPanel.classList.remove('open'));
     document.querySelector('#games-search').addEventListener('input', renderGames);
     const musicPanel = document.querySelector('#music-panel');
@@ -1182,7 +1635,17 @@ ducky-clicker\tI_am_me\t609450`;
     let localMusicUrls = [];
     let activeMusicTrack = null;
     let musicQueue = [];
+    let musicShuffle = false;
+    let musicRepeat = false;
     let activeMusicTab = 'All';
+    function savedMusicPaths() { try { const paths = JSON.parse(localStorage.getItem('kitsune-music-playlist') || '[]'); return Array.isArray(paths) ? paths : []; } catch (error) { return []; } }
+    function setMusicQueueIndex(direction) {
+      if (!musicQueue.length) return;
+      let index = musicQueue.indexOf(activeMusicTrack);
+      if (musicShuffle && direction > 0 && musicQueue.length > 1) { let next = index; while (next === index) next = Math.floor(Math.random() * musicQueue.length); index = next; }
+      else index = (index + direction + musicQueue.length) % musicQueue.length;
+      playMusic(musicQueue[index]);
+    }
     let musicLoaded = false;
     const musicPathUrl = path => 'https://github.com/' + MUSIC_OWNER + '/' + MUSIC_REPO + '/raw/refs/heads/' + MUSIC_BRANCH + '/' + path.split('/').map(encodeURIComponent).join('/');
     function openMusic() {
@@ -1199,6 +1662,7 @@ ducky-clicker\tI_am_me\t609450`;
       if (!track) return;
       activeMusicTrack = track;
       musicAudio.src = track.url;
+      document.querySelector('#music-save-track').textContent = track.path && savedMusicPaths().includes(track.path) ? '♥ Saved' : '♥ Save';
       musicNow.replaceChildren(document.createTextNode(track.title));
       const subtitle = document.createElement('small');
       subtitle.textContent = track.group || 'Single';
@@ -1277,7 +1741,8 @@ ducky-clicker\tI_am_me\t609450`;
     }
     function renderMusicLibrary() {
       const query = musicSearch.value.trim().toLowerCase();
-      const visible = musicTracks.filter(track => (activeMusicTab === 'All' || track.tab === activeMusicTab || (activeMusicTab === 'Local' && track.local)) && (!query || (track.title + ' ' + track.group).toLowerCase().includes(query)));
+      const playlistPaths = savedMusicPaths();
+      const visible = musicTracks.filter(track => (activeMusicTab === 'All' || track.tab === activeMusicTab || (activeMusicTab === 'Local' && track.local) || (activeMusicTab === 'Playlist' && playlistPaths.includes(track.path))) && (!query || (track.title + ' ' + track.group).toLowerCase().includes(query)));
       musicStatus.textContent = musicLoaded ? visible.length + (visible.length === 1 ? ' track' : ' tracks') : 'Loading music library…';
       document.querySelectorAll('[data-music-tab]').forEach(button => button.classList.toggle('active', button.dataset.musicTab === activeMusicTab));
       if (activeMusicTab === 'Albums' && !query) {
@@ -1300,7 +1765,7 @@ ducky-clicker\tI_am_me\t609450`;
         }
         return;
       }
-      showMusicTracks(visible, activeMusicTab === 'Local' ? 'Local files' : activeMusicTab === 'Singles' ? 'Singles' : 'All songs');
+      showMusicTracks(visible, activeMusicTab === 'Local' ? 'Local files' : activeMusicTab === 'Playlist' ? 'My playlist' : activeMusicTab === 'Singles' ? 'Singles' : 'All songs');
     }
     async function loadMusicLibrary() {
       if (musicLoaded) return;
@@ -1362,9 +1827,22 @@ ducky-clicker\tI_am_me\t609450`;
     });
     musicAudio.addEventListener('play', updateMusicRows);
     musicAudio.addEventListener('pause', updateMusicRows);
+    document.querySelector('#music-previous').addEventListener('click', () => setMusicQueueIndex(-1));
+    document.querySelector('#music-next').addEventListener('click', () => setMusicQueueIndex(1));
+    document.querySelector('#music-shuffle').addEventListener('click', event => { musicShuffle = !musicShuffle; event.currentTarget.classList.toggle('active', musicShuffle); event.currentTarget.setAttribute('aria-pressed', String(musicShuffle)); });
+    document.querySelector('#music-repeat').addEventListener('click', event => { musicRepeat = !musicRepeat; event.currentTarget.classList.toggle('active', musicRepeat); event.currentTarget.setAttribute('aria-pressed', String(musicRepeat)); });
+    document.querySelector('#music-volume').addEventListener('input', event => { musicAudio.volume = Number(event.target.value); });
+    document.querySelector('#music-save-track').addEventListener('click', () => {
+      if (!activeMusicTrack || !activeMusicTrack.path) { musicStatus.textContent = 'Choose a library track to save it to your playlist.'; return; }
+      const paths = savedMusicPaths();
+      const next = paths.includes(activeMusicTrack.path) ? paths.filter(path => path !== activeMusicTrack.path) : [...paths, activeMusicTrack.path];
+      try { localStorage.setItem('kitsune-music-playlist', JSON.stringify(next)); } catch (error) { /* Playlist remains available for this session. */ }
+      document.querySelector('#music-save-track').textContent = next.includes(activeMusicTrack.path) ? '♥ Saved' : '♥ Save';
+      musicStatus.textContent = next.includes(activeMusicTrack.path) ? 'Added to My playlist.' : 'Removed from My playlist.';
+    });
     musicAudio.addEventListener('ended', () => {
-      const next = musicQueue[musicQueue.indexOf(activeMusicTrack) + 1];
-      if (next) playMusic(next);
+      if (musicRepeat && activeMusicTrack) { musicAudio.currentTime = 0; musicAudio.play().catch(() => {}); return; }
+      setMusicQueueIndex(1);
     });
     window.addEventListener('beforeunload', () => localMusicUrls.forEach(url => URL.revokeObjectURL(url)));
     const aiPanel = document.querySelector('#ai-panel');
