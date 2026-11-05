@@ -123,12 +123,14 @@
     /* Settings panel */
     .settings-panel{position:absolute;z-index:7;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,38px);background:#050507;color:#f3f1f6}
     .settings-panel.open{display:block}.settings-inner{width:min(820px,100%);margin:auto}.settings-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:22px}.settings-head h2{margin:0;font-size:clamp(27px,4vw,36px)}.settings-head p{margin:5px 0 0;color:#aaa8b3}.settings-close,.settings-action,.settings-save{border:1px solid #33333b;border-radius:10px;padding:9px 12px;color:#f3f1f6;background:#17171b;cursor:pointer}.settings-close:hover,.settings-action:hover{background:#24242a}.settings-card{margin:13px 0;padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.settings-card h3{margin:0 0 6px;font-size:17px}.settings-card p{margin:4px 0 13px;color:#aaa8b3;font-size:13px}.settings-actions{display:flex;flex-wrap:wrap;gap:9px}.settings-action{display:inline-flex;align-items:center;gap:7px}.settings-label{display:grid;gap:6px;margin:13px 0;color:#dedde4;font-size:13px}.settings-label input,.settings-label select,.settings-label textarea{width:100%;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.settings-label textarea{min-height:74px;resize:vertical}.settings-save{border-color:#aaa;background:#eee;color:#111;font-weight:700}.settings-note{color:#85838e!important;font-size:12px!important}.settings-check{display:flex;align-items:center;gap:9px;margin:12px 0;color:#ddd}
-    @media(max-width:650px){.settings-panel{padding:18px 12px}.settings-card{padding:14px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-global-chat){display:none}}
+    @media(max-width:650px){.settings-panel{padding:18px 12px}.settings-card{padding:14px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-global-chat):not(#open-partners){display:none}}
     /* Login-required profile screen */
     .profile-panel{position:absolute;z-index:8;inset:0;display:none;place-items:center;padding:20px;background:#050507;color:#f3f1f6;text-align:center}
     .profile-panel.open{display:grid}.profile-card{width:min(420px,100%);padding:36px 28px;border:1px solid #292930;border-radius:18px;background:#101013;box-shadow:0 24px 80px #0009}.profile-lock{display:grid;width:58px;height:58px;margin:auto;place-items:center;color:#d8d5e2}.profile-lock svg{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.profile-card h2{margin:14px 0 6px;font-size:28px}.profile-card p{margin:0;color:#aaa8b3}.profile-actions{display:flex;justify-content:center;gap:10px;margin-top:24px}.profile-action{min-width:110px;padding:10px 16px;border:1px solid #33333b;border-radius:10px;color:#f3f1f6;background:#17171b;font:inherit;font-weight:700;cursor:pointer}.profile-action.primary{border-color:#eee;color:#111;background:#eee}.profile-action:hover{filter:brightness(1.15)}.profile-status{min-height:1.45em;margin-top:14px!important;color:#aaa8b3;font-size:13px}
     /* Full-page AI chat view */
     .ai-panel{inset:0;right:0;top:0;width:auto;height:auto;border:0;border-radius:0;background:#050507;box-shadow:none}
+    .ai-brand{display:flex;align-items:center;gap:10px}.ai-brand-logo{display:grid;width:36px;height:36px;place-items:center;border:1px solid rgba(221,197,255,.24);border-radius:12px;color:#e7d3ff;background:linear-gradient(145deg,#ffffff16,#ffffff05)}.ai-brand-logo svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.ai-brand-copy strong,.ai-brand-copy small{display:block}.ai-brand-copy small{margin-top:2px;color:#aaa2b6;font-size:11px}.ai-welcome-prompts{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.ai-welcome-prompts button{padding:8px 11px;border:1px solid rgba(221,197,255,.2);border-radius:999px;color:#eee7fa;background:rgba(255,255,255,.05);font:inherit;font-size:12px;cursor:pointer}.ai-welcome-prompts button:hover{border-color:#d9bcff;background:rgba(184,145,255,.13)}.ai-welcome-prompts[hidden]{display:none}
+    .ai-key-note{display:none!important}
     .ai-head,.ai-messages,.ai-compose,.ai-key-note{width:min(900px,100%);margin-left:auto;margin-right:auto}
     .ai-head{width:100%;padding:16px max(18px,calc((100% - 900px)/2));background:#050507}
     .ai-messages{width:min(900px,100%);padding:24px 18px}
@@ -138,7 +140,7 @@
     /* Leaderboard view */
     .leaderboard-panel{position:absolute;z-index:9;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
     .leaderboard-panel.open{display:block}.leaderboard-inner{width:min(1120px,100%);margin:auto}.leaderboard-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:22px}.leaderboard-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.leaderboard-head p{margin:4px 0 0;color:#9d9aa8}.leaderboard-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.leaderboard-close:hover{background:#24242a}.leaderboard-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.leaderboard-card,.scores-card,.champion-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.leaderboard-card h3,.scores-card h3{margin:0 0 12px;font-size:18px}.leaderboard-entry{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;min-height:52px;border-top:1px solid #ffffff0d}.leaderboard-rank{color:#9c99a6;font-size:13px}.leaderboard-avatar{display:grid;width:34px;height:34px;place-items:center;border-radius:50%;color:#e5e0ff;background:linear-gradient(135deg,#594978,#292433);font-size:12px;font-weight:750}.leaderboard-user{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}.leaderboard-score{color:#c4bed2;font-variant-numeric:tabular-nums}.scores-card{margin-top:14px}.scores-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px}.scores-table-wrap{overflow:auto}.scores-table{width:100%;border-collapse:collapse;text-align:left}.scores-table th,.scores-table td{padding:10px 12px;border-top:1px solid #ffffff10}.scores-table th{color:#aaa8b3;font-size:12px;text-transform:uppercase;letter-spacing:.06em}.scores-table td:last-child{text-align:right;font-variant-numeric:tabular-nums}.scores-submit{border:1px solid #42404a;border-radius:9px;padding:8px 11px;color:#fff;background:#222127;cursor:pointer}.scores-submit:hover{background:#302d37}.scores-status{min-height:1.4em;margin:9px 0 0;color:#aaa8b3;font-size:13px}.champion-card{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}.champion-card strong{font-size:18px}.leaderboard-footer{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding:18px 2px;color:#92909b;font-size:13px}.leaderboard-footer a{margin-right:12px;color:#c7c3d0;text-decoration:none}.leaderboard-footer a:hover{color:#fff}
-    @media(max-width:650px){.leaderboard-panel{padding:18px 12px}.leaderboard-cards{grid-template-columns:1fr}.leaderboard-card,.scores-card{padding:14px}.leaderboard-head{align-items:flex-start}.leaderboard-entry{grid-template-columns:32px 1fr auto;gap:7px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-leaderboard):not(#open-tools):not(#open-global-chat){display:none}}
+    @media(max-width:650px){.leaderboard-panel{padding:18px 12px}.leaderboard-cards{grid-template-columns:1fr}.leaderboard-card,.scores-card{padding:14px}.leaderboard-head{align-items:flex-start}.leaderboard-entry{grid-template-columns:32px 1fr auto;gap:7px}.tools{display:flex;gap:0}.tools>*:not(#open-settings):not(#open-profile):not(#open-partners):not(#open-tools):not(#open-global-chat){display:none}}
     /* Quick utility tools */
     .toolbox-panel{position:absolute;z-index:10;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#08080b;color:#f3f1f6}
     .toolbox-panel.open{display:block}.toolbox-inner{width:min(1000px,100%);margin:auto}.toolbox-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin-bottom:22px}.toolbox-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.toolbox-head p{margin:4px 0 0;color:#9d9aa8}.toolbox-close{border:1px solid #33333b;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#17171b;cursor:pointer}.toolbox-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.toolbox-card{padding:18px;border:1px solid #292930;border-radius:15px;background:#101013}.toolbox-card h3{margin:0 0 5px;font-size:18px}.toolbox-card p{margin:4px 0 14px;color:#9d9aa8;font-size:13px}.toolbox-card input,.toolbox-card textarea,.toolbox-card select{min-width:0;padding:10px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}.toolbox-card textarea{width:100%;min-height:150px;resize:vertical}.tool-calculator{display:grid;grid-template-columns:1fr auto 1fr auto;gap:8px;align-items:center}.tool-calculator select,.tool-calculator button{padding:9px 11px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b;font:inherit}.tool-calculator button,.timer-button{cursor:pointer}.tool-result{min-height:1.5em;margin-top:12px!important;color:#ddd!important;font-weight:700}.timer-display{margin:15px 0;font-size:42px;font-variant-numeric:tabular-nums;letter-spacing:.04em}.timer-controls{display:flex;gap:8px}.timer-button{padding:9px 12px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#17171b}.tool-status{min-height:1.4em;margin:8px 0 0!important;color:#8fe3d0!important;font-size:12px!important}
@@ -319,10 +321,24 @@
       .home{left:calc(50% + 26px);width:min(660px,calc(100% - 80px))}
     }
     @media(max-width:420px){.side-rail{width:46px;padding-inline:4px}.side-app{width:34px;min-width:34px}.side-game{width:35px;flex-basis:35px}.side-game img{width:30px;height:29px;flex-basis:30px}.side-library{width:33px;flex-basis:33px}.home{left:calc(50% + 23px);width:calc(100% - 70px)}}
+    /* Keep the top toolbar fully transparent. */
+    .browser{background:transparent;border-bottom-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+    /* Draggable floating game controls. */
+    .game-controls-panel{position:fixed;top:96px;right:18px;width:min(270px,calc(100vw - 24px));padding:10px;border:1px solid rgba(230,210,255,.2);border-radius:18px;background:rgba(18,15,23,.88);box-shadow:0 16px 48px #0009;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);touch-action:pan-y}
+    .game-controls-panel.open{display:grid;gap:7px}
+    .game-controls-drag{display:flex;align-items:center;gap:9px;padding:3px 3px 7px;cursor:grab;touch-action:none;user-select:none}
+    .game-controls-drag:active{cursor:grabbing}
+    .game-controls-panel .game-controls-game{min-width:0;flex:1;padding:0;color:#f3f1f6;font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .game-controls-panel .game-control-back{display:grid;width:34px;height:34px;flex:0 0 34px;place-items:center;padding:0;border:1px solid #ffffff20;border-radius:11px;background:#ffffff0b;cursor:pointer}
+    .game-controls-panel>button{min-height:40px;border-radius:12px}
+    @media(max-width:650px){.game-controls-panel{top:86px;right:10px;width:min(255px,calc(100vw - 20px))}}
+    /* Partner showcase */
+    .partners-panel{position:absolute;z-index:9;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:rgba(8,8,11,.72);backdrop-filter:blur(18px);color:#f3f1f6}.partners-panel.open{display:block}.partners-inner{width:min(1000px,100%);margin:auto}.partners-head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:24px}.partners-head h2{margin:0;font-size:clamp(28px,4vw,38px)}.partners-head p{margin:5px 0 0;color:#aaa8b3}.partners-close{border:1px solid #ffffff24;border-radius:10px;padding:9px 13px;color:#f3f1f6;background:#ffffff0b;cursor:pointer}.partners-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:16px}.partner-card{display:grid;justify-items:center;gap:7px;padding:24px 18px;border:1px solid rgba(225,207,255,.16);border-radius:18px;background:rgba(255,255,255,.045);text-align:center}.partner-logo{display:grid;width:112px;height:112px;place-items:center;border:1px dashed rgba(225,207,255,.3);border-radius:22px;color:#e5d4ff;background:linear-gradient(145deg,rgba(184,145,255,.15),rgba(255,255,255,.035));font-size:25px;font-weight:800;letter-spacing:.04em}.partner-card h3{margin:8px 0 0;font-size:19px}.partner-card p{margin:0;color:#aaa8b3;font-size:13px}
+    @media(max-width:650px){.partners-panel{padding:18px 12px}.partners-grid{grid-template-columns:1fr}.partner-card{padding:18px}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-leaderboard" type="button" title="Leaderboard" aria-label="Open Leaderboard"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01M8 13h8M8 16h5"/></svg></button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
       <button class="side-profile" id="side-profile" type="button" aria-label="Sign in or open your profile"><span class="side-avatar" id="side-avatar">狐</span><span class="side-profile-copy"><strong id="side-profile-name">Sign in</strong><small id="side-profile-hint">Set up your profile</small></span></button>
@@ -430,6 +446,16 @@
         <form class="global-chat-compose" id="global-chat-form"><input id="global-chat-input" type="text" maxlength="500" placeholder="Write a message…" aria-label="Chat message" required><button type="submit">Send</button></form>
       </div>
     </section>
+    <section class="partners-panel" id="partners-panel" aria-label="Partners" aria-hidden="true">
+      <div class="partners-inner">
+        <header class="partners-head"><div><h2>Our Partners</h2><p>Good things are better together.</p></div><button class="partners-close" id="partners-close" type="button">Close</button></header>
+        <div class="partners-grid">
+          <article class="partner-card"><div class="partner-logo" aria-label="https://avatars.githubusercontent.com/u/156027209?v=4">2P</div><h3>2 Pro</h3><p>Partner</p></article>
+          <article class="partner-card"><div class="partner-logo" aria-label="https://github.com/Cra-Z-Gaming/VUS/raw/refs/heads/main/logo">VUS</div><h3>VUS</h3><p>Partner</p></article>
+          <article class="partner-card"><div class="partner-logo" aria-label="?">BS</div><h3>Best Sparks</h3><p>Partner</p></article>
+        </div>
+      </div>
+    </section>
     <section class="leaderboard-panel" id="leaderboard-panel" aria-label="Leaderboard" aria-hidden="true">
       <div class="leaderboard-inner">
         <header class="leaderboard-head"><div><h2>Leaderboard</h2><p>Time Champions</p></div><button class="leaderboard-close" id="leaderboard-close" type="button">Home</button></header>
@@ -450,7 +476,7 @@
       </div>
     </section>
     <section class="game-player" id="game-player" aria-label="Game tabs" aria-hidden="true">
-      <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><strong>Game controls</strong><span class="game-controls-game" id="game-controls-game">No game selected</span><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
+      <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><div class="game-controls-drag" id="game-controls-drag"><button class="game-control-back" id="game-control-back" type="button" aria-label="Back to home" title="Back to home"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h11"/></svg></button><strong class="game-controls-game" id="game-controls-game">No game selected</strong></div><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
       <div class="game-tab-strip" id="game-tab-strip" role="tablist" aria-label="Open games"></div>
       <div class="game-frames" id="game-frames"><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p></div></div></div>
     </section>
@@ -465,12 +491,52 @@
       <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
       <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio><div class="music-extra-controls"><button class="music-control" id="music-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="music-control" id="music-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button><button class="music-control" id="music-shuffle" type="button" aria-label="Toggle shuffle" title="Toggle shuffle" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M4 4l5 5m4 4 8 8"/></svg></button><button class="music-control" id="music-repeat" type="button" aria-label="Toggle repeat" title="Toggle repeat" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></button><button class="music-control" id="music-save-track" type="button" aria-label="Save current track to playlist" title="Save current track to playlist"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span id="music-save-label">Save</span></button><label aria-label="Volume"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg><input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div></div>
     </section>
-    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><strong>Kitsune AI</strong><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message">Hi! Ask me something.</div></div><div class="ai-key-note">Messages and attached images are sent to Gemini. This page also contains its API key.</div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
+    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><div class="ai-brand"><span class="ai-brand-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4.5 10 7l2-3 2 3 6-2.5-1 7.2a7 7 0 0 1-14 0L4 4.5Z"/><path d="M8.5 11h.01M15.5 11h.01M9.5 15c1.5 1 3.5 1 5 0M12 7v2"/></svg></span><span class="ai-brand-copy"><strong>Kitsune AI</strong><small>Your friendly assistant</small></span></div><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message" id="ai-welcome-message">Hi there! How are you today? What should we get started with?</div><div class="ai-welcome-prompts" id="ai-welcome-prompts"><button type="button">Help me brainstorm ideas</button><button type="button">Explain a tricky topic</button><button type="button">Help me plan my day</button></div></div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
     <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span></div><p>Go ad-free on Kitsune, StudyHub and tungtung, and unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
     const homeTagline = document.querySelector('#home-tagline');
-    const homeTaglines = ['Touch grass? In this economy?', 'One more tab won’t hurt.', 'Your side quest starts here.', 'Loading motivation… please wait.', 'The vibes are buffering.', 'Productivity, but make it cozy.', 'You came. You clicked. You forgot why.', 'A tiny break? Technically research.'];
+    const homeTaglines = [
+      'Touch grass? In this economy?',
+      'One more tab won’t hurt.',
+      'Its no Nut November',
+      'the cake was a lie',
+      'Ima take a nap lmk',
+      'pls if you see this god loves you',
+      'You came. You clicked. You forgot why.',
+      'A tiny break? Technically research.',
+      'Thanks for stopping by. You make this place brighter.',
+      'A little thank-you to everyone making today better.',
+      'Good things take time. Great playlists help.',
+      'You deserve a break that feels like a deep breath.',
+      'Small steps still count as progress.',
+      'Be kind to yourself. You are doing your best.',
+      'Your next favorite song is one click away.',
+      'May your games be fun and your tabs be manageable.',
+      'Take a moment. You have earned it.',
+      'Here is your reminder: you are doing great.',
+      'Today is a good day for a fresh start.',
+      'Thanks for being part of the adventure.',
+      'A cozy corner of the internet, just for you.',
+      'Keep going. Your future self is cheering for you.',
+      'Make room for fun. It matters too.',
+      'You bring the good vibes. We brought the games.',
+      'Pause, breathe, and pick your next little adventure.',
+      'Friendly reminder: progress is not always a straight line.',
+      'The best side quests come with good music.',
+      'You are someone’s reason to smile. Pass it on.',
+      'Thanks for making this little corner feel like ours.',
+      'Take what you need: a song, a game, or a fresh start.',
+      'Less pressure. More play. You have got this.',
+      'Every expert was once figuring it out, too.',
+      'Let the playlist carry you for a while.',
+      'A tiny win is still a win. Celebrate it.',
+      'You made it here. That is a pretty good start.',
+      'Be the reason someone feels welcome today.',
+      'Your pace is the right pace for you.',
+      'Thanks for showing up. That counts for a lot.',
+      'Good luck out there, and have fun in here.'
+    ];
     let taglineIndex = 0;
     setInterval(() => {
       taglineIndex = (taglineIndex + 1) % homeTaglines.length;
@@ -679,7 +745,7 @@
     const settingsPanel = document.querySelector('#settings-panel');
     const settingsStatus = document.querySelector('#settings-status');
     function closeAllPanels() {
-      document.querySelectorAll('.settings-panel, .profile-panel, .global-chat-panel, .leaderboard-panel, .toolbox-panel, .games-panel, .game-player, .music-panel, .ai-panel').forEach(panel => {
+      document.querySelectorAll('.settings-panel, .profile-panel, .global-chat-panel, .partners-panel, .leaderboard-panel, .toolbox-panel, .games-panel, .game-player, .music-panel, .ai-panel').forEach(panel => {
         panel.classList.remove('open');
         panel.setAttribute('aria-hidden', 'true');
       });
@@ -1160,6 +1226,16 @@ ducky-clicker\tI_am_me\t609450`;
         body.append(row);
       });
     }
+    const partnersPanel = document.querySelector('#partners-panel');
+    document.querySelector('#open-partners').addEventListener('click', () => {
+      closeAllPanels();
+      partnersPanel.classList.add('open');
+      partnersPanel.setAttribute('aria-hidden', 'false');
+    });
+    document.querySelector('#partners-close').addEventListener('click', () => {
+      partnersPanel.classList.remove('open');
+      partnersPanel.setAttribute('aria-hidden', 'true');
+    });
     const leaderboardPanel = document.querySelector('#leaderboard-panel');
     document.querySelector('#open-leaderboard').addEventListener('click', () => {
       closeAllPanels();
@@ -1309,8 +1385,10 @@ ducky-clicker\tI_am_me\t609450`;
       tab.loadingStage = 'Checking for a saved game copy…';
       tab.loadTimer = setTimeout(() => {
         if (!tab.loading) return;
-        tab.error = 'This game is taking longer than expected to load.';
+        tab.error = 'This game is taking longer than expected. Opening it in about:blank…';
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
+        launchGameInBlank(tab.game, tab.fallbackWindow, true);
+        tab.fallbackWindow = null;
       }, 20000);
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       const cached = await readCachedGame(tab.game);
@@ -1371,7 +1449,7 @@ ducky-clicker\tI_am_me\t609450`;
       gameLoading.classList.toggle('error', failed);
       document.querySelector('#game-loading-title').textContent = failed ? 'Game could not load' : 'Preparing ' + tab.game.name;
       document.querySelector('#game-loading-message').textContent = failed ? tab.error : (tab.loadingStage || 'Getting things ready…');
-      document.querySelector('#game-loading-detail').textContent = failed ? 'Use Controls to reload or launch this game in about:blank.' : 'Your game is being prepared. This may take a moment.';
+      document.querySelector('#game-loading-detail').textContent = failed ? 'Opening it in about:blank automatically. Use Controls to retry or launch it there.' : 'Your game is being prepared. This may take a moment.';
       gameLoading.querySelector('.game-loading-mark').textContent = failed ? '!' : '狐';
     }
     const gameTabStrip = document.querySelector('#game-tab-strip');
@@ -1398,6 +1476,8 @@ ducky-clicker\tI_am_me\t609450`;
           if (event.target === close) {
             event.stopPropagation();
             const index = openGameTabs.indexOf(tab);
+            clearTimeout(tab.loadTimer);
+            if (tab.fallbackWindow && !tab.fallbackWindow.closed) tab.fallbackWindow.close();
             tab.frame.remove();
             openGameTabs.splice(index, 1);
             if (activeGameTab === tab) activeGameTab = openGameTabs[Math.max(0, index - 1)] || openGameTabs[0] || null;
@@ -1420,7 +1500,7 @@ ducky-clicker\tI_am_me\t609450`;
       openGameTabs.forEach(item => { item.frame.hidden = item !== tab; });
       updateGameLoading(tab);
       document.querySelector('#game-player-title').textContent = tab.game.name;
-      document.querySelector('#game-controls-game').textContent = 'Now playing: ' + tab.game.name;
+      document.querySelector('#game-controls-game').textContent = tab.game.name;
       gamePlayer.classList.add('open');
       gamePlayer.setAttribute('aria-hidden', 'false');
       renderGameTabs();
@@ -1433,6 +1513,15 @@ ducky-clicker\tI_am_me\t609450`;
         activateGameTab(existing);
         return;
       }
+      let fallbackWindow = null;
+      try {
+        fallbackWindow = window.open('about:blank', '_blank');
+        if (fallbackWindow) {
+          fallbackWindow.document.open();
+          fallbackWindow.document.write('<!doctype html><title>Game loading…</title><body style="margin:0;padding:24px;background:#08080b;color:#eee;font:15px system-ui">Keeping an about:blank fallback ready while your game loads…</body>');
+          fallbackWindow.document.close();
+        }
+      } catch (error) { fallbackWindow = null; }
       const frame = document.createElement('iframe');
       frame.className = 'game-frame';
       frame.title = game.name;
@@ -1440,22 +1529,29 @@ ducky-clicker\tI_am_me\t609450`;
       frame.setAttribute('allow', 'autoplay; fullscreen; gamepad');
       gameFrames.querySelector('.game-player-empty')?.remove();
       gameFrames.append(frame);
-      const tab = { game, frame, loading: true, error: '' };
+      const tab = { game, frame, loading: true, error: '', fallbackWindow };
       frame.addEventListener('load', () => {
         if (!tab.documentAssigned) return;
         clearTimeout(tab.loadTimer);
         tab.loading = false;
         tab.error = '';
         tab.directFallback = false;
+        if (tab.fallbackWindow && !tab.fallbackWindow.closed) tab.fallbackWindow.close();
+        tab.fallbackWindow = null;
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       });
       openGameTabs.push(tab);
       activateGameTab(tab);
       loadGameIntoFrame(tab);
     }
-    function launchGameInBlank(game) {
-      const gameTab = window.open('about:blank', '_blank');
-      if (!gameTab) return;
+    function launchGameInBlank(game, reservedWindow = null, direct = false) {
+      const gameTab = reservedWindow || window.open('about:blank', '_blank');
+      if (!gameTab || gameTab.closed) return;
+      if (direct) {
+        try { gameTab.location.replace(gameUrl(game, gameSourceBases(game)[0])); }
+        catch (error) { gameTab.location.href = gameUrl(game, gameSourceBases(game)[0]); }
+        return;
+      }
       gameTab.document.open();
       gameTab.document.write('<!doctype html><title>Loading game…</title><p style="font:16px system-ui;color:#ddd;background:#08080b;padding:24px">Loading game source…</p>');
       gameTab.document.close();
@@ -1494,6 +1590,27 @@ ducky-clicker\tI_am_me\t609450`;
       gameControlsPanel.classList.remove('open');
       gameControlsToggle.setAttribute('aria-expanded', 'false');
     }
+    document.querySelector('#game-control-back').addEventListener('click', () => document.querySelector('#game-player-home').click());
+    const gameControlsDrag = document.querySelector('#game-controls-drag');
+    let controlsDrag = null;
+    gameControlsDrag.addEventListener('pointerdown', event => {
+      if (event.target.closest('button')) return;
+      const rect = gameControlsPanel.getBoundingClientRect();
+      controlsDrag = { x: event.clientX, y: event.clientY, left: rect.left, top: rect.top };
+      gameControlsPanel.style.left = rect.left + 'px';
+      gameControlsPanel.style.top = rect.top + 'px';
+      gameControlsPanel.style.right = 'auto';
+      gameControlsDrag.setPointerCapture(event.pointerId);
+    });
+    gameControlsDrag.addEventListener('pointermove', event => {
+      if (!controlsDrag) return;
+      const left = Math.max(8, Math.min(window.innerWidth - gameControlsPanel.offsetWidth - 8, controlsDrag.left + event.clientX - controlsDrag.x));
+      const top = Math.max(8, Math.min(window.innerHeight - gameControlsPanel.offsetHeight - 8, controlsDrag.top + event.clientY - controlsDrag.y));
+      gameControlsPanel.style.left = left + 'px';
+      gameControlsPanel.style.top = top + 'px';
+    });
+    gameControlsDrag.addEventListener('pointerup', () => { controlsDrag = null; });
+    gameControlsDrag.addEventListener('pointercancel', () => { controlsDrag = null; });
     gameControlsToggle.addEventListener('click', () => {
       const open = !gameControlsPanel.classList.contains('open');
       gameControlsPanel.classList.toggle('open', open);
@@ -1955,13 +2072,16 @@ ducky-clicker\tI_am_me\t609450`;
       renderAiAttachments();
     });
     function getAiWelcome() {
-      const hour = new Date().getHours();
-      if (hour < 12) return 'Good morning! ☀️ Ready to get started? Tell me what you’re working on, and we’ll tackle it together.';
-      if (hour < 18) return 'Good afternoon! 🌤️ What would you like to work on? I’m here to help you get started.';
-      if (hour < 22) return 'Good evening! 🌙 Ready to make some progress? Tell me what’s on your mind.';
-      return 'Working late? 🌙 I’m here with you. What would you like to work on?';
+      const name = currentProfileName();
+      return (name ? 'Hi, ' + name + '!' : 'Hi there!') + ' How are you today? What should we get started with?';
     }
-    aiMessages.querySelector('.ai-message').textContent = getAiWelcome();
+    document.querySelector('#ai-welcome-message').textContent = getAiWelcome();
+    document.querySelector('#ai-welcome-prompts').addEventListener('click', event => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      aiInput.value = button.textContent;
+      aiInput.focus();
+    });
     const _KD = [38, 60, 3, 50, 23, 83, 59, 99, 1, 45, 64, 78, 2, 13, 89, 45, 108, 77, 31, 42, 102, 56, 2, 30, 7, 73, 67, 14, 52, 74, 54, 64, 42, 59, 92, 86, 4, 33, 91, 27, 3, 27, 90, 85, 5, 15, 88, 91, 22, 7, 6, 26, 90];
     const _KM = 'gm-suki-7';
     function getPastedGeminiKey() {
