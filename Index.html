@@ -390,6 +390,7 @@
     .kc-profile-button .kc-avatar{position:relative;overflow:visible}
     .kc-profile-button .kc-avatar img{position:relative;z-index:1;border-radius:50%}
     @media(max-width:480px){.profile-shop-grid{grid-template-columns:1fr 1fr}.profile-panel{padding:10px}.profile-panel .profile-card{padding:16px}}
+    .kc-avatar{position:relative;overflow:hidden}.kc-avatar img{position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;object-fit:cover}
   </style>
 </head>
 <body>
@@ -1142,6 +1143,7 @@
           localStorage.setItem('violet-community-v1', JSON.stringify(chatState));
         } catch (error) { /* The Kitsune profile image remains saved even if chat storage is full. */ }
         updateSidebarProfile();
+        window.dispatchEvent(new Event('kitsune-profile-updated'));
         status.textContent = label + ' saved on this device.';
       } catch (error) {
         status.textContent = error.message || 'Could not save that image. Try a smaller file.';
@@ -2343,9 +2345,21 @@ ducky-clicker\tI_am_me\t609450`;
         const name = currentName();
         byId('profile-name').textContent = name;
         const avatar = byId('avatar');
-        avatar.textContent = state.profile.avatar ? '' : name.slice(0, 1).toUpperCase();
-        avatar.style.backgroundImage = state.profile.avatar ? `url("${state.profile.avatar}")` : '';
+        let imageUrl = state.profile.avatar || '';
+        try { imageUrl = localStorage.getItem('kitsune-profile-avatar') || imageUrl; } catch {}
+        state.profile.avatar = imageUrl;
+        avatar.replaceChildren();
+        if (imageUrl) {
+          const image = document.createElement('img');
+          image.src = imageUrl;
+          image.alt = name + ' profile picture';
+          avatar.append(image);
+        } else avatar.textContent = name.slice(0, 1).toUpperCase();
       }
+      window.addEventListener('kitsune-profile-updated', () => {
+        renderProfile();
+        renderMessages();
+      });
       function key(name) { return 'violet-' + name; }
       function renderChannels() {
         const holder = byId('channels');
@@ -2379,8 +2393,13 @@ ducky-clicker\tI_am_me\t609450`;
         avatar.className = 'kc-avatar kc-message-avatar';
         const own = message.userId === state.userId;
         const name = message.name || 'Community member';
-        avatar.textContent = own && state.profile.avatar ? '' : name.slice(0, 1).toUpperCase();
-        if (own && state.profile.avatar) avatar.style.backgroundImage = `url("${state.profile.avatar}")`;
+        const ownAvatar = own ? (state.profile.avatar || (() => { try { return localStorage.getItem('kitsune-profile-avatar') || ''; } catch { return ''; } })()) : '';
+        if (ownAvatar) {
+          const image = document.createElement('img');
+          image.src = ownAvatar;
+          image.alt = name + ' profile picture';
+          avatar.append(image);
+        } else avatar.textContent = name.slice(0, 1).toUpperCase();
         const body = document.createElement('div'); body.className = 'kc-message-body';
         const head = document.createElement('div'); head.className = 'kc-message-head';
         const author = document.createElement('strong'); author.textContent = name;
