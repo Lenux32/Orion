@@ -1371,8 +1371,7 @@ ducky-clicker\tI_am_me\t609450`;
     function gameUrl(game, base) { return base + game.file.split('/').map(encodeURIComponent).join('/'); }
     function gameSourceBases(game) {
       if (game.base) return [game.base];
-      const primary = CRA_GAMES.has(game.file) ? CRA_BASE : COOL_BASE;
-      return [primary, primary === CRA_BASE ? COOL_BASE : CRA_BASE];
+      return [COOL_BASE, CRA_BASE];
     }
     let gameCacheDbPromise;
     function openGameCache() {
@@ -1428,7 +1427,7 @@ ducky-clicker\tI_am_me\t609450`;
         if (!tab.loading) return;
         tab.error = 'This game is taking longer than expected. Opening it in about:blank…';
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
-        launchGameInBlank(tab.game, tab.fallbackWindow, true);
+        launchGameInBlank(tab.game, tab.fallbackWindow);
         tab.fallbackWindow = null;
       }, 20000);
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
