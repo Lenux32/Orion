@@ -161,7 +161,7 @@
     .search>span{color:#ffb35c}
     .tile:hover{border-color:rgba(255,164,91,.38)}
     .particle{background:rgba(255,192,106,var(--opacity,.6));box-shadow:0 0 10px rgba(255,117,54,.62)}
-    .global-chat-panel{position:absolute;z-index:12;inset:0;display:none;place-items:center;padding:18px;background:rgba(5,5,8,.45);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}.global-chat-panel.open{display:grid}.global-chat-card{display:flex;flex-direction:column;width:min(680px,100%);height:min(720px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.14);border-radius:18px;background:rgba(15,13,14,.78);box-shadow:0 24px 80px #0008}.global-chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #ffffff14}.global-chat-head h2{margin:0;font-size:22px}.global-chat-head p{margin:3px 0 0;color:#aaa8b3;font-size:13px}.global-chat-close,.global-chat-compose button{padding:9px 13px;border:1px solid #ffffff24;border-radius:9px;color:#fff;background:#ffffff0c;cursor:pointer}.global-chat-notice{margin:12px 16px 0;padding:10px 12px;border:1px solid #ffffff12;border-radius:10px;color:#c2bbc1;background:#ffffff08;font-size:12px}.global-chat-messages{flex:1;overflow:auto;padding:14px 16px}.global-chat-message{margin:0 0 10px;padding:9px 11px;border-radius:10px;background:#ffffff0b;overflow-wrap:anywhere}.global-chat-message strong{margin-right:8px;color:#ffbd78}.global-chat-message time{float:right;color:#888;font-size:11px}.global-chat-compose{display:flex;gap:9px;padding:12px;border-top:1px solid #ffffff14}.global-chat-compose input{flex:1;min-width:0;padding:11px 12px;border:1px solid #ffffff20;border-radius:10px;color:#fff;background:#0008;font:inherit}.global-chat-compose button{border-color:#ffad6544;background:#ffad6518;font-weight:700}.profile-panel .settings-label{margin:18px 0;color:#dedde4;text-align:left}#profile-name-wrap[hidden],.profile-actions [hidden]{display:none}
+    .global-chat-panel{position:absolute;z-index:30;inset:0;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}.global-chat-panel.open{display:grid}.global-chat-card{display:flex;flex-direction:column;width:min(680px,100%);height:min(720px,100%);overflow:hidden;border:1px solid rgba(255,255,255,.18);border-radius:18px;background:#100e15;box-shadow:0 24px 80px #0008}.global-chat-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;border-bottom:1px solid #ffffff14}.global-chat-head h2{margin:0;font-size:22px}.global-chat-head p{margin:3px 0 0;color:#aaa8b3;font-size:13px}.global-chat-close,.global-chat-compose button{padding:9px 13px;border:1px solid #ffffff24;border-radius:9px;color:#fff;background:#ffffff0c;cursor:pointer}.global-chat-notice{margin:12px 16px 0;padding:10px 12px;border:1px solid #ffffff12;border-radius:10px;color:#c2bbc1;background:#ffffff08;font-size:12px}.global-chat-messages{flex:1;overflow:auto;padding:14px 16px}.global-chat-message{margin:0 0 10px;padding:9px 11px;border-radius:10px;background:#ffffff0b;overflow-wrap:anywhere}.global-chat-message strong{margin-right:8px;color:#ffbd78}.global-chat-message time{float:right;color:#888;font-size:11px}.global-chat-compose{display:flex;gap:9px;padding:12px;border-top:1px solid #ffffff14}.global-chat-compose input{flex:1;min-width:0;padding:11px 12px;border:1px solid #ffffff20;border-radius:10px;color:#fff;background:#0008;font:inherit}.global-chat-compose button{border-color:#ffad6544;background:#ffad6518;font-weight:700}.profile-panel .settings-label{margin:18px 0;color:#dedde4;text-align:left}#profile-name-wrap[hidden],.profile-actions [hidden]{display:none}
     @media(max-width:650px){.global-chat-panel{padding:10px}.global-chat-card{height:100%;max-height:720px}.global-chat-compose{padding:9px}}
     /* Image-first game cards: reveal the title and play cue over artwork. */
     .game-card{position:relative;aspect-ratio:1.5;min-height:100px;padding:0;overflow:hidden;border:0;border-radius:13px;background:transparent;text-align:left;cursor:pointer}
@@ -255,7 +255,7 @@
     .side-avatar img{width:100%;height:100%;object-fit:cover}.side-profile-copy{min-width:0}.side-profile-copy strong,.side-profile-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.side-profile-copy strong{font-size:13px}.side-profile-copy small{margin-top:2px;color:#aaa2b6;font-size:11px}
     .side-section-title{margin:2px 4px 4px;color:#9991a8;font-size:10px;font-weight:750;letter-spacing:.12em;text-transform:uppercase}
     .side-apps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:7px}.side-app{display:flex;min-width:0;flex-direction:column;align-items:center;gap:5px;padding:9px 3px;border:1px solid transparent;border-radius:12px;color:#e9e2f1;background:rgba(255,255,255,.035);font:inherit;font-size:10px;cursor:pointer;transition:background .18s,border-color .18s,transform .18s}.side-app:hover{transform:translateY(-2px);border-color:#d8bbff55;background:#c9a7ff18}    .side-app-icon{display:grid;width:31px;height:31px;place-items:center;border:1px solid #ffffff16;border-radius:10px;background:linear-gradient(145deg,#ffffff16,#ffffff04);font-size:17px}.side-app-icon svg{width:19px;height:19px;fill:none;stroke:#e4d5ff;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.side-games{display:grid;gap:7px}.side-game{display:flex;align-items:center;gap:9px;width:100%;padding:5px;border:1px solid transparent;border-radius:12px;color:#f3eef9;background:transparent;text-align:left;cursor:pointer}.side-game:hover{border-color:#ffffff1c;background:#ffffff0b}.side-game img{width:48px;height:36px;flex:0 0 48px;object-fit:cover;border:1px solid #ffffff1b;border-radius:9px;background:#19151e}.side-game span{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-size:11px;font-weight:650}.side-library{width:100%;padding:8px;border:1px solid rgba(221,197,255,.18);border-radius:10px;color:#e6d8ff;background:rgba(184,145,255,.09);font:inherit;font-size:11px;cursor:pointer}.side-library:hover{background:rgba(184,145,255,.17)}
-    .profile-avatar-field{display:none}.profile-panel.signed-in .profile-avatar-field{display:block}.profile-avatar-field input{width:100%;padding:8px;border:1px solid #36363f;border-radius:9px;color:#cfc6db;background:#08080a;font:inherit;font-size:12px}.profile-avatar-note{margin:5px 0 0!important;color:#85838e!important;font-size:11px!important}
+    .profile-avatar-field{display:block}.profile-avatar-field input{display:block;width:100%;padding:8px;border:1px solid #59515f;border-radius:9px;color:#f3eef9;background:#08080a;font:inherit;font-size:12px;cursor:pointer}.profile-avatar-note{margin:5px 0 0!important;color:#aaa2b6!important;font-size:11px!important}.profile-banner-preview{height:96px;margin:-18px -18px 22px;border-radius:16px 16px 0 0;background:linear-gradient(120deg,#39254f,#17131f 65%,#3d2434) center/cover no-repeat;border-bottom:1px solid #ffffff18}.profile-panel .profile-card{padding-top:18px}.profile-panel .profile-lock{margin-top:0}.profile-avatar-field:focus-within input{border-color:#c5a5ff;outline:2px solid #c5a5ff;outline-offset:2px}
     @media(min-width:701px){.home{left:calc(50% + 108px);width:min(660px,calc(100% - 270px))}}
     @media(max-width:700px){.side-rail{inset:8px 8px auto;width:auto;max-height:112px;flex-direction:row;align-items:center;gap:8px;padding:7px;border-radius:15px;overflow-x:auto;overflow-y:hidden}.side-profile{width:155px;flex:0 0 155px;padding:5px}.side-avatar{width:36px;height:36px;flex-basis:36px}.side-section-title{display:none}.side-apps{display:flex;flex:0 0 auto;gap:5px}.side-app{min-width:48px;padding:5px 4px;font-size:9px}.side-app-icon{width:28px;height:28px}.side-games{display:flex;flex:0 0 auto;gap:5px}.side-game{width:116px;flex:0 0 116px;gap:6px;padding:4px}.side-game img{width:40px;height:32px;flex-basis:40px}.side-game span{font-size:10px}.side-library{width:auto;flex:0 0 auto;white-space:nowrap}.home{top:30%;left:50%;width:min(660px,calc(100% - 24px))}}
     @media(max-width:420px){.side-rail{max-height:96px}.side-profile{width:132px;flex-basis:132px}.side-avatar{width:32px;height:32px;flex-basis:32px}.side-game{width:95px;flex-basis:95px}.side-game img{width:34px;height:29px;flex-basis:34px}.home{top:28%}}
@@ -359,6 +359,37 @@
     .kc-app{--kc-line:rgba(223,207,255,.1);display:grid;grid-template-columns:226px minmax(0,1fr) 205px;width:100%;height:100%;min-height:0;color:#f4effa;background:radial-gradient(ellipse at 55% -20%,#8d62c71c,transparent 48%),#100e15;font:13px/1.45 Inter,ui-sans-serif,system-ui,sans-serif}.kc-app button,.kc-app input{font:inherit}.kc-sidebar{display:flex;min-width:0;flex-direction:column;padding:15px 11px 11px;border-right:1px solid var(--kc-line);background:rgba(16,14,21,.83)}.kc-sidebar-head{display:flex;align-items:center;gap:10px;padding:2px 5px 17px;border-bottom:1px solid var(--kc-line)}.kc-mark{display:grid;width:34px;height:34px;flex:none;place-items:center;border:1px solid #c5a5ff40;border-radius:11px;color:#eadbff;background:linear-gradient(145deg,#bd91ff42,#8254db22)}.kc-mark svg{width:21px;height:21px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.kc-sidebar-head div{min-width:0;flex:1}.kc-sidebar-head strong,.kc-sidebar-head small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kc-sidebar-head strong{font-size:13px}.kc-sidebar-head small{margin-top:2px;color:#90899b;font-size:10px}.kc-sidebar-head>button{width:28px;height:28px;border:0;border-radius:8px;color:#a69caf;background:transparent;font-size:20px;cursor:pointer}.kc-sidebar-head>button:hover{color:white;background:#ffffff10}.kc-section-title{display:flex;align-items:center;justify-content:space-between;padding:20px 7px 8px;color:#9c94a8;font-size:9px;font-weight:800;letter-spacing:.13em}.kc-section-title button{width:23px;height:23px;border:1px solid var(--kc-line);border-radius:7px;color:#c4b4d6;background:#ffffff07;cursor:pointer}.kc-channels{display:grid;gap:4px;overflow:auto}.kc-channel{display:flex;align-items:center;gap:9px;width:100%;min-height:37px;padding:0 10px;border:1px solid transparent;border-radius:9px;color:#aaa3b5;background:transparent;text-align:left;cursor:pointer;transition:background .18s,color .18s,border-color .18s}.kc-channel:hover{color:#f6f0ff;background:#ffffff08}.kc-channel.active{border-color:#b790ff20;color:#f1e5ff;background:linear-gradient(90deg,#a879f828,#a879f808)}.kc-channel.active::before{position:absolute;left:11px;width:3px;height:18px;border-radius:0 4px 4px 0;background:#bd91ff;content:"";transform:translateX(-11px)}.kc-channel .kc-hash{width:14px;color:#81788e;font-size:17px}.kc-channel.active .kc-hash{color:#c9aaff}.kc-channel-label{min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kc-lock{width:14px;height:14px;flex:none;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;color:#ae9ebf}.kc-profile-button{display:flex;align-items:center;gap:9px;width:100%;margin-top:auto;padding:9px;border:1px solid var(--kc-line);border-radius:12px;color:#f5effb;background:linear-gradient(135deg,#211b2b,#17141d);text-align:left;cursor:pointer}.kc-avatar{display:grid;width:34px;height:34px;flex:none;place-items:center;overflow:hidden;border:1px solid #d3baff55;border-radius:50%;color:#fff;background:linear-gradient(145deg,#ad83ed,#6241a5);font-weight:750}.kc-profile-button>span:nth-child(2){min-width:0;flex:1}.kc-profile-button strong,.kc-profile-button small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kc-profile-button strong{font-size:11px}.kc-profile-button small{margin-top:2px;color:#938a9e;font-size:9px}.kc-profile-edit{color:#a99cb7;font-size:12px}.kc-main{display:flex;min-width:0;min-height:0;flex-direction:column;background:#100e15}.kc-toolbar{display:flex;align-items:center;gap:12px;min-height:62px;padding:9px 17px;border-bottom:1px solid var(--kc-line);background:#100e15c9}.kc-channel-heading{display:flex;align-items:center;gap:9px;min-width:0;flex:1}.kc-channel-heading>div{min-width:0}.kc-channel-heading strong,.kc-channel-heading small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.kc-channel-heading strong{font-size:14px}.kc-channel-heading small{margin-top:2px;color:#92899d;font-size:10px}.kc-hash{color:#bda1ff;font-size:19px}.kc-lock[hidden]{display:none}.kc-actions{display:flex;align-items:center;gap:7px}.kc-actions input{width:130px;height:31px;padding:0 9px;border:1px solid var(--kc-line);border-radius:8px;outline:0;color:#f4effa;background:#1b1822;font-size:11px}.kc-actions input:focus{border-color:#b18bff88}.kc-actions button{height:31px;padding:0 9px;border:1px solid var(--kc-line);border-radius:8px;color:#bbb2c5;background:#1b1822;font-size:10px;cursor:pointer}.kc-actions button:hover{color:#fff;border-color:#b18bff66}.kc-topic{display:flex;align-items:center;gap:8px;margin:12px 16px 0;padding:9px 11px;border:1px solid #bea0ff20;border-radius:9px;color:#bcb2c8;background:#a879f80c;font-size:10px}.kc-topic-dot{width:7px;height:7px;flex:none;border-radius:50%;background:#b899ff;box-shadow:0 0 10px #b899ff88}.kc-feed{min-height:0;flex:1;overflow:auto;padding:16px 18px 10px;scrollbar-color:#40364c transparent;scrollbar-width:thin}.kc-message{display:flex;gap:10px;margin:0 0 14px;animation:kc-appear .2s ease}.kc-message-avatar{width:34px;height:34px;flex:none}.kc-message-body{min-width:0;flex:1}.kc-message-head{display:flex;align-items:baseline;gap:8px;margin:1px 0 4px}.kc-message-head strong{font-size:11px}.kc-message-head time{color:#81798b;font-size:9px}.kc-message-text{margin:0;color:#d1cad8;font-size:12px;line-height:1.6;white-space:pre-wrap;overflow-wrap:anywhere}.kc-message-image{display:block;max-width:min(420px,100%);max-height:270px;margin-top:7px;border:1px solid var(--kc-line);border-radius:10px;object-fit:contain}.kc-date{display:flex;align-items:center;gap:10px;margin:4px 0 16px;color:#847a8e;font-size:9px;letter-spacing:.1em}.kc-date::before,.kc-date::after{height:1px;flex:1;background:var(--kc-line);content:""}.kc-readonly{padding:12px;border:1px solid var(--kc-line);border-radius:10px;color:#c9c0d0;background:#191620;font-size:11px;line-height:1.6}.kc-readonly strong{display:block;margin-bottom:4px;color:#ebdcff}.kc-compose{display:flex;align-items:center;gap:8px;margin:0 15px;padding:6px 7px 6px 10px;border:1px solid #393143;border-radius:12px;background:#1b1822;box-shadow:0 8px 28px #0003}.kc-compose:focus-within{border-color:#b18bff77}.kc-compose input[type=text]{min-width:0;flex:1;border:0;outline:0;color:#f5effa;background:transparent;font-size:11px}.kc-compose input::placeholder{color:#8f869a}.kc-attach{width:29px;height:29px;border:0;border-radius:8px;color:#b6a9c6;background:transparent;font-size:19px;cursor:pointer}.kc-attach:hover{color:#fff;background:#ffffff0c}.kc-image-name{max-width:95px;overflow:hidden;color:#d5bdff;font-size:9px;text-overflow:ellipsis;white-space:nowrap}.kc-send{width:33px;height:32px;border:0;border-radius:9px;color:#fff;background:linear-gradient(145deg,#b38afa,#8453d6);font-size:16px;cursor:pointer}.kc-footnote{padding:7px 17px 10px;color:#766d7e;text-align:center;font-size:9px}.kc-online{min-width:0;overflow:auto;padding:17px 12px;border-left:1px solid var(--kc-line);background:#131119}.kc-online-title{display:flex;justify-content:space-between;padding:2px 4px 12px;border-bottom:1px solid var(--kc-line);color:#bbb2c5;font-size:10px;font-weight:800;letter-spacing:.1em}.kc-online-title span{color:#84798f;font-size:9px;font-weight:500;letter-spacing:0}.kc-online-list{padding-top:12px}.kc-online-list>p{color:#857c8e;font-size:10px;line-height:1.5}.kc-online-member{display:flex;align-items:center;gap:8px;margin:0 0 12px}.kc-online-member .kc-avatar{width:28px;height:28px;font-size:10px}.kc-online-member strong{display:block;max-width:125px;overflow:hidden;font-size:10px;text-overflow:ellipsis;white-space:nowrap}.kc-online-member small{display:block;margin-top:2px;color:#81798c;font-size:9px}.kc-toast{position:absolute;z-index:3;bottom:20px;left:50%;padding:9px 13px;border:1px solid #b18bff44;border-radius:9px;color:#eee7f7;background:#241d2f;box-shadow:0 8px 28px #0008;font-size:11px;opacity:0;pointer-events:none;transform:translate(-50%,10px);transition:.2s}.kc-toast.show{opacity:1;transform:translate(-50%,0)}@keyframes kc-appear{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}@media(max-width:850px){.kc-app{grid-template-columns:185px minmax(0,1fr)}.kc-online{display:none}.kc-sidebar{padding-inline:8px}}@media(max-width:600px){.global-chat-panel{padding:0}.global-chat-card.global-chat-embed{width:100%;height:100%;border:0;border-radius:0}.chat-embed-frame{border-radius:0}.kc-app{grid-template-columns:54px minmax(0,1fr)}.kc-sidebar{align-items:center;padding:10px 5px}.kc-sidebar-head{justify-content:center;padding:0 0 12px;border:0}.kc-sidebar-head>div,.kc-sidebar-head>button,.kc-section-title,.kc-channel-label,.kc-profile-button>span:nth-child(2),.kc-profile-edit{display:none}.kc-mark{width:35px;height:35px}.kc-channels{width:100%;justify-items:center}.kc-channel{width:39px;height:39px;min-height:39px;justify-content:center;padding:0}.kc-channel.active::before{left:5px;transform:none}.kc-channel .kc-hash{width:auto}.kc-profile-button{justify-content:center;padding:4px;border:0;background:transparent}.kc-avatar{width:34px;height:34px}.kc-toolbar{gap:6px;padding:8px}.kc-channel-heading{gap:6px}.kc-channel-heading small{display:none}.kc-actions input{width:72px}.kc-actions button{padding:0 6px;font-size:9px}.kc-topic{margin:8px;padding:7px 8px;font-size:9px}.kc-feed{padding:12px 9px}.kc-compose{gap:4px;margin:0 7px;padding-left:5px}.kc-image-name{max-width:48px}.kc-footnote{font-size:8px}}
     @media(prefers-reduced-motion:reduce){.kc-message{animation:none}}
     @media(max-width:650px){.global-chat-panel{padding:0}.global-chat-card.global-chat-embed{height:100%;border-radius:0}.chat-embed-frame{border-radius:0}}
+    /* Kitsune profile cosmetics shop */
+    .profile-panel .profile-card{max-height:calc(100vh - 40px);overflow:auto}
+    .profile-shop-button{margin-top:12px;padding:9px 14px;border:1px solid #c9a5ff55;border-radius:10px;color:#f7edff;background:linear-gradient(135deg,#7350a7,#3c2b57);font:inherit;font-weight:700;cursor:pointer}
+    .profile-shop{margin-top:18px;padding-top:16px;border-top:1px solid #ffffff18;text-align:left}
+    .profile-shop[hidden]{display:none}
+    .profile-shop-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .profile-shop-head h3{margin:0;font-size:18px}
+    .profile-shop-balance{color:#f4d78a;font-size:12px}
+    .profile-shop-note{margin:7px 0 12px!important;color:#aaa2b6!important;font-size:12px}
+    .profile-shop-preview{display:flex;align-items:center;gap:14px;margin-bottom:14px;padding:12px;border:1px solid #c5a5ff36;border-radius:14px;background:#17121e}
+    .profile-shop-demo{position:relative;display:grid;width:82px;height:82px;flex:none;place-items:center;border:2px solid #d8c7ff;border-radius:50%;background:linear-gradient(145deg,#44345a,#17131f);font-size:26px;font-weight:800}
+    .profile-shop-demo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
+    .profile-shop-demo svg{position:absolute;inset:-20%;width:140%;height:140%;overflow:visible;pointer-events:none}
+    .profile-shop-copy strong,.profile-shop-copy span{display:block}.profile-shop-copy span{margin-top:4px;color:#aaa2b6;font-size:11px}
+    .profile-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+    .profile-shop-item{min-width:0;padding:10px;border:1px solid #ffffff18;border-radius:12px;background:#ffffff07}
+    .profile-shop-art{display:grid;height:62px;place-items:center;margin-bottom:6px;border-radius:9px;background:#c5a5ff0c}
+    .profile-shop-art svg{width:90px;height:58px;overflow:visible}
+    .profile-shop-item strong{display:block;font-size:12px}.profile-shop-item p{min-height:32px;margin:4px 0 8px;color:#aaa2b6;font-size:10px;line-height:1.45}
+    .profile-shop-item button{width:100%;margin-top:5px;padding:7px 6px;border:1px solid #ffffff22;border-radius:8px;color:#fff;background:#ffffff10;font:inherit;font-size:11px;cursor:pointer}
+    .profile-shop-item button.primary{border-color:transparent;background:#7955b5}.profile-shop-item button:disabled{opacity:.55;cursor:default}
+    .profile-shop-title{margin-top:9px!important;color:#e6d7ff!important;font-size:11px!important}
+    .equipped-profile-phrase{margin:7px 0 0!important;padding:6px 10px;border:1px solid #c5a5ff30;border-radius:999px;color:#f0d9ff!important;background:#c5a5ff12;font-size:12px;font-weight:700}
+    .profile-cosmetic-overlay{position:absolute;z-index:3;inset:-30%;display:grid;place-items:center;pointer-events:none}
+    .profile-cosmetic-overlay svg{width:100%;height:100%;overflow:visible}
+    .side-avatar{position:relative;overflow:visible}
+    .side-avatar img{position:relative;z-index:1;border-radius:50%}
+    .side-avatar.has-profile-cosmetic{isolation:isolate}
+    .kc-profile-button .kc-avatar{position:relative;overflow:visible}
+    .kc-profile-button .kc-avatar img{position:relative;z-index:1;border-radius:50%}
+    @media(max-width:480px){.profile-shop-grid{grid-template-columns:1fr 1fr}.profile-panel{padding:10px}.profile-panel .profile-card{padding:16px}}
   </style>
 </head>
 <body>
@@ -453,12 +484,22 @@
     </section>
     <section class="profile-panel" id="profile-panel" aria-label="Profile" aria-hidden="true">
       <div class="profile-card">
+        <div class="profile-banner-preview" id="profile-banner-preview" aria-label="Profile banner preview"></div>
         <div class="profile-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div>
         <h2 id="profile-heading">Your Profile</h2>
         <p id="profile-description">Choose a display name for this browser.</p>
+        <p class="equipped-profile-phrase" id="equipped-profile-phrase" hidden></p>
         <label class="settings-label" id="profile-name-wrap">Display name<input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name"></label>
-        <label class="settings-label profile-avatar-field">Profile picture (optional)<input id="profile-avatar-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 1 MB. It stays in this browser.</p></label>
+        <label class="settings-label profile-avatar-field">Profile picture<input id="profile-avatar-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 1 MB. It stays in this browser.</p></label>
+        <label class="settings-label profile-avatar-field">Profile banner<input id="profile-banner-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 2 MB. It stays in this browser.</p></label>
         <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
+        <button class="profile-shop-button" id="profile-shop-toggle" type="button" aria-expanded="false">✨ Open the Kitsune cosmetics shop</button>
+        <section class="profile-shop" id="profile-shop" aria-label="Kitsune cosmetics shop" hidden>
+          <div class="profile-shop-head"><h3>✨ Kitsune Shop</h3><span class="profile-shop-balance"><span id="profile-shop-coins">500</span> demo coins</span></div>
+          <p class="profile-shop-note">Preview each SVG cosmetic on your profile first, then equip it with demo coins. No real-money purchases.</p>
+          <div class="profile-shop-preview"><div class="profile-shop-demo" id="profile-shop-demo" aria-label="Live profile preview">狐</div><div class="profile-shop-copy"><strong id="profile-shop-name">Your profile preview</strong><span id="profile-shop-description">Choose an item and preview it before buying.</span><p class="profile-shop-title" id="profile-shop-title">No title equipped</p></div></div>
+          <div class="profile-shop-grid" id="profile-shop-grid"></div>
+        </section>
         <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
       </div>
     </section>
@@ -564,7 +605,7 @@
       'Its no Nut November',
       'the cake was a lie',
       'Ima take a nap lmk',
-      'pls if you see this god loves you',
+      ' if you see this god loves you',
       'You came. You clicked. You forgot why.',
       'A tiny break? Technically research.',
       'Thanks for stopping by. You make this place brighter.',
@@ -998,6 +1039,12 @@
         image.alt = '';
         avatar.append(image);
       } else avatar.textContent = name ? name.trim().slice(0, 2).toUpperCase() : '狐';
+      const banner = document.querySelector('#profile-banner-preview');
+      if (banner) {
+        let bannerUrl = '';
+        try { bannerUrl = localStorage.getItem('kitsune-profile-banner') || ''; } catch (error) { /* Keep the default banner if storage is unavailable. */ }
+        banner.style.backgroundImage = bannerUrl ? `url("${bannerUrl}")` : '';
+      }
       document.querySelector('#side-profile-name').textContent = name || 'Sign in';
       document.querySelector('#side-profile-hint').textContent = name ? 'Your local profile' : 'Set up your profile';
       document.querySelector('#side-profile').setAttribute('aria-label', name ? 'Open profile for ' + name : 'Sign in to set up your profile');
@@ -1044,31 +1091,76 @@
       updateProfileView();
       document.querySelector('#profile-status').textContent = 'Signed out on this browser.';
     });
-    document.querySelector('#profile-avatar-file').addEventListener('change', event => {
-      const file = event.target.files && event.target.files[0];
-      event.target.value = '';
+    function prepareProfileImage(file) {
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onerror = () => reject(new Error('Could not read that image file.'));
+        reader.onload = () => {
+          const image = new Image();
+          image.onerror = () => reject(new Error('Could not open that image.'));
+          image.onload = () => {
+            try {
+              const scale = Math.min(1, 900 / Math.max(image.width, image.height));
+              const canvas = document.createElement('canvas');
+              canvas.width = Math.max(1, Math.round(image.width * scale));
+              canvas.height = Math.max(1, Math.round(image.height * scale));
+              const context = canvas.getContext('2d');
+              if (!context) throw new Error('Image processing is unavailable.');
+              context.drawImage(image, 0, 0, canvas.width, canvas.height);
+              let quality = 0.78;
+              let result = canvas.toDataURL('image/jpeg', quality);
+              while (result.length > 350000 && quality > 0.35) {
+                quality -= 0.08;
+                result = canvas.toDataURL('image/jpeg', quality);
+              }
+              if (result.length > 350000) throw new Error('That image is too large. Choose a smaller image.');
+              resolve(result);
+            } catch (error) { reject(error); }
+          };
+          image.src = reader.result;
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+    async function saveProfileImage(input, key, label) {
+      const file = input.files && input.files[0];
+      input.value = '';
       if (!file) return;
-      if (!file.type.startsWith('image/') || file.size > 1024 * 1024) {
-        document.querySelector('#profile-status').textContent = 'Choose an image file up to 1 MB.';
+      const status = document.querySelector('#profile-status');
+      if (!file.type.startsWith('image/') || file.size > 8 * 1024 * 1024) {
+        status.textContent = 'Choose an image file smaller than 8 MB.';
         return;
       }
-      const reader = new FileReader();
-      reader.onload = () => {
+      status.textContent = 'Preparing image…';
+      try {
+        const image = await prepareProfileImage(file);
+        localStorage.setItem(key, image);
         try {
-          localStorage.setItem('kitsune-profile-avatar', reader.result);
-          updateSidebarProfile();
-          document.querySelector('#profile-status').textContent = 'Profile picture saved in this browser.';
-        } catch (error) {
-          document.querySelector('#profile-status').textContent = 'Could not save that profile picture in this browser.';
-        }
-      };
-      reader.onerror = () => { document.querySelector('#profile-status').textContent = 'Could not read that image file.'; };
-      reader.readAsDataURL(file);
+          const chatState = JSON.parse(localStorage.getItem('violet-community-v1') || '{}');
+          chatState.profile = Object.assign({}, chatState.profile || {});
+          chatState.profile[key === 'kitsune-profile-avatar' ? 'avatar' : 'banner'] = image;
+          localStorage.setItem('violet-community-v1', JSON.stringify(chatState));
+        } catch (error) { /* The Kitsune profile image remains saved even if chat storage is full. */ }
+        updateSidebarProfile();
+        status.textContent = label + ' saved on this device.';
+      } catch (error) {
+        status.textContent = error.message || 'Could not save that image. Try a smaller file.';
+      }
+    }
+    document.querySelector('#profile-avatar-file').addEventListener('change', event => {
+      saveProfileImage(event.currentTarget, 'kitsune-profile-avatar', 'Profile picture');
+    });
+    document.querySelector('#profile-banner-file').addEventListener('change', event => {
+      saveProfileImage(event.currentTarget, 'kitsune-profile-banner', 'Profile banner');
     });
 
     const globalChatPanel = document.querySelector('#global-chat-panel');
     document.querySelector('#open-global-chat').addEventListener('click', () => {
       closeAllPanels();
+      ['#updates-overlay', '#notifications-overlay'].forEach(selector => {
+        const overlay = document.querySelector(selector);
+        if (overlay) { overlay.hidden = true; overlay.setAttribute('aria-hidden', 'true'); }
+      });
       globalChatPanel.classList.add('open');
       globalChatPanel.setAttribute('aria-hidden', 'false');
     });
@@ -2426,6 +2518,113 @@ ducky-clicker\tI_am_me\t609450`;
         byId('input').value = ''; imageData = ''; byId('image-name').textContent = '';
       });
       renderProfile(); renderChannels(); switchChannel(active); renderOnline(); connect();
+    })();
+  </script>
+  <script>
+    (() => {
+      const catalog = [
+        { id: 'winged', name: 'Moonwing mantle', title: 'Skybound', price: 120, description: 'Silver feather wings framed around your avatar.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M58 43C37 14 18 12 9 17c10 5 14 14 14 22 12-5 23 2 31 14-16-8-27-4-34 3 17-1 28 6 37 16 4-11 7-20 10-29m-4 0c21-29 40-31 49-26-10 5-14 14-14 22-12-5-23 2-31 14 16-8 27-4 34 3-17-1-28 6-37 16-4-11-7-20-10-29" fill="none" stroke="#d9c2ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 32v38" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M48 46C31 20 14 19 7 23c9 5 11 13 10 20 11-3 20 5 27 14-14-6-22-2-28 4 14 0 22 7 29 16 7-10 10-20 15-29m12-2c17-26 34-27 41-23-9 5-11 13-10 20-11-3-20 5-27 14 14-6 22-2 28 4-14 0-22 7-29 16-7-10-10-20-15-29" fill="none" stroke="#e7d4ff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
+        { id: 'dragon', name: 'Little dragon', title: 'Wyrm-touched', price: 160, description: 'A hand-drawn dragon curls around your profile.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M24 54c3-9 0-19 10-27 10-9 24-7 32-1l-9 6 17 2-7-14 13 5c12 6 15 19 7 28-7 9-21 10-32 4l-9 12-3-15c-11 4-21 2-27 0Z" fill="#9c76dc" stroke="#f3deff" stroke-width="3" stroke-linejoin="round"/><path d="m69 30 15-15 2 17M39 48c8 4 15 3 21-2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="67" cy="36" r="2.5" fill="#fff"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M30 56c5-12 1-21 12-30 10-8 24-5 30 1l-9 5 16 3-7-13 12 5c10 6 13 18 6 26-7 8-19 8-29 3l-8 10-3-13c-9 3-16 3-20 3Z" fill="none" stroke="#d1aaff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m71 32 11-12 2 14" fill="none" stroke="#ffe3a4" stroke-width="3" stroke-linecap="round"/></svg>' },
+        { id: 'claws', name: 'Fox claw marks', title: 'Sharp look', price: 90, description: 'Three curved rose-gold slashes, drawn as SVG.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M30 14 48 65M57 9l11 57M85 16l-2 50" stroke="#ff9db2" stroke-width="10" stroke-linecap="round"/><path d="M30 14 48 65M57 9l11 57M85 16l-2 50" stroke="#fff0f4" stroke-width="2" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="m39 27 7 14m13-21 5 15m13-7-2 15" fill="none" stroke="#ff9db2" stroke-width="4" stroke-linecap="round"/></svg>' },
+        { id: 'halo', name: 'Moon ring', title: 'Moonlit', price: 110, description: 'An orbiting moon ring with tiny stars.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><ellipse cx="60" cy="42" rx="37" ry="26" fill="none" stroke="#a8d8ff" stroke-width="5"/><path d="M73 15a15 15 0 1 0 16 22A17 17 0 0 1 73 15Z" fill="#fff0b8" stroke="#fff" stroke-width="2"/><path d="m29 19 2 5 5 2-5 2-2 5-2-5-5-2 5-2Zm65 30 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#fff"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="47" rx="45" ry="35" fill="none" stroke="#a8d8ff" stroke-width="3" transform="rotate(-18 60 47)"/><path d="M84 14a11 11 0 1 0 12 17A13 13 0 0 1 84 14Z" fill="#fff0b8"/><circle cx="17" cy="38" r="2" fill="#fff"/><circle cx="31" cy="72" r="2" fill="#a8d8ff"/></svg>' },
+        { id: 'aura-dummy', name: 'Aura Dummy', title: 'Aura Dummy', price: 70, description: 'A silly, shiny profile title and halo.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><ellipse cx="60" cy="48" rx="35" ry="20" fill="none" stroke="#b8a2ff" stroke-width="5"/><circle cx="60" cy="38" r="15" fill="#34284b" stroke="#e1d3ff" stroke-width="2"/><path d="M53 37h1m12 0h1m-12 7c4 3 8 3 12 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="45" rx="43" ry="34" fill="none" stroke="#b8a2ff" stroke-width="3"/><path d="m60 7 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#e4d6ff"/></svg>' },
+        { id: 'cutie', name: 'Cutie Patootie', title: 'Cutie Patootie', price: 80, description: 'A sweet title with a hand-drawn heart ring.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><circle cx="60" cy="41" r="29" fill="none" stroke="#ff9eb5" stroke-width="5"/><path d="M60 57 41 41c-12-14 7-27 19-12 12-15 31-2 19 12Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/><path d="m23 16 2 5 5 2-5 2-2 5-2-5-5-2 5-2Zm76 38 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#fff0b8"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="46" rx="44" ry="33" fill="none" stroke="#ff9eb5" stroke-width="3"/><path d="M60 18c-8-10-21 1-12 11l12 10 12-10c9-10-4-21-12-11Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/></svg>' }
+      ];
+      const read = (key, fallback) => { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } };
+      const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Keep the shop usable for this visit if storage is full. */ } };
+      let coins = Number(read('kitsune-shop-coins', 500));
+      let owned = read('kitsune-shop-owned', []);
+      if (!Array.isArray(owned)) owned = [];
+      let equipped = read('kitsune-shop-equipped', '');
+      let preview = catalog.find(item => item.id === equipped) || catalog[0];
+      const shop = document.querySelector('#profile-shop');
+      if (!shop) return;
+      const demo = document.querySelector('#profile-shop-demo');
+      function refreshPreview(item) {
+        preview = item;
+        demo.replaceChildren();
+        const photo = (() => { try { return localStorage.getItem('kitsune-profile-avatar') || ''; } catch { return ''; } })();
+        const name = (() => { try { return localStorage.getItem('kitsune-profile-user') || ''; } catch { return ''; } })();
+        if (photo) { const image = document.createElement('img'); image.src = photo; image.alt = 'Profile picture preview'; demo.append(image); }
+        else { const initial = document.createElement('span'); initial.textContent = name ? name.trim().slice(0, 2).toUpperCase() : '狐'; demo.append(initial); }
+        demo.insertAdjacentHTML('beforeend', item.overlay);
+        document.querySelector('#profile-shop-name').textContent = item.name;
+        document.querySelector('#profile-shop-description').textContent = item.description;
+        document.querySelector('#profile-shop-title').textContent = 'Profile title: ' + item.title + (equipped === item.id ? ' · Equipped' : '');
+        document.querySelectorAll('.profile-shop-item').forEach(card => card.classList.toggle('selected', card.dataset.id === item.id));
+      }
+      function decorateAvatars() {
+        const item = catalog.find(entry => entry.id === equipped);
+        const profilePhrase = document.querySelector('#equipped-profile-phrase');
+        if (profilePhrase) {
+          profilePhrase.hidden = !item;
+          profilePhrase.textContent = item ? '✦ ' + item.title : '';
+        }
+        const profileHint = document.querySelector('#side-profile-hint');
+        if (profileHint && item) profileHint.textContent = '✦ ' + item.title;
+        const chatProfile = document.querySelector('#kc-profile-name');
+        if (chatProfile && item) chatProfile.title = item.title;
+        document.querySelectorAll('#side-avatar,#kc-avatar,.kc-profile-button .kc-avatar').forEach(avatar => {
+          const existing = avatar.querySelector('.profile-cosmetic-overlay');
+          avatar.classList.toggle('has-profile-cosmetic', Boolean(item));
+          if (!item) { existing?.remove(); return; }
+          if (existing?.dataset.cosmetic === item.id) return;
+          existing?.remove();
+          const layer = document.createElement('span');
+          layer.className = 'profile-cosmetic-overlay';
+          layer.dataset.cosmetic = item.id;
+          layer.innerHTML = item.overlay;
+          avatar.append(layer);
+        });
+      }
+      function saveShop() {
+        write('kitsune-shop-coins', coins);
+        write('kitsune-shop-owned', owned);
+        write('kitsune-shop-equipped', equipped);
+        document.querySelector('#profile-shop-coins').textContent = coins;
+        decorateAvatars();
+        refreshPreview(preview);
+      }
+      function renderShop() {
+        const grid = document.querySelector('#profile-shop-grid');
+        grid.replaceChildren();
+        document.querySelector('#profile-shop-coins').textContent = coins;
+        catalog.forEach(item => {
+          const card = document.createElement('article'); card.className = 'profile-shop-item'; card.dataset.id = item.id;
+          const art = document.createElement('div'); art.className = 'profile-shop-art'; art.innerHTML = item.art;
+          const title = document.createElement('strong'); title.textContent = item.name;
+          const description = document.createElement('p'); description.textContent = item.description;
+          const tryButton = document.createElement('button'); tryButton.type = 'button'; tryButton.textContent = 'Preview on profile'; tryButton.addEventListener('click', () => refreshPreview(item));
+          const buyButton = document.createElement('button'); buyButton.type = 'button'; buyButton.className = 'primary';
+          const isOwned = owned.includes(item.id);
+          buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : `Get · ${item.price} coins`;
+          buyButton.disabled = equipped === item.id || (!isOwned && coins < item.price);
+          buyButton.addEventListener('click', () => {
+            if (!owned.includes(item.id)) {
+              if (coins < item.price) { document.querySelector('#profile-status').textContent = 'Not enough demo coins for that cosmetic.'; return; }
+              coins -= item.price; owned.push(item.id);
+            }
+            equipped = item.id;
+            saveShop();
+            document.querySelector('#profile-status').textContent = item.name + ' is now equipped on your profile.';
+            renderShop();
+          });
+          card.append(art, title, description, tryButton, buyButton); grid.append(card);
+        });
+        refreshPreview(preview);
+      }
+      document.querySelector('#profile-shop-toggle').addEventListener('click', event => {
+        const opening = shop.hidden;
+        shop.hidden = !opening;
+        event.currentTarget.setAttribute('aria-expanded', String(opening));
+        if (opening) { renderShop(); shop.scrollIntoView({ block: 'nearest', behavior: 'smooth' }); }
+      });
+      document.querySelector('#profile-shop-toggle').insertAdjacentElement('afterend', shop);
+      const watcher = new MutationObserver(decorateAvatars);
+      ['#side-avatar', '#kc-avatar'].forEach(selector => { const avatar = document.querySelector(selector); if (avatar) watcher.observe(avatar, { childList: true }); });
+      document.querySelector('#profile-avatar-file')?.addEventListener('change', () => setTimeout(() => refreshPreview(preview), 300));
+      decorateAvatars();
+      renderShop();
     })();
   </script>
 </body>
