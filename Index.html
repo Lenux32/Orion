@@ -373,7 +373,9 @@
     .profile-shop-demo{position:relative;display:grid;width:82px;height:82px;flex:none;place-items:center;border:2px solid #d8c7ff;border-radius:50%;background:linear-gradient(145deg,#44345a,#17131f);font-size:26px;font-weight:800}
     .profile-shop-demo img{width:100%;height:100%;border-radius:50%;object-fit:cover}
     .profile-shop-demo svg{position:absolute;inset:-20%;width:140%;height:140%;overflow:visible;pointer-events:none}
-    .profile-shop-copy strong,.profile-shop-copy span{display:block}.profile-shop-copy span{margin-top:4px;color:#aaa2b6;font-size:11px}
+    .profile-shop-copy strong,.profile-shop-copy span{display:block}.profile-shop-copy span{margin-top:4px;color:#aaa2b6;font-size:11px}.profile-shop-copy .shop-preview-online{display:flex;align-items:center;gap:5px;color:#91e5a5;font-size:10px}.shop-preview-online i{width:7px;height:7px;border-radius:50%;background:#73df91;box-shadow:0 0 8px #73df9188}.shop-nameplate-preview{max-width:280px;margin-top:8px}.shop-nameplate-preview:empty{display:none}.shop-nameplate-preview svg{display:block;width:100%;height:auto;max-height:76px}.profile-shop-item.selected{border-color:#c5a5ff99;background:#c5a5ff0d}
+    .shop-nameplate-preview svg{filter:drop-shadow(0 5px 12px #0008)}
+    @media(prefers-reduced-motion:reduce){.shop-nameplate-preview svg *{animation:none!important}}
     .profile-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
     .profile-shop-item{min-width:0;padding:10px;border:1px solid #ffffff18;border-radius:12px;background:#ffffff07}
     .profile-shop-art{display:grid;height:62px;place-items:center;margin-bottom:6px;border-radius:9px;background:#c5a5ff0c}
@@ -393,6 +395,10 @@
     .kc-profile-button .kc-avatar img{position:relative;z-index:1;border-radius:50%}
     @media(max-width:480px){.profile-shop-grid{grid-template-columns:1fr 1fr}.profile-panel{padding:10px}.profile-panel .profile-card{padding:16px}}
     .kc-avatar{position:relative;overflow:hidden}.kc-avatar img{position:absolute;inset:0;width:100%;height:100%;border-radius:inherit;object-fit:cover}
+    /* Keep cosmetic rings outside the profile picture instead of covering it. */
+    .profile-cosmetic-overlay{inset:-55%;}
+    .profile-cosmetic-overlay svg{overflow:visible;}
+    .profile-shop-demo svg{inset:-38%;width:176%;height:176%;}
     /* Square, opaque shortcut rail joined to the toolbar divider. */
     .browser{background:#000;position:relative}
     .browser::after{position:absolute;top:0;bottom:0;left:78px;width:1px;background:rgba(225,207,255,.15);content:"";pointer-events:none}
@@ -519,6 +525,97 @@
     .accessibility-hint{margin-top:8px;color:#888;font-size:11px}
     #home-quicklinks.has-links{display:flex!important}
     @media(max-width:700px){.mobile-menu-button{display:grid;place-items:center}.tools{display:none!important}.mini-player{max-width:120px;flex-basis:120px}}
+    /* Refined community chat and cosmetics shop */
+    .global-chat-panel{background:rgba(3,3,7,.84)}
+    .chat-embed-frame{background:radial-gradient(ellipse at 50% 0%,rgba(150,105,220,.12),transparent 46%),#0b0a10}
+    .kc-app{--kc-line:rgba(223,207,255,.13);background:linear-gradient(135deg,rgba(25,20,34,.96),rgba(11,10,16,.98));font-size:13px}
+    .kc-sidebar{padding:18px 13px 13px;background:rgba(15,13,21,.91);backdrop-filter:blur(18px)}
+    .kc-sidebar-head{padding-bottom:18px}
+    .kc-mark{width:38px;height:38px;border-radius:13px;box-shadow:0 0 24px #b790ff20}
+    .kc-section-title{padding-top:23px;font-size:10px}
+    .kc-channels{gap:5px;padding:2px 0}
+    .kc-channel{position:relative;min-height:40px;padding-inline:12px;border-radius:11px;font-size:12px}
+    .kc-channel.active{border-color:#c4a1ff30;background:linear-gradient(90deg,#9d70e92b,#9d70e908);box-shadow:inset 0 0 18px #b790ff0a}
+    .kc-profile-button{margin-top:auto;border-color:#c5a5ff24;background:linear-gradient(135deg,#292038,#17131f);box-shadow:0 8px 24px #0003}
+    .kc-main{background:rgba(13,11,18,.68)}
+    .kc-toolbar{gap:10px;padding:13px 19px;background:rgba(17,14,23,.88);backdrop-filter:blur(14px)}
+    .kc-channel-heading strong{font-size:15px;letter-spacing:.01em}
+    .kc-actions{gap:8px;padding:7px 0 3px}
+    .kc-actions input{height:36px;padding-inline:12px;border-radius:10px;background:#100e16;font-size:12px}
+    .kc-actions button{min-height:35px!important;border-radius:10px!important;background:linear-gradient(135deg,#312540,#1b1722)!important}
+    .kc-actions #kc-clear{background:linear-gradient(135deg,#492a2b,#251719)!important}
+    .kc-topic{margin:14px 18px 0;padding:10px 13px;border-radius:11px;background:linear-gradient(90deg,#a879f816,#ffffff05);font-size:11px}
+    .kc-feed{padding:18px 20px 14px}
+    .kc-message{gap:12px;margin-bottom:18px;padding:10px 11px;border:1px solid transparent;border-radius:13px;transition:background .18s,border-color .18s}
+    .kc-message:hover{border-color:#ffffff0d;background:#ffffff05}
+    .kc-message-avatar{width:38px;height:38px;border-color:#d3baff38;box-shadow:0 3px 12px #0004}
+    .kc-message-head{gap:9px;margin:2px 0 5px}
+    .kc-message-head strong{color:#f1e7ff;font-size:12px}
+    .kc-message-head time{font-size:10px}
+    .kc-message-text{color:#ded8e6;font-size:13px;line-height:1.7}
+    .kc-message-actions button,.kc-reactions button{border-color:#ffffff18;border-radius:999px;background:#ffffff08}
+    .kc-compose{margin:4px 17px 0;padding:8px 9px 8px 12px;border-color:#ffffff20;border-radius:14px;background:rgba(28,24,36,.96);box-shadow:0 10px 32px #0005}
+    .kc-compose input[type=text]{font-size:13px}
+    .kc-attach{width:33px;height:33px;border:1px solid #ffffff12;border-radius:10px;background:#ffffff08}
+    .kc-send{width:37px;height:36px;border-radius:11px;background:linear-gradient(145deg,#c09aff,#8154d3);box-shadow:0 4px 14px #9a6de544}
+    .kc-footnote{padding:9px 14px 12px;font-size:10px}
+    .kc-online{padding:20px 14px;background:rgba(17,15,23,.86)}
+    .kc-online-title{padding-bottom:14px}
+    .kc-online-member{padding:7px;border:1px solid transparent;border-radius:10px}
+    .kc-online-member:hover{border-color:#ffffff12;background:#ffffff06}
+    .kc-toast{border-color:#c5a5ff55;border-radius:12px;background:rgba(35,27,47,.97)}
+    .profile-panel:has(.profile-shop:not([hidden])){place-items:start center;padding:18px}
+    .profile-panel:has(.profile-shop:not([hidden])) .profile-card{width:min(1040px,100%);max-height:calc(100vh - 36px);padding:20px 24px;border-color:#c5a5ff30;background:linear-gradient(145deg,rgba(24,20,31,.98),rgba(12,11,16,.98));box-shadow:0 30px 110px #000c,0 0 50px #a879f812}
+    .profile-panel:has(.profile-shop:not([hidden])) .profile-banner-preview{height:110px;margin:-20px -24px 18px}
+    .profile-shop{margin-top:16px;padding-top:18px;border-color:#ffffff20}
+    .profile-shop-head{padding:0 2px}
+    .profile-shop-head h3{font-size:21px;letter-spacing:-.02em}
+    .profile-shop-balance{padding:7px 11px;border:1px solid #f4d78a30;border-radius:999px;background:#f4d78a0b;font-weight:700}
+    .profile-shop-note{margin:8px 0 14px!important;line-height:1.55}
+    .shop-type-tabs{gap:8px;margin:14px 0}
+    .shop-type-tabs button,.shop-filter-row button,.shop-category{border-color:#ffffff18;border-radius:999px;background:#ffffff07;transition:background .18s,border-color .18s,color .18s}
+    .shop-type-tabs button{padding:8px 14px;font-weight:700}
+    .shop-type-tabs button:hover,.shop-filter-row button:hover,.shop-category:hover{border-color:#c5a5ff66;background:#c5a5ff14;color:#fff}
+    .shop-type-tabs button.active,.shop-filter-row button.active,.shop-category.active{border-color:#c5a5ff88;background:linear-gradient(135deg,#a879f833,#8154d61c);box-shadow:inset 0 0 15px #b790ff0a}
+    .shop-filter-row{gap:8px;margin:10px 0}
+    .shop-search{min-height:36px;border-radius:10px;background:#0b0a10}
+    .shop-categories{max-height:100px;gap:7px;padding:4px 1px 9px}
+    .shop-category{padding:7px 11px}
+    .profile-shop-limit{margin:6px 0 12px!important;padding:9px 12px;border:1px solid #f4d78a24;border-radius:10px;background:#f4d78a0a;line-height:1.4}
+    .profile-shop-preview{position:sticky;top:0;z-index:2;margin-bottom:16px;padding:12px 14px;border-color:#c5a5ff32;background:rgba(23,18,30,.96);box-shadow:0 8px 24px #0005;backdrop-filter:blur(14px)}
+    .profile-shop-demo{width:76px;height:76px}
+    .profile-shop-copy strong{color:#f4efff;font-size:14px}
+    .profile-shop-copy span{line-height:1.45}
+    .profile-shop-grid{grid-template-columns:repeat(auto-fill,minmax(205px,1fr));gap:12px}
+    .profile-shop-item{display:flex;min-height:212px;flex-direction:column;padding:12px;border-color:#ffffff14;border-radius:14px;background:linear-gradient(145deg,#ffffff09,#ffffff03);transition:transform .18s,border-color .18s,background .18s,box-shadow .18s}
+    .profile-shop-item:hover,.profile-shop-item.selected{border-color:#c5a5ff66;background:linear-gradient(145deg,#c5a5ff12,#ffffff04);box-shadow:0 10px 24px #0003;transform:translateY(-2px)}
+    .profile-shop-art{height:88px;flex:none;border:1px solid #ffffff0d;border-radius:11px;background:radial-gradient(ellipse,#b790ff14,transparent 70%),#ffffff04}
+    .profile-shop-art svg{width:112px;height:74px}
+    .profile-shop-item strong{margin-top:3px;color:#f4efff;font-size:13px}
+    .profile-shop-item p{min-height:34px;margin:5px 0 10px;color:#aaa2b6;font-size:11px;line-height:1.5}
+    .profile-shop-item button{margin-top:auto;padding:8px 9px;border-color:#ffffff1c;border-radius:9px;background:#ffffff0a;font-weight:650}
+    .profile-shop-item button.primary{border-color:#c5a5ff33;background:linear-gradient(135deg,#9b70d5,#6947a2)}
+    .profile-shop-item button:disabled{filter:saturate(.55)}
+    .shop-nameplate-preview{max-width:360px}
+    .shop-nameplate-preview svg{max-height:88px}
+    @media(max-width:700px){
+      .profile-panel:has(.profile-shop:not([hidden])){padding:8px}
+      .profile-panel:has(.profile-shop:not([hidden])) .profile-card{max-height:calc(100vh - 16px);padding:15px}
+      .profile-panel:has(.profile-shop:not([hidden])) .profile-banner-preview{margin:-15px -15px 16px}
+      .profile-shop-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .profile-shop-item{min-height:205px;padding:9px}
+      .profile-shop-preview{top:0;gap:10px;padding:9px}
+      .profile-shop-demo{width:62px;height:62px}
+      .shop-nameplate-preview{max-width:210px}
+      .kc-toolbar{padding:9px}
+      .kc-feed{padding:12px 8px}
+      .kc-message{gap:8px;padding:8px 5px}
+      .kc-message-avatar{width:32px;height:32px}
+      .kc-topic{margin:8px 9px 0}
+      .kc-compose{margin-inline:8px}
+    }
+    @media(max-width:390px){.profile-shop-grid{grid-template-columns:1fr}.profile-shop-item{min-height:0}.profile-shop-item p{min-height:0}}
+    @media(prefers-reduced-motion:reduce){.kc-message,.kc-channel,.shop-type-tabs button,.shop-filter-row button,.shop-category,.profile-shop-item{transition:none}}
   </style>
 </head>
 <body>
@@ -631,7 +728,7 @@
           <div class="shop-filter-row"><button class="active" id="shop-show-all" type="button">All</button><button id="shop-show-owned" type="button">Owned</button><input class="shop-search" id="shop-search" type="search" placeholder="Search the shop" aria-label="Search the shop"></div>
           <div class="shop-categories" id="shop-categories" aria-label="Shop categories"></div>
           <p class="profile-shop-limit" id="profile-shop-limit" role="status" aria-live="polite"></p>
-          <div class="profile-shop-preview"><div class="profile-shop-demo" id="profile-shop-demo" aria-label="Live profile preview">狐</div><div class="profile-shop-copy"><strong id="profile-shop-name">Your profile preview</strong><span id="profile-shop-description">Choose an item and preview it before buying.</span><p class="profile-shop-title" id="profile-shop-title">No title equipped</p></div></div>
+          <div class="profile-shop-preview"><div class="profile-shop-demo" id="profile-shop-demo" aria-label="Live profile preview">狐</div><div class="profile-shop-copy"><strong id="profile-shop-name">stark_1</strong><span class="shop-preview-online"><i></i>Online</span><span id="profile-shop-description">Choose an item and preview it before buying.</span><p class="profile-shop-title" id="profile-shop-title">No title equipped</p><div class="shop-nameplate-preview" id="shop-nameplate-preview" aria-label="Nameplate preview"></div></div></div>
           <div class="profile-shop-grid" id="profile-shop-grid"></div>
         </section>
         <p class="profile-status" id="profile-status" role="status" aria-live="polite"></p>
@@ -2526,7 +2623,7 @@ ducky-clicker\tI_am_me\t609450`;
       function currentName() {
         let siteName = '';
         try { siteName = localStorage.getItem('kitsune-profile-user') || ''; } catch {}
-        return state.profile.name.trim() || siteName.trim() || 'Guest';
+        return state.profile.name.trim() || siteName.trim() || 'stark_1';
       }
       function renderProfile() {
         const name = currentName();
@@ -2981,6 +3078,7 @@ ducky-clicker\tI_am_me\t609450`;
         if (message.channel === active) { const node = renderMessage(message); if (node) byId('message-list').append(node); byId('feed').scrollTop = byId('feed').scrollHeight; }
       }
       function renderOnline() {
+        members.set(state.userId, { name: currentName() });
         const holder = byId('online-list'); holder.replaceChildren();
         byId('online-count').textContent = String(members.size);
         if (!members.size) { const empty = document.createElement('p'); empty.textContent = 'No one else is online right now.'; holder.append(empty); return; }
@@ -3183,7 +3281,8 @@ ducky-clicker\tI_am_me\t609450`;
         { id: 'aura-dummy', name: 'Aura Dummy', title: 'Aura Dummy', price: 70, description: 'A silly, shiny profile title and halo.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><ellipse cx="60" cy="48" rx="35" ry="20" fill="none" stroke="#b8a2ff" stroke-width="5"/><circle cx="60" cy="38" r="15" fill="#34284b" stroke="#e1d3ff" stroke-width="2"/><path d="M53 37h1m12 0h1m-12 7c4 3 8 3 12 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="45" rx="43" ry="34" fill="none" stroke="#b8a2ff" stroke-width="3"/><path d="m60 7 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#e4d6ff"/></svg>' },
         { id: 'cutie', name: 'Cutie Patootie', title: 'Cutie Patootie', price: 80, description: 'A sweet title with a hand-drawn heart ring.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><circle cx="60" cy="41" r="29" fill="none" stroke="#ff9eb5" stroke-width="5"/><path d="M60 57 41 41c-12-14 7-27 19-12 12-15 31-2 19 12Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/><path d="m23 16 2 5 5 2-5 2-2 5-2-5-5-2 5-2Zm76 38 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#fff0b8"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="46" rx="44" ry="33" fill="none" stroke="#ff9eb5" stroke-width="3"/><path d="M60 18c-8-10-21 1-12 11l12 10 12-10c9-10-4-21-12-11Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/></svg>' }
       ];
-      const shopCategories = [['Featured',26],['Anime',13],['Arcane',7],['Breakfast',6],['Cyberpunk',4],['Dragon Ball',7],['Dungeons & Dragons',5],['Elements',5],['Fantasy',8],['Fortnite',5],['League of Legends',6],['Lofi Girl',4],['Magic: The Gathering',5],['Marvel',12],['Monsters',8],['Movies',8],['My Hero Academia',8],['Palworld',3],['SpongeBob',5],['Springtoon',6],['Star Wars',7],['Street Fighter',9],['Valorant',12],['Lunar New Year',6],['Winter',12],['Halloween',16],['Fall',4],['Spring',20],['Birthday',19],['Holiday',21],['April Fools',1],['More',312]];
+      const decorationCategories = [['Featured',26],['Anime',13],['Arcane',7],['Breakfast',6],['Cyberpunk',4],['Dragon Ball',7],['Dungeons & Dragons',5],['Elements',5],['Fantasy',8],['Fortnite',5],['League of Legends',6],['Lofi Girl',4],['Magic: The Gathering',5],['Marvel',12],['Monsters',8],['Movies',8],['My Hero Academia',8],['Palworld',3],['SpongeBob',5],['Springtoon',6],['Star Wars',7],['Street Fighter',9],['Valorant',12],['Lunar New Year',6],['Winter',12],['Halloween',16],['Fall',4],['Spring',20],['Birthday',19],['Holiday',21],['April Fools',1],['More',312]];
+      const nameplateCategories = [['Anime',7],['Countries',57],['Disney & Pixar',7],['Magic: The Gathering',5],['Marvel',5],['Sanrio',8],['Star Wars',6],['Tron',4],['Zodiac',12],['More',125]];
       const decorationData = [
         ['Foxtail','Sleepy fox curled around your pfp',2000,'Fantasy'],['Aurora','Soft aurora frame',4000,'Elements'],['Swirl','Painted swirl border',4000,'Featured'],['Angel Wings','Feathered wings spread either side',4000,'Fantasy'],['Dragon','Neon dragon coiled around the frame',2000,'Dragon Ball'],['Orbital','Cosmic orb wrapped in sparkling rings',2000,'Arcane'],['White Roses','Thorned white roses climbing your pfp',7000,'Spring'],['Stardust','Violet nebula flecked with sparkles',4000,'Elements'],['Air Force','Fighter pilot helmet, visor down',4000,'Fortnite'],['Crescent','Crescent moon and scattered stars',2000,'Fantasy'],['Chomp','A ring of very bad teeth',2000,'Monsters'],['Blossom','Cherry blossom branch in bloom',1000,'Spring'],['Flames','Licks of fire circling your pfp',2000,'Elements'],['Halo','Glowing purple neon ring',4000,'Arcane'],['Wormhole','Pale stone portal ring',4000,'Arcane'],['Surprised','Manga shock lines and a startled あ!',1000,'Anime'],['Skill Issue','Say it without saying it',1000,'Anime'],['Cloud Nine','Sunlit clouds drifting around your pfp',4000,'Elements'],['Sweet Dreams','Crescent moon tucked into starlit clouds',2000,'Lofi Girl'],['Sakura Ink','Ink brush sweep scattered with blossoms',2000,'Anime'],['Lone Wolf','Wolf pup howling among the stars',2000,'Monsters'],['Cat Ears','Black cat ears and a pair of whiskers',1000,'Anime'],["Comet's Dusk",'A ring of glittering stars at nightfall',4000,'Elements'],['Deep Sea Dreams','A deep blue bubble full of drifting stars',2000,'Fantasy'],['Sweatdrops','Anime panic, rendered literally',1000,'Anime'],['Hallelujah Mountains','Floating islands strung together with rope bridges',4000,'Fantasy'],
         ['In Love','A heart-filled animated glow',1000,'Anime'],['Radiating Energy','A bright energy aura',1000,'Dragon Ball'],['Shocked','A dramatic comic-book burst',1000,'Anime'],['Soul Leaving Body','A playful ghostly trail',1000,'Anime'],['Starry Eyed','Sparkling eyes and starlight',1000,'Anime'],['Angry','A fiery comic-style effect',1000,'Anime'],['Cat Ears','A second cat-ear style',1000,'Anime'],['Dismay','A gloomy animated shadow',1000,'Anime'],['Heartbloom','A bloom of glowing hearts',2000,'Spring'],['In Tears','A sparkling tear effect',1000,'Anime'],['Ki Energy','A powerful glowing energy field',1000,'Dragon Ball'],['Rage','A blazing red aura',2000,'Anime'],['Sweat Drops Cyan','Cool cyan panic drops',2000,'Anime'],['Hex Tiles','A geometric hexagon pattern',2000,'Arcane'],['Hex Lights','Glowing hexagonal lights',7000,'Arcane'],['The Monster You Created','A mysterious creature effect',1000,'Monsters'],['FISHBONES!','A playful bone pattern',2000,'SpongeBob'],['Flame Chompers','A fiery ring of monster teeth',2000,'Monsters'],['Golden Hex','A golden hexagonal frame',2000,'Arcane'],['The Hexcore','A powerful hextech glow',7000,'Arcane'],['Blueberry Jam','A sweet blueberry splash',1000,'Breakfast'],['Donut','A colorful frosted donut effect',1000,'Breakfast']
@@ -3197,7 +3296,40 @@ ducky-clicker\tI_am_me\t609450`;
         { id:'tag-cozy', name:'Cozy', title:'Cozy', description:'A warm little profile tag.', price:80, type:'Tags', category:'Lofi Girl', art:decorationArt, overlay:decorationOverlay },
         { id:'tag-legend', name:'Legend', title:'Legend', description:'A tag for your next big adventure.', price:100, type:'Tags', category:'Featured', art:decorationArt, overlay:decorationOverlay }
       ];
-      const catalog = [...legacyCatalog.map(item => ({ ...item, type:'Nameplates', category:'Featured' })), ...decorations, ...extraItems];
+      const nameplateEntries = [
+        ['Dragon Ball','Dragon Ball',7000],['Gomah','Dragon Ball',2000],['Mini Goku','Dragon Ball',7000],['Mini Vegeta','Dragon Ball',7000],
+        ['Ryomen Sukuna','Anime',2000],['Satoru Gojo','Anime',7000],['Yuji Itadori','Anime',2000],
+        ['Algeria','Countries',2000],['Argentina','Countries',2000],['Australia','Countries',2000],['Austria','Countries',1000],['Belgium','Countries',1000],['Bosnia & Herzegovina','Countries',1000],['Brazil','Countries',2000],['C. America & Caribbean','Countries',2000],['Cabo Verde','Countries',4000],['Canada','Countries',1000],['Colombia','Countries',1000],['Côte d\'Ivoire','Countries',2000],['Croatia','Countries',2000],['Curacao','Countries',2000],['Czechia','Countries',1000],['DR Congo','Countries',2000],['East Asia & Oceania','Countries',2000],['Ecuador','Countries',2000],['Egypt','Countries',1000],['England','Countries',2000],['France','Countries',1000],['Germany','Countries',2000],['Ghana','Countries',2000],['Haiti','Countries',1000],['Iran','Countries',4000],['Iraq','Countries',2000],['Japan','Countries',4000],['Jordan','Countries',7000],['Mexico','Countries',2000],['Middle East & C.asia','Countries',2000],['Morocco','Countries',2000],['Netherlands','Countries',1000],['New Zealand','Countries',1000],['North & East Europe','Countries',2000],['North Africa','Countries',2000],['North America','Countries',2000],['Norway','Countries',10000],['Panama','Countries',2000],['Paraguay','Countries',2000],['Portugal','Countries',1000],['Qatar','Countries',1000],
+        ['Mickey Mouse','Disney & Pixar',2000],['Minnie Mouse','Disney & Pixar',2000],['Stitch','Disney & Pixar',4000],['WALL·E','Disney & Pixar',2000],['Lightning McQueen','Disney & Pixar',4000],['Elsa','Disney & Pixar',2000],['Simba','Disney & Pixar',2000],
+        ['Black Lotus','Magic: The Gathering',7000],['Chandra','Magic: The Gathering',4000],['Jace Beleren','Magic: The Gathering',2000],['Liliana','Magic: The Gathering',4000],['Nissa','Magic: The Gathering',2000],
+        ['Spider-Man','Marvel',4000],['Iron Man','Marvel',2000],['Black Panther','Marvel',2000],['Wolverine','Marvel',4000],['Deadpool','Marvel',4000],
+        ['Hello Kitty','Sanrio',4000],['Kuromi','Sanrio',2000],['My Melody','Sanrio',2000],['Cinnamoroll','Sanrio',4000],['Pompompurin','Sanrio',2000],['Keroppi','Sanrio',1000],['Badtz-Maru','Sanrio',2000],['Pochacco','Sanrio',2000],
+        ['Darth Vader','Star Wars',4000],['Grogu','Star Wars',4000],['Luke Skywalker','Star Wars',2000],['Leia Organa','Star Wars',2000],['The Mandalorian','Star Wars',4000],['R2-D2','Star Wars',2000],
+        ['Tron Legacy','Tron',4000],['Quorra','Tron',2000],['Sam Flynn','Tron',2000],['CLU','Tron',4000],
+        ['Aries','Zodiac',1000],['Taurus','Zodiac',1000],['Gemini','Zodiac',1000],['Cancer','Zodiac',1000],['Leo','Zodiac',1000],['Virgo','Zodiac',1000],['Libra','Zodiac',1000],['Scorpio','Zodiac',1000],['Sagittarius','Zodiac',1000],['Capricorn','Zodiac',1000],['Aquarius','Zodiac',1000],['Pisces','Zodiac',1000]
+      ];
+      const nameplatePalette = { 'Dragon Ball':['#ffb347','#e54b2f'], Anime:['#e779ab','#6937a5'], Countries:['#55c7ae','#287395'], 'Disney & Pixar':['#7ecbff','#6046a8'], 'Magic: The Gathering':['#f1c46f','#6a3c90'], Marvel:['#ef5266','#742f83'], Sanrio:['#ffa8c7','#9764c5'], 'Star Wars':['#c9d5ff','#53617d'], Tron:['#42e8ff','#2447a5'], Zodiac:['#e5b5ff','#5543a0'] };
+      const escapeSvgText = value => String(value).replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&apos;' }[character]));
+      const nameplateArt = (name, category, index) => {
+        const colors = nameplatePalette[category] || ['#d9c2ff','#684aa2'];
+        const mark = name.replace(/[^A-Za-z0-9]/g, '').slice(0, 2).toUpperCase() || '✦';
+        const id = 'plate-' + index;
+        const motif = index % 4 === 0
+          ? '<path d="M18 35h18m-9-9v18m267 23h12m-6-6v12" stroke="#fff" stroke-opacity=".72" stroke-width="2"/><circle cx="285" cy="30" r="7" fill="none" stroke="#fff" stroke-opacity=".55"/><circle cx="285" cy="30" r="2" fill="#fff"/>'
+          : index % 4 === 1
+            ? '<path d="M22 76 42 56l12 12 19-25m198 22 15-15 13 9" fill="none" stroke="#fff" stroke-opacity=".58" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/><circle cx="73" cy="43" r="3" fill="#fff"/>'
+            : index % 4 === 2
+              ? '<path d="M22 32q12-14 24 0t24 0m174 44q12-14 24 0t24 0" fill="none" stroke="#fff" stroke-opacity=".62" stroke-width="2.5"/><path d="m278 27 3 7 7 3-7 3-3 7-3-7-7-3 7-3Z" fill="#fff" fill-opacity=".75"/>'
+              : '<path d="M23 75q18-26 36 0m201-37q18-26 36 0" fill="none" stroke="#fff" stroke-opacity=".58" stroke-width="2.5"/><circle cx="275" cy="74" r="3" fill="#fff"/><circle cx="292" cy="68" r="2" fill="#fff"/>';
+        const safeName = escapeSvgText(name);
+        const accentX = 24 + (index * 37) % 272;
+        const accentY = 24 + (index * 19) % 62;
+        const accentSize = 2 + index % 4;
+        const uniqueAccent = `<path d="M${accentX} ${accentY - accentSize * 2}l${accentSize} ${accentSize * 2} ${accentSize * 2} ${accentSize} -${accentSize * 2} ${accentSize} -${accentSize} ${accentSize * 5} -${accentSize} -${accentSize * 5} -${accentSize * 2} -${accentSize} ${accentSize * 2}Z" fill="#fff" fill-opacity=".78"><animate attributeName="opacity" values=".4;1;.4" dur="${2 + index % 5}s" repeatCount="indefinite"/></path>`;
+        return `<svg viewBox="0 0 320 110" role="img" aria-label="${safeName} nameplate"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${colors[0]}"/><stop offset="1" stop-color="${colors[1]}"/><animateTransform attributeName="gradientTransform" type="translate" values="-0.3 0;0.3 0;-0.3 0" dur="7s" repeatCount="indefinite"/></linearGradient><linearGradient id="shine-${index}" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".32"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="clip-${index}"><rect x="8" y="11" width="304" height="88" rx="20"/></clipPath></defs><rect x="4" y="7" width="312" height="96" rx="23" fill="#100d18"/><rect x="8" y="11" width="304" height="88" rx="20" fill="url(#${id})"/><g clip-path="url(#clip-${index})"><path d="M-95 11h55l130 88h-55Z" fill="url(#shine-${index})"><animateTransform attributeName="transform" type="translate" values="-230 0;550 0" dur="5s" repeatCount="indefinite"/></path><path d="M18 87 Q115 20 209 78 T315 46" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="2"/><circle cx="250" cy="30" r="3" fill="#fff" opacity=".75"><animate attributeName="opacity" values=".25;1;.25" dur="2.4s" repeatCount="indefinite"/></circle><circle cx="267" cy="73" r="2" fill="#fff" opacity=".6"><animate attributeName="opacity" values=".2;.9;.2" dur="3.1s" repeatCount="indefinite"/></circle></g>${motif}${uniqueAccent}<circle cx="49" cy="55" r="25" fill="#120f19" fill-opacity=".65" stroke="#fff" stroke-opacity=".8" stroke-width="2"/><text x="49" y="62" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="800">${escapeSvgText(mark)}</text><text x="88" y="62" fill="#fff" font-family="system-ui,sans-serif" font-size="21" font-weight="750">${safeName}</text></svg>`;
+      };
+      const nameplates = nameplateEntries.map(([name, category, price], index) => ({ id:'nameplate-' + index, name, title:name, description:'A ' + category + ' nameplate for your profile.', price, type:'Nameplates', category, art:nameplateArt(name, category, index), overlay:decorationOverlay }));
+      const catalog = [...legacyCatalog.map(item => ({ ...item, type:'Nameplates', category:'Featured' })), ...decorations, ...nameplates, ...extraItems];
       const read = (key, fallback) => { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } };
       const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Keep the shop usable for this visit if storage is full. */ } };
       let coins = Number(read('kitsune-shop-coins', 500));
@@ -3223,9 +3355,12 @@ ducky-clicker\tI_am_me\t609450`;
         if (photo) { const image = document.createElement('img'); image.src = photo; image.alt = 'Profile picture preview'; demo.append(image); }
         else { const initial = document.createElement('span'); initial.textContent = name ? name.trim().slice(0, 2).toUpperCase() : '狐'; demo.append(initial); }
         demo.insertAdjacentHTML('beforeend', item.overlay);
-        document.querySelector('#profile-shop-name').textContent = item.name;
+        document.querySelector('#profile-shop-name').textContent = 'stark_1';
         document.querySelector('#profile-shop-description').textContent = item.description;
-        document.querySelector('#profile-shop-title').textContent = 'Profile title: ' + item.title + (equipped === item.id ? ' · Equipped' : '');
+        document.querySelector('#profile-shop-title').textContent = item.type === 'Nameplates' ? item.name + (equipped === item.id ? ' · Equipped' : '') : 'Profile title: ' + item.title + (equipped === item.id ? ' · Equipped' : '');
+        const nameplatePreview = document.querySelector('#shop-nameplate-preview');
+        nameplatePreview.replaceChildren();
+        if (item.type === 'Nameplates') nameplatePreview.innerHTML = item.art;
         document.querySelectorAll('.profile-shop-item').forEach(card => card.classList.toggle('selected', card.dataset.id === item.id));
       }
       function decorateAvatars() {
@@ -3266,7 +3401,8 @@ ducky-clicker\tI_am_me\t609450`;
       function renderShopCategories() {
         const host = document.querySelector('#shop-categories');
         host.replaceChildren();
-        [['All',''], ...shopCategories].forEach(([name, count]) => {
+        const categories = activeShopType === 'Nameplates' ? nameplateCategories : decorationCategories;
+        [['All',''], ...categories].forEach(([name, count]) => {
           const button = document.createElement('button');
           button.type = 'button'; button.className = 'shop-category' + (activeShopCategory === name ? ' active' : '');
           button.dataset.shopCategory = name;
@@ -3281,9 +3417,11 @@ ducky-clicker\tI_am_me\t609450`;
         grid.replaceChildren();
         coins = Number(read('kitsune-shop-coins', coins));
         document.querySelector('#profile-shop-coins').textContent = coins;
-        const ownedDecorations = owned.filter(id => catalog.find(item => item.id === id)?.type === 'Decorations').length;
-        const remainingDecorations = Math.max(0, 2 - ownedDecorations);
-        document.querySelector('#profile-shop-limit').textContent = 'You can buy ' + remainingDecorations + ' more decoration' + (remainingDecorations === 1 ? '' : 's') + ' on a free account.';
+        const limitedShopType = ['Decorations', 'Nameplates'].includes(activeShopType);
+        const ownedLimitedItems = owned.filter(id => catalog.find(item => item.id === id)?.type === activeShopType).length;
+        const remainingLimitedItems = Math.max(0, 2 - ownedLimitedItems);
+        document.querySelector('#profile-shop-limit').hidden = !limitedShopType;
+        document.querySelector('#profile-shop-limit').textContent = 'You can buy ' + remainingLimitedItems + ' more ' + activeShopType.toLowerCase().replace(/s$/, '') + (remainingLimitedItems === 1 ? '' : 's') + ' on a free account.';
         document.querySelectorAll('[data-shop-type]').forEach(button => button.classList.toggle('active', button.dataset.shopType === activeShopType));
         document.querySelector('#shop-show-all').classList.toggle('active', !showOwnedShopItems);
         document.querySelector('#shop-show-owned').classList.toggle('active', showOwnedShopItems);
@@ -3301,13 +3439,15 @@ ducky-clicker\tI_am_me\t609450`;
           const tryButton = document.createElement('button'); tryButton.type = 'button'; tryButton.textContent = 'Preview on profile'; tryButton.addEventListener('click', () => refreshPreview(item));
           const buyButton = document.createElement('button'); buyButton.type = 'button'; buyButton.className = 'primary';
           const isOwned = owned.includes(item.id);
-          const atDecorationLimit = item.type === 'Decorations' && !isOwned && remainingDecorations === 0;
+          const hasFreeAccountLimit = ['Decorations', 'Nameplates'].includes(item.type);
+          const ownedTypeItems = owned.filter(id => catalog.find(entry => entry.id === id)?.type === item.type).length;
+          const atDecorationLimit = hasFreeAccountLimit && !isOwned && ownedTypeItems >= 2;
           buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : atDecorationLimit ? 'Limit reached' : `Buy · ${item.price.toLocaleString()} coins`;
           buyButton.disabled = equipped === item.id || (!isOwned && (coins < item.price || atDecorationLimit));
           buyButton.addEventListener('click', () => {
             if (!owned.includes(item.id)) {
-              const currentOwnedDecorations = owned.filter(id => catalog.find(entry => entry.id === id)?.type === 'Decorations').length;
-              if (item.type === 'Decorations' && currentOwnedDecorations >= 2) { document.querySelector('#profile-status').textContent = 'Free accounts can own up to 2 decorations.'; return; }
+              const currentOwnedTypeItems = owned.filter(id => catalog.find(entry => entry.id === id)?.type === item.type).length;
+              if (['Decorations', 'Nameplates'].includes(item.type) && currentOwnedTypeItems >= 2) { document.querySelector('#profile-status').textContent = 'Free accounts can own up to 2 ' + item.type.toLowerCase() + '.'; return; }
               if (coins < item.price) { document.querySelector('#profile-status').textContent = 'Not enough demo coins for that cosmetic.'; return; }
               coins -= item.price; owned.push(item.id);
             }
@@ -3326,6 +3466,7 @@ ducky-clicker\tI_am_me\t609450`;
         if (!button) return;
         activeShopType = button.dataset.shopType;
         activeShopCategory = 'All';
+        if (activeShopType === 'Nameplates' && preview.type !== 'Nameplates') preview = catalog.find(item => item.id === 'nameplate-0') || preview;
         renderShop();
       });
       document.querySelector('#shop-show-all').addEventListener('click', () => { showOwnedShopItems = false; renderShop(); });
