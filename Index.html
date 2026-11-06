@@ -348,6 +348,7 @@
     .updates-list strong{color:#ffc276}
     .updates-close,.notifications-close{display:block;margin:18px 0 0 auto;padding:9px 15px;border:1px solid #ffffff24;border-radius:11px;color:#fff;background:#ffffff12;font:inherit;font-weight:700;cursor:pointer}
     .notification-empty{display:grid;min-height:150px;place-items:center;border:1px dashed #ffffff20;border-radius:16px;color:#aaa2b6;text-align:center}
+    .notification-items{display:grid;width:100%;gap:8px;padding:12px}.notification-item{padding:11px 13px;border:1px solid rgba(226,210,255,.15);border-radius:12px;color:#e8e2ef;background:#ffffff08;text-align:left}.notification-item strong,.notification-item small{display:block}.notification-item strong{color:#ffc276}.notification-item small{margin-top:3px;color:#aaa2b6}
     .notification-empty svg{width:34px;height:34px;margin-bottom:8px;fill:none;stroke:#d9bcff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
     .global-chat-compose{display:none!important}
     @media(max-width:650px){.updates-card,.notifications-card{padding:21px;border-radius:19px}.tools #open-notifications{display:grid!important}}
@@ -395,6 +396,21 @@
     .browser{background:#000;position:relative}
     .browser::after{position:absolute;top:0;bottom:0;left:78px;width:1px;background:rgba(225,207,255,.15);content:"";pointer-events:none}
     .side-rail{background:#000;border-right:1px solid rgba(225,207,255,.15);border-radius:0}
+    /* Clear, compact navigation and visible unread state. */
+    .browser{height:54px;padding-inline:16px;background:#000;box-shadow:0 1px 0 rgba(225,207,255,.08)}
+    .browser::after{left:77px;background:rgba(225,207,255,.2)}
+    .address{border-radius:10px;border-color:rgba(225,207,255,.14);background:#0b0a0e;box-shadow:inset 0 1px rgba(255,255,255,.035)}
+    .toolbar-button{position:relative;width:32px;height:32px;border-radius:10px}
+    .toolbar-button:hover{background:rgba(197,165,255,.13)}
+    .updates-card::before{position:absolute;top:26px;right:26px;padding:4px 8px;border:1px solid #ffc27655;border-radius:999px;color:#ffc276;background:#ffc27612;content:"NEW";font-size:10px;font-weight:800;letter-spacing:.08em}
+    .notification-count{position:absolute;top:-5px;right:-5px;display:grid;min-width:17px;height:17px;place-items:center;padding:0 4px;border:1px solid #17131f;border-radius:999px;color:#fff;background:#ed5d66;font-size:10px;font-weight:800;line-height:1}
+    .notification-count[hidden]{display:none}
+    .global-chat-toast{position:fixed;z-index:40;right:22px;bottom:22px;max-width:min(360px,calc(100vw - 28px));padding:12px 16px;border:1px solid rgba(226,210,255,.24);border-radius:14px;color:#f4efff;background:rgba(25,20,32,.96);box-shadow:0 14px 45px #0009;backdrop-filter:blur(16px);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s,transform .2s}
+    .global-chat-toast.show{opacity:1;transform:translateY(0)}
+    .global-chat-toast strong{color:#ffc276}
+    .updates-overlay{z-index:35}
+    @media(max-width:700px){.browser{height:50px;padding-inline:8px}.browser::after{left:61px}}
+    @media(max-width:420px){.browser::after{left:55px}.toolbar-button{width:29px;height:29px}}
     @media(max-width:700px){.browser::after{left:62px}}
     @media(max-width:420px){.browser::after{left:56px}}
     /* Make community chat a true full-screen app instead of a centered popup. */
@@ -404,7 +420,7 @@
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
       <button class="side-profile" id="side-profile" type="button" aria-label="Sign in or open your profile"><span class="side-avatar" id="side-avatar">狐</span><span class="side-profile-copy"><strong id="side-profile-name">Sign in</strong><small id="side-profile-hint">Set up your profile</small></span></button>
@@ -507,7 +523,7 @@
         <button class="profile-shop-button" id="profile-shop-toggle" type="button" aria-expanded="false">✨ Open the Kitsune cosmetics shop</button>
         <section class="profile-shop" id="profile-shop" aria-label="Kitsune cosmetics shop" hidden>
           <div class="profile-shop-head"><h3>✨ Kitsune Shop</h3><span class="profile-shop-balance"><span id="profile-shop-coins">500</span> demo coins</span></div>
-          <p class="profile-shop-note">Preview each SVG cosmetic on your profile first, then equip it with demo coins. No real-money purchases.</p>
+          <p class="profile-shop-note">Get 100 free demo coins each day you visit. Use them for cosmetics or chat games; no real-money purchases.</p>
           <div class="profile-shop-preview"><div class="profile-shop-demo" id="profile-shop-demo" aria-label="Live profile preview">狐</div><div class="profile-shop-copy"><strong id="profile-shop-name">Your profile preview</strong><span id="profile-shop-description">Choose an item and preview it before buying.</span><p class="profile-shop-title" id="profile-shop-title">No title equipped</p></div></div>
           <div class="profile-shop-grid" id="profile-shop-grid"></div>
         </section>
@@ -530,7 +546,7 @@
               <div class="kc-topic" id="kc-topic"><span class="kc-topic-dot"></span><span>Welcome! Be kind, keep it friendly, and enjoy your time here.</span></div>
               <div class="kc-feed" id="kc-feed" aria-live="polite"><div id="kc-message-list"></div></div>
               <form class="kc-compose" id="kc-form"><button class="kc-attach" id="kc-attach" type="button" aria-label="Attach image" title="Attach image">＋</button><input id="kc-image" type="file" accept="image/*" hidden><span id="kc-image-name" class="kc-image-name"></span><input id="kc-input" type="text" maxlength="1500" autocomplete="off" placeholder="Message #global-chat" aria-label="Write a message"><button class="kc-send" type="submit" aria-label="Send message">↑</button></form>
-              <div class="kc-footnote">Messages are shared live when connected. #rules is read-only.</div>
+              <div class="kc-footnote">Messages are shared live when connected. #rules is read-only. Try /games for coin games.</div>
             </section>
             <aside class="kc-online"><div class="kc-online-title">ONLINE <span id="kc-online-count">0</span></div><div id="kc-online-list" class="kc-online-list"><p>Connecting to chat…</p></div></aside>
           </div>
@@ -602,10 +618,11 @@
       <div class="notifications-card" role="dialog" aria-modal="true" aria-labelledby="notifications-title">
         <h2 id="notifications-title">Notifications</h2>
         <p>You’re all caught up.</p>
-        <div class="notification-empty"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>No notifications yet</div></div>
+        <div class="notification-empty" id="notification-list"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>No notifications yet</div></div>
         <button class="notifications-close" id="notifications-close" type="button">Close</button>
       </div>
     </section>
+    <div class="global-chat-toast" id="global-chat-toast" role="status" aria-live="polite"></div>
     <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span><button class="close" id="promo-close" type="button" aria-label="Close Kitsune+ promotion">×</button></div><p>Go ad-free on Kitsune,unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
@@ -2248,6 +2265,63 @@ ducky-clicker\tI_am_me\t609450`;
 
     const updatesOverlay = document.querySelector('#updates-overlay');
     const notificationsOverlay = document.querySelector('#notifications-overlay');
+    const chatNotificationItems = [];
+    let unreadChatCount = 0;
+    let notificationBaseTitle = document.title;
+    let chatToastTimer;
+    function renderChatNotifications() {
+      const list = document.querySelector('#notification-list');
+      const badge = document.querySelector('#notification-count');
+      if (!list || !badge) return;
+      badge.hidden = unreadChatCount === 0;
+      badge.textContent = unreadChatCount > 99 ? '99+' : String(unreadChatCount);
+      const button = document.querySelector('#open-notifications');
+      button?.classList.toggle('has-unread', unreadChatCount > 0);
+      if (!chatNotificationItems.length) {
+        list.className = 'notification-empty';
+        list.innerHTML = '<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>No notifications yet</div>';
+        return;
+      }
+      list.className = 'notification-items';
+      list.replaceChildren();
+      chatNotificationItems.slice().reverse().forEach(item => {
+        const entry = document.createElement('div');
+        entry.className = 'notification-item';
+        const heading = document.createElement('strong');
+        heading.textContent = 'New chat message · #' + item.channel;
+        const detail = document.createElement('small');
+        detail.textContent = item.name + ': ' + item.text;
+        entry.append(heading, detail);
+        list.append(entry);
+      });
+    }
+    window.kitsuneNotifyChatMessage = message => {
+      unreadChatCount += 1;
+      const entry = { channel: message.channel || 'global-chat', name: message.name || 'Community member', text: (message.text || 'Shared an image').slice(0, 180) };
+      chatNotificationItems.push(entry);
+      if (chatNotificationItems.length > 20) chatNotificationItems.shift();
+      renderChatNotifications();
+      if (notificationBaseTitle === document.title) notificationBaseTitle = document.title;
+      document.title = '(' + unreadChatCount + ') New chat · ' + notificationBaseTitle;
+      const toast = document.querySelector('#global-chat-toast');
+      if (toast && !document.hidden) {
+        toast.replaceChildren();
+        const heading = document.createElement('strong');
+        heading.textContent = 'New message';
+        toast.append(heading, document.createTextNode(' · ' + entry.name + ': ' + entry.text));
+        toast.classList.add('show');
+        clearTimeout(chatToastTimer);
+        chatToastTimer = setTimeout(() => toast.classList.remove('show'), 4200);
+      }
+      if (document.hidden && 'Notification' in window && Notification.permission === 'granted') {
+        try { new Notification('New Kitsune chat message', { body: entry.name + ': ' + entry.text }); } catch (error) { /* Tab title and unread badge still provide a notification. */ }
+      }
+    };
+    function clearChatNotifications() {
+      unreadChatCount = 0;
+      document.title = notificationBaseTitle;
+      renderChatNotifications();
+    }
     function closeOverlay(overlay) {
       overlay.hidden = true;
       overlay.setAttribute('aria-hidden', 'true');
@@ -2260,7 +2334,11 @@ ducky-clicker\tI_am_me\t609450`;
       closeOverlay(updatesOverlay);
       try { localStorage.setItem('kitsune-whats-new-seen', 'true'); } catch (error) { /* It can reappear next visit if storage is unavailable. */ }
     });
-    document.querySelector('#open-notifications').addEventListener('click', () => openOverlay(notificationsOverlay));
+    document.querySelector('#open-notifications').addEventListener('click', () => {
+      renderChatNotifications();
+      openOverlay(notificationsOverlay);
+      clearChatNotifications();
+    });
     document.querySelector('#notifications-close').addEventListener('click', () => closeOverlay(notificationsOverlay));
     [updatesOverlay, notificationsOverlay].forEach(overlay => overlay.addEventListener('click', event => {
       if (event.target === overlay) closeOverlay(overlay);
@@ -2417,6 +2495,7 @@ ducky-clicker\tI_am_me\t609450`;
         if (!message || !message.id || !message.channel || message.channel === 'rules' || (!message.text && !message.image)) return;
         const list = state.messages[message.channel] || (state.messages[message.channel] = []);
         if (list.some(item => item.id === message.id)) return;
+        if (message.userId !== state.userId) window.kitsuneNotifyChatMessage?.(message);
         list.push(message); if (list.length > 250) list.shift(); save();
         if (message.channel === active) { const node = renderMessage(message); if (node) byId('message-list').append(node); byId('feed').scrollTop = byId('feed').scrollHeight; }
       }
@@ -2515,10 +2594,62 @@ ducky-clicker\tI_am_me\t609450`;
         try { imageData = await compressImage(file); byId('image-name').textContent = file.name; }
         catch (error) { imageData = ''; byId('image-name').textContent = ''; toast(error.message); }
       });
+      function postChatMessage(text) {
+        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), userId: state.userId, timestamp: Date.now() };
+        receive(message);
+        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => toast('Saved here, but could not reach live chat.'));
+      }
+      function playCoinCommand(text) {
+        const [command, rawBet] = text.trim().split(/\s+/);
+        const game = command.toLowerCase();
+        const coins = Number((() => { try { return JSON.parse(localStorage.getItem('kitsune-shop-coins') || '500'); } catch { return 500; } })());
+        if (game === '/games') {
+          postChatMessage('Coin games: /balance, /gamble <bet>, /plinko <bet>, /blackjack <bet>, /wheel <bet>. You get 100 demo coins each day.');
+          return true;
+        }
+        if (game === '/balance') {
+          postChatMessage(currentName() + ' has ' + coins + ' demo coins.');
+          return true;
+        }
+        if (!['/gamble', '/plinko', '/blackjack', '/wheel'].includes(game)) return false;
+        const bet = Number(rawBet);
+        if (!Number.isInteger(bet) || bet < 1) { postChatMessage('Use ' + game + ' <whole-number bet>, for example: ' + game + ' 25.'); return true; }
+        if (bet > coins) { postChatMessage('Not enough demo coins. Your balance is ' + coins + '.'); return true; }
+        let payout = 0;
+        let result = '';
+        if (game === '/gamble') {
+          const won = Math.random() < 0.48;
+          payout = won ? bet * 2 : 0;
+          result = won ? 'won double!' : 'lost the bet.';
+        } else if (game === '/plinko') {
+          const multiplier = [0, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
+          payout = Math.floor(bet * multiplier);
+          result = 'Plinko landed on ' + multiplier + '×.';
+        } else if (game === '/wheel') {
+          const multiplier = [0, 0, 0.5, 1, 2, 3, 5][Math.floor(Math.random() * 7)];
+          payout = bet * multiplier;
+          result = 'The wheel landed on ' + multiplier + '×.';
+        } else {
+          const draw = () => 2 + Math.floor(Math.random() * 10);
+          const player = draw() + draw();
+          const dealer = draw() + draw();
+          payout = player > dealer ? bet * 2 : player === dealer ? bet : 0;
+          result = 'Blackjack: you ' + player + ', dealer ' + dealer + (player > dealer ? ' — you win!' : player === dealer ? ' — push, bet returned.' : ' — dealer wins.');
+        }
+        const updatedCoins = coins - bet + payout;
+        try { localStorage.setItem('kitsune-shop-coins', JSON.stringify(updatedCoins)); }
+        catch { postChatMessage('Could not save your coin balance in this browser.'); return true; }
+        postChatMessage(currentName() + ' · ' + result + ' Net ' + (updatedCoins - coins >= 0 ? '+' : '') + (updatedCoins - coins) + ' coins. Balance: ' + updatedCoins + '.');
+        return true;
+      }
       byId('form').addEventListener('submit', event => {
         event.preventDefault();
         const text = byId('input').value.trim();
         if (active === 'rules' || (!text && !imageData)) return;
+        if (text.startsWith('/') && !imageData && playCoinCommand(text)) {
+          byId('input').value = '';
+          return;
+        }
         const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), image: imageData, name: currentName(), userId: state.userId, timestamp: Date.now() };
         receive(message);
         if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => toast('Saved here, but could not reach live chat.'));
@@ -2540,6 +2671,13 @@ ducky-clicker\tI_am_me\t609450`;
       const read = (key, fallback) => { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } };
       const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Keep the shop usable for this visit if storage is full. */ } };
       let coins = Number(read('kitsune-shop-coins', 500));
+      const today = new Date().toLocaleDateString();
+      const lastDailyReward = read('kitsune-daily-coins-date', '');
+      if (lastDailyReward !== today) {
+        coins += 100;
+        write('kitsune-shop-coins', coins);
+        write('kitsune-daily-coins-date', today);
+      }
       let owned = read('kitsune-shop-owned', []);
       if (!Array.isArray(owned)) owned = [];
       let equipped = read('kitsune-shop-equipped', '');
@@ -2595,6 +2733,7 @@ ducky-clicker\tI_am_me\t609450`;
       function renderShop() {
         const grid = document.querySelector('#profile-shop-grid');
         grid.replaceChildren();
+        coins = Number(read('kitsune-shop-coins', coins));
         document.querySelector('#profile-shop-coins').textContent = coins;
         catalog.forEach(item => {
           const card = document.createElement('article'); card.className = 'profile-shop-item'; card.dataset.id = item.id;
