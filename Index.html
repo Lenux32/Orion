@@ -12,7 +12,7 @@
     main{position:relative;height:calc(100vh - 50px);margin:0 10px 10px;border:1px solid #401819;border-radius:20px;overflow:hidden;background:radial-gradient(ellipse at 18% 63%,rgba(0,235,220,.18),transparent 15%),radial-gradient(ellipse at 30% 34%,rgba(4,255,32,.09),transparent 19%),radial-gradient(ellipse at 74% 85%,rgba(0,180,40,.09),transparent 16%),#0e0606}
     .glow{position:absolute;inset:20% 8% 5%;pointer-events:none;filter:blur(22px);opacity:.65;background:radial-gradient(ellipse at 9% 57%,#00e8ec 0 3%,transparent 10%),radial-gradient(ellipse at 22% 38%,#00ad71 0 2%,transparent 13%),radial-gradient(ellipse at 27% 27%,#12400a 0 2%,transparent 12%),radial-gradient(ellipse at 68% 81%,#08732b 0 2%,transparent 13%)}
     .home{position:absolute;left:50%;top:27%;transform:translateX(-50%);width:min(540px,calc(100% - 36px));text-align:center}.brand{margin:0;color:var(--red);font-weight:850;letter-spacing:-3px;font-size:clamp(48px,6vw,76px);line-height:1}.brand .mini{font-size:19px;vertical-align:top;letter-spacing:0}.tagline{margin:8px 0 26px;font-weight:650;font-size:16px}.search{height:59px;border:1px solid #5a2627;border-radius:20px;background:#241313;display:flex;align-items:center;gap:13px;padding:0 20px;color:#b89c9c;text-align:left}.search input{flex:1;min-width:0;background:transparent;border:0;outline:0;color:white;font:inherit}.search input::placeholder{color:#b89c9c}.tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:22px}.tile{height:110px;border:1px solid #4b1d1e;border-radius:17px;background:rgba(13,7,7,.7);display:flex;flex-direction:column;justify-content:center;align-items:center;gap:8px;color:#f7f1f1;text-decoration:none;font-size:13px;font-weight:650;transition:.18s}.tile:hover{background:#281516;transform:translateY(-2px)}.icon{width:31px;height:31px;display:block;line-height:1}.icon svg{display:block;width:100%;height:100%}.featured-game{position:relative;height:100px;display:block;overflow:hidden;padding:0;text-align:left;font:inherit;background:#171016;cursor:pointer}.featured-game img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s,opacity .25s}.featured-game::after{position:absolute;inset:35% 0 0;content:"";background:linear-gradient(transparent,rgba(5,5,8,.9))}.featured-game span{position:absolute;z-index:1;left:12px;right:8px;bottom:10px;color:#fff;font-size:14px;font-weight:700;text-shadow:0 1px 5px #000}.featured-game:hover img{transform:scale(1.06);opacity:.85}
-    .promo{position:absolute;right:11px;bottom:11px;width:340px;padding:12px 16px 14px;border-radius:15px;border:1px solid #9e3437;background:#3b1d1d;box-shadow:0 8px 28px #0006;text-align:left}.promo-head{display:flex;justify-content:space-between;align-items:center;font-weight:750}.close{background:none;border:0;color:#bd9999;cursor:pointer}.promo p{margin:6px 0 12px;color:#c7aaaa;font-size:13px}.promo a{display:inline-block;background:#fff;color:#171111;text-decoration:none;border-radius:10px;padding:8px 15px;font-size:12px;font-weight:750}
+
     .games-panel{position:absolute;z-index:3;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#100909}.games-panel.open{display:block}.music-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(420px,calc(100% - 36px));max-height:calc(100% - 36px);display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.music-panel.open{display:flex}.music-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.music-actions{display:flex;gap:9px;padding:12px}.music-pick,.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}.music-pick{background:#d92f45;border-color:transparent;font-weight:700}.music-list{flex:1;min-height:70px;overflow:auto;padding:0 12px 12px}.music-track{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:9px;background:transparent;color:#ddd;text-align:left;cursor:pointer}.music-track:hover,.music-track.active{background:#ffffff12}.music-track.active{color:#ff8790}.music-track span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-audio{display:block;width:calc(100% - 24px);margin:0 12px 12px}.music-note{padding:0 14px 12px;color:#ae9699;font-size:11px}.games-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 auto 22px;max-width:1000px}.games-head h2{margin:0;font-size:clamp(24px,4vw,36px)}.games-actions{display:flex;align-items:center;gap:10px}.games-search{width:min(250px,45vw);height:40px;padding:0 12px;border:1px solid #552021;border-radius:10px;color:#fff;background:#241313;font:inherit}.games-close,.game-back{border:1px solid #552021;border-radius:10px;padding:9px 12px;color:#f4eeee;background:#241313;cursor:pointer}.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px;max-width:1000px;margin:auto}.game-card{overflow:hidden;padding:0;border:1px solid #4b1d1e;border-radius:13px;color:#f7f1f1;text-align:left;background:#1b1010;cursor:pointer}.game-card:hover{border-color:#ff3346;transform:translateY(-2px)}.game-card img{display:block;width:100%;height:92px;object-fit:cover;background:#251616}.game-card strong{display:block;padding:9px;font-size:13px}
     @media(max-width:650px){.games-head{align-items:flex-start;flex-direction:column}.games-actions{width:100%}.games-search{flex:1;width:auto}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card img{height:82px}.games-panel{padding:18px 12px}}
     @media(max-width:650px){.browser{gap:12px;padding:0 12px}.nav{gap:12px}.tools{display:none}.address{font-size:12px}.home{top:22%}.tiles{grid-template-columns:repeat(2,minmax(0,1fr))}.tile{height:88px}.featured-game{height:88px}.promo{width:min(340px,calc(100% - 24px));right:12px;bottom:12px}}
@@ -48,7 +48,7 @@
     .music-art-placeholder{color:#f5c27a;background:radial-gradient(circle at 30% 25%,#6d452d,#21191a 68%,#111)}
     @media(max-width:650px){.featured-game{height:auto}.featured-game img{height:auto;aspect-ratio:1.5}.featured-game span{padding:7px 4px;font-size:12px}}
     .tile:focus-visible,.toolbar-button:focus-visible{outline:2px solid #ff7182;outline-offset:3px}
-    .promo{border-color:rgba(255,116,132,.42);background:rgba(48,24,31,.88);backdrop-filter:blur(18px);box-shadow:0 18px 48px rgba(0,0,0,.35)}
+
     .music-panel,.ai-panel{border-color:rgba(255,255,255,.13);background:rgba(20,15,19,.96);backdrop-filter:blur(20px)}
     @media(max-width:650px){.home{top:19%}.brand{letter-spacing:-2.5px}.search{height:56px}.tiles{gap:9px}.tile{border-radius:15px}}
     @media(prefers-reduced-motion:reduce){.tile,.search{transition:none}}
@@ -75,7 +75,7 @@
     .browser{background:rgba(0,0,0,.24);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px)}
     main{border-color:#171717}
     .address{background:rgba(255,255,255,.035);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px)}
-    .search,.tile,.promo,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
+    .search,.tile,.music-search,.music-nav.active,.music-nav:hover,.music-track-row:hover,.music-track-row.active,.music-album:hover,.ai-compose textarea,.games-search,.games-close,.game-back{background:#000}
     .game-card,.featured-game{background:#000}
     .music-status,.music-empty,.music-track-copy small,.music-track-index{color:#888}
     /* Kitsune home refresh */
@@ -457,11 +457,73 @@
     .kc-actions .kc-voice-button.joined{border-color:#ffc27688!important;color:#ffe0b0!important;background:linear-gradient(135deg,#5a3a23,#30231e)!important}
     .kc-voice-status{display:block!important;flex:1 0 100%;padding:0 3px;color:#c4b8d2;font-size:10px}
     .kc-actions button:disabled{opacity:.6!important}
+    /* Bottom shortcut navigation: replaces the left-side rail on all screen sizes. */
+    .side-rail{position:absolute;z-index:12;inset:auto auto 12px 50%;transform:translateX(-50%);display:flex;width:min(900px,calc(100% - 24px));height:72px;max-height:72px;flex-direction:row;align-items:center;justify-content:flex-start;gap:10px;padding:7px 10px;border:1px solid rgba(225,207,255,.2);border-radius:18px;background:rgba(10,9,14,.88);box-shadow:0 12px 38px #0009;backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+    .side-rail::-webkit-scrollbar{display:none}.side-rail section{display:flex;width:auto;flex:0 0 auto;align-items:center;gap:6px}.side-profile{width:auto;flex:0 0 auto;justify-content:flex-start;gap:8px;padding:5px 8px}.side-profile-copy{display:block}.side-avatar{width:36px;height:36px;flex-basis:36px}.side-section-title{display:none}.side-apps,.side-games{display:flex;grid-template-columns:none;align-items:center;gap:5px}.side-app{width:50px;min-width:50px;height:54px;min-height:54px;flex:0 0 50px;justify-content:center;padding:4px 2px;font-size:9px}.side-app>span:last-child{display:block}.side-app-icon{width:29px;height:29px}.side-game{width:42px;height:42px;flex:0 0 42px;justify-content:center;padding:2px}.side-game img{width:36px;height:34px;flex-basis:36px}.side-game span{display:none}.side-library{width:40px;height:40px;flex:0 0 40px;padding:0;overflow:hidden;font-size:0}.side-library::after{content:'＋';font-size:18px}.home{left:50%;width:min(660px,calc(100% - 36px))}
+    @media(max-width:700px){.side-rail{inset:auto auto 8px 50%;width:calc(100% - 16px);height:62px;max-height:62px;gap:5px;padding:5px 7px;border-radius:15px}.side-profile{width:40px;height:42px;flex:0 0 40px;justify-content:center;padding:3px}.side-profile-copy,.side-app>span:last-child{display:none}.side-avatar{width:32px;height:32px;flex-basis:32px}.side-rail section{gap:4px}.side-app{width:38px;min-width:38px;height:42px;min-height:42px;flex-basis:38px;padding:4px}.side-app-icon{width:28px;height:28px}.side-game{width:37px;height:39px;flex-basis:37px}.side-game img{width:32px;height:30px;flex-basis:32px}.side-library{width:36px;height:38px;flex-basis:36px}.home{left:50%;width:calc(100% - 28px)}}
+    @media(max-width:420px){.side-rail{height:56px;max-height:56px;gap:3px;padding-inline:5px}.side-rail section{gap:3px}.side-profile{width:35px;flex-basis:35px}.side-app{width:34px;min-width:34px;flex-basis:34px}.side-game{width:33px;flex-basis:33px}.side-game img{width:29px;height:28px;flex-basis:29px}.side-library{width:32px;flex-basis:32px}}
+    /* Restore compact shortcut navigation; reserve space on small screens. */
+    .side-rail{display:flex!important;bottom:12px;bottom:max(12px,env(safe-area-inset-bottom))}
+    .connection-status{position:absolute;z-index:20;top:12px;right:14px;display:flex;align-items:center;gap:7px;padding:7px 10px;border:1px solid #ffffff20;border-radius:999px;color:#d7d1df;background:rgba(12,10,16,.78);backdrop-filter:blur(12px);font-size:11px}
+    .connection-status::before{width:7px;height:7px;border-radius:50%;content:"";background:#8fe3a1;box-shadow:0 0 9px #8fe3a188}
+    .connection-status.offline::before{background:#ff7979;box-shadow:0 0 9px #ff797988}
+    .connection-status[hidden]{display:none}
+    .kc-message-actions{display:flex;gap:7px;margin-top:5px}
+    .kc-message-actions button{padding:3px 7px;border:1px solid #ffffff18;border-radius:7px;color:#a9a0b1;background:#ffffff08;font-size:9px;cursor:pointer}
+    .kc-message-actions button:hover{color:#fff;background:#ffffff16}
+    .kc-message.blocked-message{display:none}
+    @media(max-width:700px){.connection-status{top:5px;right:6px;padding:5px 8px;font-size:10px}.side-rail{bottom:max(8px,env(safe-area-inset-bottom));width:calc(100% - 16px)}}
+    body[data-theme="ocean"]{background:radial-gradient(ellipse at 12% 88%,#2ca7ff20,transparent 34%),radial-gradient(ellipse at 88% 12%,#9b8cff1c,transparent 32%),#000}
+    body[data-theme="ocean"] main{background:radial-gradient(ellipse at 16% 82%,#228ecc26,transparent 34%),radial-gradient(ellipse at 83% 18%,#8589ff24,transparent 36%),#000}
+    body[data-theme="ocean"] .particle{background:rgba(145,210,255,var(--opacity,.6));box-shadow:0 0 12px #72c8ff99}
+    body[data-theme="ocean"] .brand{background:linear-gradient(100deg,#a9e7ff,#a9baff 55%,#d8baff);-webkit-background-clip:text;background-clip:text;color:transparent}
+    body[data-theme="ocean"] .side-rail{border-color:#72c8ff55}
+    body[data-theme="ocean"] .side-app:hover,body[data-theme="ocean"] .side-library{border-color:#72c8ff66;background:#4b9bd522}
+    body[data-theme="forest"]{background:radial-gradient(ellipse at 12% 88%,#31cf7b20,transparent 34%),radial-gradient(ellipse at 88% 12%,#b1db5320,transparent 32%),#000}
+    body[data-theme="forest"] main{background:radial-gradient(ellipse at 16% 82%,#25a96026,transparent 34%),radial-gradient(ellipse at 83% 18%,#a5c54722,transparent 36%),#000}
+    body[data-theme="forest"] .particle{background:rgba(171,255,181,var(--opacity,.6));box-shadow:0 0 12px #8fe3a199}
+    body[data-theme="forest"] .brand{background:linear-gradient(100deg,#b8ffd2,#8fe3a1 55%,#e6efaa);-webkit-background-clip:text;background-clip:text;color:transparent}
+    body[data-theme="forest"] .side-rail{border-color:#8fe3a155}
+    body[data-theme="forest"] .side-app:hover,body[data-theme="forest"] .side-library{border-color:#8fe3a166;background:#55b67522}
+    body[data-theme="rose"]{background:radial-gradient(ellipse at 12% 88%,#ff668c20,transparent 34%),radial-gradient(ellipse at 88% 12%,#ffb2ca1c,transparent 32%),#000}
+    body[data-theme="rose"] main{background:radial-gradient(ellipse at 16% 82%,#ff557b22,transparent 34%),radial-gradient(ellipse at 83% 18%,#ffbd7620,transparent 36%),#000}
+    body[data-theme="rose"] .particle{background:rgba(255,183,205,var(--opacity,.6));box-shadow:0 0 12px #ff9eb599}
+    body[data-theme="rose"] .brand{background:linear-gradient(100deg,#ffd0e3,#ff9eb5 55%,#ffc276);-webkit-background-clip:text;background-clip:text;color:transparent}
+    body[data-theme="rose"] .side-rail{border-color:#ff9eb555}
+    body[data-theme="rose"] .side-app:hover,body[data-theme="rose"] .side-library{border-color:#ff9eb566;background:#ee729622}
+    @media(prefers-reduced-motion:reduce){.kc-message-actions button{transition:none}}
+    .side-rail{display:none!important}
+    /* New compact navigation and personalization controls */
+    .mobile-menu-button{display:none;position:relative;flex:none;width:32px;height:32px;border:1px solid #ffffff20;border-radius:10px;color:#eee;background:#111;cursor:pointer}
+    .mobile-menu{position:absolute;z-index:50;top:calc(100% + 7px);right:8px;display:none;width:min(250px,calc(100vw - 16px));padding:8px;border:1px solid #ffffff25;border-radius:14px;background:rgba(15,13,19,.97);box-shadow:0 16px 42px #000b}
+    .mobile-menu.open{display:grid;grid-template-columns:1fr 1fr;gap:6px}.mobile-menu button{padding:10px 8px;border:1px solid #ffffff12;border-radius:9px;color:#eee;background:#ffffff08;text-align:left;cursor:pointer}
+    .toolbar-button[draggable=true]{cursor:grab}.toolbar-button.dragging{opacity:.35}.toolbar-button.drop-target{outline:1px solid #c5a5ff}
+    body[data-theme="light"]{color:#211d28;background:radial-gradient(ellipse at 12% 88%,#d9c7ff80,transparent 35%),#f4f1f8;color-scheme:light}
+    body[data-theme="light"] main{background:radial-gradient(ellipse at 16% 82%,#e4d7ff99,transparent 36%),#f4f1f8;border-color:#d8d1e1}
+    body[data-theme="light"] .browser{background:#f4f1f8;color:#393342;box-shadow:0 1px #d8d1e1}
+    body[data-theme="light"] .address,body[data-theme="light"] .search{background:#ffffffb8;color:#292431;border-color:#d8d1e1}
+    body[data-theme="light"] .brand{background:linear-gradient(100deg,#7047a8,#a04f7a);-webkit-background-clip:text;background-clip:text;color:transparent}
+    body[data-theme="light"] .tagline{color:#5f5868}body[data-theme="light"] .home-widget{color:#332b3b;background:#ffffffb8}
+    .games-tools-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:1000px;margin:0 auto 12px;color:#aaa8b3;font-size:12px}
+    .games-tools-row select,.games-tools-row button,.music-playlist-tools button{padding:7px 9px;border:1px solid #ffffff20;border-radius:9px;color:#eee;background:#17131f;font:inherit;cursor:pointer}
+    .game-card-favorite{position:absolute;z-index:2;top:7px;right:7px;padding:5px 7px;border:1px solid #ffffff50;border-radius:999px;color:#fff;background:#08070bbd;font-size:12px;cursor:pointer}
+    .game-card-overlay{pointer-events:none}.game-card-favorite{pointer-events:auto}
+    .game-retry{display:none;margin:12px auto 0;padding:9px 13px;border:1px solid #ffc27666;border-radius:10px;color:#fff;background:#ff9b381f;cursor:pointer}.game-loading.error .game-retry{display:block}
+    .game-volume-control{display:flex;align-items:center;gap:7px;padding:7px 10px;color:#ddd;font-size:12px}.game-volume-control input{width:100px;accent-color:#c5a5ff}
+    .mini-progress{display:flex;align-items:center;gap:6px;min-width:90px;color:#aaa2b6;font-size:9px;font-variant-numeric:tabular-nums}.mini-progress input{width:70px;accent-color:#c5a5ff}@media(max-width:650px){.mini-progress{display:none}}
+    .music-timer-row{display:flex;align-items:center;gap:7px;margin:8px 0;color:#aaa2b6;font-size:12px}.music-timer-row select{padding:6px;border:1px solid #ffffff20;border-radius:8px;color:#eee;background:#17131f}
+    .kc-reactions{display:flex;flex-wrap:wrap;gap:4px;margin-top:7px}.kc-reactions button{padding:3px 7px;border:1px solid #ffffff18;border-radius:999px;color:#d7c9e5;background:#ffffff08;font-size:11px;cursor:pointer}.kc-reactions button.active{border-color:#c5a5ff;color:#fff;background:#9a6de533}
+    .kc-channel-unread{min-width:17px;padding:1px 5px;border-radius:99px;color:#17121b;background:#d9bcff;text-align:center;font-size:9px;font-weight:800}.kc-channel-unread[hidden]{display:none}
+    .profile-status-field{margin:12px 0}.profile-status-field input{width:100%;padding:9px 10px;border:1px solid #36363f;border-radius:9px;color:#fff;background:#08080a;font:inherit}
+    .accessibility-hint{margin-top:8px;color:#888;font-size:11px}
+    #home-quicklinks.has-links{display:flex!important}
+    @media(max-width:700px){.mobile-menu-button{display:grid;place-items:center}.tools{display:none!important}.mini-player{max-width:120px;flex-basis:120px}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
+    <div class="connection-status" id="connection-status" role="status" aria-live="polite" hidden>Online</div>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
       <button class="side-profile" id="side-profile" type="button" aria-label="Sign in or open your profile"><span class="side-avatar" id="side-avatar">狐</span><span class="side-profile-copy"><strong id="side-profile-name">Sign in</strong><small id="side-profile-hint">Set up your profile</small></span></button>
       <section aria-label="Apps"><p class="side-section-title">Apps</p><div class="side-apps">
@@ -544,7 +606,7 @@
         <div class="settings-head"><div><h2>⚙️ Settings</h2><p>Customize your experience with stealth features</p></div><button class="settings-close" id="settings-close" type="button">Close</button></div>
         <section class="settings-card"><h3>🚀 About:Blank Mode</h3><p>Open the site in a new about:blank window. This disguises your study session by opening it in a blank page, making it harder to detect in browser history or tab previews.</p><div class="settings-actions"><button class="settings-action" type="button" data-launch="class2">🔓 Launch in About:Blank (Class2)</button><button class="settings-action" type="button" data-launch="class3">🔓 Launch in About:Blank (Class3)</button><button class="settings-action" type="button" data-launch="blank">🔓 Launch in About:Blank</button><button class="settings-action" type="button" data-launch="blob">🔓 Launch in Blob Mode</button><button class="settings-action" type="button" data-open-class="class2">🎓 Open Class2</button><button class="settings-action" type="button" data-open-class="class3">🎓 Open Class3</button></div><label class="settings-check"><input id="apps-about-blank" type="checkbox" checked> Open apps in about:blank</label><p class="settings-note">Class launch buttons open a copy of this page with the chosen tab title. Popup blocking may prevent new windows.</p></section>
         <section class="settings-card"><h3>🔒 Privacy</h3><p>Remove this site’s saved Kitsune settings and quick notes from this browser. This does not clear browser history, other sites’ data, or data stored elsewhere.</p><div class="settings-actions"><button class="settings-action" id="clear-kitsune-data" type="button">Clear Kitsune saved data</button></div><p class="settings-note" id="privacy-status" role="status" aria-live="polite"></p></section>
-        <section class="settings-card"><h3>✨ Appearance & accessibility</h3><p>Customize this browser’s Kitsune theme and motion. Shortcuts: Ctrl/⌘+K search, Alt+G games, Alt+M music, Alt+A AI, Esc close panels.</p><label class="settings-label">Accent color<input id="theme-accent" type="color" value="#c5a5ff"></label><label class="settings-label">Background particle intensity<input id="particle-intensity" type="range" min="0" max="1" step="0.1" value="0.7"></label><label class="settings-label">Search engine<select id="search-engine"><option value="https://www.google.com/search">Google</option><option value="https://www.bing.com/search">Bing</option><option value="https://duckduckgo.com/">DuckDuckGo</option></select></label><label class="settings-check"><input id="show-home-widgets" type="checkbox" checked> Show clock and date</label><label class="settings-check"><input id="show-favorites-home" type="checkbox" checked> Show favorite games on home</label><label class="settings-check"><input id="reduce-effects" type="checkbox"> Reduce animated effects</label><div class="settings-actions"><button class="settings-action" id="save-appearance" type="button">Save appearance</button><button class="settings-action" id="export-settings" type="button">Export settings</button><button class="settings-action" id="import-settings-button" type="button">Import settings</button><input class="settings-import" id="import-settings-file" type="file" accept="application/json"></div><p class="settings-note" id="appearance-status" role="status" aria-live="polite"></p></section>
+        <section class="settings-card"><h3>✨ Appearance & accessibility</h3><p>Customize this browser’s Kitsune theme and motion. Shortcuts: Ctrl/⌘+K search, Alt+G games, Alt+M music, Alt+A AI, Esc close panels.</p><label class="settings-label">Accent color<input id="theme-accent" type="color" value="#c5a5ff"></label><label class="settings-label">Color theme<select id="color-theme"><option value="foxfire">Foxfire</option><option value="ocean">Moonlit ocean</option><option value="forest">Forest glow</option><option value="rose">Rose quartz</option><option value="light">Light</option></select></label><label class="settings-label">Custom background image URL<input id="background-image-url" type="url" placeholder="https://example.com/image.jpg"></label><label class="settings-label">Clock format<select id="clock-format"><option value="12">12-hour</option><option value="24">24-hour</option></select></label><label class="settings-label">Date format<select id="date-format"><option value="short">Short</option><option value="long">Long</option><option value="numeric">Numeric</option></select></label><label class="settings-label">Background particle intensity<input id="particle-intensity" type="range" min="0" max="1" step="0.1" value="0.7"></label><label class="settings-label">Game loading timeout (seconds)<input id="game-timeout-setting" type="number" min="5" max="120" value="20"></label><label class="settings-label">Interface text size<select id="interface-text-size"><option value="15">Default</option><option value="14">Compact</option><option value="16">Large</option><option value="18">Extra large</option></select></label><label class="settings-label">Search engine<select id="search-engine"><option value="https://www.google.com/search">Google</option><option value="https://www.bing.com/search">Bing</option><option value="https://duckduckgo.com/">DuckDuckGo</option><option value="https://search.brave.com/search">Brave</option><option value="https://www.ecosia.org/search">Ecosia</option></select></label><label class="settings-check"><input id="show-home-widgets" type="checkbox" checked> Show clock and date</label><label class="settings-check"><input id="show-favorites-home" type="checkbox" checked> Show favorite games on home</label><label class="settings-check"><input id="reduce-effects" type="checkbox"> Reduce animated effects</label><div class="settings-actions"><button class="settings-action" id="save-appearance" type="button">Save appearance</button><button class="settings-action" id="export-settings" type="button">Export settings</button><button class="settings-action" id="import-settings-button" type="button">Import settings</button><input class="settings-import" id="import-settings-file" type="file" accept="application/json"></div><p class="settings-note" id="appearance-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>📜 Scroll Feed Settings</h3><label class="settings-label">Algorithm<select id="feed-algorithm"><option>Random</option><option>Newest</option><option>Popular</option></select></label><label class="settings-label">Categories (comma-separated)<textarea id="feed-categories" placeholder="horror, puzzle, racing, 2-player"></textarea></label><p class="settings-note">Empty = show all. Unknown categories are silently ignored.</p><div class="settings-actions"><button class="settings-save" id="save-feed" type="button">✓ Save Feed Settings</button><button class="settings-action" id="save-open-feed" type="button">📜 Save and Open Feed</button></div><p class="settings-note" id="settings-status" role="status" aria-live="polite"></p></section>
         <section class="settings-card"><h3>🎭 Tab Cloak</h3><p>Cloak your Tab! Choosing a title changes the tab title; choosing an icon link changes the tab icon.</p><label class="settings-label">Tab Title<input id="cloak-title" type="text" value="Classes - Google Classroom"></label><label class="settings-label">Tab Icon URL<input id="cloak-icon" type="url" value="https://ssl.gstatic.com/classroom/favicon.png"></label><button class="settings-save" id="apply-cloak" type="button">✓ Add</button></section>
       </div>
@@ -558,7 +620,7 @@
         <p class="equipped-profile-phrase" id="equipped-profile-phrase" hidden></p>
         <label class="settings-label" id="profile-name-wrap">Display name<input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name"></label>
         <label class="settings-label profile-avatar-field">Profile picture<input id="profile-avatar-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 1 MB. It stays in this browser.</p></label>
-        <label class="settings-label profile-avatar-field">Profile banner<input id="profile-banner-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 2 MB. It stays in this browser.</p></label>
+        <label class="settings-label profile-avatar-field">Profile banner<input id="profile-banner-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 2 MB. It stays in this browser.</p></label><label class="settings-label profile-status-field">Profile status<input id="profile-status-input" type="text" maxlength="60" placeholder="What are you up to?"></label>
         <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
         <button class="profile-shop-button" id="profile-shop-toggle" type="button" aria-expanded="false">✨ Open the Kitsune cosmetics shop</button>
         <section class="profile-shop" id="profile-shop" aria-label="Kitsune cosmetics shop" hidden>
@@ -628,17 +690,17 @@
     <section class="game-player" id="game-player" aria-label="Game tabs" aria-hidden="true">
       <header class="game-player-head"><strong id="game-player-title">Game tabs</strong><div class="game-player-actions"><button class="game-player-button" id="game-player-home" type="button">Home</button></div></header>
       <div class="game-tab-strip" id="game-tab-strip" role="tablist" aria-label="Open games"></div>
-      <div class="game-frames" id="game-frames"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><div class="game-controls-drag" id="game-controls-drag"><button class="game-control-back" id="game-control-back" type="button" aria-label="Back to home" title="Back to home"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h11"/></svg></button><strong class="game-controls-game" id="game-controls-game">No game selected</strong></div><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p></div></div></div>
+      <div class="game-frames" id="game-frames"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><div class="game-controls-drag" id="game-controls-drag"><button class="game-control-back" id="game-control-back" type="button" aria-label="Back to home" title="Back to home"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h11"/></svg></button><strong class="game-controls-game" id="game-controls-game">No game selected</strong></div><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><label class="game-volume-control">Game volume <input id="game-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Game volume"></label><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p><button class="game-retry" id="game-loading-retry" type="button">↻ Retry loading</button></div></div></div>
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
       <div class="games-head"><div><h2>Game library</h2><p class="games-hint">Click to play · Double-click for info · Right-click a game to favorite</p></div><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
-      <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div>
+      <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div><div class="games-tools-row"><label for="games-sort">Sort games:</label><select id="games-sort" aria-label="Sort games"><option value="name">Name A–Z</option><option value="recent">Recently played</option><option value="favorites">Favorites first</option></select><button id="continue-game" type="button">▶ Continue last game</button><span>Tip: use Tab and Enter to browse and launch.</span></div>
       <div class="games-grid" id="games-grid"></div>
     </section>
     <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
     <section class="music-panel" id="music-panel" aria-label="Music library" aria-hidden="true">
       <aside class="music-sidebar"><div class="music-logo">sakuna</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Playlist">♥ My playlist</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
-      <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
+      <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs, artists, and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
       <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio><div class="music-extra-controls"><button class="music-control" id="music-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="music-control" id="music-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button><button class="music-control" id="music-shuffle" type="button" aria-label="Toggle shuffle" title="Toggle shuffle" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M4 4l5 5m4 4 8 8"/></svg></button><button class="music-control" id="music-repeat" type="button" aria-label="Toggle repeat" title="Toggle repeat" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></button><button class="music-control" id="music-save-track" type="button" aria-label="Save current track to playlist" title="Save current track to playlist"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span id="music-save-label">Save</span></button><label aria-label="Volume"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg><input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div></div>
     </section>
     <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><div class="ai-brand"><span class="ai-brand-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4.5 10 7l2-3 2 3 6-2.5-1 7.2a7 7 0 0 1-14 0L4 4.5Z"/><path d="M8.5 11h.01M15.5 11h.01M9.5 15c1.5 1 3.5 1 5 0M12 7v2"/></svg></span><span class="ai-brand-copy"><strong>Kitsune AI</strong><small>Your friendly assistant</small></span></div><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message" id="ai-welcome-message">Hi there! How are you today? What should we get started with?</div><div class="ai-welcome-prompts" id="ai-welcome-prompts"><button type="button">Help me brainstorm ideas</button><button type="button">Explain a tricky topic</button><button type="button">Help me plan my day</button></div></div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
@@ -665,7 +727,6 @@
       </div>
     </section>
     <div class="global-chat-toast" id="global-chat-toast" role="status" aria-live="polite"></div>
-    <aside class="promo" id="promo"><div class="promo-head"><span>Kitsune+</span><button class="close" id="promo-close" type="button" aria-label="Close Kitsune+ promotion">×</button></div><p>Go ad-free on Kitsune,unlock chat perks.</p><a href="#learn-more">Learn more</a></aside>
   </main>
   <script>
     const homeTagline = document.querySelector('#home-tagline');
@@ -983,16 +1044,31 @@
     document.querySelector('#open-settings').addEventListener('click', openSettings);
     document.querySelector('#settings-close').addEventListener('click', closeSettings);
     const appearanceKey = 'kitsune-appearance-settings';
+    const connectionStatus = document.querySelector('#connection-status');
+    function updateConnectionStatus() {
+      const offline = !navigator.onLine;
+      connectionStatus.hidden = !offline;
+      connectionStatus.classList.toggle('offline', offline);
+      connectionStatus.textContent = offline ? 'Offline · live features unavailable' : 'Online';
+    }
+    window.addEventListener('online', updateConnectionStatus);
+    window.addEventListener('offline', updateConnectionStatus);
+    updateConnectionStatus();
     function updateHomeClock() {
       const now = new Date();
-      document.querySelector('#home-clock').textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
-      document.querySelector('#home-date').textContent = now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
+      const clockFormat = document.querySelector('#clock-format')?.value || savedAppearance.clockFormat || '12';
+      const dateFormat = document.querySelector('#date-format')?.value || savedAppearance.dateFormat || 'short';
+      document.querySelector('#home-clock').textContent = now.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit', hour12: clockFormat !== '24' });
+      document.querySelector('#home-date').textContent = dateFormat === 'long' ? now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }) : dateFormat === 'numeric' ? now.toLocaleDateString([], { year: 'numeric', month: '2-digit', day: '2-digit' }) : now.toLocaleDateString([], { weekday: 'short', month: 'short', day: 'numeric' });
     }
     function applyAppearance(settings) {
       const accent = /^#[0-9a-f]{6}$/i.test(settings.accent || '') ? settings.accent : '#c5a5ff';
+      const theme = ['foxfire', 'ocean', 'forest', 'rose', 'light'].includes(settings.theme) ? settings.theme : 'foxfire';
+      document.body.dataset.theme = theme;
+      document.querySelector('#color-theme').value = theme;
       document.documentElement.style.setProperty('--user-accent', accent);
       document.querySelector('#theme-accent').value = accent;
-      const engine = ['https://www.google.com/search', 'https://www.bing.com/search', 'https://duckduckgo.com/'].includes(settings.searchEngine) ? settings.searchEngine : 'https://www.google.com/search';
+      const engine = ['https://www.google.com/search', 'https://www.bing.com/search', 'https://duckduckgo.com/', 'https://search.brave.com/search', 'https://www.ecosia.org/search'].includes(settings.searchEngine) ? settings.searchEngine : 'https://www.google.com/search';
       document.querySelector('#search-engine').value = engine;
       document.querySelector('#web-search').action = engine;
       document.querySelector('#particle-intensity').value = String(Math.max(0, Math.min(1, Number(settings.particleIntensity ?? 0.7))));
@@ -1012,7 +1088,7 @@
     updateHomeClock();
     setInterval(updateHomeClock, 15000);
     document.querySelector('#save-appearance').addEventListener('click', () => {
-      savedAppearance = { accent: document.querySelector('#theme-accent').value, particleIntensity: Number(document.querySelector('#particle-intensity').value), searchEngine: document.querySelector('#search-engine').value, widgets: document.querySelector('#show-home-widgets').checked, favorites: document.querySelector('#show-favorites-home').checked, reducedMotion: document.querySelector('#reduce-effects').checked };
+      savedAppearance = { accent: document.querySelector('#theme-accent').value, theme: document.querySelector('#color-theme').value, particleIntensity: Number(document.querySelector('#particle-intensity').value), searchEngine: document.querySelector('#search-engine').value, widgets: document.querySelector('#show-home-widgets').checked, favorites: document.querySelector('#show-favorites-home').checked, reducedMotion: document.querySelector('#reduce-effects').checked };
       try { localStorage.setItem(appearanceKey, JSON.stringify(savedAppearance)); } catch (error) { /* Apply for this session regardless. */ }
       applyAppearance(savedAppearance);
       document.querySelector('#appearance-status').textContent = 'Appearance saved on this device.';
@@ -1084,6 +1160,7 @@
       if (event.key === 'Escape') { closeAllPanels(); document.querySelector('#game-detail').classList.remove('open'); document.querySelector('#game-detail').setAttribute('aria-hidden', 'true'); }
     });
     document.querySelector('#clear-kitsune-data').addEventListener('click', () => {
+      if (!window.confirm('Clear all Kitsune settings, notes, favorites, profile data, and local chat data from this browser? This cannot be undone.')) return;
       const privacyStatus = document.querySelector('#privacy-status');
       try {
         Object.keys(localStorage).filter(key => key.startsWith('kitsune-')).forEach(key => localStorage.removeItem(key));
@@ -1567,7 +1644,7 @@ ducky-clicker\tI_am_me\t609450`;
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
         launchGameInBlank(tab.game, tab.fallbackWindow);
         tab.fallbackWindow = null;
-      }, 20000);
+      }, Math.max(5000, Math.min(120000, Number(document.querySelector('#game-timeout-setting')?.value || 20) * 1000)));
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       const cached = await readCachedGame(tab.game);
       if (cached && typeof cached.html === 'string') {
@@ -1610,7 +1687,7 @@ ducky-clicker\tI_am_me\t609450`;
         if (!tab.loading) return;
         tab.error = 'This game is taking longer than expected to load.';
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
-      }, 20000);
+      }, Math.max(5000, Math.min(120000, Number(document.querySelector('#game-timeout-setting')?.value || 20) * 1000)));
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
     }
     const gamePlayer = document.querySelector('#game-player');
@@ -2301,10 +2378,6 @@ ducky-clicker\tI_am_me\t609450`;
       }
     });
 
-    document.querySelector('#promo-close').addEventListener('click', () => {
-      document.querySelector('#promo').hidden = true;
-    });
-
     const updatesOverlay = document.querySelector('#updates-overlay');
     const notificationsOverlay = document.querySelector('#notifications-overlay');
     const chatNotificationItems = [];
@@ -2434,6 +2507,7 @@ ducky-clicker\tI_am_me\t609450`;
       const voicePeers = new Map();
       const voiceParticipants = new Set();
       const members = new Map();
+      const blockedUsers = new Set((() => { try { const value = JSON.parse(localStorage.getItem('kitsune-chat-blocked') || '[]'); return Array.isArray(value) ? value : []; } catch { return []; } })());
       const byId = id => document.getElementById('kc-' + id);
       const save = () => { try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch { toast('Storage is full. Try a smaller image.'); } };
       let toastTimeout;
@@ -2596,6 +2670,43 @@ ducky-clicker\tI_am_me\t609450`;
         if (typeof message.image === 'string' && /^data:image\/(jpeg|png|webp);base64,/i.test(message.image)) {
           const image = document.createElement('img'); image.className = 'kc-message-image'; image.src = message.image; image.alt = 'Image attachment'; image.loading = 'lazy'; body.append(image);
         }
+        const actions = document.createElement('div'); actions.className = 'kc-message-actions';
+        if (own) {
+          const edit = document.createElement('button'); edit.type = 'button'; edit.textContent = 'Edit';
+          edit.addEventListener('click', () => {
+            const edited = window.prompt('Edit your message:', message.text || '');
+            if (edited === null) return;
+            const text = edited.trim().slice(0, 1500);
+            if (!text && !message.image) { toast('A message needs text or an image.'); return; }
+            message.text = text; save(); renderMessages();
+            const update = { type: 'message-edit', channel: message.channel, targetId: message.id, userId: state.userId, text, timestamp: Date.now() };
+            if (pubnub) pubnub.publish({ channel: key(message.channel), message: update }).catch(() => toast('Edited here, but could not sync the change.'));
+          });
+          const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Delete';
+          remove.addEventListener('click', () => {
+            if (!window.confirm('Delete this message for connected chat users?')) return;
+            state.messages[message.channel] = (state.messages[message.channel] || []).filter(item => item.id !== message.id);
+            save(); renderMessages();
+            const update = { type: 'message-delete', channel: message.channel, targetId: message.id, userId: state.userId, timestamp: Date.now() };
+            if (pubnub) pubnub.publish({ channel: key(message.channel), message: update }).catch(() => toast('Deleted here, but could not sync the change.'));
+          });
+          actions.append(edit, remove);
+        } else {
+          const report = document.createElement('button'); report.type = 'button'; report.textContent = 'Report';
+          report.addEventListener('click', () => {
+            try { const reports = JSON.parse(localStorage.getItem('kitsune-chat-reports') || '[]'); reports.push({ id: message.id, name, timestamp: Date.now() }); localStorage.setItem('kitsune-chat-reports', JSON.stringify(reports.slice(-100))); } catch {}
+            toast('Report saved on this device. A moderator is not notified.');
+          });
+          const block = document.createElement('button'); block.type = 'button'; block.textContent = 'Block';
+          block.addEventListener('click', () => {
+            if (!window.confirm('Hide future messages from ' + name + ' on this device?')) return;
+            blockedUsers.add(message.userId);
+            try { localStorage.setItem('kitsune-chat-blocked', JSON.stringify([...blockedUsers])); } catch {}
+            renderMessages(); toast(name + ' is hidden on this device.');
+          });
+          actions.append(report, block);
+        }
+        if (actions.children.length) body.append(actions);
         article.append(avatar, body);
         return article;
       }
@@ -2608,7 +2719,7 @@ ducky-clicker\tI_am_me\t609450`;
           holder.append(note);
         }
         const divider = document.createElement('div'); divider.className = 'kc-date'; divider.textContent = 'TODAY'; holder.prepend(divider);
-        (state.messages[active] || []).forEach(message => { const node = renderMessage(message); if (node) holder.append(node); });
+        (state.messages[active] || []).filter(message => !blockedUsers.has(message.userId)).forEach(message => { const node = renderMessage(message); if (node) holder.append(node); });
         byId('feed').scrollTop = byId('feed').scrollHeight;
       }
       function switchChannel(name) {
@@ -2650,7 +2761,7 @@ ducky-clicker\tI_am_me\t609450`;
         callStage.hidden = !joined && !voicePeers.size;
         localVideo.parentElement.classList.toggle('camera-off', !cameraOn);
         if (voiceStream && localVideo.srcObject !== voiceStream) localVideo.srcObject = voiceStream;
-        voiceStatus.textContent = joined ? (voiceStream?.getAudioTracks().some(track => track.enabled) ? 'In call' : 'Mic muted') + ' · #' + voiceChannel : 'Voice off';
+        voiceStatus.textContent = joined ? (voiceStream?.getAudioTracks().some(track => track.enabled) ? 'Mic live' : 'Mic muted') + ' · #' + voiceChannel + ' · ' + (voicePeers.size + 1) + ' participant' + (voicePeers.size === 0 ? '' : 's') : (voicePeers.size ? voicePeers.size + ' other participant' + (voicePeers.size === 1 ? '' : 's') + ' connected' : 'Voice off');
       }
       function closeVoicePeer(userId) {
         const peer = voicePeers.get(userId);
@@ -2830,6 +2941,16 @@ ducky-clicker\tI_am_me\t609450`;
           toast('#' + message.channel + ' was cleared.');
           return;
         }
+        if (message?.type === 'message-edit' || message?.type === 'message-delete') {
+          const list = state.messages[message.channel] || [];
+          const target = list.find(item => item.id === message.targetId);
+          if (!target || target.userId !== message.userId) return;
+          if (message.type === 'message-edit') target.text = String(message.text || '').slice(0, 1500);
+          else state.messages[message.channel] = list.filter(item => item.id !== message.targetId);
+          save();
+          if (message.channel === active) renderMessages();
+          return;
+        }
         if (message?.channel && Number(message.timestamp || 0) <= Number(state.clearAt[message.channel] || 0)) return;
         if (message?.type === 'voice-join' && message.channel && message.from !== state.userId && voiceChannel === message.channel) {
           voiceParticipants.add(message.from);
@@ -2925,6 +3046,7 @@ ducky-clicker\tI_am_me\t609450`;
       byId('close').addEventListener('click', () => document.querySelector('#global-chat-close')?.click());
       byId('clear').addEventListener('click', () => {
         const channel = active;
+        if (!window.confirm('Clear #' + channel + ' on this device and notify connected chat users? Offline users will not receive this clear event.')) return;
         const timestamp = Date.now();
         state.clearAt[channel] = Math.max(Number(state.clearAt[channel] || 0), timestamp);
         state.messages[channel] = [];
@@ -3159,6 +3281,285 @@ ducky-clicker\tI_am_me\t609450`;
       document.querySelector('#profile-avatar-file')?.addEventListener('change', () => setTimeout(() => refreshPreview(preview), 300));
       decorateAvatars();
       renderShop();
+    })();
+  </script>
+  <script>
+    (() => {
+      const q = selector => document.querySelector(selector);
+      const storageRead = (key, fallback = null) => { try { return JSON.parse(localStorage.getItem(key) ?? JSON.stringify(fallback)); } catch { return fallback; } };
+      const storageWrite = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch {} };
+
+      // Mobile app menu exposes toolbar actions that are hidden on narrow screens.
+      const mobileToggle = q('#mobile-menu-toggle');
+      const mobileMenu = q('#mobile-menu');
+      mobileToggle?.addEventListener('click', () => {
+        const open = mobileMenu.classList.toggle('open');
+        mobileToggle.setAttribute('aria-expanded', String(open));
+      });
+      const mobileActions = { games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai', chat: '#open-global-chat', tools: '#open-tools', settings: '#open-settings', profile: '#open-profile', partners: '#open-partners' };
+      mobileMenu?.addEventListener('click', event => {
+        const action = event.target.closest('[data-mobile-action]')?.dataset.mobileAction;
+        if (action) { mobileMenu.classList.remove('open'); mobileToggle.setAttribute('aria-expanded', 'false'); q(mobileActions[action])?.click(); }
+      });
+      document.addEventListener('click', event => { if (!event.target.closest('#mobile-menu, #mobile-menu-toggle')) { mobileMenu?.classList.remove('open'); mobileToggle?.setAttribute('aria-expanded', 'false'); } });
+
+      // Drag toolbar shortcuts into a preferred order; the layout is saved locally.
+      const toolsBar = q('.tools');
+      const toolbarButtons = [...(toolsBar?.querySelectorAll('.toolbar-button') || [])];
+      const savedToolbarOrder = storageRead('kitsune-toolbar-order', []);
+      if (Array.isArray(savedToolbarOrder)) savedToolbarOrder.forEach(id => { const button = toolbarButtons.find(item => item.id === id); if (button) toolsBar.append(button); });
+      let draggedToolbarButton = null;
+      toolbarButtons.forEach(button => {
+        button.draggable = true;
+        button.title = (button.title ? button.title + ' · ' : '') + 'Drag to rearrange';
+        button.addEventListener('dragstart', () => { draggedToolbarButton = button; button.classList.add('dragging'); });
+        button.addEventListener('dragend', () => {
+          button.classList.remove('dragging');
+          toolsBar?.querySelectorAll('.drop-target').forEach(item => item.classList.remove('drop-target'));
+          storageWrite('kitsune-toolbar-order', [...(toolsBar?.querySelectorAll('.toolbar-button') || [])].map(item => item.id));
+        });
+        button.addEventListener('dragover', event => { if (draggedToolbarButton && draggedToolbarButton !== button) { event.preventDefault(); button.classList.add('drop-target'); } });
+        button.addEventListener('dragleave', () => button.classList.remove('drop-target'));
+        button.addEventListener('drop', event => {
+          event.preventDefault(); button.classList.remove('drop-target');
+          if (draggedToolbarButton && draggedToolbarButton !== button) toolsBar.insertBefore(draggedToolbarButton, button);
+        });
+      });
+
+      // Extend appearance preferences with user background, clock formats, and text size.
+      const extraAppearance = storageRead('kitsune-appearance-settings', {});
+      const backgroundInput = q('#background-image-url');
+      const clockSelect = q('#clock-format');
+      const dateSelect = q('#date-format');
+      const timeoutInput = q('#game-timeout-setting');
+      const fontSelect = q('#interface-text-size');
+      if (backgroundInput) backgroundInput.value = extraAppearance.backgroundImage || '';
+      if (clockSelect) clockSelect.value = extraAppearance.clockFormat || '12';
+      if (dateSelect) dateSelect.value = extraAppearance.dateFormat || 'short';
+      if (timeoutInput) timeoutInput.value = String(extraAppearance.gameTimeout || 20);
+      if (fontSelect) fontSelect.value = String(extraAppearance.textSize || 15);
+      function applyExtraAppearance(settings = extraAppearance) {
+        const rawUrl = String(settings.backgroundImage || '').trim();
+        let safeUrl = '';
+        try { const parsed = new URL(rawUrl); if (parsed.protocol === 'https:') safeUrl = parsed.href; } catch {}
+        if (safeUrl) q('main').style.backgroundImage = `linear-gradient(180deg,rgba(4,3,10,.42),rgba(4,3,10,.72)),url("${safeUrl.replace(/["\\]/g, '')}")`;
+        else q('main').style.removeProperty('background-image');
+        document.documentElement.style.fontSize = (Number(settings.textSize) || 15) + 'px';
+        if (clockSelect) clockSelect.value = settings.clockFormat || '12';
+        if (dateSelect) dateSelect.value = settings.dateFormat || 'short';
+        if (timeoutInput) timeoutInput.value = String(settings.gameTimeout || 20);
+        if (fontSelect) fontSelect.value = String(settings.textSize || 15);
+        if (typeof updateHomeClock === 'function') updateHomeClock();
+      }
+      applyExtraAppearance();
+      q('#save-appearance')?.addEventListener('click', () => {
+        const updated = { ...storageRead('kitsune-appearance-settings', {}), backgroundImage: backgroundInput?.value.trim() || '', clockFormat: clockSelect?.value || '12', dateFormat: dateSelect?.value || 'short', gameTimeout: Math.max(5, Math.min(120, Number(timeoutInput?.value) || 20)), textSize: Number(fontSelect?.value) || 15 };
+        storageWrite('kitsune-appearance-settings', updated);
+        applyExtraAppearance(updated);
+        q('#appearance-status').textContent = 'Appearance saved on this device.';
+      });
+      [clockSelect, dateSelect].forEach(control => control?.addEventListener('change', () => { extraAppearance.clockFormat = clockSelect.value; extraAppearance.dateFormat = dateSelect.value; updateHomeClock(); }));
+      fontSelect?.addEventListener('change', () => { document.documentElement.style.fontSize = fontSelect.value + 'px'; });
+
+      // Show saved and recent games on the home screen when available.
+      const originalRenderHomeFavorites = renderHomeFavorites;
+      renderHomeFavorites = function visibleHomeFavorites() {
+        originalRenderHomeFavorites();
+        q('#home-quicklinks')?.classList.toggle('has-links', Boolean(q('#home-quicklinks')?.querySelector('.quick-link')) && q('#home-quicklinks')?.querySelector('.quick-link')?.textContent !== 'Pin favorites from the Games library');
+      };
+      renderHomeFavorites();
+
+      // Game sorting, favorites, details, retry, continue-last-game, and volume.
+      const originalRenderGames = renderGames;
+      let activeSort = storageRead('kitsune-game-sort', 'name');
+      if (q('#games-sort')) q('#games-sort').value = activeSort;
+      renderGames = function enhancedRenderGames() {
+        originalRenderGames();
+        const grid = q('#games-grid');
+        if (!grid) return;
+        const cards = [...grid.querySelectorAll('.game-card')];
+        cards.forEach(card => {
+          const name = card.getAttribute('aria-label')?.replace(/^Play /, '') || '';
+          const game = games.find(item => item.name === name);
+          if (!game) return;
+          const favorite = document.createElement('span');
+          favorite.className = 'game-card-favorite';
+          favorite.setAttribute('role', 'button');
+          favorite.setAttribute('tabindex', '0');
+          favorite.setAttribute('aria-label', (readGameList('kitsune-game-favorites').includes(game.file) ? 'Remove ' : 'Add ') + game.name + ' ' + 'favorite');
+          favorite.textContent = readGameList('kitsune-game-favorites').includes(game.file) ? '★' : '☆';
+          favorite.addEventListener('click', event => { event.stopPropagation(); event.preventDefault(); toggleGameFavorite(game); });
+          favorite.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); toggleGameFavorite(game); } });
+          card.append(favorite);
+        });
+        const recent = readGameList('kitsune-recent-games');
+        const favorites = readGameList('kitsune-game-favorites');
+        cards.sort((a, b) => {
+          const ga = games.find(item => item.name === a.getAttribute('aria-label')?.replace(/^Play /, ''));
+          const gb = games.find(item => item.name === b.getAttribute('aria-label')?.replace(/^Play /, ''));
+          if (!ga || !gb) return 0;
+          if (activeSort === 'recent') return (recent.indexOf(ga.file) < 0 ? 999 : recent.indexOf(ga.file)) - (recent.indexOf(gb.file) < 0 ? 999 : recent.indexOf(gb.file));
+          if (activeSort === 'favorites') return Number(favorites.includes(gb.file)) - Number(favorites.includes(ga.file)) || ga.name.localeCompare(gb.name);
+          return ga.name.localeCompare(gb.name);
+        }).forEach(card => grid.append(card));
+      };
+      q('#games-sort')?.addEventListener('change', event => { activeSort = event.target.value; storageWrite('kitsune-game-sort', activeSort); renderGames(); });
+      q('#continue-game')?.addEventListener('click', () => {
+        const last = readGameList('kitsune-recent-games')[0];
+        const game = games.find(item => item.file === last);
+        if (game) openGame(game); else { q('#games-search').focus(); q('#games-search').placeholder = 'Play a game first to continue it'; }
+      });
+      q('#game-loading-retry')?.addEventListener('click', () => { if (activeGameTab) loadGameIntoFrame(activeGameTab); });
+      function applyGameVolume(frame) {
+        try { frame?.contentDocument?.querySelectorAll('audio,video').forEach(media => { media.volume = Number(q('#game-volume')?.value ?? 1); }); } catch { /* Cross-origin games control their own audio. */ }
+      }
+      q('#game-volume')?.addEventListener('input', () => applyGameVolume(activeGameTab?.frame));
+      document.addEventListener('load', event => { if (event.target.matches?.('.game-frame')) applyGameVolume(event.target); }, true);
+      q('#game-detail-description')?.insertAdjacentHTML('afterend', '<p class="game-detail-controls" id="game-detail-controls"></p>');
+      const gameControls = { '1v1.LOL': 'WASD to move, mouse to aim and build.', 'Among Us': 'Use the on-screen controls to move and interact.', '2048': 'Arrow keys or swipe to combine matching tiles.', 'Flappy Bird': 'Tap, click, or press Space to flap.', 'Run 3': 'Arrow keys to move; Space to jump.', 'Slope': 'Arrow keys or A/D to steer.', 'Bloxorz': 'Arrow keys to roll the block.' };
+      const detailObserver = new MutationObserver(() => {
+        const name = q('#game-detail-title')?.textContent || '';
+        const description = q('#game-detail-controls');
+        if (description) description.textContent = 'Controls: ' + (gameControls[name] || 'Use the game’s on-screen controls or keyboard instructions.');
+      });
+      detailObserver.observe(q('#game-detail-title'), { childList: true });
+
+      // Mini-player progress, persistent last track, playlist transfer, artist search, and sleep timer.
+      const audio = q('#music-audio');
+      const miniSeek = q('#mini-seek');
+      const formatTime = value => Number.isFinite(value) ? Math.floor(value / 60) + ':' + String(Math.floor(value % 60)).padStart(2, '0') : '0:00';
+      function updateMiniProgress() {
+        if (!audio || !miniSeek) return;
+        miniSeek.value = audio.duration ? String(Math.round(audio.currentTime / audio.duration * 100)) : '0';
+        q('#mini-current-time').textContent = formatTime(audio.currentTime);
+        q('#mini-duration').textContent = formatTime(audio.duration);
+      }
+      ['timeupdate', 'loadedmetadata', 'durationchange', 'seeked'].forEach(type => audio?.addEventListener(type, updateMiniProgress));
+      miniSeek?.addEventListener('input', () => { if (audio.duration) audio.currentTime = Number(miniSeek.value) / 100 * audio.duration; });
+      const originalPlayMusic = playMusic;
+      playMusic = function rememberAndPlayMusic(track) { if (track?.path) storageWrite('kitsune-last-music-track', track.path); originalPlayMusic(track); };
+      function restoreLastMusicTrack() {
+        const lastMusicPath = storageRead('kitsune-last-music-track', '');
+        const lastTrack = lastMusicPath && musicTracks.find(track => track.path === lastMusicPath);
+        if (lastTrack && !activeMusicTrack) {
+          activeMusicTrack = lastTrack;
+          musicAudio.src = lastTrack.url;
+          musicNow.replaceChildren(document.createTextNode(lastTrack.title));
+          const subtitle = document.createElement('small'); subtitle.textContent = lastTrack.group || 'Single'; musicNow.append(subtitle);
+          updateMiniPlayer();
+        }
+      }
+      const originalLoadMusicLibrary = loadMusicLibrary;
+      loadMusicLibrary = async function loadAndRestoreMusic() { await originalLoadMusicLibrary(); restoreLastMusicTrack(); };
+      if (musicLoaded) restoreLastMusicTrack();
+      const musicActions = document.createElement('div');
+      musicActions.className = 'music-playlist-tools';
+      musicActions.innerHTML = '<button type="button" id="playlist-export">Export playlist</button><button type="button" id="playlist-import">Import playlist</button><input id="playlist-import-file" type="file" accept="application/json" hidden><label class="music-timer-row">Sleep timer <select id="music-sleep-timer" aria-label="Music sleep timer"><option value="0">Off</option><option value="15">15 min</option><option value="30">30 min</option><option value="45">45 min</option><option value="60">60 min</option></select></label>';
+      q('.music-toolbar')?.insertAdjacentElement('afterend', musicActions);
+      q('#playlist-export')?.addEventListener('click', () => downloadFile('kitsune-playlist.json', JSON.stringify(savedMusicPaths(), null, 2), 'application/json'));
+      q('#playlist-import')?.addEventListener('click', () => q('#playlist-import-file').click());
+      q('#playlist-import-file')?.addEventListener('change', async event => {
+        const file = event.target.files?.[0]; event.target.value = '';
+        if (!file) return;
+        try { const paths = JSON.parse(await file.text()); if (!Array.isArray(paths) || paths.some(path => typeof path !== 'string')) throw new Error(); localStorage.setItem('kitsune-music-playlist', JSON.stringify([...new Set(paths)])); renderMusicLibrary(); musicStatus.textContent = 'Playlist imported.'; }
+        catch { musicStatus.textContent = 'That playlist file is not valid.'; }
+      });
+      let sleepTimer;
+      q('#music-sleep-timer')?.addEventListener('change', event => {
+        clearTimeout(sleepTimer);
+        const minutes = Number(event.target.value);
+        if (minutes) { sleepTimer = setTimeout(() => { musicAudio.pause(); musicStatus.textContent = 'Sleep timer paused playback.'; event.target.value = '0'; }, minutes * 60000); musicStatus.textContent = 'Sleep timer set for ' + minutes + ' minutes.'; }
+      });
+
+      // Chat reactions, date separators, unread channel badges, and local profile status.
+      const channelUnread = storageRead('kitsune-channel-unread', {});
+      function paintUnreadChannels() {
+        document.querySelectorAll('#kc-channels .kc-channel').forEach(button => {
+          let badge = button.querySelector('.kc-channel-unread');
+          if (!badge) { badge = document.createElement('span'); badge.className = 'kc-channel-unread'; badge.hidden = true; button.append(badge); }
+          const count = Number(channelUnread[button.dataset.channel] || 0);
+          badge.hidden = !count; badge.textContent = count > 99 ? '99+' : String(count);
+        });
+      }
+      const originalNotify = window.kitsuneNotifyChatMessage;
+      window.kitsuneNotifyChatMessage = message => {
+        const currentChannel = q('#kc-channel-title')?.textContent;
+        if (message?.channel && message.channel !== currentChannel) { channelUnread[message.channel] = (channelUnread[message.channel] || 0) + 1; storageWrite('kitsune-channel-unread', channelUnread); paintUnreadChannels(); }
+        originalNotify?.(message);
+      };
+      q('#kc-channels')?.addEventListener('click', event => {
+        const channel = event.target.closest('.kc-channel')?.dataset.channel;
+        if (channel) { channelUnread[channel] = 0; storageWrite('kitsune-channel-unread', channelUnread); setTimeout(paintUnreadChannels, 0); }
+      });
+      const reactions = storageRead('kitsune-chat-reactions', {});
+      const reactionObserver = new MutationObserver(() => {
+        const list = q('#kc-message-list');
+        if (!list) return;
+        list.querySelectorAll('.kc-message').forEach((article, index) => {
+          const time = article.querySelector('time');
+          if (time) {
+            const date = new Date(time.dateTime);
+            time.title = date.toLocaleDateString([], { year: 'numeric', month: 'long', day: 'numeric' });
+            article.dataset.messageDate = date.toLocaleDateString();
+            const previous = article.previousElementSibling;
+            if (previous?.classList.contains('kc-date-extra')) return;
+            const previousArticle = previous?.classList.contains('kc-message') ? previous : previous?.previousElementSibling;
+            if (!previousArticle || previousArticle.dataset.messageDate !== article.dataset.messageDate) {
+              const divider = document.createElement('div'); divider.className = 'kc-date kc-date-extra'; divider.textContent = date.toLocaleDateString([], { weekday: 'long', month: 'long', day: 'numeric' }); article.before(divider);
+            }
+          }
+          if (article.querySelector('.kc-reactions')) return;
+          const messageText = article.querySelector('.kc-message-text')?.textContent || '';
+          const messageName = article.querySelector('.kc-message-head strong')?.textContent || '';
+          const id = messageName + ':' + (time?.dateTime || '') + ':' + messageText.slice(0, 50) + ':' + index;
+          article.dataset.reactionId = id;
+          const bar = document.createElement('div'); bar.className = 'kc-reactions';
+          ['❤️', '😂', '👍', '🎉'].forEach(emoji => {
+            const button = document.createElement('button'); button.type = 'button'; button.textContent = emoji + (reactions[id]?.[emoji] ? ' ' + reactions[id][emoji] : '');
+            button.setAttribute('aria-label', 'React with ' + emoji);
+            button.addEventListener('click', () => {
+              reactions[id] ||= {}; reactions[id][emoji] = reactions[id][emoji] ? 0 : 1;
+              storageWrite('kitsune-chat-reactions', reactions); button.classList.toggle('active', Boolean(reactions[id][emoji])); button.textContent = emoji + (reactions[id][emoji] ? ' 1' : '');
+            });
+            if (reactions[id]?.[emoji]) button.classList.add('active');
+            bar.append(button);
+          });
+          article.querySelector('.kc-message-body')?.append(bar);
+        });
+        paintUnreadChannels();
+      });
+      if (q('#kc-message-list')) reactionObserver.observe(q('#kc-message-list'), { childList: true, subtree: true });
+      const statusInput = q('#profile-status-input');
+      const profileStatus = storageRead('kitsune-profile-status', '');
+      if (statusInput) statusInput.value = profileStatus;
+      if (profileStatus) { const chatHint = q('#kc-profile small'); if (chatHint) chatHint.textContent = profileStatus; }
+      statusInput?.addEventListener('input', () => {
+        storageWrite('kitsune-profile-status', statusInput.value.trim());
+        const hint = q('#side-profile-hint');
+        if (hint && !hint.textContent.startsWith('✦')) hint.textContent = statusInput.value.trim() || (currentProfileName() ? 'Your local profile' : 'Set up your profile');
+        const chatHint = q('#kc-profile small');
+        if (chatHint) chatHint.textContent = statusInput.value.trim() || 'Online · profile';
+      });
+      q('#open-profile')?.addEventListener('click', () => { if (statusInput) statusInput.value = storageRead('kitsune-profile-status', ''); });
+
+      // Local moderation helpers and a confirmation for clearing saved data.
+      const privacyCard = q('#clear-kitsune-data')?.closest('.settings-card');
+      if (privacyCard) {
+        const manageBlocks = document.createElement('button'); manageBlocks.type = 'button'; manageBlocks.className = 'settings-action'; manageBlocks.textContent = 'Manage blocked chat users';
+        manageBlocks.addEventListener('click', () => {
+          const ids = storageRead('kitsune-chat-blocked', []);
+          const action = window.prompt('Blocked user IDs on this device:\n' + (ids.length ? ids.join('\n') : '(none)') + '\n\nEnter an ID to unblock it, or leave blank to close:');
+          if (action && ids.includes(action.trim())) { const next = ids.filter(id => id !== action.trim()); storageWrite('kitsune-chat-blocked', next); alert('User unblocked on this device. Refresh chat to show their messages.'); }
+        });
+        privacyCard.querySelector('.settings-actions')?.append(manageBlocks);
+      }
+      q('#clear-kitsune-data')?.addEventListener('click', event => {
+        if (!event.defaultPrevented) { /* The existing handler performs the confirmation before clearing. */ }
+      });
+      q('#appearance-status')?.insertAdjacentHTML('afterend', '<p class="accessibility-hint">Keyboard: Tab to move, Enter/Space to activate, Esc to close. Drag toolbar shortcuts to rearrange. Reduced motion and larger text are available here.</p>');
+      document.addEventListener('keydown', event => {
+        if (event.key === 'Escape') { mobileMenu?.classList.remove('open'); mobileToggle?.setAttribute('aria-expanded', 'false'); }
+      });
     })();
   </script>
 </body>
