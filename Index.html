@@ -382,6 +382,7 @@
     .profile-shop-item button{width:100%;margin-top:5px;padding:7px 6px;border:1px solid #ffffff22;border-radius:8px;color:#fff;background:#ffffff10;font:inherit;font-size:11px;cursor:pointer}
     .profile-shop-item button.primary{border-color:transparent;background:#7955b5}.profile-shop-item button:disabled{opacity:.55;cursor:default}
     .profile-shop-title{margin-top:9px!important;color:#e6d7ff!important;font-size:11px!important}
+    .shop-type-tabs,.shop-filter-row,.shop-categories{display:flex;flex-wrap:wrap;gap:7px;margin:12px 0}.shop-type-tabs button,.shop-filter-row button,.shop-category{padding:7px 10px;border:1px solid #ffffff1c;border-radius:9px;color:#cfc6d8;background:#ffffff08;font:inherit;font-size:11px;cursor:pointer}.shop-type-tabs button.active,.shop-filter-row button.active,.shop-category.active{border-color:#c5a5ff77;color:#fff;background:#9a6de533}.shop-filter-row{align-items:center}.shop-search{min-width:150px;flex:1;padding:8px 10px;border:1px solid #ffffff20;border-radius:9px;color:#fff;background:#08080a;font:inherit;font-size:12px}.shop-categories{max-height:112px;overflow:auto;padding:2px 0}.shop-category{display:inline-flex;align-items:center;gap:6px;white-space:nowrap}.shop-category span{color:#aaa2b6;font-size:10px}.profile-shop-limit{margin:8px 0 12px!important;color:#f4d78a!important;font-size:11px!important}.profile-shop-item[hidden]{display:none}
     .equipped-profile-phrase{margin:7px 0 0!important;padding:6px 10px;border:1px solid #c5a5ff30;border-radius:999px;color:#f0d9ff!important;background:#c5a5ff12;font-size:12px;font-weight:700}
     .profile-cosmetic-overlay{position:absolute;z-index:3;inset:-30%;display:grid;place-items:center;pointer-events:none}
     .profile-cosmetic-overlay svg{width:100%;height:100%;overflow:visible}
@@ -626,6 +627,10 @@
         <section class="profile-shop" id="profile-shop" aria-label="Kitsune cosmetics shop" hidden>
           <div class="profile-shop-head"><h3>✨ Kitsune Shop</h3><span class="profile-shop-balance"><span id="profile-shop-coins">500</span> demo coins</span></div>
           <p class="profile-shop-note">Get 100 free demo coins each day you visit. Use them for cosmetics or chat games; no real-money purchases.</p>
+          <nav class="shop-type-tabs" id="shop-type-tabs" aria-label="Shop item type"><button class="active" type="button" data-shop-type="Decorations">Decorations</button><button type="button" data-shop-type="Effects">Effects</button><button type="button" data-shop-type="Nameplates">Nameplates</button><button type="button" data-shop-type="Tags">Tags</button></nav>
+          <div class="shop-filter-row"><button class="active" id="shop-show-all" type="button">All</button><button id="shop-show-owned" type="button">Owned</button><input class="shop-search" id="shop-search" type="search" placeholder="Search the shop" aria-label="Search the shop"></div>
+          <div class="shop-categories" id="shop-categories" aria-label="Shop categories"></div>
+          <p class="profile-shop-limit" id="profile-shop-limit" role="status" aria-live="polite"></p>
           <div class="profile-shop-preview"><div class="profile-shop-demo" id="profile-shop-demo" aria-label="Live profile preview">狐</div><div class="profile-shop-copy"><strong id="profile-shop-name">Your profile preview</strong><span id="profile-shop-description">Choose an item and preview it before buying.</span><p class="profile-shop-title" id="profile-shop-title">No title equipped</p></div></div>
           <div class="profile-shop-grid" id="profile-shop-grid"></div>
         </section>
@@ -3170,7 +3175,7 @@ ducky-clicker\tI_am_me\t609450`;
   </script>
   <script>
     (() => {
-      const catalog = [
+      const legacyCatalog = [
         { id: 'winged', name: 'Moonwing mantle', title: 'Skybound', price: 120, description: 'Silver feather wings framed around your avatar.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M58 43C37 14 18 12 9 17c10 5 14 14 14 22 12-5 23 2 31 14-16-8-27-4-34 3 17-1 28 6 37 16 4-11 7-20 10-29m-4 0c21-29 40-31 49-26-10 5-14 14-14 22-12-5-23 2-31 14 16-8 27-4 34 3-17-1-28 6-37 16-4-11-7-20-10-29" fill="none" stroke="#d9c2ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><path d="M60 32v38" stroke="#fff" stroke-width="3" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M48 46C31 20 14 19 7 23c9 5 11 13 10 20 11-3 20 5 27 14-14-6-22-2-28 4 14 0 22 7 29 16 7-10 10-20 15-29m12-2c17-26 34-27 41-23-9 5-11 13-10 20-11-3-20 5-27 14 14-6 22-2 28 4-14 0-22 7-29 16-7-10-10-20-15-29" fill="none" stroke="#e7d4ff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' },
         { id: 'dragon', name: 'Little dragon', title: 'Wyrm-touched', price: 160, description: 'A hand-drawn dragon curls around your profile.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M24 54c3-9 0-19 10-27 10-9 24-7 32-1l-9 6 17 2-7-14 13 5c12 6 15 19 7 28-7 9-21 10-32 4l-9 12-3-15c-11 4-21 2-27 0Z" fill="#9c76dc" stroke="#f3deff" stroke-width="3" stroke-linejoin="round"/><path d="m69 30 15-15 2 17M39 48c8 4 15 3 21-2" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round"/><circle cx="67" cy="36" r="2.5" fill="#fff"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="M30 56c5-12 1-21 12-30 10-8 24-5 30 1l-9 5 16 3-7-13 12 5c10 6 13 18 6 26-7 8-19 8-29 3l-8 10-3-13c-9 3-16 3-20 3Z" fill="none" stroke="#d1aaff" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="m71 32 11-12 2 14" fill="none" stroke="#ffe3a4" stroke-width="3" stroke-linecap="round"/></svg>' },
         { id: 'claws', name: 'Fox claw marks', title: 'Sharp look', price: 90, description: 'Three curved rose-gold slashes, drawn as SVG.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><path d="M30 14 48 65M57 9l11 57M85 16l-2 50" stroke="#ff9db2" stroke-width="10" stroke-linecap="round"/><path d="M30 14 48 65M57 9l11 57M85 16l-2 50" stroke="#fff0f4" stroke-width="2" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><path d="m39 27 7 14m13-21 5 15m13-7-2 15" fill="none" stroke="#ff9db2" stroke-width="4" stroke-linecap="round"/></svg>' },
@@ -3178,6 +3183,21 @@ ducky-clicker\tI_am_me\t609450`;
         { id: 'aura-dummy', name: 'Aura Dummy', title: 'Aura Dummy', price: 70, description: 'A silly, shiny profile title and halo.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><ellipse cx="60" cy="48" rx="35" ry="20" fill="none" stroke="#b8a2ff" stroke-width="5"/><circle cx="60" cy="38" r="15" fill="#34284b" stroke="#e1d3ff" stroke-width="2"/><path d="M53 37h1m12 0h1m-12 7c4 3 8 3 12 0" stroke="#fff" stroke-width="2" stroke-linecap="round"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="45" rx="43" ry="34" fill="none" stroke="#b8a2ff" stroke-width="3"/><path d="m60 7 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#e4d6ff"/></svg>' },
         { id: 'cutie', name: 'Cutie Patootie', title: 'Cutie Patootie', price: 80, description: 'A sweet title with a hand-drawn heart ring.', art: '<svg viewBox="0 0 120 80" aria-hidden="true"><circle cx="60" cy="41" r="29" fill="none" stroke="#ff9eb5" stroke-width="5"/><path d="M60 57 41 41c-12-14 7-27 19-12 12-15 31-2 19 12Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/><path d="m23 16 2 5 5 2-5 2-2 5-2-5-5-2 5-2Zm76 38 2 4 4 2-4 2-2 4-2-4-4-2 4-2Z" fill="#fff0b8"/></svg>', overlay: '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="46" rx="44" ry="33" fill="none" stroke="#ff9eb5" stroke-width="3"/><path d="M60 18c-8-10-21 1-12 11l12 10 12-10c9-10-4-21-12-11Z" fill="#ff718f" stroke="#ffe6ed" stroke-width="2"/></svg>' }
       ];
+      const shopCategories = [['Featured',26],['Anime',13],['Arcane',7],['Breakfast',6],['Cyberpunk',4],['Dragon Ball',7],['Dungeons & Dragons',5],['Elements',5],['Fantasy',8],['Fortnite',5],['League of Legends',6],['Lofi Girl',4],['Magic: The Gathering',5],['Marvel',12],['Monsters',8],['Movies',8],['My Hero Academia',8],['Palworld',3],['SpongeBob',5],['Springtoon',6],['Star Wars',7],['Street Fighter',9],['Valorant',12],['Lunar New Year',6],['Winter',12],['Halloween',16],['Fall',4],['Spring',20],['Birthday',19],['Holiday',21],['April Fools',1],['More',312]];
+      const decorationData = [
+        ['Foxtail','Sleepy fox curled around your pfp',2000,'Fantasy'],['Aurora','Soft aurora frame',4000,'Elements'],['Swirl','Painted swirl border',4000,'Featured'],['Angel Wings','Feathered wings spread either side',4000,'Fantasy'],['Dragon','Neon dragon coiled around the frame',2000,'Dragon Ball'],['Orbital','Cosmic orb wrapped in sparkling rings',2000,'Arcane'],['White Roses','Thorned white roses climbing your pfp',7000,'Spring'],['Stardust','Violet nebula flecked with sparkles',4000,'Elements'],['Air Force','Fighter pilot helmet, visor down',4000,'Fortnite'],['Crescent','Crescent moon and scattered stars',2000,'Fantasy'],['Chomp','A ring of very bad teeth',2000,'Monsters'],['Blossom','Cherry blossom branch in bloom',1000,'Spring'],['Flames','Licks of fire circling your pfp',2000,'Elements'],['Halo','Glowing purple neon ring',4000,'Arcane'],['Wormhole','Pale stone portal ring',4000,'Arcane'],['Surprised','Manga shock lines and a startled あ!',1000,'Anime'],['Skill Issue','Say it without saying it',1000,'Anime'],['Cloud Nine','Sunlit clouds drifting around your pfp',4000,'Elements'],['Sweet Dreams','Crescent moon tucked into starlit clouds',2000,'Lofi Girl'],['Sakura Ink','Ink brush sweep scattered with blossoms',2000,'Anime'],['Lone Wolf','Wolf pup howling among the stars',2000,'Monsters'],['Cat Ears','Black cat ears and a pair of whiskers',1000,'Anime'],["Comet's Dusk",'A ring of glittering stars at nightfall',4000,'Elements'],['Deep Sea Dreams','A deep blue bubble full of drifting stars',2000,'Fantasy'],['Sweatdrops','Anime panic, rendered literally',1000,'Anime'],['Hallelujah Mountains','Floating islands strung together with rope bridges',4000,'Fantasy'],
+        ['In Love','A heart-filled animated glow',1000,'Anime'],['Radiating Energy','A bright energy aura',1000,'Dragon Ball'],['Shocked','A dramatic comic-book burst',1000,'Anime'],['Soul Leaving Body','A playful ghostly trail',1000,'Anime'],['Starry Eyed','Sparkling eyes and starlight',1000,'Anime'],['Angry','A fiery comic-style effect',1000,'Anime'],['Cat Ears','A second cat-ear style',1000,'Anime'],['Dismay','A gloomy animated shadow',1000,'Anime'],['Heartbloom','A bloom of glowing hearts',2000,'Spring'],['In Tears','A sparkling tear effect',1000,'Anime'],['Ki Energy','A powerful glowing energy field',1000,'Dragon Ball'],['Rage','A blazing red aura',2000,'Anime'],['Sweat Drops Cyan','Cool cyan panic drops',2000,'Anime'],['Hex Tiles','A geometric hexagon pattern',2000,'Arcane'],['Hex Lights','Glowing hexagonal lights',7000,'Arcane'],['The Monster You Created','A mysterious creature effect',1000,'Monsters'],['FISHBONES!','A playful bone pattern',2000,'SpongeBob'],['Flame Chompers','A fiery ring of monster teeth',2000,'Monsters'],['Golden Hex','A golden hexagonal frame',2000,'Arcane'],['The Hexcore','A powerful hextech glow',7000,'Arcane'],['Blueberry Jam','A sweet blueberry splash',1000,'Breakfast'],['Donut','A colorful frosted donut effect',1000,'Breakfast']
+      ];
+      const decorationArt = '<svg viewBox="0 0 120 80" aria-hidden="true"><circle cx="60" cy="40" r="24" fill="none" stroke="#d9c2ff" stroke-width="5"/><path d="M22 26q8-10 16 0m44 28q8 10 16 0M60 7v7m0 52v7M27 40h7m52 0h7" fill="none" stroke="#ffe3a4" stroke-width="3" stroke-linecap="round"/><circle cx="60" cy="40" r="9" fill="#b790ff" opacity=".7"/></svg>';
+      const decorationOverlay = '<svg viewBox="0 0 120 90" aria-hidden="true"><ellipse cx="60" cy="45" rx="47" ry="34" fill="none" stroke="#d9c2ff" stroke-width="3"/><path d="m60 4 3 8 8 3-8 3-3 8-3-8-8-3 8-3Zm39 58 2 5 5 2-5 2-2 5-2-5-5-2 5-2Z" fill="#ffe3a4"/></svg>';
+      const decorations = decorationData.map(([name, description, price, category], index) => ({ id: 'decoration-' + index, name, title: name, description, price, category, type: index < 26 ? 'Decorations' : 'Effects', featured: index < 26, art: decorationArt, overlay: decorationOverlay }));
+      const extraItems = [
+        { id:'nameplate-skybound', name:'Skybound', title:'Skybound', description:'A bright title for your profile.', price:120, type:'Nameplates', category:'Featured', art:decorationArt, overlay:decorationOverlay },
+        { id:'nameplate-wyrmtouched', name:'Wyrm-touched', title:'Wyrm-touched', description:'A little dragon-inspired flair.', price:160, type:'Nameplates', category:'Dragon Ball', art:decorationArt, overlay:decorationOverlay },
+        { id:'tag-cozy', name:'Cozy', title:'Cozy', description:'A warm little profile tag.', price:80, type:'Tags', category:'Lofi Girl', art:decorationArt, overlay:decorationOverlay },
+        { id:'tag-legend', name:'Legend', title:'Legend', description:'A tag for your next big adventure.', price:100, type:'Tags', category:'Featured', art:decorationArt, overlay:decorationOverlay }
+      ];
+      const catalog = [...legacyCatalog.map(item => ({ ...item, type:'Nameplates', category:'Featured' })), ...decorations, ...extraItems];
       const read = (key, fallback) => { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } };
       const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Keep the shop usable for this visit if storage is full. */ } };
       let coins = Number(read('kitsune-shop-coins', 500));
@@ -3240,12 +3260,40 @@ ducky-clicker\tI_am_me\t609450`;
         decorateAvatars();
         refreshPreview(preview);
       }
+      let activeShopType = 'Decorations';
+      let activeShopCategory = 'All';
+      let showOwnedShopItems = false;
+      function renderShopCategories() {
+        const host = document.querySelector('#shop-categories');
+        host.replaceChildren();
+        [['All',''], ...shopCategories].forEach(([name, count]) => {
+          const button = document.createElement('button');
+          button.type = 'button'; button.className = 'shop-category' + (activeShopCategory === name ? ' active' : '');
+          button.dataset.shopCategory = name;
+          button.append(document.createTextNode(name));
+          if (count) { const badge = document.createElement('span'); badge.textContent = count; button.append(badge); }
+          button.addEventListener('click', () => { activeShopCategory = name; renderShop(); });
+          host.append(button);
+        });
+      }
       function renderShop() {
         const grid = document.querySelector('#profile-shop-grid');
         grid.replaceChildren();
         coins = Number(read('kitsune-shop-coins', coins));
         document.querySelector('#profile-shop-coins').textContent = coins;
-        catalog.forEach(item => {
+        const ownedDecorations = owned.filter(id => catalog.find(item => item.id === id)?.type === 'Decorations').length;
+        const remainingDecorations = Math.max(0, 2 - ownedDecorations);
+        document.querySelector('#profile-shop-limit').textContent = 'You can buy ' + remainingDecorations + ' more decoration' + (remainingDecorations === 1 ? '' : 's') + ' on a free account.';
+        document.querySelectorAll('[data-shop-type]').forEach(button => button.classList.toggle('active', button.dataset.shopType === activeShopType));
+        document.querySelector('#shop-show-all').classList.toggle('active', !showOwnedShopItems);
+        document.querySelector('#shop-show-owned').classList.toggle('active', showOwnedShopItems);
+        renderShopCategories();
+        const query = document.querySelector('#shop-search').value.trim().toLowerCase();
+        const visibleItems = catalog.filter(item => (item.type || 'Nameplates') === activeShopType)
+          .filter(item => activeShopCategory === 'All' || (activeShopCategory === 'Featured' ? item.featured : item.category === activeShopCategory))
+          .filter(item => !showOwnedShopItems || owned.includes(item.id))
+          .filter(item => !query || (item.name + ' ' + item.description + ' ' + item.category).toLowerCase().includes(query));
+        visibleItems.forEach(item => {
           const card = document.createElement('article'); card.className = 'profile-shop-item'; card.dataset.id = item.id;
           const art = document.createElement('div'); art.className = 'profile-shop-art'; art.innerHTML = item.art;
           const title = document.createElement('strong'); title.textContent = item.name;
@@ -3253,10 +3301,13 @@ ducky-clicker\tI_am_me\t609450`;
           const tryButton = document.createElement('button'); tryButton.type = 'button'; tryButton.textContent = 'Preview on profile'; tryButton.addEventListener('click', () => refreshPreview(item));
           const buyButton = document.createElement('button'); buyButton.type = 'button'; buyButton.className = 'primary';
           const isOwned = owned.includes(item.id);
-          buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : `Get · ${item.price} coins`;
-          buyButton.disabled = equipped === item.id || (!isOwned && coins < item.price);
+          const atDecorationLimit = item.type === 'Decorations' && !isOwned && remainingDecorations === 0;
+          buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : atDecorationLimit ? 'Limit reached' : `Buy · ${item.price.toLocaleString()} coins`;
+          buyButton.disabled = equipped === item.id || (!isOwned && (coins < item.price || atDecorationLimit));
           buyButton.addEventListener('click', () => {
             if (!owned.includes(item.id)) {
+              const currentOwnedDecorations = owned.filter(id => catalog.find(entry => entry.id === id)?.type === 'Decorations').length;
+              if (item.type === 'Decorations' && currentOwnedDecorations >= 2) { document.querySelector('#profile-status').textContent = 'Free accounts can own up to 2 decorations.'; return; }
               if (coins < item.price) { document.querySelector('#profile-status').textContent = 'Not enough demo coins for that cosmetic.'; return; }
               coins -= item.price; owned.push(item.id);
             }
@@ -3267,8 +3318,19 @@ ducky-clicker\tI_am_me\t609450`;
           });
           card.append(art, title, description, tryButton, buyButton); grid.append(card);
         });
+        if (!visibleItems.length) { const empty = document.createElement('p'); empty.className = 'profile-shop-note'; empty.textContent = showOwnedShopItems ? 'No owned items match this filter.' : 'No shop items match your search.'; grid.append(empty); }
         refreshPreview(preview);
       }
+      document.querySelector('#shop-type-tabs').addEventListener('click', event => {
+        const button = event.target.closest('[data-shop-type]');
+        if (!button) return;
+        activeShopType = button.dataset.shopType;
+        activeShopCategory = 'All';
+        renderShop();
+      });
+      document.querySelector('#shop-show-all').addEventListener('click', () => { showOwnedShopItems = false; renderShop(); });
+      document.querySelector('#shop-show-owned').addEventListener('click', () => { showOwnedShopItems = true; renderShop(); });
+      document.querySelector('#shop-search').addEventListener('input', renderShop);
       document.querySelector('#profile-shop-toggle').addEventListener('click', event => {
         const opening = shop.hidden;
         shop.hidden = !opening;
