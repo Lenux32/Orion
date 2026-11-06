@@ -3329,7 +3329,7 @@ ducky-clicker\tI_am_me\t609450`;
         return `<svg viewBox="0 0 320 110" role="img" aria-label="${safeName} nameplate"><defs><linearGradient id="${id}" x1="0" y1="0" x2="1" y2="1"><stop stop-color="${colors[0]}"/><stop offset="1" stop-color="${colors[1]}"/><animateTransform attributeName="gradientTransform" type="translate" values="-0.3 0;0.3 0;-0.3 0" dur="7s" repeatCount="indefinite"/></linearGradient><linearGradient id="shine-${index}" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#fff" stop-opacity="0"/><stop offset=".5" stop-color="#fff" stop-opacity=".32"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></linearGradient><clipPath id="clip-${index}"><rect x="8" y="11" width="304" height="88" rx="20"/></clipPath></defs><rect x="4" y="7" width="312" height="96" rx="23" fill="#100d18"/><rect x="8" y="11" width="304" height="88" rx="20" fill="url(#${id})"/><g clip-path="url(#clip-${index})"><path d="M-95 11h55l130 88h-55Z" fill="url(#shine-${index})"><animateTransform attributeName="transform" type="translate" values="-230 0;550 0" dur="5s" repeatCount="indefinite"/></path><path d="M18 87 Q115 20 209 78 T315 46" fill="none" stroke="#fff" stroke-opacity=".2" stroke-width="2"/><circle cx="250" cy="30" r="3" fill="#fff" opacity=".75"><animate attributeName="opacity" values=".25;1;.25" dur="2.4s" repeatCount="indefinite"/></circle><circle cx="267" cy="73" r="2" fill="#fff" opacity=".6"><animate attributeName="opacity" values=".2;.9;.2" dur="3.1s" repeatCount="indefinite"/></circle></g>${motif}${uniqueAccent}<circle cx="49" cy="55" r="25" fill="#120f19" fill-opacity=".65" stroke="#fff" stroke-opacity=".8" stroke-width="2"/><text x="49" y="62" text-anchor="middle" fill="#fff" font-family="system-ui,sans-serif" font-size="18" font-weight="800">${escapeSvgText(mark)}</text><text x="88" y="62" fill="#fff" font-family="system-ui,sans-serif" font-size="21" font-weight="750">${safeName}</text></svg>`;
       };
       const nameplates = nameplateEntries.map(([name, category, price], index) => ({ id:'nameplate-' + index, name, title:name, description:'A ' + category + ' nameplate for your profile.', price, type:'Nameplates', category, art:nameplateArt(name, category, index), overlay:decorationOverlay }));
-      const catalog = [...legacyCatalog.map(item => ({ ...item, type:'Nameplates', category:'Featured' })), ...decorations, ...nameplates, ...extraItems];
+      const catalog = [...legacyCatalog.map(item => ({ ...item, type:'Nameplates', category:'Featured' })), ...decorations, ...nameplates, ...extraItems].map(item => ({ ...item, price: 20 }));
       const read = (key, fallback) => { try { const value = localStorage.getItem(key); return value === null ? fallback : JSON.parse(value); } catch { return fallback; } };
       const write = (key, value) => { try { localStorage.setItem(key, JSON.stringify(value)); } catch { /* Keep the shop usable for this visit if storage is full. */ } };
       let coins = Number(read('kitsune-shop-coins', 500));
@@ -3417,11 +3417,8 @@ ducky-clicker\tI_am_me\t609450`;
         grid.replaceChildren();
         coins = Number(read('kitsune-shop-coins', coins));
         document.querySelector('#profile-shop-coins').textContent = coins;
-        const limitedShopType = ['Decorations', 'Nameplates'].includes(activeShopType);
-        const ownedLimitedItems = owned.filter(id => catalog.find(item => item.id === id)?.type === activeShopType).length;
-        const remainingLimitedItems = Math.max(0, 2 - ownedLimitedItems);
-        document.querySelector('#profile-shop-limit').hidden = !limitedShopType;
-        document.querySelector('#profile-shop-limit').textContent = 'You can buy ' + remainingLimitedItems + ' more ' + activeShopType.toLowerCase().replace(/s$/, '') + (remainingLimitedItems === 1 ? '' : 's') + ' on a free account.';
+        document.querySelector('#profile-shop-limit').hidden = true;
+        document.querySelector('#profile-shop-limit').textContent = '';
         document.querySelectorAll('[data-shop-type]').forEach(button => button.classList.toggle('active', button.dataset.shopType === activeShopType));
         document.querySelector('#shop-show-all').classList.toggle('active', !showOwnedShopItems);
         document.querySelector('#shop-show-owned').classList.toggle('active', showOwnedShopItems);
@@ -3439,15 +3436,10 @@ ducky-clicker\tI_am_me\t609450`;
           const tryButton = document.createElement('button'); tryButton.type = 'button'; tryButton.textContent = 'Preview on profile'; tryButton.addEventListener('click', () => refreshPreview(item));
           const buyButton = document.createElement('button'); buyButton.type = 'button'; buyButton.className = 'primary';
           const isOwned = owned.includes(item.id);
-          const hasFreeAccountLimit = ['Decorations', 'Nameplates'].includes(item.type);
-          const ownedTypeItems = owned.filter(id => catalog.find(entry => entry.id === id)?.type === item.type).length;
-          const atDecorationLimit = hasFreeAccountLimit && !isOwned && ownedTypeItems >= 2;
-          buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : atDecorationLimit ? 'Limit reached' : `Buy · ${item.price.toLocaleString()} coins`;
-          buyButton.disabled = equipped === item.id || (!isOwned && (coins < item.price || atDecorationLimit));
+          buyButton.textContent = equipped === item.id ? 'Equipped' : isOwned ? 'Equip' : `Buy · ${item.price.toLocaleString()} coins`;
+          buyButton.disabled = equipped === item.id || (!isOwned && coins < item.price);
           buyButton.addEventListener('click', () => {
             if (!owned.includes(item.id)) {
-              const currentOwnedTypeItems = owned.filter(id => catalog.find(entry => entry.id === id)?.type === item.type).length;
-              if (['Decorations', 'Nameplates'].includes(item.type) && currentOwnedTypeItems >= 2) { document.querySelector('#profile-status').textContent = 'Free accounts can own up to 2 ' + item.type.toLowerCase() + '.'; return; }
               if (coins < item.price) { document.querySelector('#profile-status').textContent = 'Not enough demo coins for that cosmetic.'; return; }
               coins -= item.price; owned.push(item.id);
             }
