@@ -441,6 +441,22 @@
     .kc-wheel-pointer{position:absolute;z-index:1;top:0;left:50%;width:0;height:0;border-right:9px solid transparent;border-bottom:0;border-left:9px solid transparent;border-top:18px solid #fff;filter:drop-shadow(0 2px 3px #000);transform:translateX(-50%)}
     .kc-game-caption{margin:8px 0 0;color:#d9d0e2;font-size:11px}
     @media(prefers-reduced-motion:reduce){.kc-plinko-ball,.kc-wheel{animation:none}}
+    /* Chat-wide clear and voice controls */
+    .kc-actions{flex-wrap:wrap}
+    .kc-voice-button{border-color:#b18bff55!important;color:#e6d8ff!important;background:#9a6de51a!important}
+    .kc-voice-button.joined{border-color:#ffbd7566!important;color:#ffe0b0!important;background:#ffad6518!important}
+    .kc-voice-status{color:#aaa2b6;font-size:10px;white-space:nowrap}.kc-call-stage{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px;padding:12px 16px;border-bottom:1px solid var(--kc-line);background:linear-gradient(135deg,#15111d,#100e15)}.kc-call-stage[hidden]{display:none}.kc-call-local,.kc-call-tile{position:relative;min-width:0;aspect-ratio:16/9;overflow:hidden;border:1px solid #c5a5ff30;border-radius:12px;background:radial-gradient(circle at 50% 40%,#3a2c4a,#17131f 68%);box-shadow:0 8px 22px #0005}.kc-call-local video,.kc-call-tile video{width:100%;height:100%;object-fit:cover}.kc-call-local>span,.kc-call-tile>span{position:absolute;right:7px;bottom:7px;padding:4px 8px;border:1px solid #ffffff20;border-radius:999px;color:#fff;background:#0009;font-size:10px}.kc-call-local.camera-off video,.kc-call-tile.camera-off video{visibility:hidden}.kc-call-local.camera-off::before,.kc-call-tile.camera-off::before{position:absolute;inset:0;display:grid;place-items:center;color:#c9b8dc;content:'Camera off';font-size:12px}.kc-call-remote{display:contents}.kc-actions button:disabled{opacity:.45;cursor:not-allowed} .kc-call-stage:not([hidden]){max-height:32vh;overflow:auto} .kc-call-local video{transform:scaleX(-1)}
+    @media(max-width:600px){.kc-actions{flex-wrap:nowrap}.kc-voice-status{display:none}}
+    /* Keep voice/video and clear controls visible below the channel title on every screen. */
+    .kc-toolbar{flex-wrap:wrap;align-items:center}
+    .kc-channel-heading{flex:1 1 100%}
+    .kc-actions{order:2;flex:1 1 100%;display:flex;flex-wrap:wrap!important;gap:7px;padding:4px 0 2px}
+    .kc-actions input{flex:1 1 100%;width:100%;min-width:0}
+    .kc-actions button{min-height:36px;padding:7px 10px!important;border-color:#b18bff55!important;color:#f4effa!important;background:linear-gradient(135deg,#342547,#201a2b)!important;font-size:11px!important;font-weight:700;white-space:nowrap}
+    .kc-actions #kc-clear{border-color:#ff9b7866!important;background:linear-gradient(135deg,#482625,#26191d)!important}
+    .kc-actions .kc-voice-button.joined{border-color:#ffc27688!important;color:#ffe0b0!important;background:linear-gradient(135deg,#5a3a23,#30231e)!important}
+    .kc-voice-status{display:block!important;flex:1 0 100%;padding:0 3px;color:#c4b8d2;font-size:10px}
+    .kc-actions button:disabled{opacity:.6!important}
   </style>
 </head>
 <body>
@@ -566,11 +582,13 @@
               <button class="kc-profile-button" id="kc-profile" type="button"><span class="kc-avatar" id="kc-avatar">狐</span><span><strong id="kc-profile-name">Guest</strong><small>Online · profile</small></span><span class="kc-profile-edit" aria-hidden="true">⚙</span></button>
             </aside>
             <section class="kc-main" aria-label="Chat">
-              <header class="kc-toolbar"><div class="kc-channel-heading"><span class="kc-hash">#</span><div><strong id="kc-channel-title">global-chat</strong><small id="kc-channel-description">A little bit of everything. Be kind, stay curious.</small></div><svg id="kc-lock" class="kc-lock" viewBox="0 0 16 16" aria-label="Read-only channel" hidden><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z"/><path d="M8 9.5v2"/></svg></div><div class="kc-actions"><input id="kc-search" type="search" aria-label="Search chat messages" placeholder="⌕ Search"><button id="kc-clear" type="button" title="Clear locally saved messages">Clear chat</button></div></header>
+              <header class="kc-toolbar"><div class="kc-channel-heading"><span class="kc-hash">#</span><div><strong id="kc-channel-title">global-chat</strong><small id="kc-channel-description">A little bit of everything. Be kind, stay curious.</small></div><svg id="kc-lock" class="kc-lock" viewBox="0 0 16 16" aria-label="Read-only channel" hidden><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z"/><path d="M8 9.5v2"/></svg></div><div class="kc-actions"><input id="kc-search" type="search" aria-label="Search chat messages" placeholder="⌕ Search"><button id="kc-clear" type="button" title="Clear this channel on this device and notify connected users">Clear channel</button><button class="kc-voice-button" id="kc-voice" type="button" aria-pressed="false">Join voice call</button><button class="kc-voice-button" id="kc-mute" type="button" aria-pressed="false" disabled>Mute microphone</button><button class="kc-voice-button" id="kc-video" type="button" aria-pressed="false" disabled>Start video</button><span class="kc-voice-status" id="kc-voice-status" role="status" aria-live="polite">Voice off</span></div></header>
+              <div class="kc-call-stage" id="kc-call-stage" hidden aria-label="Video call participants"><div class="kc-call-local"><video id="kc-local-video" autoplay playsinline muted></video><span>You</span></div><div class="kc-call-remote" id="kc-call-remote"></div></div>
               <div class="kc-topic" id="kc-topic"><span class="kc-topic-dot"></span><span>Welcome! Be kind, keep it friendly, and enjoy your time here.</span></div>
               <div class="kc-feed" id="kc-feed" aria-live="polite"><div id="kc-message-list"></div></div>
               <form class="kc-compose" id="kc-form"><button class="kc-attach" id="kc-attach" type="button" aria-label="Attach image" title="Attach image">＋</button><input id="kc-image" type="file" accept="image/*" hidden><span id="kc-image-name" class="kc-image-name"></span><input id="kc-input" type="text" maxlength="1500" autocomplete="off" placeholder="Message #global-chat" aria-label="Write a message"><button class="kc-send" type="submit" aria-label="Send message">↑</button></form>
               <div class="kc-footnote">Messages are shared live when connected. #rules is read-only. Try /games for coin games.</div>
+              <div id="kc-voice-audio" hidden></div>
             </section>
             <aside class="kc-online"><div class="kc-online-title">ONLINE <span id="kc-online-count">0</span></div><div id="kc-online-list" class="kc-online-list"><p>Connecting to chat…</p></div></aside>
           </div>
@@ -633,7 +651,7 @@
           <li><strong>AI chat:</strong> Kitsune logo, personalized greeting, and helpful starter prompts.</li>
           <li><strong>Partners:</strong> a new showcase for 2 Pro, BUS, and Best Sparks.</li>
           <li><strong>Notifications:</strong> the bell is ready; there are no notifications yet.</li>
-          <li><strong>Chat:</strong> chat is currently down and messaging is unavailable.</li>
+          <li><strong>Chat:</strong> clear a channel for connected users, and join voice chat with microphone access when the live connection is available.</li>
         </ul>
         <button class="updates-close" id="updates-close" type="button">Got it</button>
       </div>
@@ -816,7 +834,7 @@
       ['2048.html', '2048', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/2048.png'],
       ['flappybird.html', 'Flappy Bird', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png'],
       ['run3.html', 'Run 3', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png']
-    ].map(([file, name, image]) => ({ file, name, image: orionGameImage(file, name, image) }));
+    ].map(([file, name, image]) => ({ file, name, image }));
     function gameDuplicateKey(name) {
       return name.toLowerCase().replace(/\.(html?|htm)$/i, '').replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
     }
@@ -2396,9 +2414,13 @@ ducky-clicker\tI_am_me\t609450`;
         links: 'Useful finds and things worth sharing.'
       };
       const readState = () => { try { return JSON.parse(localStorage.getItem(storageKey)) || {}; } catch { return {}; } };
-      const state = Object.assign({ userId: 'kitsune-' + Math.random().toString(36).slice(2, 10), profile: {}, messages: {}, customChannels: [], chatDate: '' }, readState());
+      const state = Object.assign({ userId: 'kitsune-' + Math.random().toString(36).slice(2, 10), profile: {}, messages: {}, clearAt: {}, customChannels: [], chatDate: '' }, readState());
       state.profile = Object.assign({ name: '', bio: '', music: '', avatar: '', banner: '' }, state.profile || {});
       state.messages = state.messages || {};
+      state.clearAt = Object.assign({}, state.clearAt || {});
+      Object.keys(state.messages).forEach(channel => {
+        state.messages[channel] = (state.messages[channel] || []).filter(message => Number(message.timestamp || 0) > Number(state.clearAt[channel] || 0));
+      });
       state.customChannels = Array.isArray(state.customChannels) ? state.customChannels : [];
       const today = new Date().toLocaleDateString();
       if (state.chatDate !== today) state.messages = {};
@@ -2407,6 +2429,10 @@ ducky-clicker\tI_am_me\t609450`;
       let active = 'global-chat';
       let pubnub = null;
       let imageData = '';
+      let voiceChannel = null;
+      let voiceStream = null;
+      const voicePeers = new Map();
+      const voiceParticipants = new Set();
       const members = new Map();
       const byId = id => document.getElementById('kc-' + id);
       const save = () => { try { localStorage.setItem(storageKey, JSON.stringify(state)); } catch { toast('Storage is full. Try a smaller image.'); } };
@@ -2595,7 +2621,232 @@ ducky-clicker\tI_am_me\t609450`;
         byId('attach').disabled = name === 'rules';
         renderChannels(); renderMessages();
       }
+      const voiceButton = byId('voice');
+      const voiceStatus = byId('voice-status');
+      const voiceAudioHost = byId('voice-audio');
+      const muteButton = byId('mute');
+      const videoButton = byId('video');
+      const callStage = byId('call-stage');
+      const localVideo = byId('local-video');
+      const remoteVideoHost = byId('call-remote');
+      const rtcConfig = { iceServers: [{ urls: 'stun:stun.l.google.com:19302' }] };
+      function publishVoice(channel, payload) {
+        if (!pubnub || !channel) return;
+        pubnub.publish({ channel: key(channel), message: { ...payload, channel, from: state.userId } })
+          .catch(() => toast('Voice signaling failed. Check the live chat connection.'));
+      }
+      function updateVoiceControl() {
+        const joined = Boolean(voiceChannel);
+        const cameraOn = Boolean(voiceStream?.getVideoTracks().some(track => track.enabled && track.readyState === 'live'));
+        voiceButton.textContent = joined ? 'Leave call' : 'Join voice call';
+        voiceButton.classList.toggle('joined', joined);
+        voiceButton.setAttribute('aria-pressed', String(joined));
+        muteButton.disabled = !joined;
+        videoButton.disabled = !joined;
+        muteButton.textContent = voiceStream?.getAudioTracks().some(track => track.enabled) ? 'Mute mic' : 'Unmute mic';
+        muteButton.setAttribute('aria-pressed', String(Boolean(joined && !voiceStream?.getAudioTracks().some(track => track.enabled))));
+        videoButton.textContent = cameraOn ? 'Stop video' : 'Start video';
+        videoButton.setAttribute('aria-pressed', String(cameraOn));
+        callStage.hidden = !joined && !voicePeers.size;
+        localVideo.parentElement.classList.toggle('camera-off', !cameraOn);
+        if (voiceStream && localVideo.srcObject !== voiceStream) localVideo.srcObject = voiceStream;
+        voiceStatus.textContent = joined ? (voiceStream?.getAudioTracks().some(track => track.enabled) ? 'In call' : 'Mic muted') + ' · #' + voiceChannel : 'Voice off';
+      }
+      function closeVoicePeer(userId) {
+        const peer = voicePeers.get(userId);
+        if (peer) peer.connection.close();
+        voicePeers.delete(userId);
+        voiceParticipants.delete(userId);
+        const media = Array.from(voiceAudioHost.children).find(node => node.dataset.voiceUser === userId);
+        media?.remove();
+        const tile = Array.from(remoteVideoHost.children).find(node => node.dataset.voiceUser === userId);
+        tile?.remove();
+        updateVoiceControl();
+      }
+      function createVoicePeer(userId) {
+        let peer = voicePeers.get(userId);
+        if (peer) return peer;
+        const connection = new RTCPeerConnection(rtcConfig);
+        peer = { connection, pendingCandidates: [] };
+        voicePeers.set(userId, peer);
+        voiceParticipants.add(userId);
+        voiceStream?.getTracks().forEach(track => connection.addTrack(track, voiceStream));
+        connection.onicecandidate = event => {
+          if (event.candidate && voiceChannel) publishVoice(voiceChannel, { type: 'voice-signal', to: userId, signal: { candidate: event.candidate } });
+        };
+        connection.ontrack = event => {
+          const stream = event.streams[0] || (peer.remoteStream ||= new MediaStream());
+          if (!event.streams[0]) stream.addTrack(event.track);
+          let audio = Array.from(voiceAudioHost.children).find(node => node.dataset.voiceUser === userId);
+          if (!audio) {
+            audio = document.createElement('audio');
+            audio.autoplay = true;
+            audio.playsInline = true;
+            audio.dataset.voiceUser = userId;
+            audio.setAttribute('aria-label', 'Voice participant audio');
+            voiceAudioHost.append(audio);
+          }
+          audio.srcObject = stream;
+          audio.play().catch(() => toast('Tap the page once to allow call audio playback.'));
+          if (event.track.kind === 'video') {
+            let tile = Array.from(remoteVideoHost.children).find(node => node.dataset.voiceUser === userId);
+            if (!tile) {
+              tile = document.createElement('div');
+              tile.className = 'kc-call-tile';
+              tile.dataset.voiceUser = userId;
+              const video = document.createElement('video');
+              video.autoplay = true;
+              video.playsInline = true;
+              video.muted = true;
+              const label = document.createElement('span');
+              label.textContent = members.get(userId)?.name || 'Community member';
+              tile.append(video, label);
+              remoteVideoHost.append(tile);
+            }
+            const video = tile.querySelector('video');
+            video.srcObject = stream;
+            video.play().catch(() => {});
+            tile.classList.toggle('camera-off', event.track.muted || event.track.readyState !== 'live');
+            event.track.onmute = () => tile.classList.add('camera-off');
+            event.track.onunmute = () => tile.classList.remove('camera-off');
+            event.track.onended = () => tile.classList.add('camera-off');
+          }
+          updateVoiceControl();
+        };
+        connection.onconnectionstatechange = () => {
+          if (connection.connectionState === 'failed' || connection.connectionState === 'closed') closeVoicePeer(userId);
+        };
+        return peer;
+      }
+      async function offerVoicePeer(userId) {
+        const peer = createVoicePeer(userId);
+        if (peer.offering || peer.connection.signalingState !== 'stable') return;
+        peer.offering = true;
+        try {
+          const offer = await peer.connection.createOffer();
+          await peer.connection.setLocalDescription(offer);
+          publishVoice(voiceChannel, { type: 'voice-signal', to: userId, signal: { description: peer.connection.localDescription } });
+        } catch { toast('Could not start a voice connection.'); }
+        finally { peer.offering = false; }
+      }
+      async function handleVoiceSignal(message) {
+        if (!message || message.from === state.userId || message.channel !== voiceChannel || message.to !== state.userId || !voiceChannel) return;
+        const peer = createVoicePeer(message.from);
+        const signal = message.signal || {};
+        try {
+          if (signal.description) {
+            await peer.connection.setRemoteDescription(signal.description);
+            for (const candidate of peer.pendingCandidates.splice(0)) await peer.connection.addIceCandidate(candidate);
+            if (signal.description.type === 'offer') {
+              const answer = await peer.connection.createAnswer();
+              await peer.connection.setLocalDescription(answer);
+              publishVoice(voiceChannel, { type: 'voice-signal', to: message.from, signal: { description: peer.connection.localDescription } });
+            }
+          } else if (signal.candidate) {
+            if (peer.connection.remoteDescription) await peer.connection.addIceCandidate(signal.candidate);
+            else peer.pendingCandidates.push(signal.candidate);
+          }
+        } catch { toast('A voice connection could not be established.'); }
+      }
+      async function joinVoice() {
+        if (voiceChannel) {
+          const room = voiceChannel;
+          publishVoice(room, { type: 'voice-leave' });
+          voicePeers.forEach((peer, userId) => closeVoicePeer(userId));
+          voiceStream?.getTracks().forEach(track => track.stop());
+          voiceStream = null;
+          localVideo.srcObject = null;
+          voiceChannel = null;
+          updateVoiceControl();
+          return;
+        }
+        if (!pubnub) { toast('Voice chat needs the live chat connection.'); return; }
+        if (!navigator.mediaDevices?.getUserMedia || !window.RTCPeerConnection) { toast('Voice chat requires a supported browser and a secure page.'); return; }
+        voiceButton.disabled = true;
+        voiceStatus.textContent = 'Requesting microphone…';
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          voiceStream = stream;
+          voiceChannel = active;
+          voiceParticipants.clear();
+          publishVoice(voiceChannel, { type: 'voice-join' });
+          updateVoiceControl();
+        } catch (error) {
+          voiceStatus.textContent = 'Microphone unavailable';
+          toast(error.name === 'NotAllowedError' ? 'Allow microphone access to join voice.' : 'Could not start the microphone.');
+        } finally { voiceButton.disabled = false; }
+      }
+      voiceButton.addEventListener('click', joinVoice);
+      muteButton.addEventListener('click', () => {
+        if (!voiceStream) return;
+        const audioTracks = voiceStream.getAudioTracks();
+        const shouldMute = audioTracks.some(track => track.enabled);
+        audioTracks.forEach(track => { track.enabled = !shouldMute; });
+        muteButton.textContent = shouldMute ? 'Unmute mic' : 'Mute mic';
+        muteButton.setAttribute('aria-pressed', String(shouldMute));
+        updateVoiceControl();
+      });
+      videoButton.addEventListener('click', async () => {
+        if (!voiceChannel || !voiceStream) return;
+        const currentTracks = voiceStream.getVideoTracks();
+        if (currentTracks.length) {
+          currentTracks.forEach(track => {
+            voiceStream.removeTrack(track);
+            voicePeers.forEach(peer => peer.connection.getSenders().filter(sender => sender.track === track).forEach(sender => peer.connection.removeTrack(sender)));
+            track.stop();
+          });
+          localVideo.srcObject = voiceStream;
+          muteButton.textContent = voiceStream.getAudioTracks().some(track => track.enabled) ? 'Mute mic' : 'Unmute mic';
+          updateVoiceControl();
+          voicePeers.forEach((peer, userId) => offerVoicePeer(userId));
+          return;
+        }
+        videoButton.disabled = true;
+        voiceStatus.textContent = 'Requesting camera…';
+        try {
+          const camera = await navigator.mediaDevices.getUserMedia({ video: { width: { ideal: 640 }, height: { ideal: 360 }, facingMode: 'user' } });
+          const [track] = camera.getVideoTracks();
+          if (!track) throw new Error('No camera track was provided.');
+          voiceStream.addTrack(track);
+          localVideo.srcObject = voiceStream;
+          await localVideo.play().catch(() => {});
+          voicePeers.forEach(peer => peer.connection.addTrack(track, voiceStream));
+          updateVoiceControl();
+          voicePeers.forEach((peer, userId) => offerVoicePeer(userId));
+        } catch (error) {
+          voiceStatus.textContent = error.name === 'NotAllowedError' ? 'Camera permission denied' : 'Camera unavailable';
+          toast(error.name === 'NotAllowedError' ? 'Allow camera access to start video.' : 'Could not start the camera. Check that it is available.');
+        } finally {
+          videoButton.disabled = !voiceChannel;
+        }
+      });
       function receive(message) {
+        if (message?.type === 'clear-channel' && message.channel) {
+          const clearTime = Number(message.timestamp) || Date.now();
+          state.clearAt[message.channel] = Math.max(Number(state.clearAt[message.channel] || 0), clearTime);
+          state.messages[message.channel] = (state.messages[message.channel] || []).filter(item => Number(item.timestamp || 0) > state.clearAt[message.channel]);
+          save();
+          if (message.channel === active) renderMessages();
+          toast('#' + message.channel + ' was cleared.');
+          return;
+        }
+        if (message?.channel && Number(message.timestamp || 0) <= Number(state.clearAt[message.channel] || 0)) return;
+        if (message?.type === 'voice-join' && message.channel && message.from !== state.userId && voiceChannel === message.channel) {
+          voiceParticipants.add(message.from);
+          publishVoice(message.channel, { type: 'voice-presence', to: message.from });
+          if (state.userId.localeCompare(message.from) < 0) offerVoicePeer(message.from);
+          return;
+        }
+        if (message?.type === 'voice-presence' && message.channel && message.to === state.userId && voiceChannel === message.channel) {
+          voiceParticipants.add(message.from);
+          if (state.userId.localeCompare(message.from) < 0) offerVoicePeer(message.from);
+          return;
+        }
+        if (message?.type === 'voice-leave' && message.channel && message.from !== state.userId) {
+          closeVoicePeer(message.from);
+          return;
+        }
+        if (message?.type === 'voice-signal') { handleVoiceSignal(message); return; }
         if (!message || !message.id || !message.channel || message.channel === 'rules' || (!message.text && !message.image)) return;
         const list = state.messages[message.channel] || (state.messages[message.channel] = []);
         if (list.some(item => item.id === message.id)) return;
@@ -2673,8 +2924,17 @@ ducky-clicker\tI_am_me\t609450`;
       byId('profile').addEventListener('click', () => document.querySelector('#open-profile')?.click());
       byId('close').addEventListener('click', () => document.querySelector('#global-chat-close')?.click());
       byId('clear').addEventListener('click', () => {
-        if (!window.confirm('Clear locally saved messages in #' + active + '? This will not remove other visitors’ copies.')) return;
-        state.messages[active] = []; save(); renderMessages(); toast('Local chat history cleared.');
+        const channel = active;
+        const timestamp = Date.now();
+        state.clearAt[channel] = Math.max(Number(state.clearAt[channel] || 0), timestamp);
+        state.messages[channel] = [];
+        save();
+        renderMessages();
+        if (pubnub) {
+          pubnub.publish({ channel: key(channel), message: { type: 'clear-channel', channel, from: state.userId, timestamp } })
+            .then(() => toast('#' + channel + ' cleared here and sent to connected chat users.'))
+            .catch(() => toast('#' + channel + ' cleared here, but the live clear could not be sent.'));
+        } else toast('#' + channel + ' cleared on this device; live chat is disconnected.');
       });
       byId('search').addEventListener('input', event => {
         const query = event.target.value.trim().toLowerCase();
