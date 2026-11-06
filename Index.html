@@ -405,6 +405,8 @@
     .updates-card::before{position:absolute;top:26px;right:26px;padding:4px 8px;border:1px solid #ffc27655;border-radius:999px;color:#ffc276;background:#ffc27612;content:"NEW";font-size:10px;font-weight:800;letter-spacing:.08em}
     .notification-count{position:absolute;top:-5px;right:-5px;display:grid;min-width:17px;height:17px;place-items:center;padding:0 4px;border:1px solid #17131f;border-radius:999px;color:#fff;background:#ed5d66;font-size:10px;font-weight:800;line-height:1}
     .notification-count[hidden]{display:none}
+    .notification-dot{position:absolute;top:3px;right:3px;width:9px;height:9px;border:2px solid #000;border-radius:50%;background:#ff3b4f;box-shadow:0 0 9px #ff3b4f99}
+    .notification-dot[hidden]{display:none}
     .global-chat-toast{position:fixed;z-index:40;right:22px;bottom:22px;max-width:min(360px,calc(100vw - 28px));padding:12px 16px;border:1px solid rgba(226,210,255,.24);border-radius:14px;color:#f4efff;background:rgba(25,20,32,.96);box-shadow:0 14px 45px #0009;backdrop-filter:blur(16px);opacity:0;pointer-events:none;transform:translateY(10px);transition:opacity .2s,transform .2s}
     .global-chat-toast.show{opacity:1;transform:translateY(0)}
     .global-chat-toast strong{color:#ffc276}
@@ -417,10 +419,32 @@
     .global-chat-panel{position:fixed;padding:0}
     .global-chat-card.global-chat-embed{width:100%;height:100%;max-height:none;border:0;border-radius:0}
     .chat-embed-frame{border-radius:0}
+    /* In-chat coin game visuals */
+    .kc-game-result{max-width:440px;margin-top:10px;padding:12px;border:1px solid #b790ff35;border-radius:13px;background:linear-gradient(145deg,#211a2b,#15121a);color:#f4effa}
+    .kc-game-result>strong{display:block;margin-bottom:9px;color:#e4d2ff;font-size:12px}
+    .kc-game-cards{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+    .kc-playing-card{display:grid;width:48px;height:66px;place-content:center;gap:2px;border:1px solid #ffffffb8;border-radius:8px;color:#19151d;background:linear-gradient(145deg,#fff,#e9e4ee);box-shadow:0 4px 12px #0006;font:700 17px Georgia,serif;text-align:center}
+    .kc-playing-card small{font:11px system-ui,sans-serif}.kc-playing-card.red{color:#c8324e}
+    .kc-card-hand{display:grid;gap:5px}.kc-card-hand-label{color:#aaa2b6;font-size:10px}
+    .kc-game-board{position:relative;width:min(270px,100%);height:174px;margin:8px auto 10px;overflow:hidden;border:1px solid #ffffff20;border-radius:12px;background:linear-gradient(#211a2c,#17121d)}
+    .kc-plinko-pegs{position:absolute;inset:15px 18px 34px;display:flex;flex-direction:column;justify-content:space-between;align-items:center;pointer-events:none}
+    .kc-plinko-row{display:flex;justify-content:center;gap:17px}.kc-plinko-row:nth-child(even){transform:translateX(8px)}
+    .kc-plinko-peg{width:5px;height:5px;border-radius:50%;background:#d7c6f4;box-shadow:0 0 5px #c7a5ff88}
+    .kc-plinko-ball{position:absolute;z-index:2;top:5px;left:50%;width:11px;height:11px;border-radius:50%;background:#ffc276;box-shadow:0 0 12px #ffad65;animation:kc-plinko-drop 1.25s ease-in forwards}
+    @keyframes kc-plinko-drop{to{top:calc(100% - 29px);left:var(--landing);transform:translateX(-50%)}}
+    .kc-plinko-slots{position:absolute;right:8px;bottom:6px;left:8px;display:flex;justify-content:center;gap:3px}
+    .kc-plinko-slots span{flex:1;padding:3px 1px;border-radius:4px;color:#c9bfd4;background:#ffffff0b;text-align:center;font-size:8px}
+    .kc-plinko-slots span.active{color:#17121b;background:#ffc276;font-weight:800}
+    .kc-wheel-wrap{position:relative;display:grid;width:170px;height:170px;margin:6px auto 10px;place-items:center}
+    .kc-wheel{width:150px;height:150px;border:4px solid #e9d7ff;border-radius:50%;background:conic-gradient(#a879f8 0 51deg,#251d32 51deg 102deg,#ffbd75 102deg 154deg,#36243d 154deg 205deg,#d778a5 205deg 257deg,#211d31 257deg 308deg,#7bc9b8 308deg 360deg);box-shadow:0 0 22px #b790ff44;animation:kc-wheel-spin 1.5s cubic-bezier(.14,.72,.18,1) both}
+    @keyframes kc-wheel-spin{to{transform:rotate(1510deg)}}
+    .kc-wheel-pointer{position:absolute;z-index:1;top:0;left:50%;width:0;height:0;border-right:9px solid transparent;border-bottom:0;border-left:9px solid transparent;border-top:18px solid #fff;filter:drop-shadow(0 2px 3px #000);transform:translateX(-50%)}
+    .kc-game-caption{margin:8px 0 0;color:#d9d0e2;font-size:11px}
+    @media(prefers-reduced-motion:reduce){.kc-plinko-ball,.kc-wheel{animation:none}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
       <button class="side-profile" id="side-profile" type="button" aria-label="Sign in or open your profile"><span class="side-avatar" id="side-avatar">狐</span><span class="side-profile-copy"><strong id="side-profile-name">Sign in</strong><small id="side-profile-hint">Set up your profile</small></span></button>
@@ -605,7 +629,7 @@
         <h2 id="updates-title">What’s new in Kitsune</h2>
         <p>A few fresh updates for your next visit.</p>
         <ul class="updates-list">
-          <li><strong>Games:</strong> draggable controls, quick reload/fullscreen, and an about:blank fallback if loading takes too long.</li>
+          <li><strong>Games:</strong> Games are now fixed — jump in and play!</li>
           <li><strong>AI chat:</strong> Kitsune logo, personalized greeting, and helpful starter prompts.</li>
           <li><strong>Partners:</strong> a new showcase for 2 Pro, BUS, and Best Sparks.</li>
           <li><strong>Notifications:</strong> the bell is ready; there are no notifications yet.</li>
@@ -617,8 +641,8 @@
     <section class="notifications-overlay" id="notifications-overlay" aria-label="Notifications" aria-hidden="true" hidden>
       <div class="notifications-card" role="dialog" aria-modal="true" aria-labelledby="notifications-title">
         <h2 id="notifications-title">Notifications</h2>
-        <p>You’re all caught up.</p>
-        <div class="notification-empty" id="notification-list"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>No notifications yet</div></div>
+        <p>Games are now fixed — enjoy playing!</p>
+        <div class="notification-empty" id="notification-list"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>Games are now fixed</div></div>
         <button class="notifications-close" id="notifications-close" type="button">Close</button>
       </div>
     </section>
@@ -2334,9 +2358,13 @@ ducky-clicker\tI_am_me\t609450`;
       closeOverlay(updatesOverlay);
       try { localStorage.setItem('kitsune-whats-new-seen', 'true'); } catch (error) { /* It can reappear next visit if storage is unavailable. */ }
     });
+    const notificationDot = document.querySelector('#notification-dot');
+    try { notificationDot.hidden = localStorage.getItem('kitsune-games-fixed-notice-seen') === 'true'; } catch (error) { /* Keep the notice visible if storage is unavailable. */ }
     document.querySelector('#open-notifications').addEventListener('click', () => {
       renderChatNotifications();
       openOverlay(notificationsOverlay);
+      notificationDot.hidden = true;
+      try { localStorage.setItem('kitsune-games-fixed-notice-seen', 'true'); } catch (error) { /* The dot stays dismissed for this page session. */ }
       clearChatNotifications();
     });
     document.querySelector('#notifications-close').addEventListener('click', () => closeOverlay(notificationsOverlay));
@@ -2439,6 +2467,81 @@ ducky-clicker\tI_am_me\t609450`;
           holder.append(button);
         });
       }
+      function renderCoinGame(game, host) {
+        const card = document.createElement('section');
+        card.className = 'kc-game-result';
+        const heading = document.createElement('strong');
+        heading.textContent = game.type === 'blackjack' ? '🃏 Blackjack' : game.type === 'plinko' ? '🔴 Plinko' : '🎡 Spin the wheel';
+        card.append(heading);
+        if (game.type === 'blackjack') {
+          const hands = document.createElement('div');
+          hands.className = 'kc-game-cards';
+          [['You', game.playerCards], ['Dealer', game.dealerCards]].forEach(([label, cards]) => {
+            const hand = document.createElement('div');
+            hand.className = 'kc-card-hand';
+            const name = document.createElement('span');
+            name.className = 'kc-card-hand-label';
+            name.textContent = label + ' · ' + (label === 'You' ? game.playerTotal : game.dealerTotal);
+            const row = document.createElement('div');
+            row.className = 'kc-game-cards';
+            (cards || []).forEach(value => {
+              const playingCard = document.createElement('span');
+              playingCard.className = 'kc-playing-card' + (value.suit === '♥' || value.suit === '♦' ? ' red' : '');
+              playingCard.append(document.createTextNode(value.rank));
+              const suit = document.createElement('small');
+              suit.textContent = value.suit;
+              playingCard.append(suit);
+              row.append(playingCard);
+            });
+            hand.append(name, row);
+            hands.append(hand);
+          });
+          card.append(hands);
+        } else if (game.type === 'plinko') {
+          const board = document.createElement('div');
+          board.className = 'kc-game-board';
+          const pegField = document.createElement('div');
+          pegField.className = 'kc-plinko-pegs';
+          for (let rowIndex = 0; rowIndex < 7; rowIndex += 1) {
+            const row = document.createElement('div');
+            row.className = 'kc-plinko-row';
+            for (let pegIndex = 0; pegIndex < rowIndex + 3; pegIndex += 1) {
+              const peg = document.createElement('i');
+              peg.className = 'kc-plinko-peg';
+              row.append(peg);
+            }
+            pegField.append(row);
+          }
+          const slots = document.createElement('div');
+          slots.className = 'kc-plinko-slots';
+          const multipliers = [0, 0.5, 1, 2, 5, 2, 1, 0.5, 0];
+          multipliers.forEach((multiplier, index) => {
+            const slot = document.createElement('span');
+            slot.textContent = multiplier + '×';
+            if (index === game.slot) slot.classList.add('active');
+            slots.append(slot);
+          });
+          const ball = document.createElement('i');
+          ball.className = 'kc-plinko-ball';
+          ball.style.setProperty('--landing', (6 + game.slot * 11) + '%');
+          board.append(pegField, slots, ball);
+          card.append(board);
+        } else if (game.type === 'wheel') {
+          const wheel = document.createElement('div');
+          wheel.className = 'kc-wheel-wrap';
+          const pointer = document.createElement('i');
+          pointer.className = 'kc-wheel-pointer';
+          const disc = document.createElement('div');
+          disc.className = 'kc-wheel';
+          wheel.append(pointer, disc);
+          card.append(wheel);
+        }
+        const caption = document.createElement('p');
+        caption.className = 'kc-game-caption';
+        caption.textContent = 'Bet: ' + game.bet + ' · ' + game.result;
+        card.append(caption);
+        host.append(card);
+      }
       function renderMessage(message) {
         if (!message || !message.id) return null;
         const article = document.createElement('article');
@@ -2463,6 +2566,7 @@ ducky-clicker\tI_am_me\t609450`;
         time.textContent = date.toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' });
         head.append(author, time); body.append(head);
         if (message.text) { const text = document.createElement('p'); text.className = 'kc-message-text'; text.textContent = message.text; body.append(text); }
+        if (message.game && typeof message.game === 'object') renderCoinGame(message.game, body);
         if (typeof message.image === 'string' && /^data:image\/(jpeg|png|webp);base64,/i.test(message.image)) {
           const image = document.createElement('img'); image.className = 'kc-message-image'; image.src = message.image; image.alt = 'Image attachment'; image.loading = 'lazy'; body.append(image);
         }
@@ -2594,8 +2698,8 @@ ducky-clicker\tI_am_me\t609450`;
         try { imageData = await compressImage(file); byId('image-name').textContent = file.name; }
         catch (error) { imageData = ''; byId('image-name').textContent = ''; toast(error.message); }
       });
-      function postChatMessage(text) {
-        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), userId: state.userId, timestamp: Date.now() };
+      function postChatMessage(text, game = null) {
+        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), userId: state.userId, timestamp: Date.now(), ...(game ? { game } : {}) };
         receive(message);
         if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => toast('Saved here, but could not reach live chat.'));
       }
@@ -2617,29 +2721,53 @@ ducky-clicker\tI_am_me\t609450`;
         if (bet > coins) { postChatMessage('Not enough demo coins. Your balance is ' + coins + '.'); return true; }
         let payout = 0;
         let result = '';
+        let gameVisual = null;
         if (game === '/gamble') {
           const won = Math.random() < 0.48;
           payout = won ? bet * 2 : 0;
           result = won ? 'won double!' : 'lost the bet.';
         } else if (game === '/plinko') {
-          const multiplier = [0, 0.5, 1, 2, 5][Math.floor(Math.random() * 5)];
+          const slots = [0, 0.5, 1, 2, 5, 2, 1, 0.5, 0];
+          const slot = Math.floor(Math.random() * slots.length);
+          const multiplier = slots[slot];
           payout = Math.floor(bet * multiplier);
           result = 'Plinko landed on ' + multiplier + '×.';
+          gameVisual = { type: 'plinko', bet, result, slot };
         } else if (game === '/wheel') {
-          const multiplier = [0, 0, 0.5, 1, 2, 3, 5][Math.floor(Math.random() * 7)];
+          const outcomes = [0, 0, 0.5, 1, 2, 3, 5];
+          const slot = Math.floor(Math.random() * outcomes.length);
+          const multiplier = outcomes[slot];
           payout = bet * multiplier;
           result = 'The wheel landed on ' + multiplier + '×.';
+          gameVisual = { type: 'wheel', bet, result, slot };
         } else {
-          const draw = () => 2 + Math.floor(Math.random() * 10);
-          const player = draw() + draw();
-          const dealer = draw() + draw();
+          const deck = [];
+          const suits = ['♠', '♥', '♦', '♣'];
+          const ranks = ['2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K', 'A'];
+          suits.forEach(suit => ranks.forEach((rank, index) => deck.push({ suit, rank, value: index < 9 ? index + 2 : index < 12 ? 10 : 11 })));
+          for (let index = deck.length - 1; index > 0; index -= 1) {
+            const swap = Math.floor(Math.random() * (index + 1));
+            [deck[index], deck[swap]] = [deck[swap], deck[index]];
+          }
+          const playerCards = [deck.pop(), deck.pop()];
+          const dealerCards = [deck.pop(), deck.pop()];
+          const handTotal = cards => {
+            let total = cards.reduce((sum, card) => sum + card.value, 0);
+            let aces = cards.filter(card => card.rank === 'A').length;
+            while (total > 21 && aces > 0) { total -= 10; aces -= 1; }
+            return total;
+          };
+          const player = handTotal(playerCards);
+          const dealer = handTotal(dealerCards);
           payout = player > dealer ? bet * 2 : player === dealer ? bet : 0;
           result = 'Blackjack: you ' + player + ', dealer ' + dealer + (player > dealer ? ' — you win!' : player === dealer ? ' — push, bet returned.' : ' — dealer wins.');
+          gameVisual = { type: 'blackjack', bet, result, playerCards, dealerCards, playerTotal: player, dealerTotal: dealer };
         }
         const updatedCoins = coins - bet + payout;
         try { localStorage.setItem('kitsune-shop-coins', JSON.stringify(updatedCoins)); }
         catch { postChatMessage('Could not save your coin balance in this browser.'); return true; }
-        postChatMessage(currentName() + ' · ' + result + ' Net ' + (updatedCoins - coins >= 0 ? '+' : '') + (updatedCoins - coins) + ' coins. Balance: ' + updatedCoins + '.');
+        if (gameVisual) gameVisual.result = result + ' Net ' + (updatedCoins - coins >= 0 ? '+' : '') + (updatedCoins - coins) + ' coins.';
+        postChatMessage(currentName() + ' · ' + result + ' Net ' + (updatedCoins - coins >= 0 ? '+' : '') + (updatedCoins - coins) + ' coins. Balance: ' + updatedCoins + '.', gameVisual);
         return true;
       }
       byId('form').addEventListener('submit', event => {
