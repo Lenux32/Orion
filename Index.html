@@ -616,6 +616,8 @@
     }
     @media(max-width:390px){.profile-shop-grid{grid-template-columns:1fr}.profile-shop-item{min-height:0}.profile-shop-item p{min-height:0}}
     @media(prefers-reduced-motion:reduce){.kc-message,.kc-channel,.shop-type-tabs button,.shop-filter-row button,.shop-category,.profile-shop-item{transition:none}}
+    .kc-connection-state{flex:0 0 100%;padding:0 19px;color:#b7a9c6;font-size:10px}.kc-connection-state[data-state="connected"]{color:#91e5a5}.kc-connection-state[data-state="error"]{color:#ff9999}
+    @media(max-width:700px){.kc-connection-state{padding:0 9px}}
   </style>
 </head>
 <body>
@@ -746,7 +748,7 @@
               <button class="kc-profile-button" id="kc-profile" type="button"><span class="kc-avatar" id="kc-avatar">狐</span><span><strong id="kc-profile-name">Guest</strong><small>Online · profile</small></span><span class="kc-profile-edit" aria-hidden="true">⚙</span></button>
             </aside>
             <section class="kc-main" aria-label="Chat">
-              <header class="kc-toolbar"><div class="kc-channel-heading"><span class="kc-hash">#</span><div><strong id="kc-channel-title">global-chat</strong><small id="kc-channel-description">A little bit of everything. Be kind, stay curious.</small></div><svg id="kc-lock" class="kc-lock" viewBox="0 0 16 16" aria-label="Read-only channel" hidden><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z"/><path d="M8 9.5v2"/></svg></div><div class="kc-actions"><input id="kc-search" type="search" aria-label="Search chat messages" placeholder="⌕ Search"><button id="kc-clear" type="button" title="Clear this channel on this device and notify connected users">Clear channel</button><button class="kc-voice-button" id="kc-voice" type="button" aria-pressed="false">Join voice call</button><button class="kc-voice-button" id="kc-mute" type="button" aria-pressed="false" disabled>Mute microphone</button><button class="kc-voice-button" id="kc-video" type="button" aria-pressed="false" disabled>Start video</button><span class="kc-voice-status" id="kc-voice-status" role="status" aria-live="polite">Voice off</span></div></header>
+              <header class="kc-toolbar"><div class="kc-channel-heading"><span class="kc-hash">#</span><div><strong id="kc-channel-title">global-chat</strong><small id="kc-channel-description">A little bit of everything. Be kind, stay curious.</small></div><svg id="kc-lock" class="kc-lock" viewBox="0 0 16 16" aria-label="Read-only channel" hidden><path d="M4.5 7V5a3.5 3.5 0 0 1 7 0v2M3.5 7h9v7h-9z"/><path d="M8 9.5v2"/></svg></div><span class="kc-connection-state" id="kc-connection-state" role="status" aria-live="polite">Connecting to live chat…</span><div class="kc-actions"><input id="kc-search" type="search" aria-label="Search chat messages" placeholder="⌕ Search"><button id="kc-clear" type="button" title="Clear this channel on this device and notify connected users">Clear channel</button><button class="kc-voice-button" id="kc-voice" type="button" aria-pressed="false">Join voice call</button><button class="kc-voice-button" id="kc-mute" type="button" aria-pressed="false" disabled>Mute microphone</button><button class="kc-voice-button" id="kc-video" type="button" aria-pressed="false" disabled>Start video</button><span class="kc-voice-status" id="kc-voice-status" role="status" aria-live="polite">Voice off</span></div></header>
               <div class="kc-call-stage" id="kc-call-stage" hidden aria-label="Video call participants"><div class="kc-call-local"><video id="kc-local-video" autoplay playsinline muted></video><span>You</span></div><div class="kc-call-remote" id="kc-call-remote"></div></div>
               <div class="kc-topic" id="kc-topic"><span class="kc-topic-dot"></span><span>Welcome! Be kind, keep it friendly, and enjoy your time here.</span></div>
               <div class="kc-feed" id="kc-feed" aria-live="polite"><div id="kc-message-list"></div></div>
@@ -3089,8 +3091,15 @@ ducky-clicker\tI_am_me\t609450`;
           const status = document.createElement('small'); status.textContent = '● Online'; copy.append(title, status); row.append(avatar, copy); holder.append(row);
         });
       }
+      function setChatConnectionState(message, stateName = 'pending') {
+        const status = byId('connection-state');
+        if (!status) return;
+        status.textContent = message;
+        status.dataset.state = stateName;
+      }
       function connect() {
-        if (!window.PubNub) { renderOnline(); toast('Live chat is unavailable; local chat is ready.'); return; }
+        setChatConnectionState('Connecting to live chat…');
+        if (!window.PubNub) { setChatConnectionState('Live chat unavailable · SDK failed to load', 'error'); renderOnline(); toast('Live chat is unavailable; local chat is ready.'); return; }
         try {
           pubnub = new PubNub({ publishKey: 'pub-c-42ad065d-2f90-4a76-ad59-9e0b76246c44', subscribeKey: 'sub-c-7e966938-f323-4f57-a793-ee27ddd6dfaa', userId: state.userId });
           pubnub.addListener({
@@ -3108,6 +3117,7 @@ ducky-clicker\tI_am_me\t609450`;
             },
             status: event => {
               if (event.category === 'PNConnectedCategory') {
+                setChatConnectionState('Live chat connected', 'connected');
                 const channels = channelNames.map(key);
                 pubnub.setState({ channels, state: { name: currentName(), bio: state.profile.bio || '', music: state.profile.music || '' } }).catch(() => {});
                 pubnub.hereNow({ channels, includeUUIDs: true, includeState: true }).then(result => {
@@ -3120,11 +3130,20 @@ ducky-clicker\tI_am_me\t609450`;
                   }));
                   renderOnline();
                 }).catch(() => {});
+              } else if (event.category === 'PNAccessDeniedCategory') {
+                setChatConnectionState('Live chat access denied · check PubNub keys', 'error');
+              } else if (event.category === 'PNNetworkDownCategory' || event.category === 'PNTimeoutCategory') {
+                setChatConnectionState('Live chat connection lost · check network', 'error');
+              } else if (event.category === 'PNNetworkUpCategory') {
+                setChatConnectionState('Reconnecting to live chat…');
               }
             }
           });
           pubnub.subscribe({ channels: channelNames.map(key), withPresence: true });
-        } catch { toast('Could not connect to live chat; local chat is ready.'); }
+        } catch (error) {
+          setChatConnectionState('Live chat setup failed · ' + (error.message || 'check configuration'), 'error');
+          toast('Could not connect to live chat; local chat is ready.');
+        }
       }
       function compressImage(file) {
         return new Promise((resolve, reject) => {
@@ -3186,7 +3205,7 @@ ducky-clicker\tI_am_me\t609450`;
       function postChatMessage(text, game = null) {
         const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), userId: state.userId, timestamp: Date.now(), ...(game ? { game } : {}) };
         receive(message);
-        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => toast('Saved here, but could not reach live chat.'));
+        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
       }
       function playCoinCommand(text) {
         const [command, rawBet] = text.trim().split(/\s+/);
@@ -3265,7 +3284,7 @@ ducky-clicker\tI_am_me\t609450`;
         }
         const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), image: imageData, name: currentName(), userId: state.userId, timestamp: Date.now() };
         receive(message);
-        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => toast('Saved here, but could not reach live chat.'));
+        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
         byId('input').value = ''; imageData = ''; byId('image-name').textContent = '';
       });
       renderProfile(); renderChannels(); switchChannel(active); renderOnline(); connect();
