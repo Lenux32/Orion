@@ -3101,7 +3101,7 @@ ducky-clicker\tI_am_me\t609450`;
         setChatConnectionState('Connecting to live chat…');
         if (!window.PubNub) { setChatConnectionState('Live chat unavailable · SDK failed to load', 'error'); renderOnline(); toast('Live chat is unavailable; local chat is ready.'); return; }
         try {
-          pubnub = new PubNub({ publishKey: 'pub-c-b5d77dfc-cb00-4d74-889b-03069c30cba2', subscribeKey: 'sub-c-2da9c102-3077-4bfb-a44e-5d8d45782f91', userId: state.userId });
+          pubnub = new PubNub({ publishKey: 'pub-c-42ad065d-2f90-4a76-ad59-9e0b76246c44', subscribeKey: 'sub-c-7e966938-f323-4f57-a793-ee27ddd6dfaa', userId: state.userId });
           pubnub.addListener({
             message: event => receive(event.message),
             presence: event => {
@@ -3131,7 +3131,9 @@ ducky-clicker\tI_am_me\t609450`;
                   renderOnline();
                 }).catch(() => {});
               } else if (event.category === 'PNAccessDeniedCategory') {
-                setChatConnectionState('Live chat access denied · check PubNub keys', 'error');
+                const detail = event.errorData?.message || event.status?.errorData?.message || event.message || '';
+                const operation = event.operation ? ' · ' + event.operation : '';
+                setChatConnectionState('Live chat access denied' + operation + (detail ? ' · ' + detail : ' · check PubNub project keys and channel permissions'), 'error');
               } else if (event.category === 'PNNetworkDownCategory' || event.category === 'PNTimeoutCategory') {
                 setChatConnectionState('Live chat connection lost · check network', 'error');
               } else if (event.category === 'PNNetworkUpCategory') {
