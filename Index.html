@@ -618,6 +618,11 @@
     @media(prefers-reduced-motion:reduce){.kc-message,.kc-channel,.shop-type-tabs button,.shop-filter-row button,.shop-category,.profile-shop-item{transition:none}}
     .kc-connection-state{flex:0 0 100%;padding:0 19px;color:#b7a9c6;font-size:10px}.kc-connection-state[data-state="connected"]{color:#91e5a5}.kc-connection-state[data-state="error"]{color:#ff9999}
     @media(max-width:700px){.kc-connection-state{padding:0 9px}}
+    .kc-online-member{align-items:flex-start}
+    .kc-online-member .kc-avatar{flex:0 0 28px}
+    .kc-online-copy{min-width:0;flex:1}
+    .kc-online-banner{display:block;width:100%;height:24px;margin-top:5px;border:1px solid #ffffff18;border-radius:6px;background:linear-gradient(120deg,#39254f,#17131f 65%,#3d2434) center/cover no-repeat}
+    .kc-online-banner[hidden]{display:none}
   </style>
 </head>
 <body>
@@ -1328,18 +1333,24 @@
         document.querySelector('#profile-status').textContent = 'Enter a display name with at least 2 characters.';
         return;
       }
+      if (window.kitsuneNameInUse?.(name)) {
+        document.querySelector('#profile-status').textContent = 'That name is already in use by someone currently online. Choose a different name.';
+        return;
+      }
       try { localStorage.setItem('kitsune-profile-user', name); }
       catch (error) {
         document.querySelector('#profile-status').textContent = 'Could not save your profile in this browser.';
         return;
       }
       updateProfileView();
+      window.dispatchEvent(new Event('kitsune-profile-updated'));
       document.querySelector('#profile-status').textContent = 'You are signed in on this browser. This is a local profile, not a secure online account.';
     });
     document.querySelector('#profile-sign-out').addEventListener('click', () => {
       try { localStorage.removeItem('kitsune-profile-user'); } catch (error) { /* Continue with the signed-out view. */ }
       profileNameInput.value = '';
       updateProfileView();
+      window.dispatchEvent(new Event('kitsune-profile-updated'));
       document.querySelector('#profile-status').textContent = 'Signed out on this browser.';
     });
     function prepareProfileImage(file) {
@@ -2625,10 +2636,57 @@ ducky-clicker\tI_am_me\t609450`;
       function currentName() {
         let siteName = '';
         try { siteName = localStorage.getItem('kitsune-profile-user') || ''; } catch {}
-        return state.profile.name.trim() || siteName.trim() || 'stark_1';
+        return state.profile.name.trim() || siteName.trim();
       }
+      function profileImage(key) {
+        try { return localStorage.getItem(key) || (key.endsWith('avatar') ? state.profile.avatar : state.profile.banner) || ''; } catch { return ''; }
+      }
+      function safeChatImage(value) { return typeof value === 'string' && /^data:image\/(jpeg|png|webp);base64,/i.test(value) ? value : ''; }
+      let localChatAvatar = '';
+      let localChatBanner = '';
+      async function compressChatImage(source) {
+        if (!safeChatImage(source)) return '';
+        return new Promise(resolve => {
+          const image = new Image();
+          image.onerror = () => resolve('');
+          image.onload = () => {
+            const scale = Math.min(1, 180 / Math.max(image.width, image.height));
+            const canvas = document.createElement('canvas');
+            canvas.width = Math.max(1, Math.round(image.width * scale));
+            canvas.height = Math.max(1, Math.round(image.height * scale));
+            const context = canvas.getContext('2d');
+            if (!context) { resolve(''); return; }
+            context.drawImage(image, 0, 0, canvas.width, canvas.height);
+            let quality = 0.55;
+            let result = canvas.toDataURL('image/jpeg', quality);
+            while (result.length > 7000 && quality > 0.2) {
+              quality -= 0.08;
+              result = canvas.toDataURL('image/jpeg', quality);
+            }
+            resolve(result.length <= 7000 ? result : '');
+          };
+          image.src = source;
+        });
+      }
+      async function refreshPresenceProfile() {
+        const [avatar, banner] = await Promise.all([
+          compressChatImage(profileImage('kitsune-profile-avatar')),
+          compressChatImage(profileImage('kitsune-profile-banner'))
+        ]);
+        localChatAvatar = avatar;
+        localChatBanner = banner;
+        if (pubnub) {
+          pubnub.setState({ channels: channelNames.map(key), state: { name: currentName() || 'Choose a name', avatar, banner } }).catch(() => {});
+        }
+        members.set(state.userId, { name: currentName() || 'Choose a name', avatar, banner });
+        renderOnline();
+      }
+      window.kitsuneNameInUse = name => {
+        const normalized = String(name || '').trim().toLocaleLowerCase();
+        return [...members.entries()].some(([id, profile]) => id !== state.userId && String(profile.name || '').trim().toLocaleLowerCase() === normalized);
+      };
       function renderProfile() {
-        const name = currentName();
+        const name = currentName() || 'Choose a name';
         byId('profile-name').textContent = name;
         const avatar = byId('avatar');
         let imageUrl = state.profile.avatar || '';
@@ -2645,6 +2703,7 @@ ducky-clicker\tI_am_me\t609450`;
       window.addEventListener('kitsune-profile-updated', () => {
         renderProfile();
         renderMessages();
+        refreshPresenceProfile();
       });
       function key(name) { return 'violet-' + name; }
       function renderChannels() {
@@ -2754,10 +2813,10 @@ ducky-clicker\tI_am_me\t609450`;
         avatar.className = 'kc-avatar kc-message-avatar';
         const own = message.userId === state.userId;
         const name = message.name || 'Community member';
-        const ownAvatar = own ? (state.profile.avatar || (() => { try { return localStorage.getItem('kitsune-profile-avatar') || ''; } catch { return ''; } })()) : '';
-        if (ownAvatar) {
+        const avatarUrl = safeChatImage(own ? (localChatAvatar || message.avatar) : message.avatar);
+        if (avatarUrl) {
           const image = document.createElement('img');
-          image.src = ownAvatar;
+          image.src = avatarUrl;
           image.alt = name + ' profile picture';
           avatar.append(image);
         } else avatar.textContent = name.slice(0, 1).toUpperCase();
@@ -3080,15 +3139,24 @@ ducky-clicker\tI_am_me\t609450`;
         if (message.channel === active) { const node = renderMessage(message); if (node) byId('message-list').append(node); byId('feed').scrollTop = byId('feed').scrollHeight; }
       }
       function renderOnline() {
-        members.set(state.userId, { name: currentName() });
+        members.set(state.userId, { name: currentName() || 'Choose a name', avatar: localChatAvatar, banner: localChatBanner });
         const holder = byId('online-list'); holder.replaceChildren();
         byId('online-count').textContent = String(members.size);
         if (!members.size) { const empty = document.createElement('p'); empty.textContent = 'No one else is online right now.'; holder.append(empty); return; }
         [...members.entries()].sort((a, b) => (a[1].name || '').localeCompare(b[1].name || '')).forEach(([uuid, profile]) => {
           const row = document.createElement('div'); row.className = 'kc-online-member';
-          const avatar = document.createElement('span'); avatar.className = 'kc-avatar'; avatar.textContent = (profile.name || 'C').slice(0, 1).toUpperCase();
-          const copy = document.createElement('div'); const title = document.createElement('strong'); title.textContent = profile.name || (uuid === state.userId ? currentName() : 'Community member');
-          const status = document.createElement('small'); status.textContent = '● Online'; copy.append(title, status); row.append(avatar, copy); holder.append(row);
+          const avatar = document.createElement('span'); avatar.className = 'kc-avatar';
+          const avatarUrl = safeChatImage(profile.avatar);
+          if (avatarUrl) { const image = document.createElement('img'); image.src = avatarUrl; image.alt = ''; avatar.append(image); }
+          else avatar.textContent = (profile.name || 'C').slice(0, 1).toUpperCase();
+          const copy = document.createElement('div'); copy.className = 'kc-online-copy';
+          const title = document.createElement('strong'); title.textContent = profile.name || (uuid === state.userId ? 'Choose a name' : 'Community member');
+          const status = document.createElement('small'); status.textContent = '● Online';
+          const banner = document.createElement('span'); banner.className = 'kc-online-banner';
+          const bannerUrl = safeChatImage(profile.banner);
+          banner.hidden = !bannerUrl;
+          if (bannerUrl) banner.style.backgroundImage = `url("${bannerUrl}")`;
+          copy.append(title, status, banner); row.append(avatar, copy); holder.append(row);
         });
       }
       function setChatConnectionState(message, stateName = 'pending') {
@@ -3119,7 +3187,7 @@ ducky-clicker\tI_am_me\t609450`;
               if (event.category === 'PNConnectedCategory') {
                 setChatConnectionState('Live chat connected', 'connected');
                 const channels = channelNames.map(key);
-                pubnub.setState({ channels, state: { name: currentName(), bio: state.profile.bio || '', music: state.profile.music || '' } }).catch(() => {});
+                refreshPresenceProfile();
                 pubnub.hereNow({ channels, includeUUIDs: true, includeState: true }).then(result => {
                   Object.values(result.channels || {}).forEach(detail => (detail.occupants || []).forEach(person => {
                     const profile = person.state || {};
@@ -3205,7 +3273,7 @@ ducky-clicker\tI_am_me\t609450`;
         catch (error) { imageData = ''; byId('image-name').textContent = ''; toast(error.message); }
       });
       function postChatMessage(text, game = null) {
-        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), userId: state.userId, timestamp: Date.now(), ...(game ? { game } : {}) };
+        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), avatar: localChatAvatar, userId: state.userId, timestamp: Date.now(), ...(game ? { game } : {}) };
         receive(message);
         if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
       }
@@ -3276,20 +3344,32 @@ ducky-clicker\tI_am_me\t609450`;
         postChatMessage(currentName() + ' · ' + result + ' Net ' + (updatedCoins - coins >= 0 ? '+' : '') + (updatedCoins - coins) + ' coins. Balance: ' + updatedCoins + '.', gameVisual);
         return true;
       }
-      byId('form').addEventListener('submit', event => {
+      byId('form').addEventListener('submit', async event => {
         event.preventDefault();
         const text = byId('input').value.trim();
         if (active === 'rules' || (!text && !imageData)) return;
+        const name = currentName();
+        if (!name) {
+          toast('Create your own display name before chatting.');
+          document.querySelector('#open-profile')?.click();
+          return;
+        }
+        if (window.kitsuneNameInUse?.(name)) {
+          toast('That name is already in use by someone online. Choose a different name in Profile.');
+          document.querySelector('#open-profile')?.click();
+          return;
+        }
+        await refreshPresenceProfile();
         if (text.startsWith('/') && !imageData && playCoinCommand(text)) {
           byId('input').value = '';
           return;
         }
-        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), image: imageData, name: currentName(), userId: state.userId, timestamp: Date.now() };
+        const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), image: imageData, name, avatar: localChatAvatar, userId: state.userId, timestamp: Date.now() };
         receive(message);
         if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
         byId('input').value = ''; imageData = ''; byId('image-name').textContent = '';
       });
-      renderProfile(); renderChannels(); switchChannel(active); renderOnline(); connect();
+      renderProfile(); renderChannels(); switchChannel(active); renderOnline(); refreshPresenceProfile(); connect();
     })();
   </script>
   <script>
