@@ -3214,6 +3214,12 @@ ducky-clicker\tI_am_me\t609450`;
         status.textContent = message;
         status.dataset.state = stateName;
       }
+      function reportPublishFailure(error) {
+        const detail = error?.status?.errorData?.information || error?.message || 'Unknown PubNub error';
+        const reason = String(detail).slice(0, 180);
+        setChatConnectionState('Message saved locally · publish failed: ' + reason, 'error');
+        toast('Saved on this device, but not synced: ' + reason);
+      }
       function connect() {
         setChatConnectionState('Connecting to live chat…');
         if (!window.PubNub) { setChatConnectionState('Live chat unavailable · SDK failed to load', 'error'); renderOnline(); toast('Live chat is unavailable; local chat is ready.'); return; }
@@ -3325,7 +3331,7 @@ ducky-clicker\tI_am_me\t609450`;
       function postChatMessage(text, game = null) {
         const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), name: currentName(), avatar: localChatAvatar, userId: state.userId, timestamp: Date.now(), ...(game ? { game } : {}) };
         receive(message);
-        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
+        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(reportPublishFailure);
       }
       function playCoinCommand(text) {
         const [command, rawBet] = text.trim().split(/\s+/);
@@ -3416,7 +3422,7 @@ ducky-clicker\tI_am_me\t609450`;
         }
         const message = { id: state.userId + '-' + Date.now() + '-' + Math.random().toString(36).slice(2, 7), channel: active, text: text.slice(0, 1500), image: imageData, name, avatar: localChatAvatar, userId: state.userId, timestamp: Date.now() };
         receive(message);
-        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(() => { setChatConnectionState('Message saved locally · could not sync', 'error'); toast('Saved here, but could not reach live chat.'); });
+        if (pubnub) pubnub.publish({ channel: key(active), message }).catch(reportPublishFailure);
         byId('input').value = ''; imageData = ''; byId('image-name').textContent = '';
       });
       renderProfile(); renderChannels(); switchChannel(active); renderOnline(); refreshPresenceProfile(); connect();
