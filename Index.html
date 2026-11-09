@@ -2610,9 +2610,8 @@ ducky-clicker\tI_am_me\t609450`;
         state.messages[channel] = (state.messages[channel] || []).filter(message => Number(message.timestamp || 0) > Number(state.clearAt[channel] || 0));
       });
       state.customChannels = Array.isArray(state.customChannels) ? state.customChannels : [];
-      const today = new Date().toLocaleDateString();
-      if (state.chatDate !== today) state.messages = {};
-      state.chatDate = today;
+      // Keep locally cached chat history across days and browser reloads.
+      state.chatDate = new Date().toLocaleDateString();
       const channelNames = [...new Set([...baseChannels, ...state.customChannels])];
       let active = 'global-chat';
       let pubnub = null;
@@ -3094,7 +3093,7 @@ ducky-clicker\tI_am_me\t609450`;
           videoButton.disabled = !voiceChannel;
         }
       });
-      function receive(message) {
+      function receive(message, silent = false) {
         if (message?.type === 'clear-channel' && message.channel) {
           const clearTime = Number(message.timestamp) || Date.now();
           state.clearAt[message.channel] = Math.max(Number(state.clearAt[message.channel] || 0), clearTime);
@@ -3134,9 +3133,59 @@ ducky-clicker\tI_am_me\t609450`;
         if (!message || !message.id || !message.channel || message.channel === 'rules' || (!message.text && !message.image)) return;
         const list = state.messages[message.channel] || (state.messages[message.channel] = []);
         if (list.some(item => item.id === message.id)) return;
-        if (message.userId !== state.userId) window.kitsuneNotifyChatMessage?.(message);
-        list.push(message); if (list.length > 250) list.shift(); save();
+        if (!silent && message.userId !== state.userId) window.kitsuneNotifyChatMessage?.(message);
+        list.push(message); save();
         if (message.channel === active) { const node = renderMessage(message); if (node) byId('message-list').append(node); byId('feed').scrollTop = byId('feed').scrollHeight; }
+      }
+      let historyLoaded = false;
+      let historyLoading = false;
+      async function loadPersistedHistory() {
+        if (!pubnub || typeof pubnub.fetchMessages !== 'function' || historyLoaded || historyLoading) return;
+        historyLoading = true;
+        let historyAvailable = true;
+        const archived = [];
+        for (const channel of channelNames.map(key)) {
+          let end;
+          let previousEnd = '';
+          try {
+            while (true) {
+              const options = { channels: [channel], count: 100 };
+              if (end) options.end = end;
+              const result = await pubnub.fetchMessages(options);
+              const records = result.channels?.[channel] || [];
+              if (!records.length) break;
+              archived.push(...records.map(record => ({ ...record, channel })));
+              if (records.length < 100) break;
+              const tokens = records.map(record => record.timetoken).filter(token => /^\d+$/.test(String(token)));
+              if (!tokens.length) break;
+              const oldest = tokens.reduce((minimum, token) => BigInt(token) < minimum ? BigInt(token) : minimum, BigInt(tokens[0]));
+              const nextEnd = oldest > 0n ? (oldest - 1n).toString() : '';
+              if (!nextEnd || nextEnd === previousEnd || nextEnd === end) break;
+              previousEnd = end || '';
+              end = nextEnd;
+            }
+          } catch (error) {
+            historyAvailable = false;
+            break;
+          }
+        }
+        archived.sort((a, b) => Number(a.timetoken || 0) - Number(b.timetoken || 0));
+        archived.forEach(record => {
+          const message = record.message;
+          if (!message || typeof message !== 'object') return;
+          const chatMessage = { ...message, channel: message.channel || record.channel.replace(/^violet-/, '') };
+          if (!chatMessage.timestamp && record.timetoken) chatMessage.timestamp = Math.floor(Number(record.timetoken) / 10000);
+          receive(chatMessage, true);
+        });
+        channelNames.forEach(channel => {
+          const list = state.messages[channel] || [];
+          list.sort((a, b) => Number(a.timestamp || 0) - Number(b.timestamp || 0));
+        });
+        save();
+        renderMessages();
+        historyLoaded = true;
+        historyLoading = false;
+        if (!historyAvailable) setChatConnectionState('Live chat connected · history unavailable; enable PubNub message persistence', 'error');
       }
       function renderOnline() {
         members.set(state.userId, { name: currentName() || 'Choose a name', avatar: localChatAvatar, banner: localChatBanner });
@@ -3188,6 +3237,7 @@ ducky-clicker\tI_am_me\t609450`;
                 setChatConnectionState('Live chat connected', 'connected');
                 const channels = channelNames.map(key);
                 refreshPresenceProfile();
+                loadPersistedHistory();
                 pubnub.hereNow({ channels, includeUUIDs: true, includeState: true }).then(result => {
                   Object.values(result.channels || {}).forEach(detail => (detail.occupants || []).forEach(person => {
                     const profile = person.state || {};
