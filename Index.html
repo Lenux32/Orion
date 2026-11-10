@@ -16,7 +16,7 @@
     .games-panel{position:absolute;z-index:3;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#100909}.games-panel.open{display:block}.music-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(420px,calc(100% - 36px));max-height:calc(100% - 36px);display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.music-panel.open{display:flex}.music-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.music-actions{display:flex;gap:9px;padding:12px}.music-pick,.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}.music-pick{background:#d92f45;border-color:transparent;font-weight:700}.music-list{flex:1;min-height:70px;overflow:auto;padding:0 12px 12px}.music-track{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:9px;background:transparent;color:#ddd;text-align:left;cursor:pointer}.music-track:hover,.music-track.active{background:#ffffff12}.music-track.active{color:#ff8790}.music-track span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-audio{display:block;width:calc(100% - 24px);margin:0 12px 12px}.music-note{padding:0 14px 12px;color:#ae9699;font-size:11px}.games-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:0 auto 22px;max-width:1000px}.games-head h2{margin:0;font-size:clamp(24px,4vw,36px)}.games-actions{display:flex;align-items:center;gap:10px}.games-search{width:min(250px,45vw);height:40px;padding:0 12px;border:1px solid #552021;border-radius:10px;color:#fff;background:#241313;font:inherit}.games-close,.game-back{border:1px solid #552021;border-radius:10px;padding:9px 12px;color:#f4eeee;background:#241313;cursor:pointer}.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px;max-width:1000px;margin:auto}.game-card{overflow:hidden;padding:0;border:1px solid #4b1d1e;border-radius:13px;color:#f7f1f1;text-align:left;background:#1b1010;cursor:pointer}.game-card:hover{border-color:#ff3346;transform:translateY(-2px)}.game-card img{display:block;width:100%;height:92px;object-fit:cover;background:#251616}.game-card strong{display:block;padding:9px;font-size:13px}
     @media(max-width:650px){.games-head{align-items:flex-start;flex-direction:column}.games-actions{width:100%}.games-search{flex:1;width:auto}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card img{height:82px}.games-panel{padding:18px 12px}}
     /* Square game artwork with nine cards per row on desktop. */
-    .games-grid{grid-template-columns:repeat(9,minmax(0,1fr))}
+    .games-grid{grid-template-columns:repeat(9,minmax(0,1fr));max-width:1200px}
     .game-card{aspect-ratio:1;min-height:0}
     .game-card img{height:100%}
     @media(max-width:850px){.games-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -236,6 +236,7 @@
     /* Transparent glass navigation and a soft lilac glass wordmark */
     .browser{background:rgba(10,8,18,.12);border-bottom-color:rgba(226,210,255,.14);backdrop-filter:blur(22px) saturate(135%);-webkit-backdrop-filter:blur(22px) saturate(135%)}
     .brand{background:linear-gradient(115deg,#f4eaff 8%,#d9c0ff 48%,#b99aff 92%);-webkit-background-clip:text;background-clip:text;color:transparent;text-shadow:0 0 22px rgba(202,171,255,.28),0 0 48px rgba(173,139,255,.16);-webkit-text-stroke:1px rgba(243,231,255,.14)}
+    .brand .brand-moon{display:block;width:clamp(68px,8vw,96px);height:auto;margin:0 auto;filter:drop-shadow(0 0 24px rgba(202,171,255,.4))}
     .quick-link:hover,.games-filter.active,.music-extra-controls button.active{border-color:var(--user-accent,#c5a5ff)}
     .game-detail-card h2{margin:14px 0 6px}.game-detail-card p{color:#bdb7c7;line-height:1.5}.home-tools[hidden]{display:none!important}
     @media(max-width:650px){.home-quicklinks{max-width:100%;max-height:72px;overflow:auto}.home-widget{font-size:12px}.games-filters{gap:6px}.games-filter{padding:6px 9px;font-size:12px}}
@@ -705,7 +706,7 @@
       <i class="particle" style="--x:99%;--size:2px;--delay:-12s;--duration:16s;--drift:27px"></i>
     </div>
     <section class="home" aria-label="Lunara search home">
-      <h1 class="brand">Kitsune<span class="mini"></span></h1>
+      <h1 class="brand" aria-label="Kitsune"><svg class="brand-moon" viewBox="0 0 100 100" role="img" aria-label="Crescent moon"><defs><linearGradient id="brand-moon-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4eaff"/><stop offset=".52" stop-color="#d9c0ff"/><stop offset="1" stop-color="#b99aff"/></linearGradient></defs><path d="M70 9a42 42 0 1 0 21 76A46 46 0 0 1 70 9Z" fill="url(#brand-moon-gradient)"/><path d="m28 15 2.5 7.5L38 25l-7.5 2.5L28 35l-2.5-7.5L18 25l7.5-2.5L28 15Zm51 48 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#f4eaff"/></svg></h1>
       <p class="tagline" id="home-tagline">Touch grass? In this economy?</p>
       <form class="search" id="web-search" action="https://www.google.com/search" method="get"><span aria-hidden="true">⌕</span><input name="q" list="search-suggestions" placeholder="Search the web or enter a URL..." aria-label="Search" autocomplete="off" /><datalist id="search-suggestions"><option value="Popular games"></option><option value="Free online games"></option><option value="Puzzle games"></option><option value="Music"></option><option value="Study tools"></option><option value="Weather today"></option></datalist></form>
       <div class="home-tools"><span class="home-widget" id="home-clock" aria-label="Current time"></span><span class="home-widget" id="home-date"></span></div>
@@ -814,7 +815,7 @@
       <div class="game-frames" id="game-frames"><div class="game-controls-wrap"><button class="game-player-button" id="game-controls-toggle" type="button" aria-expanded="false" aria-controls="game-controls-panel">Controls</button><div class="game-controls-panel" id="game-controls-panel" role="group" aria-label="Game controls"><div class="game-controls-drag" id="game-controls-drag"><button class="game-control-back" id="game-control-back" type="button" aria-label="Back to home" title="Back to home"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m15 18-6-6 6-6M9 12h11"/></svg></button><strong class="game-controls-game" id="game-controls-game">No game selected</strong></div><button id="game-control-reload" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7v5h-5M19 12a7 7 0 1 1-2-5l3 5"/></svg><span>Reload game</span></button><label class="game-volume-control">Game volume <input id="game-volume" type="range" min="0" max="1" step="0.05" value="1" aria-label="Game volume"></label><button id="game-control-fullscreen" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 3H4v4m12-4h4v4M20 16v5h-4M4 16v5h4"/></svg><span id="game-fullscreen-label">Enter fullscreen</span></button><button id="game-player-fallback" type="button"><svg class="game-control-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 4h6v6m0-6-9 9"/><path d="M18 13v5a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h5"/></svg><span>Launch in about:blank</span></button></div></div><div class="game-player-empty">Choose a game from the library to open a tab.</div><div class="game-loading" id="game-loading" role="status" aria-live="polite" hidden><div class="game-loading-card"><div class="game-loading-mark" aria-hidden="true">狐</div><h2 id="game-loading-title">Preparing your game</h2><p id="game-loading-message">Fetching game files…</p><div class="game-loading-track" aria-hidden="true"></div><p id="game-loading-detail">This may take a moment.</p><button class="game-retry" id="game-loading-retry" type="button">↻ Retry loading</button></div></div></div>
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
-      <div class="games-head"><div><h2>Game library</h2><p class="games-hint">Click to play · Double-click for info · Right-click a game to favorite</p></div><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
+      <div class="games-head"><div><h2>Game library</h2><p class="games-hint">Click to play · Double-click for info</p></div><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
             <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="For You">For You</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div>
 <div class="games-tools-row"><label for="games-sort">Sort games:</label><select id="games-sort" aria-label="Sort games"><option value="name">Name A–Z</option><option value="recent">Recently played</option><option value="favorites">Favorites first</option></select><button id="continue-game" type="button">▶ Continue last game</button><span>Tip: use Tab and Enter to browse and launch.</span></div>
       <div class="games-grid" id="games-grid"></div>
@@ -2479,7 +2480,6 @@ ducky-clicker\tI_am_me\t609450`;
           card.addEventListener('click', () => openGame(game));
           card.addEventListener('dblclick', event => { event.preventDefault(); openGameDetails(game); });
         }
-        card.addEventListener('contextmenu', event => { event.preventDefault(); toggleGameFavorite(game); });
         grid.append(card);
       });
     }
@@ -4128,20 +4128,6 @@ ducky-clicker\tI_am_me\t609450`;
         const grid = q('#games-grid');
         if (!grid) return;
         const cards = [...grid.querySelectorAll('.game-card')];
-        cards.forEach(card => {
-          const name = card.getAttribute('aria-label')?.replace(/^Play /, '') || '';
-          const game = games.find(item => item.name === name);
-          if (!game) return;
-          const favorite = document.createElement('span');
-          favorite.className = 'game-card-favorite';
-          favorite.setAttribute('role', 'button');
-          favorite.setAttribute('tabindex', '0');
-          favorite.setAttribute('aria-label', (readGameList('kitsune-game-favorites').includes(game.file) ? 'Remove ' : 'Add ') + game.name + ' ' + 'favorite');
-          favorite.textContent = readGameList('kitsune-game-favorites').includes(game.file) ? '★' : '☆';
-          favorite.addEventListener('click', event => { event.stopPropagation(); event.preventDefault(); toggleGameFavorite(game); });
-          favorite.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); event.stopPropagation(); toggleGameFavorite(game); } });
-          card.append(favorite);
-        });
         const recent = readGameList('kitsune-recent-games');
         const favorites = readGameList('kitsune-game-favorites');
         cards.sort((a, b) => {
