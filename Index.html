@@ -138,6 +138,8 @@
     .profile-panel.open{display:grid}.profile-card{width:min(420px,100%);padding:36px 28px;border:1px solid #292930;border-radius:18px;background:#101013;box-shadow:0 24px 80px #0009}.profile-lock{display:grid;width:58px;height:58px;margin:auto;place-items:center;color:#d8d5e2}.profile-lock svg{width:48px;height:48px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.profile-card h2{margin:14px 0 6px;font-size:28px}.profile-card p{margin:0;color:#aaa8b3}.profile-actions{display:flex;justify-content:center;gap:10px;margin-top:24px}.profile-action{min-width:110px;padding:10px 16px;border:1px solid #33333b;border-radius:10px;color:#f3f1f6;background:#17171b;font:inherit;font-weight:700;cursor:pointer}.profile-action.primary{border-color:#eee;color:#111;background:#eee}.profile-action:hover{filter:brightness(1.15)}.profile-status{min-height:1.45em;margin-top:14px!important;color:#aaa8b3;font-size:13px}
     /* Full-page AI chat view */
     .ai-panel{inset:0;right:0;top:0;width:auto;height:auto;border:0;border-radius:0;background:#050507;box-shadow:none}
+    .ai-panel{display:none;grid-template-columns:190px minmax(0,1fr)}.ai-panel.open{display:grid}.ai-sidebar{display:flex;min-width:0;flex-direction:column;gap:9px;padding:12px;border-right:1px solid #ffffff14;background:#0b0a0f}.ai-new-chat{padding:9px 10px;border:1px solid #c5a5ff44;border-radius:11px;color:#fff;background:linear-gradient(135deg,#9a6de533,#ffffff08);text-align:left;font:inherit;font-weight:700;cursor:pointer}.ai-new-chat:hover{background:#9a6de54d}.ai-history-title{margin:6px 4px 0;color:#9991a8;font-size:10px;font-weight:800;letter-spacing:.1em;text-transform:uppercase}.ai-history{display:grid;gap:5px;overflow:auto}.ai-history button{overflow:hidden;padding:8px 9px;border:1px solid transparent;border-radius:9px;color:#c9c2d2;background:transparent;text-align:left;text-overflow:ellipsis;white-space:nowrap;cursor:pointer}.ai-history button:hover,.ai-history button.active{border-color:#ffffff12;background:#ffffff0b;color:#fff}.ai-sidebar-settings{margin-top:auto;padding:10px;border:1px solid #ffffff14;border-radius:12px;background:#ffffff06}.ai-sidebar-settings label{display:flex;justify-content:space-between;gap:8px;color:#d8d0e1;font-size:12px}.ai-sidebar-settings output{color:#d9bcff;font-variant-numeric:tabular-nums}.ai-sidebar-settings input{width:100%;margin:8px 0 2px;accent-color:#b790ff}.ai-main{display:flex;min-width:0;min-height:0;flex-direction:column}.ai-session-empty{margin:auto;color:#aaa2b6;text-align:center}.ai-session-empty[hidden]{display:none}
+    @media(max-width:650px){.ai-panel{grid-template-columns:112px minmax(0,1fr)}.ai-sidebar{align-items:stretch;padding:7px;gap:7px}.ai-new-chat{padding:7px 5px;text-align:center;font-size:10px}.ai-sidebar-settings{display:block;padding:7px}.ai-sidebar-settings label{display:grid;gap:4px;font-size:10px}}
     .ai-brand{display:flex;align-items:center;gap:10px}.ai-brand-logo{display:grid;width:36px;height:36px;place-items:center;border:1px solid rgba(221,197,255,.24);border-radius:12px;color:#e7d3ff;background:linear-gradient(145deg,#ffffff16,#ffffff05)}.ai-brand-logo svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}.ai-brand-copy strong,.ai-brand-copy small{display:block}.ai-brand-copy small{margin-top:2px;color:#aaa2b6;font-size:11px}.ai-welcome-prompts{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}.ai-welcome-prompts button{padding:8px 11px;border:1px solid rgba(221,197,255,.2);border-radius:999px;color:#eee7fa;background:rgba(255,255,255,.05);font:inherit;font-size:12px;cursor:pointer}.ai-welcome-prompts button:hover{border-color:#d9bcff;background:rgba(184,145,255,.13)}.ai-welcome-prompts[hidden]{display:none}
     .ai-key-note{display:none!important}
     .ai-head,.ai-messages,.ai-compose,.ai-key-note{width:min(900px,100%);margin-left:auto;margin-right:auto}
@@ -634,11 +636,67 @@
     .kc-online-copy{min-width:0;flex:1}
     .kc-online-banner{display:block;width:100%;height:24px;margin-top:5px;border:1px solid #ffffff18;border-radius:6px;background:linear-gradient(120deg,#39254f,#17131f 65%,#3d2434) center/cover no-repeat}
     .kc-online-banner[hidden]{display:none}
-      .click-loading{position:absolute;z-index:60;inset:0;display:grid;place-items:center;padding:20px;background:rgba(5,4,9,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:1;visibility:visible;transition:opacity .2s,visibility .2s;pointer-events:none}.click-loading[hidden]{display:none}.click-loading.fade{opacity:0;visibility:hidden}.click-loading-card{width:min(360px,100%);padding:28px 22px;border:1px solid rgba(221,197,255,.24);border-radius:18px;background:rgba(20,16,26,.96);box-shadow:0 22px 70px #0009;text-align:center}.click-loading-mark{display:grid;width:52px;height:52px;margin:0 auto 14px;place-items:center;border:1px solid #c5a5ff55;border-radius:16px;color:#eadbff;background:#9a6de522;font-size:24px;animation:click-loading-pulse 1s ease-in-out infinite alternate}.click-loading-card h2{margin:0 0 6px;font-size:20px}.click-loading-card p{margin:0;color:#bcb3c7;font-size:13px}.click-loading-card .click-loading-phrase{margin-top:12px;color:#e8d7ff;font-weight:650}@keyframes click-loading-pulse{to{transform:scale(1.08);box-shadow:0 0 24px #b790ff44}}@media(prefers-reduced-motion:reduce){.click-loading-mark{animation:none}}
+      .click-loading{position:absolute;z-index:60;inset:0;display:grid;place-items:center;padding:20px;background:rgba(5,4,9,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);opacity:1;visibility:visible;transition:opacity .2s,visibility .2s;pointer-events:none}.click-loading[hidden]{display:none}.click-loading.fade{opacity:0;visibility:hidden}.click-loading-card{width:min(360px,100%);padding:28px 22px;border:1px solid rgba(221,197,255,.24);border-radius:18px;background:rgba(20,16,26,.96);box-shadow:0 22px 70px #0009;text-align:center}.click-loading-mark{display:grid;width:52px;height:52px;margin:0 auto 14px;place-items:center;border:1px solid #c5a5ff55;border-radius:16px;color:#eadbff;background:#9a6de522;font-size:24px;animation:click-loading-pulse 1s ease-in-out infinite alternate}.click-loading-card h2{margin:0 0 6px;font-size:20px}.click-loading-card p{margin:0;color:#bcb3c7;font-size:13px}.click-loading-card .click-loading-phrase{margin-top:12px;color:#e8d7ff;font-weight:650}@keyframes click-loading-pulse{to{transform:scale(1.08);box-shadow:0 0 24px #b790ff44}}    @media(prefers-reduced-motion:reduce){.click-loading-mark{animation:none}}
+    /* Spotify-inspired music library and transparent toolbar */
+    .browser{background:transparent!important;border-bottom-color:transparent!important;box-shadow:none!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}
+    .browser::after{display:none}
+    .music-panel{background:#050505!important;grid-template-columns:235px minmax(0,1fr);gap:8px;padding:8px}
+    .music-sidebar,.music-main,.music-playerbar{border:0;background:#121212!important}
+    .music-sidebar{padding:20px 12px;border-radius:12px}
+    .music-logo{padding:4px 12px 20px;color:#fff;font:800 22px/1.2 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.04em}
+    .music-nav{min-height:42px;padding:10px 12px;border-radius:8px;color:#b3b3b3;font-size:13px;font-weight:650}
+    .music-nav:hover,.music-nav.active{color:#fff;background:#242424}
+    .music-nav.active{box-shadow:inset 3px 0 #1ed760}
+    .music-main{border-radius:12px;background:linear-gradient(180deg,#202020,#121212 300px)!important}
+    .music-toolbar{gap:12px;padding:18px 24px 12px;background:rgba(18,18,18,.9)}
+    .music-search{max-width:390px;height:40px;border:0;border-radius:999px;color:#fff;background:#242424;font-size:13px}
+    .music-search:focus{outline:2px solid #fff}
+    .music-status{flex:1;color:#b3b3b3}
+    .music-sort-label{color:#b3b3b3;font-size:11px}
+    .music-sort{height:36px;padding:0 12px;border:1px solid #ffffff20;border-radius:999px;color:#fff;background:#242424;font:inherit;font-size:12px}
+    .music-content{max-width:none;padding:8px 24px 32px}
+    .music-content h2{margin:16px 0 12px;color:#fff;font:750 clamp(22px,3vw,30px)/1.2 Inter,ui-sans-serif,system-ui,sans-serif;letter-spacing:-.03em}
+    .music-grid{grid-template-columns:repeat(9,minmax(0,1fr));gap:14px;margin:0 0 26px}
+    @media(max-width:1000px){.music-grid{grid-template-columns:repeat(5,minmax(0,1fr))}}
+    @media(max-width:700px){.music-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+    .music-art-card{border:0;border-radius:8px;background:#181818;transition:background .2s,transform .2s}
+    .music-art-card:hover,.music-art-card:focus-visible{background:#282828;transform:translateY(-2px)}
+    .music-art-overlay{padding:13px;background:linear-gradient(transparent 25%,rgba(0,0,0,.84))}
+    .music-art-overlay strong{font-size:13px}
+    .music-art-overlay small{color:#b3b3b3}
+    .music-playerbar{min-height:78px;padding:10px 16px;border-top:1px solid #ffffff12;border-radius:12px}
+    .music-now{font-size:13px;font-weight:700}.music-now small{font-weight:400}
+    .music-extra-controls button.active{color:#1ed760;border-color:#1ed760}
+    .music-extra-controls input{accent-color:#1ed760}
+    .music-playerbar audio{accent-color:#1ed760}
+    @media(max-width:700px){.music-panel{grid-template-columns:minmax(0,1fr);grid-template-rows:auto minmax(0,1fr) auto;padding:5px}.music-sidebar{padding:7px;border-radius:10px}.music-logo{display:none}.music-nav{min-height:36px;padding:7px 10px;font-size:11px}.music-main{border-radius:10px}.music-toolbar{padding:9px;gap:7px}.music-search{flex:1 1 100%;max-width:none}.music-sort{flex:0 0 auto}.music-status{font-size:11px}.music-content{padding:7px 12px 18px}.music-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.music-playerbar{gap:8px;padding:8px}.music-playerbar audio{width:100%}}
+    /* Compact notification popover and expanded utility/profile actions. */
+    .notifications-overlay{position:fixed;z-index:45;inset:62px 16px auto auto;display:block;width:min(360px,calc(100vw - 24px));padding:0;background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+    .notifications-card{width:100%;max-height:min(70vh,520px);padding:20px;border-radius:16px;background:rgba(19,16,24,.97);box-shadow:0 18px 60px #000b}
+    .notifications-card h2{font-size:20px}.notifications-card>p{margin:5px 0 12px;font-size:12px}.notification-tabs{display:flex;gap:6px;margin:0 0 10px;padding:3px;border:1px solid #ffffff12;border-radius:10px;background:#ffffff06}.notification-tabs button{flex:1;padding:7px;border:0;border-radius:7px;color:#aaa2b6;background:transparent;font:inherit;font-size:11px;cursor:pointer}.notification-tabs button.active{color:#f4efff;background:#ffffff12}.notification-tabs button:focus-visible{outline:2px solid #d9bcff;outline-offset:2px}
+    .notifications-card .notification-empty{min-height:90px}.notifications-card .notification-items{max-height:42vh;overflow:auto;padding:0}
+    .notifications-card .notifications-close{margin-top:12px}
+    .notifications-card::before{position:absolute;top:-6px;right:21px;width:11px;height:11px;content:"";transform:rotate(45deg);border-top:1px solid #ffffff25;border-left:1px solid #ffffff25;background:#131018}
+    .tool-link-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:8px}.tool-link-row input{width:100%}
+    .tool-link-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}.tool-link-actions button,.owner-notice-form button{padding:8px 11px;border:1px solid #c5a5ff55;border-radius:9px;color:#fff;background:#9a6de522;cursor:pointer}
+    .owner-notice-form{display:grid;gap:9px}.owner-notice-form textarea{min-height:78px!important}.owner-notice-form select{width:100%}
+    .profile-account-meta{margin:12px 0 0!important;padding:9px 11px;border:1px solid #ffffff14;border-radius:10px;color:#c7bfd0!important;background:#ffffff06;font-size:12px!important;text-align:left}
+    @media(max-width:700px){.notifications-overlay{inset:56px 8px auto auto}.notifications-card{padding:16px}.notifications-card::before{right:20px}}
+    /* AI chat welcome and searchable conversation history */
+    .ai-history-search{width:100%;height:38px;padding:0 11px;border:1px solid #ffffff18;border-radius:10px;outline:0;color:#f4effa;background:#ffffff08;font:inherit;font-size:12px}
+    .ai-history-search:focus{border-color:#c5a5ff88}
+    .ai-sidebar .ai-history-title{margin-top:5px}
+    .ai-welcome{width:min(680px,100%);margin:auto;padding:30px 18px;text-align:center}
+    .ai-welcome h2{margin:0;color:#f8f5fc;font-size:clamp(25px,4vw,34px);letter-spacing:-.04em}
+    .ai-welcome p{margin:8px 0 24px;color:#aaa2b6;font-size:14px}
+    .ai-welcome .ai-welcome-prompts{justify-content:center;margin-top:0}
+    .ai-welcome .ai-welcome-prompts button{padding:10px 16px;border-color:#ffffff18;border-radius:12px;background:#ffffff08;color:#e9e3f1;font-size:13px;transition:background .18s,border-color .18s,transform .18s}
+    .ai-welcome .ai-welcome-prompts button:hover{transform:translateY(-2px);border-color:#c5a5ff66;background:#c5a5ff14}
+    @media(max-width:650px){.ai-welcome{padding:22px 8px}.ai-welcome .ai-welcome-prompts{gap:7px}.ai-welcome .ai-welcome-prompts button{padding:9px 12px;font-size:12px}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <div class="connection-status" id="connection-status" role="status" aria-live="polite" hidden>Online</div>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
@@ -734,11 +792,12 @@
         <div class="profile-lock" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="4" y="10" width="16" height="11" rx="2.5"/><path d="M8 10V7a4 4 0 0 1 8 0v3M12 14v3"/></svg></div>
         <h2 id="profile-heading">Your Profile</h2>
         <p id="profile-description">Choose a display name for this browser.</p>
+        <p class="profile-account-meta" id="profile-account-meta">Local account · saved only in this browser</p>
         <p class="equipped-profile-phrase" id="equipped-profile-phrase" hidden></p>
         <label class="settings-label" id="profile-name-wrap">Display name<input id="profile-name" type="text" maxlength="24" autocomplete="nickname" placeholder="Your name"></label>
         <label class="settings-label profile-avatar-field">Profile picture<input id="profile-avatar-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 1 MB. It stays in this browser.</p></label>
         <label class="settings-label profile-avatar-field">Profile banner<input id="profile-banner-file" type="file" accept="image/*"><p class="profile-avatar-note">Choose an image up to 2 MB. It stays in this browser.</p></label><label class="settings-label profile-status-field">Profile status<input id="profile-status-input" type="text" maxlength="60" placeholder="What are you up to?"></label>
-        <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
+        <div class="profile-actions"><button class="profile-action primary" id="profile-sign-in" type="button">Sign In</button><button class="profile-action" id="profile-edit-name" type="button" hidden>Edit name</button><button class="profile-action" id="profile-sign-out" type="button" hidden>Sign Out</button><button class="profile-action" id="profile-home" type="button">Home</button></div>
         <button class="profile-shop-button" id="profile-shop-toggle" type="button" aria-expanded="false">✨ Open the Kitsune cosmetics shop</button>
         <section class="profile-shop" id="profile-shop" aria-label="Kitsune cosmetics shop" hidden>
           <div class="profile-shop-head"><h3>✨ Kitsune Shop</h3><span class="profile-shop-balance"><span id="profile-shop-coins">500</span> demo coins</span></div>
@@ -804,6 +863,7 @@
         <header class="toolbox-head"><div><h2>Tools</h2><p>Simple utilities for quick calculations, notes, and focus sessions.</p></div><button class="toolbox-close" id="toolbox-close" type="button">Home</button></header>
         <div class="toolbox-grid">
           <section class="toolbox-card"><h3>🧮 Calculator</h3><p>Calculate with two numbers and a basic operation.</p><form class="tool-calculator" id="tool-calculator"><input id="calc-first" type="number" step="any" placeholder="First number" aria-label="First number" required><select id="calc-operation" aria-label="Operation"><option value="+">+</option><option value="-">−</option><option value="*">×</option><option value="/">÷</option></select><input id="calc-second" type="number" step="any" placeholder="Second number" aria-label="Second number" required><button type="submit">Calculate</button></form><p class="tool-result" id="calc-result" role="status" aria-live="polite"></p></section>
+          <section class="toolbox-card"><h3>🔗 Link opener</h3><p>Open a web address in a new tab or an about:blank wrapper. Only open links you trust.</p><label class="settings-label" for="tool-link-url">Web address<input id="tool-link-url" type="url" placeholder="https://example.com" autocomplete="url"></label><div class="tool-link-actions"><button id="tool-open-link" type="button">Open link</button><button id="tool-open-blank" type="button">Open in about:blank</button></div><p class="tool-status" id="tool-link-status" role="status" aria-live="polite"></p></section>
           <section class="toolbox-card"><h3>📝 Quick Notes</h3><p>Notes save automatically in this browser.</p><textarea id="tool-notes" placeholder="Write a note…" aria-label="Quick notes"></textarea><p class="tool-status" id="notes-status" role="status" aria-live="polite"></p></section>
           <section class="toolbox-card"><h3>⏱️ Focus Timer</h3><p>A lightweight countdown for focus sessions.</p><label class="settings-label" for="timer-minutes">Duration (minutes)<input id="timer-minutes" type="number" min="1" max="180" value="25"></label><div class="timer-display" id="timer-display" role="timer" aria-live="off">25:00</div><div class="timer-controls"><button class="timer-button" id="timer-start" type="button">Start</button><button class="timer-button" id="timer-reset" type="button">Reset</button></div><p class="tool-status" id="timer-status" role="status" aria-live="polite"></p></section>
         </div>
@@ -820,11 +880,11 @@
     </section>
     <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-personal-review"><label for="game-personal-rating">Your rating<select id="game-personal-rating"><option value="0">Not rated</option><option value="5">★★★★★ · Loved it</option><option value="4">★★★★☆ · Great</option><option value="3">★★★☆☆ · Good</option><option value="2">★★☆☆☆ · Okay</option><option value="1">★☆☆☆☆ · Not for me</option></select></label><label for="game-personal-note">Personal note<textarea id="game-personal-note" maxlength="240" placeholder="Add a note for yourself..."></textarea></label><button id="game-personal-save" type="button">Save rating & note</button><p class="game-personal-review-status" id="game-personal-status" role="status" aria-live="polite"></p></div><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
     <section class="music-panel" id="music-panel" aria-label="Music library" aria-hidden="true">
-      <aside class="music-sidebar"><div class="music-logo">sakuna</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Playlist">♥ My playlist</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
-      <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs, artists, and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
+      <aside class="music-sidebar"><div class="music-logo">♫ Kitsune Music</div><button class="music-nav active" type="button" data-music-tab="Home">⌂ Home · Recommended</button><button class="music-nav" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">▣ Albums</button><button class="music-nav" type="button" data-music-tab="Playlist">♥ My playlist</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
+      <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs, artists, and albums" aria-label="Search music"><label class="music-sort-label" for="music-sort">Sort</label><select class="music-sort" id="music-sort" aria-label="Sort music"><option value="title">Title</option><option value="album">Album</option><option value="shuffle">Shuffle</option></select><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
       <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio><div class="music-extra-controls"><button class="music-control" id="music-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="music-control" id="music-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button><button class="music-control" id="music-shuffle" type="button" aria-label="Toggle shuffle" title="Toggle shuffle" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M4 4l5 5m4 4 8 8"/></svg></button><button class="music-control" id="music-repeat" type="button" aria-label="Toggle repeat" title="Toggle repeat" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></button><button class="music-control" id="music-save-track" type="button" aria-label="Save current track to playlist" title="Save current track to playlist"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span id="music-save-label">Save</span></button><label aria-label="Volume"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg><input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div></div>
     </section>
-    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><div class="ai-head"><div class="ai-brand"><span class="ai-brand-logo" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M4 4.5 10 7l2-3 2 3 6-2.5-1 7.2a7 7 0 0 1-14 0L4 4.5Z"/><path d="M8.5 11h.01M15.5 11h.01M9.5 15c1.5 1 3.5 1 5 0M12 7v2"/></svg></span><span class="ai-brand-copy"><strong>Kitsune AI</strong><small>Your friendly assistant</small></span></div><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message" id="ai-welcome-message">Hi there! How are you today? What should we get started with?</div><div class="ai-welcome-prompts" id="ai-welcome-prompts"><button type="button">Help me brainstorm ideas</button><button type="button">Explain a tricky topic</button><button type="button">Help me plan my day</button></div></div><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></section>
+    <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><aside class="ai-sidebar"><button class="ai-new-chat" id="ai-new-chat" type="button">＋ New chat</button><label class="ai-history-title" for="ai-history-search">Search chats</label><input class="ai-history-search" id="ai-history-search" type="search" placeholder="Search chats…" aria-label="Search chats"><div class="ai-history-title">Recent chats</div><nav class="ai-history" id="ai-history" aria-label="Recent chats"></nav><div class="ai-sidebar-settings"><label for="ai-temperature">Temperature <output id="ai-temperature-value">0.7</output></label><input id="ai-temperature" type="range" min="0" max="2" step="0.1" value="0.7"></div></aside><div class="ai-main"><div class="ai-head"><div class="ai-brand"><span class="ai-brand-copy"><strong id="ai-greeting-title">Good day!</strong></span></div><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><section class="ai-welcome" id="ai-welcome"><h2 id="ai-welcome-message">How can I help you today?</h2><p>Choose a suggestion or ask anything.</p><div class="ai-welcome-prompts" id="ai-welcome-prompts"><button type="button">Solve math</button><button type="button">Write</button><button type="button">Explain</button><button type="button">Code</button></div></section></div><p class="ai-session-empty" id="ai-session-empty" hidden>Start a new chat or choose a recent chat.</p><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></div></section>
     <section class="updates-overlay" id="updates-overlay" aria-label="What's new" aria-hidden="true" hidden>
       <div class="updates-card" role="dialog" aria-modal="true" aria-labelledby="updates-title">
         <h2 id="updates-title">What’s new in Kitsune</h2>
@@ -840,10 +900,11 @@
       </div>
     </section>
     <section class="notifications-overlay" id="notifications-overlay" aria-label="Notifications" aria-hidden="true" hidden>
-      <div class="notifications-card" role="dialog" aria-modal="true" aria-labelledby="notifications-title">
+      <div class="notifications-card" role="dialog" aria-modal="false" aria-labelledby="notifications-title">
         <h2 id="notifications-title">Notifications</h2>
-        <p>Games are now fixed — enjoy playing!</p>
-        <div class="notification-empty" id="notification-list"><div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>Games are now fixed</div></div>
+        <p>Messages and updates for this browser.</p>
+        <nav class="notification-tabs" aria-label="Notification filter"><button type="button" class="active" data-notification-tab="all">All</button><button type="button" data-notification-tab="chat">Chat</button></nav>
+        <div class="notification-empty" id="notification-list"><div>No notifications yet</div></div>
         <button class="notifications-close" id="notifications-close" type="button">Close</button>
       </div>
     </section>
@@ -1654,6 +1715,9 @@
       profileNameWrap.hidden = Boolean(name);
       document.querySelector('#profile-sign-in').hidden = Boolean(name);
       document.querySelector('#profile-sign-out').hidden = !name;
+      document.querySelector('#profile-edit-name').hidden = !name;
+      document.querySelector('#profile-sign-in').textContent = name ? 'Save name' : 'Sign In';
+      document.querySelector('#profile-account-meta').textContent = name ? 'Signed in as ' + name + ' · local to this browser, not a cloud account' : 'Local account · saved only in this browser';
       if (name) profileNameInput.value = name;
     }
     document.querySelector('#open-profile').addEventListener('click', () => {
@@ -2550,7 +2614,8 @@ ducky-clicker\tI_am_me\t609450`;
     let musicQueue = [];
     let musicShuffle = false;
     let musicRepeat = false;
-    let activeMusicTab = 'All';
+    let activeMusicTab = 'Home';
+    let activeMusicSort = 'title';
     function savedMusicPaths() { try { const paths = JSON.parse(localStorage.getItem('kitsune-music-playlist') || '[]'); return Array.isArray(paths) ? paths : []; } catch (error) { return []; } }
     function setMusicQueueIndex(direction) {
       if (!musicQueue.length) return;
@@ -2653,19 +2718,91 @@ ducky-clicker\tI_am_me\t609450`;
         musicContent.append(empty);
       }
     }
+    function sortMusicTracks(tracks) {
+      const sorted = [...tracks];
+      if (activeMusicSort === 'shuffle') return sorted.sort(() => Math.random() - 0.5);
+      return sorted.sort((a, b) => activeMusicSort === 'album'
+        ? (a.group || '').localeCompare(b.group || '') || a.title.localeCompare(b.title)
+        : a.title.localeCompare(b.title));
+    }
+    function renderMusicHome(visible) {
+      musicQueue = visible;
+      musicContent.replaceChildren();
+      const currentGroup = activeMusicTrack?.group;
+      const recommended = currentGroup
+        ? visible.filter(track => track !== activeMusicTrack && track.group === currentGroup).slice(0, 8)
+        : visible.slice(0, Math.min(8, visible.length));
+      const recommendedSet = new Set(recommended);
+      const more = visible.filter(track => !recommendedSet.has(track) && track !== activeMusicTrack).slice(0, 12);
+      const sections = [
+        ['Recommended for you', recommended],
+        ['More to explore', more]
+      ];
+      sections.forEach(([headingText, tracks]) => {
+        const heading = document.createElement('h2');
+        heading.textContent = headingText;
+        musicContent.append(heading);
+        const grid = document.createElement('div');
+        grid.className = 'music-grid';
+        tracks.forEach(track => grid.append(createMusicArtCard(track.title, track.group || 'Single', musicArtworkForTrack(track), () => {
+          if (track === activeMusicTrack && !musicAudio.paused) musicAudio.pause();
+          else playMusic(track);
+        })));
+        musicContent.append(grid);
+        if (!tracks.length) {
+          const empty = document.createElement('p');
+          empty.className = 'music-empty';
+          empty.textContent = musicLoaded ? 'More music will appear here when available.' : 'Loading music library…';
+          musicContent.append(empty);
+        }
+      });
+    }
     function renderMusicLibrary() {
+      activeMusicSort = document.querySelector('#music-sort')?.value || activeMusicSort;
       const query = musicSearch.value.trim().toLowerCase();
       const playlistPaths = savedMusicPaths();
-      const visible = musicTracks.filter(track => (activeMusicTab === 'All' || track.tab === activeMusicTab || (activeMusicTab === 'Local' && track.local) || (activeMusicTab === 'Playlist' && playlistPaths.includes(track.path))) && (!query || (track.title + ' ' + track.group).toLowerCase().includes(query)));
+      const matching = musicTracks.filter(track => (activeMusicTab === 'Home' || activeMusicTab === 'All' || track.tab === activeMusicTab || (activeMusicTab === 'Local' && track.local) || (activeMusicTab === 'Playlist' && playlistPaths.includes(track.path))) && (!query || (track.title + ' ' + track.group).toLowerCase().includes(query)));
+      const visible = sortMusicTracks(matching);
       musicStatus.textContent = musicLoaded ? visible.length + (visible.length === 1 ? ' track' : ' tracks') : 'Loading music library…';
       document.querySelectorAll('[data-music-tab]').forEach(button => button.classList.toggle('active', button.dataset.musicTab === activeMusicTab));
+      if (activeMusicTab === 'Home') {
+        renderMusicHome(visible);
+        return;
+      }
+      if (activeMusicTab === 'All') {
+        musicQueue = visible;
+        musicContent.replaceChildren();
+        const heading = document.createElement('h2');
+        heading.textContent = 'Albums';
+        const grid = document.createElement('div');
+        grid.className = 'music-grid';
+        const groups = new Map();
+        visible.forEach(track => {
+          const name = track.group && track.group !== 'Single' ? track.group : 'Singles';
+          if (!groups.has(name)) groups.set(name, []);
+          groups.get(name).push(track);
+        });
+        [...groups].sort(([a], [b]) => activeMusicSort === 'shuffle' ? Math.random() - 0.5 : a.localeCompare(b)).forEach(([name, tracks]) => {
+          const album = musicGroups.find(group => group.name === name);
+          const artwork = album?.cover || musicArtworkForTrack(tracks[0]);
+          grid.append(createMusicArtCard(name, tracks.length + (tracks.length === 1 ? ' song' : ' songs'), artwork, () => showMusicTracks(tracks, name)));
+        });
+        musicContent.append(heading, grid);
+        if (!groups.size) {
+          const empty = document.createElement('p');
+          empty.className = 'music-empty';
+          empty.textContent = musicLoaded ? 'No albums match your search.' : 'Loading music library…';
+          musicContent.append(empty);
+        }
+        return;
+      }
       if (activeMusicTab === 'Albums' && !query) {
         musicContent.replaceChildren();
         const heading = document.createElement('h2');
         heading.textContent = 'Albums';
         const grid = document.createElement('div');
         grid.className = 'music-grid';
-        const albumGroups = musicGroups.filter(group => group.tracks.some(track => visible.includes(track)));
+        const albumGroups = musicGroups.filter(group => group.tracks.some(track => visible.includes(track))).sort((a, b) => activeMusicSort === 'shuffle' ? Math.random() - 0.5 : a.name.localeCompare(b.name));
         albumGroups.forEach(group => {
           const count = group.tracks.length + (group.tracks.length === 1 ? ' track' : ' tracks');
           grid.append(createMusicArtCard(group.name, count, group.cover, () => showMusicTracks(group.tracks, group.name)));
@@ -2724,6 +2861,7 @@ ducky-clicker\tI_am_me\t609450`;
       renderMusicLibrary();
     }));
     musicSearch.addEventListener('input', renderMusicLibrary);
+    document.querySelector('#music-sort').addEventListener('change', () => renderMusicLibrary());
     musicInput.addEventListener('change', () => {
       localMusicUrls.forEach(url => URL.revokeObjectURL(url));
       localMusicUrls = [];
@@ -2767,6 +2905,70 @@ ducky-clicker\tI_am_me\t609450`;
     const aiAttachments = document.querySelector('#ai-attachments');
     let pendingImages = [];
     const aiHistory = [];
+    let aiSessions = [];
+    try { const saved = JSON.parse(localStorage.getItem('kitsune-ai-sessions') || '[]'); if (Array.isArray(saved)) aiSessions = saved.filter(session => session && typeof session.id === 'string' && Array.isArray(session.messages)).slice(0, 30); } catch (error) { /* Start with a clean history if saved data is unavailable. */ }
+    let activeAiSessionId = '';
+    const aiTemperature = document.querySelector('#ai-temperature');
+    try { aiTemperature.value = localStorage.getItem('kitsune-ai-temperature') || '0.7'; } catch (error) { /* Use the default temperature. */ }
+    document.querySelector('#ai-temperature-value').value = aiTemperature.value;
+    aiTemperature.addEventListener('input', () => {
+      document.querySelector('#ai-temperature-value').value = aiTemperature.value;
+      try { localStorage.setItem('kitsune-ai-temperature', aiTemperature.value); } catch (error) { /* The setting still applies until this page closes. */ }
+    });
+    function saveAiSessions() {
+      try { localStorage.setItem('kitsune-ai-sessions', JSON.stringify(aiSessions.slice(0, 30))); } catch (error) { /* Chat still works if history cannot be saved. */ }
+    }
+    function renderAiHistory() {
+      const host = document.querySelector('#ai-history');
+      const query = (document.querySelector('#ai-history-search')?.value || '').trim().toLowerCase();
+      host.replaceChildren();
+      aiSessions.filter(session => !query || (session.title || 'New chat').toLowerCase().includes(query)).forEach(session => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = session.title || 'New chat';
+        button.title = button.textContent;
+        button.classList.toggle('active', session.id === activeAiSessionId);
+        button.addEventListener('click', () => {
+          activeAiSessionId = session.id;
+          aiHistory.length = 0;
+          session.messages.forEach(message => aiHistory.push({ role: message.role === 'assistant' ? 'model' : 'user', parts: [{ text: message.text }] }));
+          aiMessages.replaceChildren();
+          if (!session.messages.length) renderAiWelcome();
+          session.messages.forEach(message => {
+            const item = document.createElement('div');
+            item.className = 'ai-message' + (message.role === 'user' ? ' user' : '');
+            item.textContent = message.text;
+            aiMessages.append(item);
+          });
+          renderAiHistory();
+        });
+        host.append(button);
+      });
+    }
+    function startAiChat() {
+      const session = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7), title: 'New chat', messages: [] };
+      aiSessions.unshift(session);
+      aiSessions = aiSessions.slice(0, 30);
+      activeAiSessionId = session.id;
+      aiHistory.length = 0;
+      aiInput.value = '';
+      pendingImages = [];
+      renderAiAttachments();
+      aiMessages.replaceChildren();
+      renderAiWelcome();
+      setAiGreeting();
+      saveAiSessions();
+      renderAiHistory();
+    }
+    function setAiGreeting() {
+      const hour = new Date().getHours();
+      const greeting = hour >= 22 || hour < 5 ? 'Working late' : hour < 12 ? 'Good morning' : hour < 18 ? 'Good afternoon' : 'Good evening';
+      const name = currentProfileName().trim() || 'random person';
+      document.querySelector('#ai-greeting-title').textContent = greeting + ', ' + name;
+    }
+    document.querySelector('#ai-new-chat').addEventListener('click', startAiChat);
+    renderAiHistory();
+    setAiGreeting();
     document.querySelector('#ai-attach').addEventListener('click', () => aiImageInput.click());
     function renderAiAttachments() {
       aiAttachments.replaceChildren();
@@ -2803,13 +3005,30 @@ ducky-clicker\tI_am_me\t609450`;
       pendingImages.push(...loaded.filter(Boolean));
       renderAiAttachments();
     });
-    function getAiWelcome() {
-      const name = currentProfileName();
-      return (name ? 'Hi, ' + name + '!' : 'Hi there!') + ' How are you today? What should we get started with?';
+    function renderAiWelcome() {
+      const welcome = document.createElement('section');
+      welcome.className = 'ai-welcome';
+      welcome.id = 'ai-welcome';
+      const heading = document.createElement('h2');
+      heading.id = 'ai-welcome-message';
+      heading.textContent = 'How can I help you today?';
+      const subtitle = document.createElement('p');
+      subtitle.textContent = 'Choose a suggestion or ask anything.';
+      const prompts = document.createElement('div');
+      prompts.className = 'ai-welcome-prompts';
+      prompts.id = 'ai-welcome-prompts';
+      ['Solve math', 'Write', 'Explain', 'Code'].forEach(text => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = text;
+        prompts.append(button);
+      });
+      welcome.append(heading, subtitle, prompts);
+      aiMessages.append(welcome);
     }
-    document.querySelector('#ai-welcome-message').textContent = getAiWelcome();
-    document.querySelector('#ai-welcome-prompts').addEventListener('click', event => {
-      const button = event.target.closest('button');
+    document.querySelector('#ai-history-search').addEventListener('input', renderAiHistory);
+    aiMessages.addEventListener('click', event => {
+      const button = event.target.closest('.ai-welcome-prompts button');
       if (!button) return;
       aiInput.value = button.textContent;
       aiInput.focus();
@@ -2829,12 +3048,12 @@ ducky-clicker\tI_am_me\t609450`;
     }
     function openAiChat() {
       closeAllPanels();
+      setAiGreeting();
       aiPanel.classList.add('open');
       aiPanel.setAttribute('aria-hidden', 'false');
       aiInput.focus();
     }
     document.querySelector('#open-ai').addEventListener('click', openAiChat);
-    document.querySelector('#open-ai-chat').addEventListener('click', openAiChat);
     document.querySelector('#ai-close').addEventListener('click', () => {
       aiPanel.classList.remove('open');
       aiPanel.setAttribute('aria-hidden', 'true');
@@ -2847,6 +3066,7 @@ ducky-clicker\tI_am_me\t609450`;
         inlineData: { mimeType: image.file.type, data: image.url.split(',')[1] }
       })));
       const messageParts = [...(prompt ? [{ text: prompt }] : []), ...imageParts];
+      document.querySelector('#ai-welcome')?.remove();
       addAiMessage((prompt || 'What do you see?') + (imageParts.length ? ' [' + imageParts.length + ' image' + (imageParts.length === 1 ? '' : 's') + ' attached]' : ''), 'user');
       aiInput.value = '';
       pendingImages = [];
@@ -2862,7 +3082,7 @@ ducky-clicker\tI_am_me\t609450`;
           const response = await fetch('https://generativelanguage.googleapis.com/v1beta/models/' + encodeURIComponent(model) + ':generateContent', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', 'x-goog-api-key': getPastedGeminiKey() },
-            body: JSON.stringify({ contents: [...aiHistory, { role: 'user', parts: messageParts }] })
+            body: JSON.stringify({ contents: [...aiHistory, { role: 'user', parts: messageParts }], generationConfig: { temperature: Number(aiTemperature.value) } })
           });
           const result = await response.json();
           if (!response.ok) throw new Error(result.error && result.error.message || 'Gemini request failed (' + response.status + ').');
@@ -2876,6 +3096,21 @@ ducky-clicker\tI_am_me\t609450`;
       }
       pending.textContent = answer || ('Could not get a reply: ' + lastError);
       if (!answer) pending.classList.add('error');
+      if (prompt || imageParts.length) {
+        let session = aiSessions.find(item => item.id === activeAiSessionId);
+        if (!session) {
+          session = { id: Date.now().toString(36) + Math.random().toString(36).slice(2, 7), title: 'New chat', messages: [] };
+          activeAiSessionId = session.id;
+          aiSessions.unshift(session);
+        }
+        const userText = prompt || 'Image question';
+        session.messages.push({ role: 'user', text: userText }, { role: 'assistant', text: pending.textContent });
+        if (session.title === 'New chat') session.title = userText.slice(0, 36) || 'Image question';
+        session.updatedAt = Date.now();
+        aiSessions.sort((a, b) => (b.updatedAt || 0) - (a.updatedAt || 0));
+        saveAiSessions();
+        renderAiHistory();
+      }
       aiMessages.scrollTop = aiMessages.scrollHeight;
       aiSend.disabled = false;
       aiSend.textContent = 'Send';
@@ -2891,38 +3126,53 @@ ducky-clicker\tI_am_me\t609450`;
     const updatesOverlay = document.querySelector('#updates-overlay');
     const notificationsOverlay = document.querySelector('#notifications-overlay');
     const chatNotificationItems = [];
+    let localNotifications = [];
+    let unreadLocalNotificationCount = 0;
+    try {
+      const savedNotifications = JSON.parse(localStorage.getItem('kitsune-local-notifications') || '{}');
+      if (Array.isArray(savedNotifications.items)) localNotifications = savedNotifications.items.filter(item => !String(item.title || '').startsWith('Owner ·')).slice(-30);
+      unreadLocalNotificationCount = localNotifications.length ? Math.max(0, Number(savedNotifications.unread) || 0) : 0;
+    } catch (error) { /* Notifications still work for this visit if storage is unavailable. */ }
     let unreadChatCount = 0;
+    let activeNotificationTab = 'all';
     let notificationBaseTitle = document.title;
     let chatToastTimer;
     function renderChatNotifications() {
       const list = document.querySelector('#notification-list');
       const badge = document.querySelector('#notification-count');
       if (!list || !badge) return;
-      badge.hidden = unreadChatCount === 0;
-      badge.textContent = unreadChatCount > 99 ? '99+' : String(unreadChatCount);
+      const unreadTotal = unreadChatCount + unreadLocalNotificationCount;
+      badge.hidden = unreadTotal === 0;
+      badge.textContent = unreadTotal > 99 ? '99+' : String(unreadTotal);
       const button = document.querySelector('#open-notifications');
-      button?.classList.toggle('has-unread', unreadChatCount > 0);
-      if (!chatNotificationItems.length) {
+      button?.classList.toggle('has-unread', unreadTotal > 0);
+      const items = [
+        ...localNotifications.map(item => ({ ...item, source: 'local' })),
+        ...chatNotificationItems.map(item => ({ ...item, source: 'chat', title: 'New chat message · #' + item.channel, message: item.name + ': ' + item.text }))
+      ].filter(item => activeNotificationTab === 'all' || item.source === activeNotificationTab)
+        .sort((a, b) => Number(b.timestamp || 0) - Number(a.timestamp || 0));
+      document.querySelectorAll('[data-notification-tab]').forEach(button => button.classList.toggle('active', button.dataset.notificationTab === activeNotificationTab));
+      if (!items.length) {
         list.className = 'notification-empty';
         list.innerHTML = '<div><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><br>No notifications yet</div>';
         return;
       }
       list.className = 'notification-items';
       list.replaceChildren();
-      chatNotificationItems.slice().reverse().forEach(item => {
+      items.forEach(item => {
         const entry = document.createElement('div');
         entry.className = 'notification-item';
         const heading = document.createElement('strong');
-        heading.textContent = 'New chat message · #' + item.channel;
+        heading.textContent = item.title || 'Notification';
         const detail = document.createElement('small');
-        detail.textContent = item.name + ': ' + item.text;
+        detail.textContent = item.message || '';
         entry.append(heading, detail);
         list.append(entry);
       });
     }
     window.kitsuneNotifyChatMessage = message => {
       unreadChatCount += 1;
-      const entry = { channel: message.channel || 'global-chat', name: message.name || 'Community member', text: (message.text || 'Shared an image').slice(0, 180) };
+      const entry = { channel: message.channel || 'global-chat', name: message.name || 'Community member', text: (message.text || 'Shared an image').slice(0, 180), timestamp: Date.now() };
       chatNotificationItems.push(entry);
       if (chatNotificationItems.length > 20) chatNotificationItems.shift();
       renderChatNotifications();
@@ -2955,6 +3205,10 @@ ducky-clicker\tI_am_me\t609450`;
       overlay.hidden = false;
       overlay.setAttribute('aria-hidden', 'false');
     }
+    document.querySelectorAll('[data-notification-tab]').forEach(button => button.addEventListener('click', () => {
+      activeNotificationTab = button.dataset.notificationTab;
+      renderChatNotifications();
+    }));
     document.querySelector('#updates-close').addEventListener('click', () => {
       closeOverlay(updatesOverlay);
       try { localStorage.setItem('kitsune-whats-new-seen', 'true'); } catch (error) { /* It can reappear next visit if storage is unavailable. */ }
@@ -2967,6 +3221,9 @@ ducky-clicker\tI_am_me\t609450`;
       notificationDot.hidden = true;
       try { localStorage.setItem('kitsune-games-fixed-notice-seen', 'true'); } catch (error) { /* The dot stays dismissed for this page session. */ }
       clearChatNotifications();
+      unreadLocalNotificationCount = 0;
+      try { localStorage.setItem('kitsune-local-notifications', JSON.stringify({ items: localNotifications, unread: 0 })); } catch (error) { /* Keep the read state for this page session. */ }
+      renderChatNotifications();
     });
     document.querySelector('#notifications-close').addEventListener('click', () => closeOverlay(notificationsOverlay));
     [updatesOverlay, notificationsOverlay].forEach(overlay => overlay.addEventListener('click', event => {
@@ -2981,6 +3238,7 @@ ducky-clicker\tI_am_me\t609450`;
     try {
       if (!localStorage.getItem('kitsune-whats-new-seen')) openOverlay(updatesOverlay);
     } catch (error) { openOverlay(updatesOverlay); }
+    renderChatNotifications();
   </script>
   <script src="https://cdn.pubnub.com/sdk/javascript/pubnub.8.6.0.js"></script>
   <script>
@@ -4316,7 +4574,7 @@ ducky-clicker\tI_am_me\t609450`;
       ];
       let hideTimer;
       document.addEventListener('click', event => {
-        if (!event.target.closest('svg, .game-card, .featured-game, .side-game')) return;
+        if (!event.target.closest('.game-card, .featured-game, .side-game')) return;
         message.textContent = event.target.closest('.game-card, .featured-game, .side-game') ? 'Preparing your game…' : 'Opening that up…';
         phrase.textContent = messages[Math.floor(Math.random() * messages.length)];
         loading.hidden = false;
@@ -4326,6 +4584,56 @@ ducky-clicker\tI_am_me\t609450`;
           loading.classList.add('fade');
           setTimeout(() => { loading.hidden = true; loading.classList.remove('fade'); }, 220)
         }, 1100);
+      });
+    })();
+  </script>
+  <script>
+    (() => {
+      const q = selector => document.querySelector(selector);
+
+      // Signed-in profiles can update their local display name without signing out.
+      q('#profile-edit-name')?.addEventListener('click', () => {
+        q('#profile-name-wrap').hidden = false;
+        q('#profile-edit-name').hidden = true;
+        q('#profile-sign-in').hidden = false;
+        q('#profile-sign-in').textContent = 'Save name';
+        q('#profile-name').focus();
+        q('#profile-name').select();
+      });
+
+      function parseToolUrl() {
+        const raw = q('#tool-link-url')?.value.trim() || '';
+        try {
+          const url = new URL(raw);
+          return ['http:', 'https:'].includes(url.protocol) ? url.href : '';
+        } catch { return ''; }
+      }
+      q('#tool-open-link')?.addEventListener('click', () => {
+        const url = parseToolUrl();
+        const status = q('#tool-link-status');
+        if (!url) { status.textContent = 'Enter a valid http:// or https:// address.'; return; }
+        const tab = window.open(url, '_blank');
+        if (tab) tab.opener = null;
+        status.textContent = tab ? 'Opened in a new tab.' : 'Popup blocked. Allow popups to open this link.';
+      });
+      q('#tool-open-blank')?.addEventListener('click', () => {
+        const url = parseToolUrl();
+        const status = q('#tool-link-status');
+        if (!url) { status.textContent = 'Enter a valid http:// or https:// address.'; return; }
+        const tab = window.open('about:blank', '_blank');
+        if (!tab) { status.textContent = 'Popup blocked. Allow popups to open this link.'; return; }
+        tab.document.title = 'Link opener';
+        tab.document.body.style.cssText = 'margin:0;background:#08080b';
+        const frame = tab.document.createElement('iframe');
+        frame.src = url;
+        frame.title = 'Opened website';
+        frame.style.cssText = 'width:100vw;height:100vh;border:0;background:#08080b';
+        tab.document.body.replaceChildren(frame);
+        status.textContent = 'Opened in an about:blank wrapper. Some sites block embedding.';
+      });
+
+      q('#notifications-overlay')?.addEventListener('click', event => {
+        if (event.target === q('#notifications-overlay')) closeOverlay(notificationsOverlay);
       });
     })();
   </script>
