@@ -514,6 +514,7 @@
     .games-tools-row{display:flex;flex-wrap:wrap;align-items:center;gap:8px;max-width:1000px;margin:0 auto 12px;color:#aaa8b3;font-size:12px}
     .games-tools-row select,.games-tools-row button,.music-playlist-tools button{padding:7px 9px;border:1px solid #ffffff20;border-radius:9px;color:#eee;background:#17131f;font:inherit;cursor:pointer}
     .game-card-favorite{position:absolute;z-index:2;top:7px;right:7px;padding:5px 7px;border:1px solid #ffffff50;border-radius:999px;color:#fff;background:#08070bbd;font-size:12px;cursor:pointer}
+    .game-personal-review{display:grid;gap:9px;margin-top:14px;padding:12px;border:1px solid #ffffff18;border-radius:12px;background:#ffffff07}.game-personal-review label{display:grid;gap:5px;color:#cfc6d8;font-size:12px}.game-personal-review select,.game-personal-review textarea{width:100%;padding:8px 10px;border:1px solid #ffffff20;border-radius:8px;color:#fff;background:#100e15;font:inherit}.game-personal-review textarea{min-height:62px;resize:vertical}.game-personal-review button{justify-self:start;padding:7px 11px;border:1px solid #c5a5ff55;border-radius:8px;color:#fff;background:#9a6de533;cursor:pointer}.game-personal-review-status{min-height:1.2em;margin:0;color:#a9dfb0;font-size:11px}
     .game-card-overlay{pointer-events:none}.game-card-favorite{pointer-events:auto}
     .game-retry{display:none;margin:12px auto 0;padding:9px 13px;border:1px solid #ffc27666;border-radius:10px;color:#fff;background:#ff9b381f;cursor:pointer}.game-loading.error .game-retry{display:block}
     .game-volume-control{display:flex;align-items:center;gap:7px;padding:7px 10px;color:#ddd;font-size:12px}.game-volume-control input{width:100px;accent-color:#c5a5ff}
@@ -626,7 +627,7 @@
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><svg class="toolbar-icon toolbar-add-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M3 11h18M8 7l3-4m1 4 3-4m1 4 3-4"/><path d="M7 14h.01M7 17h.01M11 14h.01M11 17h.01M15 14h.01M15 17h.01M19 14h.01M19 17h.01"/></svg><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M8 3H4v4M16 3h4v4M20 16v5h-4M4 16v5h4"/></svg><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-ai-chat" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M4 5.5A3.5 3.5 0 0 1 7.5 2h9A3.5 3.5 0 0 1 20 5.5v7a3.5 3.5 0 0 1-3.5 3.5H11l-5.5 4v-4.4A3.5 3.5 0 0 1 4 12.5z"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <div class="connection-status" id="connection-status" role="status" aria-live="polite" hidden>Online</div>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
@@ -803,10 +804,11 @@
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
       <div class="games-head"><div><h2>Game library</h2><p class="games-hint">Click to play · Double-click for info · Right-click a game to favorite</p></div><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"><button class="games-close" id="games-close" type="button">Close</button></div></div>
-      <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div><div class="games-tools-row"><label for="games-sort">Sort games:</label><select id="games-sort" aria-label="Sort games"><option value="name">Name A–Z</option><option value="recent">Recently played</option><option value="favorites">Favorites first</option></select><button id="continue-game" type="button">▶ Continue last game</button><span>Tip: use Tab and Enter to browse and launch.</span></div>
+            <div class="games-filters" id="games-filters" aria-label="Game filters"><button class="games-filter active" type="button" data-game-filter="All">All</button><button class="games-filter" type="button" data-game-filter="For You">For You</button><button class="games-filter" type="button" data-game-filter="Favorites">★ Favorites</button><button class="games-filter" type="button" data-game-filter="Recent">Recently played</button><button class="games-filter" type="button" data-game-filter="Arcade">Arcade</button><button class="games-filter" type="button" data-game-filter="Action">Action</button><button class="games-filter" type="button" data-game-filter="Puzzle">Puzzle</button></div>
+<div class="games-tools-row"><label for="games-sort">Sort games:</label><select id="games-sort" aria-label="Sort games"><option value="name">Name A–Z</option><option value="recent">Recently played</option><option value="favorites">Favorites first</option></select><button id="continue-game" type="button">▶ Continue last game</button><span>Tip: use Tab and Enter to browse and launch.</span></div>
       <div class="games-grid" id="games-grid"></div>
     </section>
-    <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
+    <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-personal-review"><label for="game-personal-rating">Your rating<select id="game-personal-rating"><option value="0">Not rated</option><option value="5">★★★★★ · Loved it</option><option value="4">★★★★☆ · Great</option><option value="3">★★★☆☆ · Good</option><option value="2">★★☆☆☆ · Okay</option><option value="1">★☆☆☆☆ · Not for me</option></select></label><label for="game-personal-note">Personal note<textarea id="game-personal-note" maxlength="240" placeholder="Add a note for yourself..."></textarea></label><button id="game-personal-save" type="button">Save rating & note</button><p class="game-personal-review-status" id="game-personal-status" role="status" aria-live="polite"></p></div><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
     <section class="music-panel" id="music-panel" aria-label="Music library" aria-hidden="true">
       <aside class="music-sidebar"><div class="music-logo">sakuna</div><button class="music-nav active" type="button" data-music-tab="All">♫ All songs</button><button class="music-nav" type="button" data-music-tab="Singles">♪ Singles</button><button class="music-nav" type="button" data-music-tab="Albums">◉ Albums</button><button class="music-nav" type="button" data-music-tab="Playlist">♥ My playlist</button><button class="music-nav" type="button" data-music-tab="Local">＋ Add local files</button><input id="music-files" type="file" accept="audio/*" multiple hidden></aside>
       <div class="music-main"><div class="music-toolbar"><input class="music-search" id="music-search" type="search" placeholder="Search songs, artists, and albums" aria-label="Search music"><span class="music-status" id="music-status" role="status" aria-live="polite">Loading music library…</span><button class="music-close" id="music-close" type="button">Close</button></div><div class="music-content" id="music-content" aria-live="polite"><p class="music-empty">Loading music library…</p></div></div>
@@ -1003,20 +1005,125 @@
       ['vex-5.html', 'Vex 5', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/vex%205.jpg'],
       ['2048.html', '2048', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/2048.png'],
       ['flappybird.html', 'Flappy Bird', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/flappybird.png'],
-      ['run3.html', 'Run 3', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png']
-    ].map(([file, name, image]) => ({ file, name, image }));
+      ['run3.html', 'Run 3', 'https://raw.githubusercontent.com/dskjfoisjfsjio/dskjfoisjfsjio.github.io/main/assets/game%20images/run%203.png'],
+      ...[
+        ['10 Minutes Till Dawn','10%20minutes.jpg','Games/standalone/10minutestilldawn.html','main'],
+        ['2048 Cupcakes','2048%20cupcakes.avif','Games/standalone/2048cupcakes.html','standalone'],
+        ['60 Second Burger Run','60%20second%20burger%20run.jpg','Games/ruffle/burgerrun.html','standalone'],
+        ['A Dance of Fire and Ice','fireandice/a-dance-of-fire-and-ice/a-dance-of-fire-and-ice-icon-1.jpg','Games/standalone/fireandice.html','standalone'],
+        ['Achievement Unlocked','achievement%20unlocked%202.jpg','Games/ruffle/achievementunlocked.html','standalone'],
+        ['Achievement Unlocked 2','achievement%20unlocked%202.jpg','Games/ruffle/achievementunlocked2.html','standalone'],
+        ['Achievement Unlocked 3','achievement%20unlocked%203.jpg','Games/ruffle/achievementunlocked3.html','standalone'],
+        ['Adventure Capitalist','adventure.png','Games/standalone/adventure.html','main'],
+        ['Age of Defense','age%20of%20defense.jpg','Games/ruffle/ageofdefense.html','standalone'],
+        ['Among Us (Web Version)','among%20us.webp','Games/standalone/amongus.html','standalone'],
+        ['Angry Birds Showdown','angry%20birds%20showdown.webp','Games/standalone/angrybirdsshowdown.html','main'],
+        ['Bad Ice Cream 2','bad%20ice%20cream%202.png','Games/standalone/badicecream2.html','standalone'],
+        ['Bad Ice Cream 3','bad%20ice%20cream%203.png','Games/standalone/badicecream3.html','standalone'],
+        ['Banjo-Kazooie','banjo.webp','Games/emulated/N64/banjo.html','standalone'],
+        ['B-Cubed','b-cubed.webp','Games/Ruffle/bcubed.html','standalone'],
+        ['Block Blast','block%20blast.jpg','Games/standalone/blockblast.html','main'],
+        ['Bloxorz','bloxorz.jpg','Games/ruffle/bloxorz.html','main'],
+        ['Bob the Robber','bob%20the%20robber.jpg','Games/ruffle/bobtherobber.html','standalone'],
+        ['Burrito Bison','burrito%20bison.jpg','Games/ruffle/burritobisonoriginal.html','standalone'],
+        ['Cars Simulator','3dcarsimulator.avif','Games/standalone/carssimulator.html','standalone'],
+        ['Chess','chess.png','Games/standalone/chess.html','standalone'],
+        ['Cluster Rush','cluster%20rush.jpg','Games/standalone/clusterrush.html','main'],
+        ['Deltarune','deltarune.webp','Games/standalone/deltarune.html','standalone'],
+        ['Doodle Jump','doodlejump.png','Games/standalone/doodlejump.html','standalone'],
+        ['Duck Life Battle','duck%20life%20battle.webp','Games/standalone/ducklifebattle.html','standalone'],
+        ['Escape Road','escape%20road.avif','Games/standalone/escaperoad.html','standalone'],
+        ['Geometry Dash Remastered','geometry%20dash%20remastered.jpg','Games/standalone/gdremastered.html','standalone'],
+        ['Getting Over It','gettingoverit.jpg','Games/standalone/gettingoverit.html','standalone'],
+        ['Hollow Knight','hollowknight.png','Games/standalone/hollowknight.html','standalone'],
+        ['Moto X3M 2','moto%20x3m%202.jpg','Games/standalone/motox3m2.html','standalone'],
+        ['OVO 2','ovo%202.avif','Games/standalone/ovo2.html','standalone'],
+        ['OVO 3 Dimensions','ovodimensions.png','Games/standalone/ovodimensions.html','standalone'],
+        ['Parking Fury 2','parking%20fury%202.jpg','Games/standalone/parkingfury2.html','standalone'],
+        ['Pokemon Emerald Version','emerald.avif','Games/emulated/GBA/emeraldversion.html','standalone'],
+        ['Red Ball 4','red%20ball%204.webp','Games/standalone/redball4.html','standalone'],
+        ['Retro Bowl College','retro-bowl-college/unnamed.png','Games/standalone/retrobowlcollege.html','standalone'],
+        ['Slope 2 Player','slope%202%20player.jpg','Games/standalone/slope2player.html','standalone'],
+        ['Soccer Random','soccerrandom.jpg','Games/standalone/soccerrandom.html','standalone'],
+        ['Stickman Hook','stickman-hook/unnamed.jpg','Games/standalone/stickmanhook.html','standalone'],
+        ['Super Mario 64','super%20mario%2064.webp','Games/emulated/N64/supermario64.html','standalone'],
+        ['Tanuki Sunset','tanuki%20sunset.png','Games/standalone/tanukisunset.html','standalone'],
+        ['Undertale','undertale.jpg','Games/standalone/undertale.html','standalone'],
+        ['Vex 6','vex%206.jpg','Games/standalone/vex6.html','main'],
+        ['Vex 7','vex%207.jpg','Games/standalone/vex7.html','main'],
+        ['Vex 8','vex%208.webp','Games/standalone/vex8.html','main'],
+        ['Wordle','wordle.webp','Games/standalone/wordle.html','standalone'],
+        ['Zombocalypse 2','zombocalypse%202.webp','Games/ruffle/zombocalypse2.html','standalone'],
+        ['8 Ball Pool','8ball.webp','Games/standalone/8ballclassic.html','standalone'],
+        ['Ragdoll Archers','ragdoll%20archers.png','Games/standalone/ragdollarchers.html','standalone'],
+        ['Time Shooter 3','time%20shooter%203.jpg','Games/standalone/timeshooter3.html','standalone'],
+        ['Slime Rancher','slimerancher.jpg','Games/standalone/slimerancher.html','standalone'],
+        ['Basketball Legends','basketballlegends.jpg','Games/standalone/basketballlegends.html','standalone'],
+        ['Bridge Race','bridge%20race.png','Games/standalone/bridgerace.html','standalone'],
+        ['Geometry Dash SubZero','subzero.webp','Games/standalone/geometrydashsubzero.html','standalone'],
+        ['Geometry Dash World','geometrydashworld.png','Games/standalone/geometrydashworld.html','standalone'],
+        ['Cuphead','cuphead.png','Games/standalone/cuphead.html','standalone'],
+        ['Terraria','terraria.png','Games/standalone/terraria.html','standalone'],
+        ['Doom','doom.jpg','Games/standalone/doom.html','standalone'],
+        ['Fallout','fallout.jpg','Games/standalone/fallout.html','standalone'],
+        ['Hobo','hobo.webp','Games/ruffle/hobo.html','standalone'],
+        ['Hobo 2','hobo2.png','Games/ruffle/hobo2.html','standalone'],
+        ['Hobo 3','hobo3.png','Games/ruffle/hobo3.html','standalone'],
+        ['Hobo 4','hobo4.png','Games/ruffle/hobo4.html','standalone'],
+        ['Hobo 5','hobo5.png','Games/ruffle/hobo5.html','standalone'],
+        ['Hobo 6','hobo6.png','Games/ruffle/hobo6.html','standalone'],
+        ['Hobo 7','hobo7.png','Games/ruffle/hobo7.html','standalone'],
+        ['Mario Party','mario%20party.jpg','Games/emulated/N64/marioparty.html','standalone'],
+        ['Mario Party 2','mario%20party%202.png','Games/emulated/N64/marioparty2.html','standalone'],
+        ['Mario Party 3','marioparty3.jpg','Games/emulated/N64/marioparty3.html','standalone'],
+        ['Traffic Jam 3D','trafficjam3d.jpeg','Games/standalone/trafficjam3d.html','standalone'],
+        ['Rooftop Snipers 2','rooftopsnipers2.jpg','Games/standalone/rooftopsnipers2.html','standalone'],
+        ['Bad Parenting','badparenting.jpg','Games/standalone/badparenting.html','standalone'],
+        ['Deltatraveler','deltatraveler.png','Games/standalone/deltatraveler.html','standalone'],
+        ['Amanda the Adventurer','amanda.jpeg','Games/standalone/amandatheadventurer.html','standalone'],
+        ['Escape Road 2','escaperoad2.jpeg','Games/standalone/escaperoad2.html','standalone'],
+        ['Achilles','achilles.jpeg','Games/ruffle/achilles.html','standalone'],
+        ['Elastic Man','elasticman.png','Games/standalone/elasticman.html','standalone'],
+        ['Zuma','zuma.jpeg','Games/ruffle/zuma.html','standalone'],
+        ['Cooking Mama','cookingmama.png','Games/standalone/cookingmama.html','standalone'],
+        ['Tattletail','tattletail.png','Games/standalone/tattletail.html','standalone'],
+        ['Omori','omori.png','Games/standalone/OMORI.html','standalone'],
+        ['Minecraft 1.5.2','minecraft152.png','Games/standalone/Minecraft%201.5.2.html','standalone'],
+        ['Minecraft 1.12.2','minecraft%201122.png','Games/standalone/Minecraft%201.12.2.html','standalone'],
+        ['Minecraft 1.21.4','minecraft%201214.png','Games/standalone/Minecraft%201.21.4.html','standalone'],
+        ['Super Mario Bros','supermariobros.webp','Games/emulated/NES/supermariobros.html','standalone'],
+        ['Super Mario Bros 2','supermariobros2.png','Games/emulated/NES/supermariobros2.html','standalone'],
+        ['Super Mario Bros 3','supermariobros3.jpg','Games/emulated/NES/supermariobros3.html','standalone'],
+        ['Pokemon Unbound','pokemonunbound.jpeg','Games/standalone/pokemonunbound.html','standalone'],
+        ['Undertale Yellow','undertaleyellow.png','Games/standalone/undertaleyellow.html','standalone'],
+        ['Grow a Garden','growagarden.webp','Games/standalone/growagarden.html','standalone'],
+        ['Buckshot Roulette','buckshot.png','Games/standalone/buckshotroulette.html','standalone'],
+        ['Among Us (Web Version)','among%20us.webp','Games/standalone/amongus.html','standalone']
+      ].map(([name, imagePath, unusedGamePath, imageRepo]) => ({
+        name,
+        file: name.toLowerCase().replace(/[^a-z0-9]+/g, '-') + '.image',
+        image: 'https://raw.githubusercontent.com/dskjfoisjfsjio/' + (imageRepo === 'main' ? 'dskjfoisjfsjio.github.io/main/assets/game%20images/' : 'Standalone-games/main/assets/') + imagePath,
+        imageOnly: true,
+        category: ''
+      }))
+          ].map(entry => Array.isArray(entry) ? ({ file: entry[0], name: entry[1], image: entry[2] }) : entry);
+    games = [
+      '1-on-1-soccer.html', '1-on-1-tennis.html', '1.12.html', '1.12_WASM.html', '1.5.html', '1.8.html', '1.8_WASM.html', '10-minutes-till-dawn.html', '12-mini-battles.html', '1v1.lol.html', '2048-cupcakes.html', '2048.html', '3D-flight-simulator.html', '3d-free-kick.html', '8-ball-classic.html', '9007199254740992.html', 'Alpha_1.2.6.html', 'Beta_1.3.html', 'Indev.html', 'agar-io-lite.html', 'age-of-war-2.html', 'age-of-war.html', 'ages-of-conflict.html', 'among-us.html', 'angry-birds-showdown.html', 'angry-birds-space.html', 'angry-birds.html', 'awesome-tanks-2.html', 'awesome-tanks.html', 'backrooms.html', 'bacon-may-die.html', 'bad-ice-cream-2.html', 'bad-ice-cream-3.html', 'bad-ice-cream.html', 'bad-parenting.html', 'bad-piggies.html', 'bad-time-simulator.html', 'baldis-basics.html', 'bank-robbery-2.html', 'bank-robbery-3.html', 'baseball-bros.html', 'basket-bros.html', 'basket-random.html', 'basketball-legends.html', 'basketball-stars.html', 'big-ice-tower-tiny-square.html', 'big-neon-tower-tiny-square.html', 'big-tower-tiny-square-2.html', 'big-tower-tiny-square.html', 'bit-planes.htm', 'bitlife.html', 'blocky-snakes.html', 'bloons-TD-2.html', 'bloons-TD-3.html', 'bloons-TD-4.html', 'bloons-TD-5.html', 'bloons-TD.html', 'bloxorz.html', 'blumgi-racers.html', 'blumgi-rocket.html', 'bob-the-robber-2.html', 'bob-the-robber-5.html', 'bob-the-robber.html', 'bouncy-motors.html', 'bow-masters.html', 'boxel-rebound.html', 'boxing-random.htm', 'breaking-the-bank.html', 'bubble-shooter.html', 'burrito-bison-launcha-libre.html', 'candy-crush.html', 'capybara-clicker.html', 'car-drawing.html', 'car-king-arena.html', 'chaos-faction-2.html', 'chess.html', 'choppy-orc.html', 'circloO-2.html', 'circloO.html', 'clash-of-vikings.html', 'cleanup-io.html', 'cluster-rush.html', 'cookie-clicker.htm', 'coreball.html', 'crazy-cars.html', 'crazy-cattle-3D.html', 'crazy-crash-landing.html', 'crazy-motorcycle.html', 'crossy-road.htm', 'cut-the-rope-2.html', 'cut-the-rope-holiday-gift.html', 'cut-the-rope-time-travel.html', 'cut-the-rope.html', 'dadish-2.html', 'dadish-3.html', 'dadish.html', 'deadly-descent.html', 'death-chase.html', 'death-run-3D.html', 'demolition-derby-crash-racing.html', 'doodle-jump.html', 'draw-climber.html', 'dreadhead-parkour.htm', 'drift-boss.htm', 'drift-hunters-pro.html', 'drive-mad.htm', 'duck-life-2.html', 'duck-life-3.html', 'duck-life-4.html', 'duck-life-5.html', 'duck-life.html', 'ducklings-io.html', 'eagle-ride.html', 'earn-to-die-2.html', 'earn-to-die.html', 'eggy-car.html', 'elastic-face.htm', 'escape-road-2.html', 'escape-road-3.html', 'escape-road.html', 'escaping-the-prison.html', 'eugenes-life.html', 'evil-glitch.html', 'fancy-pants-adventure-2.html', 'fancy-pants-adventure.html', 'fireblob.html', 'fireboy-and-watergirl-2.html', 'fireboy-and-watergirl-3.html', 'fireboy-and-watergirl-4.html', 'fireboy-and-watergirl.html', 'flappy-bird.html', 'fleeing-the-complex.html', 'flood-runner-2.html', 'flood-runner-3.html', 'flood-runner-4.html', 'fnaf-2.html', 'fnaf-3.html', 'fnaf-4.html', 'fnaf-sister-location.html', 'fnaf.html', 'football-bros.html', 'football-legends.html', 'free-rider-3.html', 'friday-night-funkin.html', 'fruit-ninja.html', 'funny-battle-2.html', 'funny-battle.html', 'funny-mad-racing.html', 'funny-shooter-2.html', 'geometry-dash-lite.html', 'geometry-dash.html', 'geometry-vibes.html', 'get-on-top.html', 'getaway-shootout.html', 'gladi-hoppers.html', 'google-baseball.html', 'google-dino.html', 'granny-2.html', 'granny.html', 'guess-their-answer.html', 'hanger-2.html', 'happy-wheels.html', 'helix-jump.html', 'highway-traffic.html', 'hill-climb-racing-lite.html', 'hole-io.html', 'house-of-hazards.html', 'hover-racer-drive.html', 'ice-dodo.html', 'idle-breakout.html', 'idle-dice.html', 'infiltrating-the-airship.html', 'iron-snout.html', 'jacksmith.html', 'jetpack-joyride.html', 'johnny-trigger.html', 'jumping-shell.html', 'karate-bros.html', 'kart-bros.html', 'kittytoy.html', 'learn-to-fly-2.html', 'learn-to-fly-3.html', 'learn-to-fly-idle.html', 'learn-to-fly.html', 'level-devil.html', 'little-alchemy-2.html', 'madalin-stunt-cars-2.html', 'madness-project-nexus.html', 'melon-playground.html', 'merge-round-racers.html', 'minesweeper.html', 'monkey-mart.htm', 'monster-tracks.html', 'motherload.html', 'moto-x3m-2.html', 'moto-x3m-3.html', 'moto-x3m-pool-party.html', 'moto-x3m-spooky-land.html', 'moto-x3m-winter.html', 'moto-x3m.htm', 'murder.html', 'noob-miner.html', 'openTTD.html', 'opposite-day.html', 'ovo-2.html', 'ovo-3-dimensions.html', 'ovo.html', 'pac-man.html', 'papas-bakeria.html', 'papas-burgeria.html', 'papas-cheeseria.html', 'papas-cupcakeria.html', 'papas-donuteria.html', 'papas-freezeria.html', 'papas-hot-doggeria.html', 'papas-pancakeria.html', 'papas-pastaria.html', 'papas-pizzeria.html', 'papas-scooperia.html', 'papas-sushiria.html', 'papas-taco-mia.html', 'papas-wingeria.html', 'paper-io-2.htm', 'parking-fury-2.html', 'parking-fury-3.html', 'parking-fury.html', 'picos-school.html', 'ping-pong-chaos.html', 'pixel-speedrun.html', 'plants-vs-zombies.html', 'plonky.html', 'polytrack.html', 'poor-bunny.html', 'pou.html', 'ragdoll-archers.htm', 'ragdoll-hit.html', 'ragdoll-soccer.html', 'red-ball-4-vol-1.html', 'red-ball-4-vol-2.html', 'red-ball-4-vol-3.html', 'retro-bowl-college.html', 'retro-bowl.html', 'retro-highway.html', 'retro-ping-pong.html', 'riddle-school-2.html', 'riddle-school-3.html', 'riddle-school-4.html', 'riddle-school-5.html', 'riddle-school.html', 'riddle-transfer-2.html', 'riddle-transfer.html', 'rocket-soccer-derby.html', 'rooftop-run.html', 'rooftop-snipers-2.html', 'rooftop-snipers.htm', 'run-2.html', 'run-3.html', 'run.html', 'sand-game.html', 'sandbox-city.html', 'short-life.html', 'six-cats-under.html', 'slope-2-player.html', 'slope-3.html', 'slope.html', 'slow-roads.html', 'sm-63.html', 'sm-64.html', 'snail-bob-2.html', 'snail-bob-3.html', 'snail-bob-4.html', 'snail-bob-5.html', 'snail-bob-6.html', 'snail-bob-7.html', 'snail-bob-8.html', 'snail-bob.html', 'snow-rider.htm', 'snow-road.htm', 'snowball-io.html', 'soccer-bros.html', 'soccer-random.htm', 'space-is-key-2.html', 'space-is-key.html', 'space-waves.html', 'spacebar-clicker.html', 'speed-stars.html', 'sprunki.html', 'stack.html', 'stacktris.html', 'state-io.html', 'stealing-the-diamond.html', 'stick-archers-battle.html', 'stick-fighter.html', 'stick-merge.html', 'stickman-hook.html', 'subway-surfers-beijing.html', 'subway-surfers-havana.html', 'subway-surfers-san-francisco.html', 'super-bike-the-champion.html', 'super-liquid-soccer.html', 'super-star-car.html', 'superhot.html', 'table-tennis-world-tour.html', 'tag.html', 'tanuki-sunset.html', 'tap-road.html', 'temple-of-boom.html', 'temple-run-2.htm', 'territorial-io.html', 'tetrominoes.html', 'the-impossible-quiz-2.html', 'the-impossible-quiz.html', 'there-is-no-g.html', 'they-are-coming.html', 'this-is-the-only-level-too.html', 'this-is-the-only-level.html', 'time-shooter-2.html', 'time-shooter-3.htm', 'tiny-fishing.html', 'tomb-of-the-mask.htm', 'trap-the-cat.html', 'trivia-crack.html', 'tube-jumpers.html', 'tunnel-rush.html', 'unicycle-hero.html', 'vex-4.html', 'vex-5.html', 'vex-6.htm', 'vex-7.htm', 'vex-8.htm', 'vex-x3m-2.html', 'vex-x3m.html', 'volley-random.html', 'war-the-knights.html', 'we-become-what-we-behold.html', 'wheelie-bike.html', 'wheely-2.html', 'wheely-3.html', 'wheely-4.html', 'wheely-5.html', 'wheely-6.html', 'wheely-7.html', 'wheely-8.html', 'wheely.html', 'wordle-unlimited.html', 'worlds-hardest-game-2.html', 'worlds-hardest-game-3.html', 'worlds-hardest-game.html', 'wrestle-bros.html', 'yohoho-io.html', 'zombie-rush.html', 'zrist.html'
+    ].map(file => {
+      const name = displayGameName(file);
+      return { file, name, image: orionGameImage(file, name, fallbackGameCover()), base: COOL_BASE };
+    });
     function gameDuplicateKey(name) {
       return name.toLowerCase().replace(/\.(html?|htm)$/i, '').replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
     }
     function removeDuplicateGames(list) {
-      const seenNames = new Set();
-      const seenArtwork = new Set();
+      const seenGames = new Set();
       return list.filter(game => {
         const name = gameDuplicateKey(game.name);
-        const artwork = game.image && !game.image.startsWith('data:image/svg+xml') ? game.image : '';
-        if (seenNames.has(name) || (artwork && seenArtwork.has(artwork))) return false;
-        seenNames.add(name);
-        if (artwork) seenArtwork.add(artwork);
+        const key = game.url || game.file || name;
+        if (seenGames.has(name) || seenGames.has(key)) return false;
+        seenGames.add(name);
+        seenGames.add(key);
         return true;
       });
     }
@@ -1073,7 +1180,7 @@
             if (games.some(game => game.file.toLowerCase() === file.toLowerCase())) return;
             const name = displayGameName(file.split('/').pop());
             const image = featured ? featured.image : orionGameImage(file, name, fallbackGameCover(name));
-            games.push({ file, name, image, base: source.base });
+            // The supplied file list is authoritative; do not append unlisted repository files.
           });
         } catch (error) {
           // Keep the featured games available if a repository catalog is unreachable.
@@ -1698,8 +1805,9 @@ ducky-clicker\tI_am_me\t609450`;
     });
 
     const gamesPanel = document.querySelector('#games-panel');
-    function gameUrl(game, base) { return base + game.file.split('/').map(encodeURIComponent).join('/'); }
+    function gameUrl(game, base) { return game.url || base + game.file.split('/').map(encodeURIComponent).join('/'); }
     function gameSourceBases(game) {
+      if (game.url) return [new URL('.', game.url).href];
       if (game.base) return [game.base];
       return [COOL_BASE, CRA_BASE];
     }
@@ -1876,11 +1984,16 @@ ducky-clicker\tI_am_me\t609450`;
       renderGameTabs();
     }
     function openGame(game) {
+      if (game.imageOnly) return;
+      const choice = window.prompt('How would you like to open ' + game.name + '?\n1. Blob URL (recommended)\n2. about:blank\n\nEnter 1 or 2:', '1');
+      if (choice === null) return;
+      const mode = choice.trim() === '2' ? 'blank' : choice.trim() === '1' ? 'blob' : '';
+      if (!mode) { window.alert('Choose 1 for Blob URL or 2 for about:blank.'); return; }
       rememberGame(game);
       renderHomeFavorites();
-      launchGameInBlank(game);
+      launchGameInBlank(game, null, false, mode);
     }
-    function launchGameInBlank(game, reservedWindow = null, direct = false) {
+    function launchGameInBlank(game, reservedWindow = null, direct = false, mode = 'blank') {
       const gameTab = reservedWindow || window.open('about:blank', '_blank');
       if (!gameTab || gameTab.closed) return;
       if (direct) {
@@ -1888,16 +2001,28 @@ ducky-clicker\tI_am_me\t609450`;
         catch (error) { gameTab.location.href = gameUrl(game, gameSourceBases(game)[0]); }
         return;
       }
-      gameTab.document.open();
-      gameTab.document.write('<!doctype html><title>Loading game…</title><p style="font:16px system-ui;color:#ddd;background:#08080b;padding:24px">Loading game source…</p>');
-      gameTab.document.close();
+      if (mode !== 'blob') {
+        gameTab.document.open();
+        gameTab.document.write('<!doctype html><title>Loading game…</title><p style="font:16px system-ui;color:#ddd;background:#08080b;padding:24px">Loading game source…</p>');
+        gameTab.document.close();
+      }
       gamesPanel.classList.remove('open');
       (async () => {
+        const openHtml = async (html, url) => {
+          const preparedHtml = prepareGameHtml(html, url);
+          if (mode === 'blob') {
+            const blobUrl = URL.createObjectURL(new Blob([preparedHtml], { type: 'text/html' }));
+            gameTab.location.replace(blobUrl);
+            setTimeout(() => URL.revokeObjectURL(blobUrl), 60000);
+          } else {
+            gameTab.document.open();
+            gameTab.document.write(preparedHtml);
+            gameTab.document.close();
+          }
+        };
         const cached = await readCachedGame(game);
         if (cached && typeof cached.html === 'string') {
-          gameTab.document.open();
-          gameTab.document.write(prepareGameHtml(cached.html, gameUrl(game, cached.base)));
-          gameTab.document.close();
+          await openHtml(cached.html, gameUrl(game, cached.base));
           return;
         }
         for (const base of gameSourceBases(game)) {
@@ -1907,15 +2032,13 @@ ducky-clicker\tI_am_me\t609450`;
             if (!response.ok) throw new Error('Game source returned ' + response.status);
             const html = await response.text();
             await cacheGame(game, base, { html, base });
-            gameTab.document.open();
-            gameTab.document.write(prepareGameHtml(html, url));
-            gameTab.document.close();
+            await openHtml(html, url);
             return;
           } catch (error) {
             // Try the alternate source if this one cannot be fetched.
           }
         }
-        // If cross-origin fetching is blocked, navigate the about:blank tab directly to the game.
+        // If cross-origin fetching is blocked, navigate the tab directly to the game source.
         try { gameTab.location.replace(gameUrl(game, gameSourceBases(game)[0])); }
         catch (error) { gameTab.location.href = gameUrl(game, gameSourceBases(game)[0]); }
       })();
@@ -2024,15 +2147,38 @@ ducky-clicker\tI_am_me\t609450`;
       });
       if (!host.children.length) { const hint = document.createElement('span'); hint.className = 'quick-link'; hint.textContent = 'Pin favorites from the Games library'; host.append(hint); }
     }
+    function readGameReviews() {
+      try { const value = JSON.parse(localStorage.getItem('kitsune-game-reviews') || '{}'); return value && typeof value === 'object' ? value : {}; }
+      catch (error) { return {}; }
+    }
     function openGameDetails(game) {
       selectedDetailGame = game;
       document.querySelector('#game-detail-image').src = game.image;
       document.querySelector('#game-detail-title').textContent = game.name;
-      document.querySelector('#game-detail-description').textContent = 'Launch ' + game.name + ' in the in-page game player. Your favorites and recent games are saved only in this browser.';
+      document.querySelector('#game-detail-description').textContent = game.imageOnly ? 'Image preview only; this catalog entry does not launch a game.' : 'Launch ' + game.name + ' in the in-page game player. Your favorites and recent games are saved only in this browser.';
+      document.querySelector('#game-detail-play').hidden = Boolean(game.imageOnly);
       const favorite = readGameList('kitsune-game-favorites').includes(game.file);
       document.querySelector('#game-detail-favorite').textContent = favorite ? '★ Remove favorite' : '☆ Add favorite';
+      const review = readGameReviews()[game.file] || {};
+      document.querySelector('#game-personal-rating').value = String(review.rating || 0);
+      document.querySelector('#game-personal-note').value = review.note || '';
+      document.querySelector('#game-personal-status').textContent = '';
       const detail = document.querySelector('#game-detail'); detail.classList.add('open'); detail.setAttribute('aria-hidden', 'false');
     }
+    document.querySelector('#game-personal-save').addEventListener('click', () => {
+      if (!selectedDetailGame || selectedDetailGame.imageOnly) return;
+      const reviews = readGameReviews();
+      const rating = Number(document.querySelector('#game-personal-rating').value);
+      const note = document.querySelector('#game-personal-note').value.trim().slice(0, 240);
+      if (rating || note) reviews[selectedDetailGame.file] = { rating, note, updatedAt: Date.now() };
+      else delete reviews[selectedDetailGame.file];
+      try {
+        localStorage.setItem('kitsune-game-reviews', JSON.stringify(reviews));
+        document.querySelector('#game-personal-status').textContent = 'Your rating and note are saved on this device.';
+      } catch (error) {
+        document.querySelector('#game-personal-status').textContent = 'Could not save this note in your browser.';
+      }
+    });
     document.querySelector('#game-detail-close').addEventListener('click', () => { const detail = document.querySelector('#game-detail'); detail.classList.remove('open'); detail.setAttribute('aria-hidden', 'true'); });
     document.querySelector('#game-detail-play').addEventListener('click', () => { if (selectedDetailGame) openGame(selectedDetailGame); document.querySelector('#game-detail-close').click(); });
     document.querySelector('#game-detail-favorite').addEventListener('click', () => { if (selectedDetailGame) { toggleGameFavorite(selectedDetailGame); openGameDetails(selectedDetailGame); } });
@@ -2048,14 +2194,25 @@ ducky-clicker\tI_am_me\t609450`;
       if (category === 'Puzzle') return /2048|blox|puzzle|quiz|math|bridge|brain|cookie/.test(name);
       return true;
     }
+    function recommendedGameFiles() {
+      const favorites = readGameList('kitsune-game-favorites');
+      const recent = readGameList('kitsune-recent-games');
+      const seeds = [...recent, ...favorites].map(file => games.find(game => game.file === file)).filter(Boolean);
+      const categories = ['Arcade', 'Action', 'Puzzle'].filter(category => seeds.some(game => gameMatchesCategory(game, category)));
+      const excluded = new Set([...recent, ...favorites]);
+      const candidates = games.filter(game => !excluded.has(game.file) && (!categories.length || categories.some(category => gameMatchesCategory(game, category))));
+      const fallback = games.filter(game => !excluded.has(game.file));
+      return new Set((candidates.length ? candidates : fallback).slice(0, 18).map(game => game.file));
+    }
     function renderGames() {
       const query = document.querySelector('#games-search').value.trim().toLowerCase();
       const grid = document.querySelector('#games-grid');
       grid.replaceChildren();
       const favorites = readGameList('kitsune-game-favorites');
       const recent = readGameList('kitsune-recent-games');
+      const recommendations = activeGameFilter === 'For You' ? recommendedGameFiles() : null;
       games.filter(game => game.name.toLowerCase().includes(query))
-        .filter(game => activeGameFilter === 'All' || (activeGameFilter === 'Favorites' && favorites.includes(game.file)) || (activeGameFilter === 'Recent' && recent.includes(game.file)) || ((activeGameFilter === 'Arcade' || activeGameFilter === 'Action' || activeGameFilter === 'Puzzle') && gameMatchesCategory(game, activeGameFilter)))
+        .filter(game => activeGameFilter === 'All' || (activeGameFilter === 'For You' && recommendations.has(game.file)) || (activeGameFilter === 'Favorites' && favorites.includes(game.file)) || (activeGameFilter === 'Recent' && recent.includes(game.file)) || ((activeGameFilter === 'Arcade' || activeGameFilter === 'Action' || activeGameFilter === 'Puzzle') && gameMatchesCategory(game, activeGameFilter)))
         .forEach(game => {
         const card = document.createElement('button');
         card.type = 'button';
@@ -2076,11 +2233,18 @@ ducky-clicker\tI_am_me\t609450`;
         play.className = 'game-card-play';
         play.innerHTML = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg> Play';
         overlay.append(title, play);
-        card.setAttribute('aria-label', 'Play ' + game.name);
+        card.setAttribute('aria-label', game.imageOnly ? game.name + ' image' : 'Play ' + game.name);
+        if (game.imageOnly) {
+          title.textContent = game.name;
+          play.textContent = 'Image only';
+          card.disabled = true;
+        }
         card.append(image, overlay);
-        card.title = 'Click to play · Double-click for details · Right-click to favorite';
-        card.addEventListener('click', () => openGame(game));
-        card.addEventListener('dblclick', event => { event.preventDefault(); openGameDetails(game); });
+        card.title = game.imageOnly ? game.name + ' · Image only' : 'Click to play · Double-click for details · Right-click to favorite';
+        if (!game.imageOnly) {
+          card.addEventListener('click', () => openGame(game));
+          card.addEventListener('dblclick', event => { event.preventDefault(); openGameDetails(game); });
+        }
         card.addEventListener('contextmenu', event => { event.preventDefault(); toggleGameFavorite(game); });
         grid.append(card);
       });
