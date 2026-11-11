@@ -1395,7 +1395,70 @@
         category: ''
       }))
           ].map(entry => Array.isArray(entry) ? ({ file: entry[0], name: entry[1], image: entry[2] }) : entry);
+    const SERAPH_COVER_BASE = 'https://raw.githubusercontent.com/gmshelf/seraph/main/covers/';
+    const SERAPH_GAME_COVERS = new Map(Object.entries({
+      '10 minutes till dawn': '10minutestilldawn.jpg', '1 on 1 soccer': '1on1soccer.jpg',
+      '1v1 lol': '1v1lol.jpg', '2048': '2048.jpg',
+      'achievement unlocked': 'achievementunlocked.jpg', 'achievement unlocked 2': 'achievementunlocked2.jpg', 'achievement unlocked 3': 'achievementunlocked3.jpg',
+      'among us': 'amongus.jpg', 'bad ice cream': 'badicecream.jpg', 'bad ice cream 2': 'badicecream2.jpg', 'bad ice cream 3': 'badicecream3.jpg',
+      'bad piggies': 'badpiggies.jpg', 'bad time simulator': 'badtimesimulator.jpg', 'baldis basics': 'baldisbasics.jpg',
+      'banjo kazooie': 'banjokazooie.jpg', 'basket bros': 'basketbrosio.jpg', 'basket random': 'basketrandom.jpg',
+      'bitlife': 'bitlife.jpg', 'bloxorz': 'bloxors.jpg', 'bob the robber 2': 'bobtherobber2.jpg', 'bomberman': 'bomberman.jpg',
+      'boxing random': 'boxingrandom.jpg', 'breaking the bank': 'breakingthebank.jpg',
+      'bloons td': 'btd.jpg', 'bloons td 2': 'btd2.jpg', 'bloons td 3': 'btd3.jpg', 'bloons td 4': 'btd4.jpg',
+      'burrito bison': 'burritobison.jpg', 'celeste': 'celeste.jpg', 'chess': 'chess.jpg', 'cluster rush': 'clusterrush.jpg',
+      'cookie clicker': 'cookieclick.jpg', 'cooking mama': 'cookingmama.jpg', 'crossy road': 'crossyroad.jpg', 'cut the rope': 'cuttherope.jpg',
+      'dadish': 'dadish.jpg', 'dadish 2': 'dadish2.jpg', 'dadish 3': 'dadish3.jpg', 'death run 3d': 'deathrun3d.jpg',
+      'doge miner': 'dogeminer.jpg', 'doodle jump': 'doodlejump.jpg', 'doom': 'doom.jpg', 'drift boss': 'driftboss.jpg',
+      'drift hunters': 'drifthunters.jpg', 'duck life': 'ducklife.jpg', 'duck life 2': 'ducklife2.jpg', 'duck life 3': 'ducklife3.jpg',
+      'duck life 4': 'ducklife4.jpg', 'duck life 5': 'ducklife5.jpg', 'duck life 6': 'ducklife6.jpg',
+      'escaping the prison': 'escapingtheprison.jpg', 'fancy pants adventure': 'fancypantsadventure.jpg',
+      'fancy pants adventure 2': 'fancypantsadventure2.jpg', 'fancy pants adventure 3': 'fancypantsadventure3.jpg',
+      'fireboy and watergirl': 'fireboyandwatergirl.jpg', 'flappy bird': 'flappybird.jpg', 'fleeing the complex': 'fleeingthecomplex.jpg',
+      'flood runner 2': 'floodrunner2.jpg', 'flood runner 3': 'floodrunner3.jpg', 'fnaf': 'fnaf.jpg', 'fnaf 2': 'fnaf2.jpg',
+      'fnaf 3': 'fnaf3.jpg', 'fnaf 4': 'fnaf4.jpg', 'friday night funkin': 'fnf.jpg', 'fruit ninja': 'fruitninja.jpg',
+      'funny mad racing': 'funnymadracing.jpg', 'funny shooter 2': 'funnyshooter2.jpg', 'geometry dash lite': 'geometrydashlite.jpg',
+      'getaway shootout': 'getawayshootout.jpg', 'gun mayhem': 'gunmayhem.jpg', 'gun mayhem 2': 'gunmayhem2.jpg',
+      'gun mayhem redux': 'gunmayhemredux.jpg', 'happy wheels': 'happywheels.jpg', 'helix jump': 'helixjump.jpg',
+      'hole io': 'holeio.jpg', 'house of hazards': 'houseofhazards.jpg', 'infiltrating the airship': 'infiltratingtheairship.jpg',
+      'jetpack joyride': 'jetpackjoyride.jpg', 'learn to fly': 'learntofly.jpg', 'learn to fly 2': 'learntofly2.jpg',
+      'learn to fly 3': 'learntofly3.jpg', 'mario kart 64': 'mariokart64.jpg', 'mario kart ds': 'mariokartds.jpg',
+      'mario party': 'marioparty.jpg', 'mario party 2': 'marioparty2.jpg', 'mario party 3': 'marioparty3.jpg',
+      'minecraft': 'mc.jpg', 'minecraft 1 8': 'mc1.8.jpg', 'monkey mart': 'monkeymart.jpg', 'moto x3m': 'motox3m.jpeg',
+      'moto x3m pool party': 'motox3mpool.jpg', 'moto x3m spooky land': 'motox3mspooky.jpg', 'moto x3m winter': 'motox3mwinter.jpg',
+      'ovo': 'ovo.jpg', 'pacman': 'pacman.jpg', 'papa louie': 'papalouie.jpg', 'papa louie 2': 'papalouie2.jpg', 'papa louie 3': 'papalouie3.jpg',
+      'papas bakeria': 'papasbakeria.jpg', 'papas burgeria': 'papasburgeria.jpg', 'papas cheeseria': 'papascheeseria.jpg',
+      'papas cupcakeria': 'papascupcakeria.jpg', 'papas donuteria': 'papasdonuteria.jpg', 'papas freezeria': 'papasfreezeria.jpg',
+      'papas hot doggeria': 'papashotdoggeria.jpg', 'papas pancakeria': 'papaspancakeria.jpg', 'papas pastaria': 'papaspastaria.jpg',
+      'papas pizzeria': 'papaspizzeria.jpg', 'papas scooperia': 'papasscooperia.jpg', 'papas sushiria': 'papassushiria.jpg',
+      'papas taco mia': 'papastacomia.jpg', 'papas wingeria': 'papaswingeria.jpg', 'paper io 2': 'paperio2.jpg', 'paper io 3d': 'paperio3d.jpg',
+      'pizza tower': 'pizzatower.jpg', 'pokemon emerald': 'pokemonemerald.jpg', 'pokemon unbound': 'pokemonunbound.jpg',
+      'portal': 'portal.jpg', 'portal 2': 'portal2.jpg', 'raft wars': 'raftwars.jpg', 'raft wars 2': 'raftwars2.jpg',
+      'red ball': 'redball.jpg', 'red ball 3': 'redball3.jpg', 'red ball 4': 'redball4.jpg', 'red ball 4 vol 2': 'redball4vol2.jpg',
+      'red ball 4 vol 3': 'redball4vol3.jpg', 'retro bowl': 'retrobowl.jpg', 'riddle school': 'riddleschool.jpg',
+      'riddle school 2': 'riddleschool2.jpg', 'riddle school 3': 'riddleschool3.jpg', 'riddle school 4': 'riddleschool4.jpg',
+      'riddle school 5': 'riddleschool5.jpg', 'riddle transfer': 'riddletransfer.jpg', 'riddle transfer 2': 'riddletransfer2.jpg',
+      'rooftop snipers': 'rooftopsnipers.jpg', 'rooftop snipers 2': 'rooftopsnipers2.jpg', 'run': 'run.jpg', 'run 2': 'run2.jpg', 'run 3': 'run3.jpg',
+      'slope': 'slope.jpg', 'slope 2': 'slope2.jpg', 'snow rider 3d': 'snowrider3d.jpg', 'soccer random': 'soccerrandom.jpg',
+      'stickman hook': 'stickmanhook.jpg', 'stick war': 'stickwar.jpg', 'stick war 2': 'stickwar2.jpg', 'subway surfers': 'subwaysurfers.jpeg',
+      'super hot': 'superhot.jpg', 'super mario bros': 'supermariobros.jpg', 'super mario bros 2': 'supermariobros2.jpg',
+      'super mario bros 3': 'supermariobros3.jpg', 'super mario 64': 'sm64.jpg', 'super smash bros': 'supersmashbros.jpg',
+      'super smash flash': 'supersmashflash.jpg', 'tanuki sunset': 'tanukisunset.jpg', 'temple run 2': 'templerun2.jpg',
+      'tetris': 'tetris.jpg', 'the impossible quiz': 'theimpossiblequiz.jpg', 'the impossible quiz 2': 'theimpossiblequiz2.jpg',
+      'there is no game': 'thereisnogame.jpg', 'time shooter': 'timeshooter.jpg', 'time shooter 2': 'timeshooter2.jpg',
+      'time shooter 3': 'timeshooter3.jpg', 'tiny fishing': 'tinyfishing.jpg', 'tube jumpers': 'tubejumpers.jpg', 'tunnel rush': 'tunnelrush.jpg',
+      'vex': 'vex.jpg', 'vex 2': 'vex2.jpg', 'vex 3': 'vex3.jpg', 'vex 4': 'vex4.jpg', 'vex 5': 'vex5.jpg', 'vex 6': 'vex6.jpg', 'vex 7': 'vex7.jpg',
+      'volley random': 'volleyrandom.jpg', 'wordle': 'wordle.jpg', 'worlds hardest game': 'worldshardestgame.jpg',
+      'worlds hardest game 2': 'worldshardestgame2.jpg', 'yohoho': 'yohoho.jpg', 'zombocalypse': 'zombocalpyse.jpg',
+      'zombotron': 'zombotron.jpg', 'zombotron 2': 'zombotron2.jpg'
+    }));
     const GAME_IMAGE_OVERRIDES = new Map([
+      ['1 5', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/1.5.2.webp'],
+      ['1v1 lol', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/1v1.webp'],
+      ['this is the only level', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/achieve.webp'],
+      ['burrito bison launcha libre', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/bbe.webp'],
+      ['burrito bison lucha libre', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/bbe.webp'],
+      ['crazy cattle 3d', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/crazyca.webp'],
       ['geometry dash lite', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRuEolGnlm29jUciULZMnMATOAR4Pb7XAK7K0DE57niLlXEs5jxrFhn4io:https://play-lh.googleusercontent.com/StEbdIF-rV4EoYfIdaP07zClA50KSs-i9o12kceyecfw8R0nwYfzqV64h3UlEzh_fCqxyNCj7Bb7ro86pfYDsSU&s=10'],
       ['volley random', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT10H-EkYFZYMoHkCcmBPLBaT692DCqM5fpssq9-xWNRj3DKf9_m9o8WMI:https://play-lh.googleusercontent.com/7ayVVcbhFLjjr8xj_z5Tbjo90YaqLM63crDRoS4R3NcZ2VONjZ2K0pk7ahlVMKIKrd0a0LlwRvS9aaUA47EOf9A&s=10'],
       ['worlds hardest game 2', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRA8_8l5G-VFvgZ-DEywBqGEGY0s8l2eTkpogPWHxXKovQcDct4RSvWeJ8:https://e.snmc.io/lk/o/x/3973ffe98d91d1b00fab2e054e72a1ed/12010306&s=10']
@@ -1423,7 +1486,8 @@
     }
     games = removeDuplicateGames(games).map(game => {
       const seededImage = seededGameImages.get(gameDuplicateKey(game.name));
-      const image = GAME_IMAGE_OVERRIDES.get(gameDuplicateKey(game.name)) || truffledGameImage(game.name) || seededImage || game.image;
+      const seraphCover = SERAPH_GAME_COVERS.get(gameDuplicateKey(game.name));
+      const image = GAME_IMAGE_OVERRIDES.get(gameDuplicateKey(game.name)) || truffledGameImage(game.name) || seededImage || (seraphCover ? SERAPH_COVER_BASE + seraphCover : '') || game.image;
       return { ...game, image, title: game.name, img: image };
     });
     games.push({
