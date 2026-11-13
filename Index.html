@@ -15,8 +15,8 @@
 
     .games-panel{position:absolute;z-index:3;inset:0;display:none;overflow:auto;padding:clamp(18px,4vw,42px);background:#100909}.games-panel.open{display:block}.music-panel{position:absolute;z-index:6;right:18px;top:18px;width:min(420px,calc(100% - 36px));max-height:calc(100% - 36px);display:none;flex-direction:column;overflow:hidden;border:1px solid #57313a;border-radius:18px;background:#171011;box-shadow:0 20px 70px #000b}.music-panel.open{display:flex}.music-head{display:flex;align-items:center;justify-content:space-between;padding:13px 16px;border-bottom:1px solid #ffffff12}.music-actions{display:flex;gap:9px;padding:12px}.music-pick,.music-close{border:1px solid #633033;border-radius:10px;padding:8px 12px;color:#f4eeee;background:#291616;cursor:pointer}.music-pick{background:#d92f45;border-color:transparent;font-weight:700}.music-list{flex:1;min-height:70px;overflow:auto;padding:0 12px 12px}.music-track{display:flex;align-items:center;gap:9px;width:100%;padding:9px 10px;border-radius:9px;background:transparent;color:#ddd;text-align:left;cursor:pointer}.music-track:hover,.music-track.active{background:#ffffff12}.music-track.active{color:#ff8790}.music-track span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.music-audio{display:block;width:calc(100% - 24px);margin:0 12px 12px}.music-note{padding:0 14px 12px;color:#ae9699;font-size:11px}    .games-head{display:flex;align-items:center;justify-content:center;gap:14px;margin:0 auto 22px;max-width:1000px}.games-actions{display:flex;align-items:center;gap:10px;width:100%}.games-search{width:100%;height:52px;padding:0 18px;border:1px solid #552021;border-radius:14px;color:#fff;background:#241313;font:inherit;font-size:16px}.games-close,.game-back{border:1px solid #552021;border-radius:10px;padding:9px 12px;color:#f4eeee;background:#241313;cursor:pointer}.games-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:13px;max-width:1000px;margin:auto}.game-card{overflow:hidden;padding:0;border:1px solid #4b1d1e;border-radius:13px;color:#f7f1f1;text-align:left;background:#1b1010;cursor:pointer}.game-card:hover{border-color:#ff3346;transform:translateY(-2px)}.game-card img{display:block;width:100%;height:92px;object-fit:cover;background:#251616}.game-card strong{display:block;padding:9px;font-size:13px}
     @media(max-width:650px){.games-head{align-items:flex-start;flex-direction:column}.games-actions{width:100%}.games-search{flex:1;width:auto}.games-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.game-card img{height:82px}.games-panel{padding:18px 12px}}
-    /* Square game artwork with nine cards per row on desktop. */
-    .games-grid{grid-template-columns:repeat(9,minmax(0,1fr));max-width:1200px}
+    /* Square game artwork with ten cards per row on desktop, using the full panel width. */
+    .games-grid{grid-template-columns:repeat(11,minmax(0,1fr));max-width:none}
     .game-card{aspect-ratio:1;min-height:0}
     .game-card img{height:100%}
     @media(max-width:850px){.games-grid{grid-template-columns:repeat(4,minmax(0,1fr))}}
@@ -693,10 +693,29 @@
     .ai-welcome .ai-welcome-prompts button{padding:10px 16px;border-color:#ffffff18;border-radius:12px;background:#ffffff08;color:#e9e3f1;font-size:13px;transition:background .18s,border-color .18s,transform .18s}
     .ai-welcome .ai-welcome-prompts button:hover{transform:translateY(-2px);border-color:#c5a5ff66;background:#c5a5ff14}
     @media(max-width:650px){.ai-welcome{padding:22px 8px}.ai-welcome .ai-welcome-prompts{gap:7px}.ai-welcome .ai-welcome-prompts button{padding:9px 12px;font-size:12px}}
+    /* Larger game artwork with eleven columns on desktop. */
+    .games-panel{padding:clamp(10px,1.5vw,18px)}
+    .games-grid{grid-template-columns:repeat(11,minmax(0,1fr));gap:7px}
+    @media(max-width:850px){.games-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:9px}}
+    @media(max-width:650px){.games-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}}
+    /* Launch games in a new tab rather than the in-page viewer. */
+    .game-player{display:none!important}
+    .game-launch-dialog{position:fixed;z-index:70;inset:0;display:none;place-items:center;padding:18px;background:rgba(0,0,0,.76);backdrop-filter:blur(12px)}
+    .game-launch-dialog.open{display:grid}.game-launch-card{width:min(390px,100%);padding:24px;border:1px solid rgba(225,207,255,.24);border-radius:18px;color:#f4efff;background:rgba(20,16,26,.98);box-shadow:0 24px 80px #000b}.game-launch-card h2{margin:0 0 7px;font-size:22px}.game-launch-card p{margin:0 0 17px;color:#aaa2b6}.game-launch-actions{display:grid;gap:9px}.game-launch-actions button{padding:11px 13px;border:1px solid #c5a5ff44;border-radius:10px;color:#fff;background:#9a6de522;font:inherit;font-weight:700;cursor:pointer}.game-launch-actions button:hover{background:#9a6de544}.game-launch-actions .game-launch-cancel{border-color:#ffffff1c;background:#ffffff08}
+    @media(prefers-reduced-motion:reduce){.game-launch-dialog{backdrop-filter:none}}
+    /* Unified game and music search */
+    .home .search{cursor:default}.home .search input{pointer-events:none}
+    .library-search-overlay{position:fixed;z-index:80;inset:0;display:grid;place-items:start center;padding:clamp(18px,8vh,76px) 16px 20px;background:rgba(0,0,0,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+    .library-search-overlay[hidden]{display:none!important}.library-search-dialog{display:flex;width:min(720px,100%);max-height:min(78vh,760px);flex-direction:column;overflow:hidden;border:1px solid rgba(225,207,255,.2);border-radius:20px;color:#f4effa;background:rgba(18,16,23,.98);box-shadow:0 28px 90px #000b}
+    .library-search-head{display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px}.library-search-head h2{margin:0;font-size:21px;letter-spacing:-.03em}.library-search-head p{margin:3px 0 0;color:#a9a1b4;font-size:12px}.library-search-close{width:34px;height:34px;border:1px solid #ffffff16;border-radius:10px;color:#eee;background:#ffffff08;font-size:23px;line-height:1;cursor:pointer}
+    .library-search-controls{display:grid;gap:11px;padding:0 20px 14px}.library-search-field{display:flex;align-items:center;gap:10px;height:48px;padding:0 14px;border:1px solid rgba(221,197,255,.2);border-radius:13px;background:#08080b}.library-search-field:focus-within{border-color:#c5a5ff99;box-shadow:0 0 0 3px #c5a5ff18}.library-search-field svg{width:19px;height:19px;flex:none;fill:none;stroke:#d9bcff;stroke-width:1.8;stroke-linecap:round}.library-search-field input{width:100%;border:0;outline:0;color:#fff;background:transparent;font:inherit}.library-search-field input::placeholder{color:#8d8698}.library-search-tabs{display:flex;gap:7px}.library-search-tabs button{padding:7px 12px;border:1px solid #ffffff14;border-radius:999px;color:#bdb5c8;background:#ffffff06;cursor:pointer}.library-search-tabs button.active{border-color:#c5a5ff66;color:#fff;background:#9a6de52b}
+    .library-search-results{min-height:100px;overflow:auto;padding:0 12px 14px}.library-search-empty{padding:24px 12px;color:#9991a4;text-align:center}.library-search-result{display:flex;align-items:center;gap:12px;width:100%;min-height:66px;margin:3px 0;padding:8px;border:1px solid transparent;border-radius:12px;color:#f4effa;background:transparent;text-align:left;cursor:pointer}.library-search-result:hover,.library-search-result:focus-visible{border-color:#ffffff14;background:#ffffff09;outline:none}.library-search-result img{width:54px;height:54px;flex:none;border-radius:9px;background:#24202b;object-fit:cover}.library-search-result-copy{min-width:0;flex:1}.library-search-result-copy strong,.library-search-result-copy small{display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.library-search-result-copy strong{font-size:13px}.library-search-result-copy small{margin-top:3px;color:#9c94a8;font-size:11px}.library-search-kind{padding:4px 8px;border:1px solid #ffffff14;border-radius:999px;color:#c8b6e5;font-size:10px}
+    @media(max-width:650px){.library-search-overlay{padding:10px}.library-search-dialog{max-height:calc(100vh - 20px);border-radius:16px}.library-search-head{padding:15px 14px 10px}.library-search-controls{padding:0 14px 11px}.library-search-results{padding-inline:8px}}
+    @media(prefers-reduced-motion:reduce){.library-search-overlay{backdrop-filter:none;-webkit-backdrop-filter:none}}
   </style>
 </head>
 <body>
-  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
+  <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>kitsune://home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="search">⌕ Search</button><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-library-search" type="button" title="Search games and music" aria-label="Search games and music"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
   <main>
     <div class="connection-status" id="connection-status" role="status" aria-live="polite" hidden>Online</div>
     <aside class="side-rail" aria-label="Kitsune shortcuts">
@@ -766,7 +785,7 @@
     <section class="home" aria-label="Lunara search home">
       <h1 class="brand" aria-label="Kitsune"><svg class="brand-moon" viewBox="0 0 100 100" role="img" aria-label="Crescent moon"><defs><linearGradient id="brand-moon-gradient" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#f4eaff"/><stop offset=".52" stop-color="#d9c0ff"/><stop offset="1" stop-color="#b99aff"/></linearGradient></defs><path d="M70 9a42 42 0 1 0 21 76A46 46 0 0 1 70 9Z" fill="url(#brand-moon-gradient)"/><path d="m28 15 2.5 7.5L38 25l-7.5 2.5L28 35l-2.5-7.5L18 25l7.5-2.5L28 15Zm51 48 2 6 6 2-6 2-2 6-2-6-6-2 6-2 2-6Z" fill="#f4eaff"/></svg></h1>
       <p class="tagline" id="home-tagline">Welcome home </p>
-      <form class="search" id="web-search" action="no" method="get"><span aria-hidden="true">⌕</span><input name="q" list="search-suggestions" placeholder="Search the web or enter a URL..." aria-label="Search" autocomplete="off" /><datalist id="search-suggestions"><option value="Popular games"></option><option value="Free online games"></option><option value="Puzzle games"></option><option value="Music"></option><option value="Study tools"></option><option value="Weather today"></option></datalist></form>
+      <form class="search" id="web-search" action="no" method="get" aria-label="Decorative search bar"><span aria-hidden="true">⌕</span><input name="q" placeholder="Search the web or enter a URL..." aria-label="Decorative search bar" autocomplete="off" readonly tabindex="-1" /></form>
       <div class="home-tools"><span class="home-widget" id="home-clock" aria-label="Current time"></span><span class="home-widget" id="home-date"></span></div>
       <div class="home-quicklinks" id="home-quicklinks" aria-label="Favorite games"><span class="quick-link">Pin favorite games from the library</span></div>
       <nav class="tiles" aria-label="Featured games">
@@ -876,6 +895,20 @@
     </section>
     <section class="games-panel" id="games-panel" aria-label="Games library">
       <div class="games-head"><div class="games-actions"><input class="games-search" id="games-search" type="search" placeholder="Search games…" aria-label="Search games"></div></div>
+      <div class="games-tools-row" aria-label="Game library tools">
+        <span>Browse:</span>
+        <button type="button" class="games-filter active" data-game-filter="All">All games</button>
+        <button type="button" class="games-filter" data-game-filter="Favorites">★ Favorites</button>
+        <button type="button" class="games-filter" data-game-filter="Recent">Recently played</button>
+        <button type="button" class="games-filter" data-game-filter="For You">For you</button>
+        <button type="button" class="games-filter" data-game-filter="Arcade">Arcade</button>
+        <button type="button" class="games-filter" data-game-filter="Action">Action</button>
+        <button type="button" class="games-filter" data-game-filter="Puzzle">Puzzle</button>
+        <label for="games-sort">Sort</label>
+        <select id="games-sort" aria-label="Sort games"><option value="name">Name</option><option value="recent">Recently played</option><option value="favorites">Favorites first</option></select>
+        <button type="button" id="continue-game">▶ Continue</button>
+        <button type="button" id="random-game">🎲 Random game</button>
+      </div>
       <div class="games-grid" id="games-grid"></div>
     </section>
     <section class="game-detail" id="game-detail" aria-hidden="true"><div class="game-detail-card"><img id="game-detail-image" alt=""><h2 id="game-detail-title"></h2><p id="game-detail-description"></p><div class="game-personal-review"><label for="game-personal-rating">Your rating<select id="game-personal-rating"><option value="0">Not rated</option><option value="5">★★★★★ · Loved it</option><option value="4">★★★★☆ · Great</option><option value="3">★★★☆☆ · Good</option><option value="2">★★☆☆☆ · Okay</option><option value="1">★☆☆☆☆ · Not for me</option></select></label><label for="game-personal-note">Personal note<textarea id="game-personal-note" maxlength="240" placeholder="Add a note for yourself..."></textarea></label><button id="game-personal-save" type="button">Save rating & note</button><p class="game-personal-review-status" id="game-personal-status" role="status" aria-live="polite"></p></div><div class="game-detail-actions"><button id="game-detail-play" type="button">▶ Play</button><button id="game-detail-favorite" type="button">☆ Add favorite</button><button id="game-detail-close" type="button">Close</button></div></div></section>
@@ -885,6 +918,13 @@
       <div class="music-playerbar"><div class="music-now" id="music-now">Nothing playing<small>Pick a track to start</small></div><audio id="music-audio" controls preload="metadata"></audio><div class="music-extra-controls"><button class="music-control" id="music-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="music-control" id="music-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button><button class="music-control" id="music-shuffle" type="button" aria-label="Toggle shuffle" title="Toggle shuffle" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M16 3h5v5M4 20 21 3M21 16v5h-5M4 4l5 5m4 4 8 8"/></svg></button><button class="music-control" id="music-repeat" type="button" aria-label="Toggle repeat" title="Toggle repeat" aria-pressed="false"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m17 2 4 4-4 4"/><path d="M3 11V9a3 3 0 0 1 3-3h15M7 22l-4-4 4-4"/><path d="M21 13v2a3 3 0 0 1-3 3H3"/></svg></button><button class="music-control" id="music-save-track" type="button" aria-label="Save current track to playlist" title="Save current track to playlist"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.8 4.6a5.5 5.5 0 0 0-7.8 0L12 5.7l-1.1-1.1a5.5 5.5 0 0 0-7.8 7.8l1.1 1.1L12 21l7.8-7.5 1.1-1.1a5.5 5.5 0 0 0-.1-7.8Z"/></svg><span id="music-save-label">Save</span></button><label aria-label="Volume"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4zM15.5 8.5a5 5 0 0 1 0 7m3-10a9 9 0 0 1 0 13"/></svg><input id="music-volume" type="range" min="0" max="1" step="0.05" value="1"></label></div></div>
     </section>
     <section class="ai-panel" id="ai-panel" aria-label="AI chat" aria-hidden="true"><aside class="ai-sidebar"><button class="ai-new-chat" id="ai-new-chat" type="button">＋ New chat</button><label class="ai-history-title" for="ai-history-search">Search chats</label><input class="ai-history-search" id="ai-history-search" type="search" placeholder="Search chats…" aria-label="Search chats"><div class="ai-history-title">Recent chats</div><nav class="ai-history" id="ai-history" aria-label="Recent chats"></nav><div class="ai-sidebar-settings"><label for="ai-temperature">Temperature <output id="ai-temperature-value">0.7</output></label><input id="ai-temperature" type="range" min="0" max="2" step="0.1" value="0.7"></div></aside><div class="ai-main"><div class="ai-head"><div class="ai-brand"><span class="ai-brand-copy"><strong id="ai-greeting-title">Good day!</strong></span></div><button class="ai-close" id="ai-close" type="button">Close</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><section class="ai-welcome" id="ai-welcome"><h2 id="ai-welcome-message">How can I help you today?</h2><p>Choose a suggestion or ask anything.</p><div class="ai-welcome-prompts" id="ai-welcome-prompts"><button type="button">Solve math</button><button type="button">Write</button><button type="button">Explain</button><button type="button">Code</button></div></section></div><p class="ai-session-empty" id="ai-session-empty" hidden>Start a new chat or choose a recent chat.</p><div class="ai-attachments" id="ai-attachments" aria-label="Image attachments"></div><form class="ai-compose" id="ai-form"><input id="ai-image-input" type="file" accept="image/*" multiple hidden><button class="ai-attach" id="ai-attach" type="button" aria-label="Attach images">＋ Image</button><textarea id="ai-input" rows="1" placeholder="Message the AI…" aria-label="Message the AI"></textarea><button class="ai-send" id="ai-send" type="submit">Send</button></form></div></section>
+    <section class="library-search-overlay" id="library-search-overlay" aria-label="Search games and music" aria-hidden="true" hidden>
+      <div class="library-search-dialog" role="dialog" aria-modal="true" aria-labelledby="library-search-title">
+        <header class="library-search-head"><div><h2 id="library-search-title">Search your library</h2><p>Find a game or a track.</p></div><button class="library-search-close" id="library-search-close" type="button" aria-label="Close search">×</button></header>
+        <div class="library-search-controls"><label class="library-search-field"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg><input id="library-search-input" type="search" placeholder="Search games or music…" autocomplete="off" aria-label="Search games or music"></label><div class="library-search-tabs" role="group" aria-label="Search category"><button class="active" type="button" data-library-search-type="All">All</button><button type="button" data-library-search-type="Games">Games</button><button type="button" data-library-search-type="Music">Music</button></div></div>
+        <div class="library-search-results" id="library-search-results" aria-live="polite"><p class="library-search-empty">Start typing to search your library.</p></div>
+      </div>
+    </section>
     <section class="updates-overlay" id="updates-overlay" aria-label="What's new" aria-hidden="true" hidden>
       <div class="updates-card" role="dialog" aria-modal="true" aria-labelledby="updates-title">
         <h2 id="updates-title">What’s new in Kitsune</h2>
@@ -910,6 +950,13 @@
     </section>
     <div class="global-chat-toast" id="global-chat-toast" role="status" aria-live="polite"></div>
     <div class="click-loading" id="click-loading" role="status" aria-live="polite" hidden><div class="click-loading-card"><div class="click-loading-mark" aria-hidden="true">狐</div><h2>Getting things ready</h2><p id="click-loading-message">Loading…</p><p class="click-loading-phrase" id="click-loading-phrase"></p></div></div>
+    <section class="game-launch-dialog" id="game-launch-dialog" aria-hidden="true" aria-labelledby="game-launch-title">
+      <div class="game-launch-card" role="dialog" aria-modal="true" aria-labelledby="game-launch-title">
+        <h2 id="game-launch-title">Choose how to open this game</h2>
+        <p id="game-launch-name"></p>
+        <div class="game-launch-actions"><button type="button" data-game-launch="blank">Open in about:blank</button><button type="button" data-game-launch="blob">Open with a Blob URL</button><button class="game-launch-cancel" type="button" id="game-launch-cancel">Cancel</button></div>
+      </div>
+    </section>
   </main>
   <script>
     const homeTagline = document.querySelector('#home-tagline');
@@ -1374,6 +1421,24 @@
       'zombotron': 'zombotron.jpg', 'zombotron 2': 'zombotron2.jpg'
     }));
     const GAME_IMAGE_OVERRIDES = new Map([
+      ['breaking the bank', 'https://github.com/Lenux32/gameimages/blob/main/f434a795629318da.jpg?raw=true'],
+      ['iron snout', 'https://github.com/Lenux32/gameimages/blob/main/004d4ed486e8ac2f.png?raw=true'],
+      ['bacon may die', 'https://github.com/Lenux32/gameimages/blob/main/10b2987448a71790.jpg?raw=true'],
+      ['red ball 4 vol 1', 'https://github.com/Lenux32/gameimages/blob/main/14e54a7dcbfc74b0.jpeg?raw=true'],
+      ['red ball 4 v1', 'https://github.com/Lenux32/gameimages/blob/main/14e54a7dcbfc74b0.jpeg?raw=true'],
+      ['get on top', 'https://github.com/Lenux32/gameimages/blob/main/45187a1359d181b5.jpg?raw=true'],
+      ['car king arena', 'https://github.com/Lenux32/gameimages/blob/main/4c163de81e6468e6.jpeg?raw=true'],
+      ['google dino', 'https://github.com/Lenux32/gameimages/blob/main/54009c2da3470000.png?raw=true'],
+      ['funny shooter 2', 'https://github.com/Lenux32/gameimages/blob/main/66351c427d122d8e.webp?raw=true'],
+      ['drive mad', 'https://github.com/Lenux32/gameimages/blob/main/66ec5187155123fd.jpeg?raw=true'],
+      ['coreball', 'https://github.com/Lenux32/gameimages/blob/main/6d7993d2c722ab93.webp?raw=true'],
+      ['bob the robber 2', 'https://github.com/Lenux32/gameimages/blob/main/77703f7cbe6390c7.jpeg?raw=true'],
+      ['this is the only level too', 'https://github.com/Lenux32/gameimages/blob/main/7971267265e86666.webp?raw=true'],
+      ['temple run 2', 'https://github.com/Lenux32/gameimages/blob/main/802fa97dccf8b10f.webp?raw=true'],
+      ['9007199254740992', 'https://github.com/Lenux32/gameimages/blob/main/911590a8f10e3834.webp?raw=true'],
+      ['big tower tiny square', 'https://github.com/Lenux32/gameimages/blob/main/91ec104550a98a70.webp?raw=true'],
+      ['big tower tiny square 2', 'https://github.com/Lenux32/gameimages/blob/main/9acb36fdb90b6345.jpg?raw=true'],
+      ['this is the only level', 'https://github.com/Lenux32/gameimages/blob/main/99b7236e5aaa8f87.jpeg?raw=true'],
       ['1 5', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/1.5.2.webp'],
       ['1v1 lol', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/1v1.webp'],
       ['this is the only level', 'https://raw.githubusercontent.com/Lenux32/cherri-v2-leak/main/public/img/games/truffled/achieve.webp'],
@@ -1649,22 +1714,13 @@
         document.querySelector('#search-suggestions').prepend(option);
       });
     } catch (error) { /* Use the built-in suggestions. */ }
-    document.querySelector('#web-search').addEventListener('submit', event => {
-      const field = event.currentTarget.querySelector('input[name="q"]');
-      const value = field.value.trim();
-      if (value && !/^(https?:\/\/|localhost(?::\d+)?(?:\/|$)|[\w-]+(?:\.[\w-]+)+(?:\/|$))/i.test(value)) rememberSearch(value);
-      if (/^(https?:\/\/|localhost(?::\d+)?(?:\/|$)|[\w-]+(?:\.[\w-]+)+(?:\/|$))/i.test(value)) {
-        event.preventDefault();
-        const destination = /^https?:\/\//i.test(value) ? value : 'https://' + value;
-        try { location.href = new URL(destination).href; } catch (error) { field.value = value; }
-      }
-    });
+    document.querySelector('#web-search').addEventListener('submit', event => event.preventDefault());
     document.addEventListener('keydown', event => {
       if ((event.ctrlKey || event.metaKey) && event.key.toLowerCase() === 'k') { event.preventDefault(); document.querySelector('.search input').focus(); }
       if (event.altKey && event.key.toLowerCase() === 'g') { event.preventDefault(); showGamesLibrary(); }
       if (event.altKey && event.key.toLowerCase() === 'm') { event.preventDefault(); openMusic(); }
       if (event.altKey && event.key.toLowerCase() === 'a') { event.preventDefault(); openAiChat(); }
-      if (event.key === 'Escape') { closeAllPanels(); document.querySelector('#game-detail').classList.remove('open'); document.querySelector('#game-detail').setAttribute('aria-hidden', 'true'); }
+      if (event.key === 'Escape') { closeAllPanels(); closeGameLaunchDialog(); document.querySelector('#game-detail').classList.remove('open'); document.querySelector('#game-detail').setAttribute('aria-hidden', 'true'); }
     });
     document.querySelector('#clear-kitsune-data').addEventListener('click', () => {
       if (!window.confirm('Clear all Kitsune settings, notes, favorites, profile data, and local chat data from this browser? This cannot be undone.')) return;
@@ -2157,10 +2213,8 @@ ducky-clicker\tI_am_me\t609450`;
       tab.loadingStage = 'Checking for a saved game copy…';
       tab.loadTimer = setTimeout(() => {
         if (!tab.loading) return;
-        tab.error = 'This game is taking longer than expected. Opening it in about:blank…';
+        tab.error = 'This game is taking longer than expected to load.';
         updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
-        launchGameInBlank(tab.game, tab.fallbackWindow);
-        tab.fallbackWindow = null;
       }, Math.max(5000, Math.min(120000, Number(document.querySelector('#game-timeout-setting')?.value || 20) * 1000)));
       updateGameLoading(activeGameTab === tab ? tab : activeGameTab);
       const cached = await readCachedGame(tab.game);
@@ -2221,7 +2275,7 @@ ducky-clicker\tI_am_me\t609450`;
       gameLoading.classList.toggle('error', failed);
       document.querySelector('#game-loading-title').textContent = failed ? 'Game could not load' : 'Preparing ' + tab.game.name;
       document.querySelector('#game-loading-message').textContent = failed ? tab.error : (tab.loadingStage || 'Getting things ready…');
-      document.querySelector('#game-loading-detail').textContent = failed ? 'Opening it in about:blank automatically. Use Controls to retry or launch it there.' : 'Your game is being prepared. This may take a moment.';
+      document.querySelector('#game-loading-detail').textContent = failed ? 'Use Controls to retry or launch the game in about:blank.' : 'Your game is being prepared. This may take a moment.';
       gameLoading.querySelector('.game-loading-mark').textContent = failed ? '!' : '狐';
     }
     const gameTabStrip = document.querySelector('#game-tab-strip');
@@ -2277,15 +2331,31 @@ ducky-clicker\tI_am_me\t609450`;
       gamePlayer.setAttribute('aria-hidden', 'false');
       renderGameTabs();
     }
+    let gameAwaitingLaunchChoice = null;
+    const gameLaunchDialog = document.querySelector('#game-launch-dialog');
+    function closeGameLaunchDialog() {
+      gameAwaitingLaunchChoice = null;
+      gameLaunchDialog.classList.remove('open');
+      gameLaunchDialog.setAttribute('aria-hidden', 'true');
+    }
+    document.querySelectorAll('[data-game-launch]').forEach(button => button.addEventListener('click', () => {
+      const game = gameAwaitingLaunchChoice;
+      if (!game) return closeGameLaunchDialog();
+      closeGameLaunchDialog();
+      launchGameInBlank(game, null, false, button.dataset.gameLaunch);
+    }));
+    document.querySelector('#game-launch-cancel').addEventListener('click', closeGameLaunchDialog);
+    gameLaunchDialog.addEventListener('click', event => { if (event.target === gameLaunchDialog) closeGameLaunchDialog(); });
     function openGame(game) {
-      if (game.imageOnly) return;
-      const choice = window.prompt('How would you like to open ' + game.name + '?\n1. Blob URL (recommended)\n2. about:blank\n\nEnter 1 or 2:', '1');
-      if (choice === null) return;
-      const mode = choice.trim() === '2' ? 'blank' : choice.trim() === '1' ? 'blob' : '';
-      if (!mode) { window.alert('Choose 1 for Blob URL or 2 for about:blank.'); return; }
+      if (!game || game.imageOnly) return;
       rememberGame(game);
       renderHomeFavorites();
-      launchGameInBlank(game, null, false, mode);
+      gamesPanel.classList.remove('open');
+      gamesPanel.setAttribute('aria-hidden', 'true');
+      gameAwaitingLaunchChoice = game;
+      document.querySelector('#game-launch-name').textContent = game.name;
+      gameLaunchDialog.classList.add('open');
+      gameLaunchDialog.setAttribute('aria-hidden', 'false');
     }
     function launchGameInBlank(game, reservedWindow = null, direct = false, mode = 'blank') {
       const gameTab = reservedWindow || window.open('about:blank', '_blank');
@@ -2449,7 +2519,7 @@ ducky-clicker\tI_am_me\t609450`;
       selectedDetailGame = game;
       document.querySelector('#game-detail-image').src = game.image;
       document.querySelector('#game-detail-title').textContent = game.name;
-      document.querySelector('#game-detail-description').textContent = game.imageOnly ? 'Image preview only; this catalog entry does not launch a game.' : 'Launch ' + game.name + ' in the in-page game player. Your favorites and recent games are saved only in this browser.';
+      document.querySelector('#game-detail-description').textContent = game.imageOnly ? 'Image preview only; this catalog entry does not launch a game.' : 'Choose about:blank or a Blob URL to open ' + game.name + ' in a new tab. Your favorites and recent games are saved only in this browser.';
       document.querySelector('#game-detail-play').hidden = Boolean(game.imageOnly);
       const favorite = readGameList('kitsune-game-favorites').includes(game.file);
       document.querySelector('#game-detail-favorite').textContent = favorite ? '★ Remove favorite' : '☆ Add favorite';
@@ -2550,6 +2620,10 @@ ducky-clicker\tI_am_me\t609450`;
       discoverGames();
     }
     document.querySelector('#open-games-toolbar').addEventListener('click', showGamesLibrary);
+    document.querySelector('#random-game').addEventListener('click', () => {
+      const playableGames = games.filter(game => !game.imageOnly);
+      if (playableGames.length) openGame(playableGames[Math.floor(Math.random() * playableGames.length)]);
+    });
     document.querySelectorAll('[data-side-action]').forEach(button => button.addEventListener('click', () => {
       const targets = { games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai', tools: '#open-tools', chat: '#open-global-chat', scores: '#open-leaderboard' };
       document.querySelector(targets[button.dataset.sideAction])?.click();
@@ -4298,7 +4372,7 @@ ducky-clicker\tI_am_me\t609450`;
         const open = mobileMenu.classList.toggle('open');
         mobileToggle.setAttribute('aria-expanded', String(open));
       });
-      const mobileActions = { games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai', chat: '#open-global-chat', tools: '#open-tools', settings: '#open-settings', profile: '#open-profile', partners: '#open-partners' };
+      const mobileActions = { search: '#open-library-search', games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai', chat: '#open-global-chat', tools: '#open-tools', settings: '#open-settings', profile: '#open-profile', partners: '#open-partners' };
       mobileMenu?.addEventListener('click', event => {
         const action = event.target.closest('[data-mobile-action]')?.dataset.mobileAction;
         if (action) { mobileMenu.classList.remove('open'); mobileToggle.setAttribute('aria-expanded', 'false'); q(mobileActions[action])?.click(); }
@@ -4632,6 +4706,105 @@ ducky-clicker\tI_am_me\t609450`;
       q('#notifications-overlay')?.addEventListener('click', event => {
         if (event.target === q('#notifications-overlay')) closeOverlay(notificationsOverlay);
       });
+    })();
+  </script>
+  <script>
+    (() => {
+      const overlay = document.querySelector('#library-search-overlay');
+      const input = document.querySelector('#library-search-input');
+      const resultsHost = document.querySelector('#library-search-results');
+      let activeType = 'All';
+      let currentResults = [];
+
+      function renderLibrarySearch() {
+        const query = input.value.trim().toLowerCase();
+        resultsHost.replaceChildren();
+        currentResults = [];
+        if (!query) {
+          const empty = document.createElement('p');
+          empty.className = 'library-search-empty';
+          empty.textContent = 'Start typing to search your library.';
+          resultsHost.append(empty);
+          return;
+        }
+        const matches = [];
+        if (activeType !== 'Music') {
+          games.filter(game => !game.imageOnly && (game.name + ' ' + game.file).toLowerCase().includes(query))
+            .forEach(game => matches.push({ kind: 'Games', title: game.name, detail: 'Game library', image: game.image, game }));
+        }
+        if (activeType !== 'Games') {
+          musicTracks.filter(track => (track.title + ' ' + (track.group || '')).toLowerCase().includes(query))
+            .forEach(track => matches.push({ kind: 'Music', title: track.title, detail: track.group || 'Single', image: musicArtworkForTrack(track) || musicPlaceholderArt(track.title), track }));
+        }
+        currentResults = matches.slice(0, 50);
+        if (!currentResults.length) {
+          const empty = document.createElement('p');
+          empty.className = 'library-search-empty';
+          empty.textContent = musicLoaded ? 'No games or music matched that search.' : 'No games matched. Music is still loading…';
+          resultsHost.append(empty);
+          return;
+        }
+        currentResults.forEach((item, index) => {
+          const button = document.createElement('button');
+          button.type = 'button';
+          button.className = 'library-search-result';
+          const image = document.createElement('img');
+          image.src = item.image || fallbackGameCover();
+          image.alt = '';
+          image.loading = 'lazy';
+          image.onerror = () => { image.onerror = null; image.src = item.kind === 'Music' ? musicPlaceholderArt(item.title) : fallbackGameCover(); };
+          const copy = document.createElement('span');
+          copy.className = 'library-search-result-copy';
+          const title = document.createElement('strong');
+          title.textContent = item.title;
+          const detail = document.createElement('small');
+          detail.textContent = item.detail;
+          copy.append(title, detail);
+          const kind = document.createElement('span');
+          kind.className = 'library-search-kind';
+          kind.textContent = item.kind === 'Music' ? '♫ Music' : '🎮 Game';
+          button.append(image, copy, kind);
+          button.addEventListener('click', () => {
+            const selected = currentResults[index];
+            closeSearch();
+            if (selected.kind === 'Games') openGame(selected.game);
+            else { openMusic(); playMusic(selected.track); }
+          });
+          resultsHost.append(button);
+        });
+        if (matches.length > currentResults.length) {
+          const note = document.createElement('p');
+          note.className = 'library-search-empty';
+          note.textContent = 'Showing the first 50 results. Refine your search to see more.';
+          resultsHost.append(note);
+        }
+      }
+
+      function closeSearch() {
+        overlay.hidden = true;
+        overlay.setAttribute('aria-hidden', 'true');
+      }
+      document.querySelector('#open-library-search').addEventListener('click', async () => {
+        closeAllPanels();
+        document.querySelector('#mobile-menu')?.classList.remove('open');
+        document.querySelectorAll('#updates-overlay, #notifications-overlay').forEach(panel => { panel.hidden = true; panel.setAttribute('aria-hidden', 'true'); });
+        overlay.hidden = false;
+        overlay.setAttribute('aria-hidden', 'false');
+        input.value = '';
+        renderLibrarySearch();
+        input.focus();
+        await loadMusicLibrary();
+        if (!overlay.hidden) renderLibrarySearch();
+      });
+      document.querySelector('#library-search-close').addEventListener('click', closeSearch);
+      input.addEventListener('input', renderLibrarySearch);
+      document.querySelectorAll('[data-library-search-type]').forEach(button => button.addEventListener('click', () => {
+        activeType = button.dataset.librarySearchType;
+        document.querySelectorAll('[data-library-search-type]').forEach(tab => tab.classList.toggle('active', tab === button));
+        renderLibrarySearch();
+      }));
+      overlay.addEventListener('click', event => { if (event.target === overlay) closeSearch(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && !overlay.hidden) closeSearch(); });
     })();
   </script>
 </body>
