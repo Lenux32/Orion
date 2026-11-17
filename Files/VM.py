@@ -6,11 +6,15 @@ Packages are extracted into this program's own directory, without sudo.
 Roblox is a website shortcut; a native Roblox Linux client is not included.
 """
 import atexit
+import calendar
+import datetime
 import json
 import math
 import os
+import platform
 from pathlib import Path
 import queue
+import random
 import re
 import shlex
 import shutil
@@ -22,7 +26,7 @@ import tarfile
 import threading
 import time
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import filedialog, messagebox, simpledialog
 from xml.sax.saxutils import escape
 from concurrent.futures import ThreadPoolExecutor
 
@@ -40,8 +44,7 @@ LOGS = BASE / "logs"
 APPS = BASE / "apps"
 SOCKET = BASE / "control.sock"
 SCRIPT = Path(__file__).resolve()
-TRASH = BASE / "trash"
-for directory in (BASE, RUNTIME, DOWNLOADS, DOCUMENTS, LOGS, APPS, TRASH, BASE / "profiles", BASE / "run", BASE / "icons"):
+for directory in (BASE, RUNTIME, DOWNLOADS, DOCUMENTS, LOGS, APPS, BASE / "profiles", BASE / "run", BASE / "icons"):
     directory.mkdir(parents=True, exist_ok=True)
 
 
@@ -159,25 +162,7 @@ def install_chrome(report):
 
 def write_icons():
     colors = {" ": "None", "a": "#59a6ff", "b": "#f2c35f", "c": "#ffffff", "d": "#111e34", "e": "#ed574a", "f": "#42b875", "g": "#f79539", "h": "#8e65e8"}
-    svg_icons = {
-        "files": '<path d="M5 10h8l2 2h12v12H5z" fill="#f2c35f"/><path d="M5 8h9l2 2H5z" fill="#ffe39a"/>',
-        "firefox": '<circle cx="16" cy="16" r="12" fill="#ed574a"/><path d="M8 22c2-8 10-8 10-15 7 4 7 13 1 17-4 3-9 2-11-2z" fill="#f79539"/><circle cx="17" cy="17" r="5" fill="#8e65e8"/>',
-        "chrome": '<circle cx="16" cy="16" r="12" fill="#f2c35f"/><path d="M16 16 8 29A14 14 0 0 1 4 13h12z" fill="#42b875"/><path d="M16 16H4A14 14 0 0 1 28 9l-6 10z" fill="#ed574a"/><circle cx="16" cy="16" r="6" fill="#59a6ff" stroke="#fff" stroke-width="2"/>',
-        "roblox": '<rect x="5" y="5" width="22" height="22" rx="2" fill="#fff" transform="rotate(18 16 16)"/><rect x="13" y="13" width="6" height="6" fill="#111" transform="rotate(18 16 16)"/>',
-        "terminal": '<rect x="4" y="5" width="24" height="22" rx="4" fill="#15243b" stroke="#59a6ff" stroke-width="2"/><path d="m10 12 4 4-4 4m8 0h5" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>',
-        "settings": '<path d="M14 3h4l1 4 3 2 4-1 2 4-3 3v4l3 3-2 4-4-1-3 2-1 4h-4l-1-4-3-2-4 1-2-4 3-3v-4l-3-3 2-4 4 1 3-2z" fill="#59a6ff" transform="translate(0 -2) scale(.94)"/><circle cx="16" cy="16" r="5" fill="#111"/>',
-        "editor": '<rect x="7" y="4" width="18" height="24" rx="3" fill="#fff"/><path d="M11 11h10M11 16h10M11 21h7" stroke="#59a6ff" stroke-width="2"/>',
-        "calculator": '<rect x="7" y="4" width="18" height="24" rx="3" fill="#15243b" stroke="#59a6ff" stroke-width="2"/><rect x="10" y="7" width="12" height="5" rx="1" fill="#fff"/><path d="M11 17h2m4 0h2m-8 5h2m4 0h2" stroke="#fff" stroke-width="2" stroke-linecap="round"/>',
-        "trash": '<path d="M7 10h18l-2 17H9zM5 7h22M12 7l1-3h6l1 3" fill="#344963" stroke="#9dc7f5" stroke-width="2" stroke-linejoin="round"/><path d="M13 13v9m6-9v9" stroke="#9dc7f5" stroke-width="2"/>',
-        "lock": '<rect x="7" y="14" width="18" height="14" rx="2" fill="#30445e" stroke="#9dc7f5" stroke-width="2"/><path d="M11 14V9a5 5 0 0 1 10 0v5" fill="none" stroke="#9dc7f5" stroke-width="2"/><circle cx="16" cy="20" r="2" fill="#fff"/>',
-        "volume": '<path d="M4 13h6l7-6v18l-7-6H4z" fill="#365b82" stroke="#a9d2ff" stroke-width="2" stroke-linejoin="round"/><path d="M21 12a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14" fill="none" stroke="#a9d2ff" stroke-width="2"/>',
-        "display": '<rect x="3" y="5" width="26" height="19" rx="2" fill="#263b55" stroke="#9dc7f5" stroke-width="2"/><path d="M11 28h10m-5-4v4" stroke="#9dc7f5" stroke-width="2"/>',
-        "start": '<path d="M5 5h10v10H5zm12 0h10v10H17zM5 17h10v10H5zm12 0h10v10H17z" fill="#69a7e8"/>'
-    }
-    for name, artwork in svg_icons.items():
-        (BASE / "icons" / (name + ".svg")).write_text(
-            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">' + artwork + '</svg>')
-    for name in ("files", "firefox", "chrome", "roblox", "terminal", "settings", "editor", "calculator", "trash", "lock", "volume", "display", "start"):
+    for name in ("files", "firefox", "chrome", "roblox", "terminal", "settings", "editor", "calculator", "center", "notes"):
         rows = []
         for y in range(32):
             row = ""
@@ -209,18 +194,8 @@ def write_icons():
                     color = "c" if not (11 <= x <= 21 and y in (12, 17, 22)) else "a"
                 elif name == "calculator" and 7 <= x <= 25 and 3 <= y <= 28:
                     color = "a" if y < 11 else ("c" if x % 5 in (1, 2) and y % 5 in (1, 2) else "d")
-                elif name == "trash" and 7 <= x <= 25 and 10 <= y <= 27:
-                    color = "a" if x in (7, 24, 25) or y in (10, 11, 26, 27) else "d"
-                elif name == "lock" and ((7 <= x <= 25 and 14 <= y <= 27) or (11 <= x <= 21 and 6 <= y <= 16)):
-                    color = "a" if x in (7, 8, 24, 25) or y in (14, 15, 26, 27) else "d"
-                elif name == "volume" and 4 <= x <= 27 and 8 <= y <= 24:
-                    color = "a" if x < 18 or (x < 25 and abs(y - 16) < (x - 18)) else "d"
-                elif name == "display" and 3 <= x <= 28 and 5 <= y <= 24:
-                    color = "a" if x in (3, 4, 27, 28) or y in (5, 6, 23, 24) else "d"
-                elif name == "display" and 12 <= x <= 20 and 25 <= y <= 28:
-                    color = "a"
-                elif name == "start" and 5 <= x <= 26 and 5 <= y <= 26:
-                    color = "a" if x in (5, 6, 15, 16, 25, 26) or y in (5, 6, 15, 16, 25, 26) else "d"
+                elif name in ("center", "notes") and 7 <= x <= 24 and 6 <= y <= 26:
+                    color = "a" if y in (6, 26) or x in (7, 24) else ("c" if name == "notes" and y in (12, 16, 20) and 11 <= x <= 20 else "d")
                 row += color
             rows.append(row)
         lines = ['/* XPM */', 'static char * icon[] = {', '"32 32 {} 1",'.format(len(colors))]
@@ -244,20 +219,20 @@ def write_jwm():
         "s.sendall((json.dumps({'action':sys.argv[1]})+'\\n').encode())\n"
         "s.recv(4096)\n"
         "s.close()\n")
-    entries = [("start", "App Launcher"), ("files", "Files"), ("trash", "Recycle Bin"), ("firefox", "Firefox"), ("chrome", "Google Chrome"), ("roblox", "Roblox (website)"), ("terminal", "Terminal"), ("editor", "Text Editor"), ("calculator", "Calculator"), ("controls", "Display and Volume"), ("lock", "Lock Screen"), ("settings", "Settings"), ("about", "About Sandboxed VM")]
-    menu = "".join('<Program label="{}" icon="{}">{}</Program>'.format(label, BASE / "icons" / (("settings" if app == "about" else "display" if app == "controls" else app) + ".xpm"), escape(command(app))) for app, label in entries)
+    entries = [("center", "Stark Center"), ("files", "Files"), ("firefox", "Firefox"), ("chrome", "Google Chrome"), ("roblox", "Roblox (website)"), ("terminal", "Terminal"), ("editor", "Text Editor"), ("calculator", "Calculator"), ("notes", "Notes"), ("settings", "Settings"), ("about", "About Sandboxed VM")]
+    menu = "".join('<Program label="{}" icon="{}">{}</Program>'.format(label, BASE / "icons" / (app + ".xpm") if app != "about" else BASE / "icons/settings.xpm", escape(command(app))) for app, label in entries)
     buttons = "".join('<TrayButton popup="{}" icon="{}">exec:{}</TrayButton>'.format(label, BASE / "icons" / (app + ".xpm"), escape(command(app))) for app, label in entries[:5])
     xml = '''<?xml version="1.0"?>
 <JWM>
 <RootMenu onroot="123" labeled="true" label="Sandboxed VM" height="30">{menu}<Separator/><Program label="Stop desktop">{stop}</Program></RootMenu>
 <Group><Class>SandboxedVMDesktop</Class><Option>noborder</Option><Option>notitle</Option><Option>nolist</Option><Option>sticky</Option><Option>layer:below</Option></Group>
-<WindowStyle><Font>DejaVu Sans-10</Font><Width>2</Width><Height>30</Height><Corner>3</Corner><Foreground>#f2f2f2</Foreground><Background>#171717</Background><Outline>#303030</Outline><Active><Foreground>#ffffff</Foreground><Background>#252525</Background><Outline>#555555</Outline></Active></WindowStyle>
-<TrayStyle><Font>DejaVu Sans-10</Font><Background>#080808</Background><Foreground>#eeeeee</Foreground><Outline>#222222</Outline><Active><Foreground>#ffffff</Foreground><Background>#292929</Background></Active></TrayStyle>
-<MenuStyle><Font>DejaVu Sans-10</Font><Foreground>#eeeeee</Foreground><Background>#141414</Background><Outline>#333333</Outline><Active><Foreground>#ffffff</Foreground><Background>#303030</Background></Active></MenuStyle>
+<WindowStyle><Font>DejaVu Sans-10</Font><Width>2</Width><Height>30</Height><Corner>3</Corner><Foreground>#eaf2ff</Foreground><Background>#101114</Background><Outline>#292c32</Outline><Active><Foreground>#ffffff</Foreground><Background>#202329</Background><Outline>#626a77</Outline></Active></WindowStyle>
+<TrayStyle><Font>DejaVu Sans-10</Font><Background>#08090b</Background><Foreground>#e5e8ed</Foreground><Outline>#202329</Outline><Active><Foreground>#ffffff</Foreground><Background>#202329</Background></Active></TrayStyle>
+<MenuStyle><Font>DejaVu Sans-10</Font><Foreground>#e5e8ed</Foreground><Background>#0c0d10</Background><Outline>#30343c</Outline><Active><Foreground>#ffffff</Foreground><Background>#292d35</Background></Active></MenuStyle>
 <Tray x="0" y="-1" height="44" autohide="off"><TrayButton label="Start" width="76">root:1</TrayButton><Spacer width="6"/>{buttons}<Spacer width="8"/><TaskList maxwidth="180"/><Clock format="%H:%M" width="70"/></Tray>
-<Desktops width="1" height="1"/><FocusModel>click</FocusModel><MoveMode>opaque</MoveMode><ResizeMode>opaque</ResizeMode>
-<Key mask="A" key="F4">close</Key><Key mask="A" key="Tab">nextstacked</Key><Key mask="4" key="space">exec:{start}</Key><Key mask="4" key="e">exec:{files}</Key><Key mask="C4" key="t">exec:{terminal}</Key><Key key="F1">exec:{about}</Key>
-</JWM>'''.format(menu=menu, buttons=buttons, stop=escape(command("stop")), files=escape(command("files")), terminal=escape(command("terminal")), about=escape(command("about")), start=escape(command("start")))
+<Desktops width="2" height="2"/><FocusModel>click</FocusModel><MoveMode>opaque</MoveMode><ResizeMode>opaque</ResizeMode>
+<Key mask="A" key="F4">close</Key><Key mask="A" key="Tab">nextstacked</Key><Key mask="4" key="e">exec:{files}</Key><Key mask="C4" key="t">exec:{terminal}</Key><Key mask="CA" key="space">exec:{center}</Key><Key mask="CA" key="n">exec:{notes}</Key><Key mask="A" key="F9">showdesktop</Key><Key key="F1">exec:{about}</Key>
+</JWM>'''.format(menu=menu, buttons=buttons, stop=escape(command("stop")), files=escape(command("files")), terminal=escape(command("terminal")), center=escape(command("center")), notes=escape(command("notes")), about=escape(command("about")))
     (BASE / "jwmrc").write_text(xml)
 
 
@@ -284,7 +259,7 @@ class Desktop:
         self.namespace_sandbox = False
         self.status = {"desktop": "Preparing…", "firefox": "Waiting…", "chrome": "Waiting…"}
         self.failures = {}
-        self.config = {"wallpaper": "Black", "browser": "Firefox"}
+        self.config = {"wallpaper": "Stark", "browser": "Firefox", "particle_density": 70, "particle_speed": 1.0, "icon_size": 62, "show_welcome": True}
         try:
             self.config.update(json.loads((BASE / "settings.json").read_text()))
         except (OSError, ValueError):
@@ -296,17 +271,23 @@ class Desktop:
         self.width = self.root.winfo_screenwidth()
         self.height = self.root.winfo_screenheight()
         self.root.geometry("{}x{}+0+0".format(self.width, self.height))
-        self.canvas = tk.Canvas(self.root, highlightthickness=0, bg="#0b1427")
+        self.canvas = tk.Canvas(self.root, highlightthickness=0, bg="#030405")
         self.canvas.pack(fill="both", expand=True)
         self.root.bind("<Configure>", lambda e: self.draw_wallpaper() if e.widget == self.root else None)
         self.root.bind_all("<Control-Alt-t>", lambda e: self.launch("terminal"))
-        self.canvas.bind("<Button-3>", self.desktop_menu)
+        self.root.bind_all("<Control-Alt-space>", lambda e: self.launch("center"))
+        self.root.bind_all("<Control-Alt-l>", lambda e: self.launch("lock"))
+        self.root.bind_all("<Control-Alt-n>", lambda e: self.launch("notes"))
         self.root.protocol("WM_DELETE_WINDOW", self.close)
+        self.particles = []
         self.draw_wallpaper()
         self.shortcuts = []
         self.create_shortcuts()
+        self.seed_particles()
+        self.animate_particles()
         self.welcome = None
-        self.show_welcome()
+        if self.config.get("show_welcome", True):
+            self.show_welcome()
         self.server = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)
         if SOCKET.exists():
             SOCKET.unlink()
@@ -362,7 +343,7 @@ class Desktop:
     def write_welcome_file(self):
         target = DOCUMENTS / "Welcome to Sandboxed VM.txt"
         if not target.exists():
-            target.write_text("Sandboxed VM\nMade by 2pro12342\n\nThis is a real Linux desktop running in a CodeHS sandbox.\n\nFirefox and Google Chrome are native applications. The built-in Files app previews documents and includes a Recycle Bin. Text Editor and Calculator are native Linux programs; Terminal opens in a desktop popup.\n\nRoblox opens the Roblox website. Roblox has no supported native Linux desktop client, so gameplay is not included.\n\nUse Start, the desktop shortcuts, or the taskbar to open apps. Right-click the desktop for quick actions. The Start menu includes search and pinned apps; Display and Volume offers available resolution and audio controls. The lock screen is a convenience screen, not password security.\n\nSave documents in this Documents folder. Use Settings > Create backup to create a ZIP in the CodeHS program directory. Download important work; CodeHS can recycle the running server.\n\nIf the runtime is reset, press Run again and allow the applications to reinstall.\n")
+            target.write_text("Sandboxed VM\nMade by 2pro12342\n\nThis is a real Linux desktop running in a CodeHS sandbox.\n\nFirefox and Google Chrome are native applications. Files, Text Editor, Terminal and Calculator run as native Linux programs.\n\nRoblox opens the Roblox website. Roblox has no supported native Linux desktop client, so gameplay is not included.\n\nUse Start, the desktop shortcuts, or the taskbar to open apps. Drag title bars to move windows; minimize, maximize, and close use the native window manager. Alt+Tab switches windows.\n\nSave documents in this Documents folder. Use Settings > Create backup to create a ZIP in the CodeHS program directory. Download important work; CodeHS can recycle the running server.\n\nIf the runtime is reset, press Run again and allow the applications to reinstall.\n")
 
     def spawn(self, name, args):
         log = (LOGS / (name + ".log")).open("ab", buffering=0)
@@ -397,7 +378,7 @@ class Desktop:
             action = line.strip().lower()
             if action == "status":
                 print(json.dumps({"name": TITLE, "author": AUTHOR, "apps": self.status, "screen": [self.width, self.height], "chrome_namespace_sandbox": self.namespace_sandbox, "processes": {name: process.poll() for name, process in self.processes}, "failures": self.failures}), flush=True)
-            elif action in ("firefox", "chrome", "roblox", "files", "trash", "start", "controls", "lock", "terminal", "editor", "calculator", "settings", "about"):
+            elif action in ("firefox", "chrome", "roblox", "files", "terminal", "editor", "calculator", "settings", "about"):
                 self.events.put(("launch", action))
 
     def watch_display(self):
@@ -442,22 +423,9 @@ class Desktop:
                 self.notice("Setup needs attention", event[1] + ": " + event[2][-1600:])
             elif event[0] == "launch":
                 self.launch(event[1])
-            elif event[0] == "terminal-result":
-                output, text, entry = event[1:]
-                try:
-                    if output.winfo_exists():
-                        output.configure(state="normal")
-                        output.insert("end", text + ("\n" if not text.endswith("\n") else ""))
-                        output.see("end")
-                        output.configure(state="disabled")
-                    if entry.winfo_exists():
-                        entry.configure(state="normal")
-                        entry.focus_set()
-                except tk.TclError:
-                    pass
             elif event[0] == "finished":
                 self.refresh_welcome()
-                print("DESKTOP READY — Sandboxed VM — Made with ❤ by2pro12342", flush=True)
+                print("DESKTOP READY — Sandboxed VM — Made by 2pro12342", flush=True)
         if not self.closed:
             self.root.after(150, self.pump)
 
@@ -466,313 +434,144 @@ class Desktop:
         canvas.delete("wallpaper")
         width = max(1, self.root.winfo_width())
         height = max(1, self.root.winfo_height())
-        # Near-black wallpaper with subtle charcoal curves for a clean Windows-like desktop.
-        palette = {"Black": ("#050505", "#111111", "#1b1b1b"), "Blue": ("#091322", "#15365a", "#3479c5"), "Violet": ("#100d20", "#302052", "#8054bd"), "Forest": ("#071a1b", "#164344", "#31a18d")}
-        background, mid, accent = palette.get(self.config["wallpaper"], palette["Black"])
+        palette = {
+            "Stark": ("#030405", "#080a0e", "#0c1016"),
+            "Blue": ("#03070c", "#08111b", "#0d1824"),
+            "Violet": ("#05040a", "#0e0b16", "#171121"),
+            "Forest": ("#030807", "#08110f", "#0d1915"),
+        }
+        background, mid, accent = palette.get(self.config["wallpaper"], palette["Stark"])
         canvas.configure(bg=background)
-        for index in range(24, 0, -1):
-            inset = index * max(width, height) / 26
-            canvas.create_oval(width * .66 - inset, height * .30 - inset * .60, width * 1.35 + inset, height * 1.48 + inset * .60, fill=mid if index > 11 else accent, outline=background, width=2, tags="wallpaper")
-        canvas.create_oval(width * .70, height * .12, width * 1.22, height * .90, outline="#3a3a3a", width=1, tags="wallpaper")
-        canvas.create_text(width - 38, height - 105, text="SANDBOXED VM", fill="#f0f0f0", font=("DejaVu Sans", 24, "bold"), anchor="e", tags="wallpaper")
-        canvas.create_text(width - 39, height - 72, text="A little Linux desktop, made by " + AUTHOR, fill="#a0a0a0", font=("DejaVu Sans", 11), anchor="e", tags="wallpaper")
-        canvas.create_text(width - 39, height - 38, text="READY WHEN YOU ARE", fill="#c8c8c8", font=("DejaVu Sans", 8, "bold"), anchor="e", tags="wallpaper")
+        # Muted oversized geometry adds depth while keeping every option nearly black.
+        canvas.create_oval(width * .39, -height * .78, width * 1.3, height * 1.05, fill=mid, outline="", tags="wallpaper")
+        canvas.create_oval(width * .56, -height * .55, width * 1.35, height * 1.15, fill=accent, outline="", tags="wallpaper")
+        canvas.create_oval(width * .72, -height * .28, width * 1.34, height * 1.02, fill=mid, outline="", tags="wallpaper")
+        canvas.create_text(width * .63 + 3, height * .49 + 4, text="STARK", fill="#090b0e", font=("DejaVu Sans", max(42, min(92, int(width * .095))), "bold"), tags="wallpaper")
+        canvas.create_text(width * .63, height * .49, text="STARK", fill="#191e26", font=("DejaVu Sans", max(42, min(92, int(width * .095))), "bold"), tags="wallpaper")
+        canvas.create_line(width * .43, height * .60, width * .83, height * .60, fill="#252b34", width=1, tags="wallpaper")
+        canvas.create_text(width * .63, height * .65, text="A DESKTOP THAT'S YOURS  /  " + AUTHOR, fill="#626c79", font=("DejaVu Sans", 9, "bold"), tags="wallpaper")
+        canvas.create_text(34, height - 30, text="STARK  ·  DESKTOP ENVIRONMENT", fill="#626c79", font=("DejaVu Sans", 9, "bold"), anchor="w", tags="wallpaper")
         canvas.tag_lower("wallpaper")
 
-    def desktop_menu(self, event):
-        menu = tk.Menu(self.root, tearoff=0, bg="#202020", fg="#eeeeee", activebackground="#31577f", activeforeground="#ffffff")
-        menu.add_command(label="Start", command=lambda: self.launch("start"))
-        menu.add_command(label="Refresh desktop", command=self.draw_wallpaper)
-        menu.add_separator()
-        menu.add_command(label="Open Files", command=lambda: self.launch("files"))
-        menu.add_command(label="Open Recycle Bin", command=lambda: self.launch("trash"))
-        menu.add_command(label="Display and volume", command=lambda: self.launch("controls"))
-        menu.add_command(label="Personalize", command=self.settings)
-        menu.add_separator()
-        menu.add_command(label="Lock screen", command=lambda: self.launch("lock"))
-        menu.tk_popup(event.x_root, event.y_root)
-        menu.grab_release()
+    def seed_particles(self):
+        self.canvas.delete("particle")
+        self.particles = []
+        width = max(1, self.root.winfo_width())
+        height = max(1, self.root.winfo_height())
+        for _ in range(max(10, int(self.config.get("particle_density", 70)))):
+            x = random.uniform(0, width)
+            y = random.uniform(0, height)
+            radius = random.choice((1, 1, 1, 2))
+            speed = random.uniform(0.5, 1.8) * float(self.config.get("particle_speed", 1.0))
+            color = random.choice(("#323944", "#414a57", "#596372"))
+            dot = self.canvas.create_oval(x, y, x + radius * 2, y + radius * 2, fill=color, outline="", tags="particle")
+            self.particles.append((dot, x, y, radius, speed))
 
-    def start_menu(self):
-        window = self.make_window("Start — Sandboxed VM", 440, 520)
-        window.configure(bg="#151515")
-        pane = tk.Frame(window, bg="#151515", padx=18, pady=16)
-        pane.pack(fill="both", expand=True)
-        tk.Label(pane, text="Start", bg="#151515", fg="#f5f5f5", font=("DejaVu Sans", 20, "bold"), anchor="w").pack(fill="x")
-        search = tk.Entry(pane, bg="#242424", fg="#ffffff", insertbackground="#ffffff", relief="flat", font=("DejaVu Sans", 11))
-        search.pack(fill="x", pady=(12, 10), ipady=8)
-        tk.Label(pane, text="PINNED", bg="#151515", fg="#9a9a9a", font=("DejaVu Sans", 8, "bold"), anchor="w").pack(fill="x", pady=(0, 5))
-        pinned = tk.Frame(pane, bg="#151515")
-        pinned.pack(fill="x", pady=(0, 10))
-        for index, (action, label) in enumerate((("files", "Files"), ("firefox", "Firefox"), ("editor", "Text Editor"), ("calculator", "Calculator"), ("settings", "Settings"), ("trash", "Recycle Bin"))):
-            tk.Button(pinned, text=label, command=lambda name=action: (window.destroy(), self.launch(name)), bg="#242424", fg="#eeeeee", activebackground="#31577f", activeforeground="#ffffff", relief="flat", padx=8, pady=7).grid(row=index // 3, column=index % 3, sticky="ew", padx=(0, 5), pady=3)
-        for column in range(3):
-            pinned.grid_columnconfigure(column, weight=1)
-        apps = [("Files", "files"), ("Firefox", "firefox"), ("Google Chrome", "chrome"), ("Roblox website", "roblox"), ("Terminal", "terminal"), ("Text Editor", "editor"), ("Calculator", "calculator"), ("Settings", "settings"), ("Display and volume", "controls"), ("Recycle Bin", "trash")]
-        listing = tk.Listbox(pane, bg="#202020", fg="#eeeeee", selectbackground="#31577f", relief="flat", font=("DejaVu Sans", 10), activestyle="none", height=10)
-        listing.pack(fill="both", expand=True)
-
-        def refresh(_event=None):
-            query = search.get().strip().lower()
-            listing.delete(0, "end")
-            for label, action in apps:
-                if query in label.lower():
-                    listing.insert("end", label)
-
-        def open_selected(_event=None):
-            selected = listing.curselection()
-            if not selected:
-                return
-            label = listing.get(selected[0])
-            for app_label, action in apps:
-                if app_label == label:
-                    window.destroy()
-                    self.launch(action)
-                    break
-
-        search.bind("<KeyRelease>", refresh)
-        listing.bind("<Double-Button-1>", open_selected)
-        listing.bind("<Return>", open_selected)
-        listing.bind("<Button-1>", lambda _event: None)
-        refresh()
-        footer = tk.Frame(pane, bg="#151515")
-        footer.pack(fill="x", pady=(10, 0))
-        tk.Button(footer, text="Open selected app", command=open_selected, bg="#31577f", fg="white", relief="flat", padx=10, pady=6).pack(side="left")
-        tk.Button(footer, text="Lock", command=lambda: (window.destroy(), self.launch("lock")), bg="#242424", fg="white", relief="flat", padx=12, pady=6).pack(side="right")
-        search.focus_set()
-
-    def file_manager(self, in_trash=False):
-        window = self.make_window("Recycle Bin" if in_trash else "Files — Documents", 760, 500)
-        window.configure(bg="#151515")
-        bar = tk.Frame(window, bg="#202020", padx=10, pady=8)
-        bar.pack(fill="x")
-        location = tk.StringVar(value="Recycle Bin" if in_trash else "Documents")
-        tk.Label(bar, textvariable=location, bg="#202020", fg="#eeeeee", anchor="w").pack(side="left", fill="x", expand=True)
-        body = tk.Frame(window, bg="#151515", padx=10, pady=10)
-        body.pack(fill="both", expand=True)
-        listing = tk.Listbox(body, bg="#202020", fg="#eeeeee", selectbackground="#31577f", relief="flat", width=30, activestyle="none")
-        listing.pack(side="left", fill="both", expand=True, padx=(0, 10))
-        preview = tk.Text(body, bg="#111111", fg="#d0d0d0", relief="flat", wrap="word", padx=12, pady=10, font=("DejaVu Sans Mono", 9))
-        preview.pack(side="left", fill="both", expand=True)
-        preview.insert("1.0", "Select a file to preview its contents.")
-        preview.configure(state="disabled")
-        current = [DOCUMENTS]
-        items = []
-
-        def show_preview(_event=None):
-            selection = listing.curselection()
-            text = "Select a file to preview its contents."
-            if selection and selection[0] < len(items):
-                path = items[selection[0]]
-                if path.is_dir():
-                    text = "Folder\n\nDouble-click to open this folder."
-                else:
-                    try:
-                        text = path.read_text(errors="replace")[:12000]
-                        if not text:
-                            text = "This file is empty."
-                    except (OSError, UnicodeError):
-                        text = "Preview is unavailable for this file type.\n\n{} bytes".format(path.stat().st_size if path.exists() else 0)
-            preview.configure(state="normal")
-            preview.delete("1.0", "end")
-            preview.insert("1.0", text)
-            preview.configure(state="disabled")
-
-        def refresh():
-            listing.delete(0, "end")
-            items[:] = sorted(TRASH.iterdir(), key=lambda path: path.name.lower()) if in_trash else sorted(current[0].iterdir(), key=lambda path: (not path.is_dir(), path.name.lower()))
-            location.set("Recycle Bin" if in_trash else str(current[0].relative_to(DOCUMENTS) or "Documents"))
-            if not in_trash and current[0] == DOCUMENTS:
-                location.set("Documents")
-            for path in items:
-                listing.insert("end", ("[Folder] " if path.is_dir() else "[File] ") + path.name)
-            show_preview()
-
-        def open_item(_event=None):
-            selection = listing.curselection()
-            if not selection or selection[0] >= len(items):
-                return
-            path = items[selection[0]]
-            if not in_trash and path.is_dir():
-                current[0] = path
-                refresh()
-            elif not in_trash:
-                try:
-                    self.spawn("editor", [str(RUNTIME / "usr/bin/mousepad"), str(path)])
-                except OSError as exc:
-                    self.notice("Could not open file", str(exc))
-
-        def move_selected():
-            selection = listing.curselection()
-            if not selection or selection[0] >= len(items):
-                return
-            path = items[selection[0]]
-            if in_trash:
-                original_name = path.name.split("__", 1)[-1]
-                destination = DOCUMENTS / original_name
-                if destination.exists():
-                    destination = DOCUMENTS / (destination.stem + " (restored)" + destination.suffix)
-                try:
-                    shutil.move(str(path), str(destination))
-                except OSError as exc:
-                    self.notice("Could not restore item", str(exc))
-            else:
-                destination = TRASH / (str(int(time.time() * 1000)) + "__" + path.name)
-                try:
-                    shutil.move(str(path), str(destination))
-                except OSError as exc:
-                    self.notice("Could not move item", str(exc))
-            refresh()
-
-        listing.bind("<<ListboxSelect>>", show_preview)
-        listing.bind("<Double-Button-1>", open_item)
-        listing.bind("<Return>", open_item)
-        actions = tk.Frame(window, bg="#151515", padx=10, pady=8)
-        actions.pack(fill="x")
-        if not in_trash:
-            tk.Button(actions, text="Up", command=lambda: (current.__setitem__(0, current[0].parent) if current[0] != DOCUMENTS else None, refresh()), bg="#292929", fg="white", relief="flat", padx=12, pady=6).pack(side="left")
-        tk.Button(actions, text="Restore" if in_trash else "Move to Recycle Bin", command=move_selected, bg="#31577f", fg="white", relief="flat", padx=12, pady=6).pack(side="left", padx=6)
-        if in_trash:
-            tk.Button(actions, text="Empty Recycle Bin", command=lambda: self.empty_trash(refresh), bg="#642f32", fg="white", relief="flat", padx=12, pady=6).pack(side="left")
-        tk.Button(actions, text="Close", command=window.destroy, bg="#292929", fg="white", relief="flat", padx=12, pady=6).pack(side="right")
-        refresh()
-
-    def empty_trash(self, refresh):
-        if not messagebox.askyesno("Empty Recycle Bin", "Permanently delete everything in the Recycle Bin?", parent=self.root):
+    def animate_particles(self):
+        if self.closed:
             return
-        for path in list(TRASH.iterdir()):
-            try:
-                shutil.rmtree(str(path)) if path.is_dir() else path.unlink()
-            except OSError as exc:
-                self.notice("Could not empty Recycle Bin", str(exc))
-        refresh()
+        height = max(1, self.root.winfo_height())
+        updated = []
+        for dot, x, y, radius, speed in self.particles:
+            y -= speed
+            x += math.sin((y + x) * 0.018) * 0.35
+            if y < -radius * 2:
+                y = height + random.uniform(2, 40)
+                x = random.uniform(0, max(1, self.root.winfo_width()))
+            self.canvas.coords(dot, x, y, x + radius * 2, y + radius * 2)
+            updated.append((dot, x, y, radius, speed))
+        self.particles = updated
+        self.root.after(40, self.animate_particles)
 
-    def controls(self):
-        window = self.make_window("Display and Volume", 500, 390)
-        frame = tk.Frame(window, bg="#151515", padx=22, pady=20)
-        frame.pack(fill="both", expand=True)
-        tk.Label(frame, text="Quick settings", bg="#151515", fg="#f2f2f2", font=("DejaVu Sans", 18, "bold")).pack(anchor="w", pady=(0, 18))
-        tk.Label(frame, text="Display resolution", bg="#151515", fg="#cccccc").pack(anchor="w")
-        modes = []
-        try:
-            info = subprocess.check_output(["xrandr", "--query"], env=environment(), stderr=subprocess.DEVNULL, text=True, timeout=4)
-            modes = sorted(set(re.findall(r"^\s+(\d+x\d+)\s", info, re.M)))
-        except (OSError, subprocess.SubprocessError):
-            pass
-        if not modes:
-            modes = ["Unavailable"]
-        mode = tk.StringVar(value="{}x{}".format(self.width, self.height) if "{}x{}".format(self.width, self.height) in modes else modes[0])
-        tk.OptionMenu(frame, mode, *modes).pack(anchor="w", pady=(4, 8))
-
-        def apply_display():
-            if mode.get() == "Unavailable":
-                self.notice("Display settings", "No adjustable display modes were reported.")
-                return
-            try:
-                subprocess.run(["xrandr", "--output", "screen", "--mode", mode.get()], env=environment(), check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, timeout=5)
-                self.width, self.height = [int(value) for value in mode.get().split("x")]
-                self.root.geometry("{}x{}+0+0".format(self.width, self.height))
-                self.position_shortcuts()
-                self.draw_wallpaper()
-            except (OSError, subprocess.SubprocessError) as exc:
-                self.notice("Could not change resolution", str(exc))
-
-        tk.Button(frame, text="Apply resolution", command=apply_display, bg="#31577f", fg="white", relief="flat", padx=10, pady=6).pack(anchor="w", pady=(0, 15))
-        tk.Label(frame, text="Volume", bg="#151515", fg="#cccccc").pack(anchor="w")
-        volume = tk.IntVar(value=60)
-        tk.Scale(frame, from_=0, to=100, orient="horizontal", variable=volume, bg="#151515", fg="#eeeeee", troughcolor="#31577f", highlightthickness=0, length=340).pack(anchor="w", fill="x")
-
-        def apply_volume():
-            pactl = shutil.which("pactl", path=environment().get("PATH"))
-            if not pactl:
-                self.notice("Volume control unavailable", "This sandbox does not provide pactl or a system audio service.")
-                return
-            try:
-                subprocess.run([pactl, "set-sink-volume", "@DEFAULT_SINK@", str(volume.get()) + "%"], env=environment(), check=True, stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, timeout=5)
-                self.notice("Volume updated", "System volume set to {}%.".format(volume.get()))
-            except (OSError, subprocess.SubprocessError) as exc:
-                self.notice("Could not change volume", str(exc))
-
-        tk.Button(frame, text="Apply volume", command=apply_volume, bg="#292929", fg="white", relief="flat", padx=10, pady=6).pack(anchor="w", pady=(10, 0))
-
-    def lock_screen(self):
-        window = tk.Toplevel(self.root)
-        window.configure(bg="#080808")
-        window.title("Locked")
-        window.attributes("-fullscreen", True)
-        window.attributes("-topmost", True)
-        panel = tk.Frame(window, bg="#080808")
-        panel.place(relx=0.5, rely=0.43, anchor="center")
-        clock = tk.Label(panel, bg="#080808", fg="#ffffff", font=("DejaVu Sans", 48, "bold"))
-        clock.pack()
-        date = tk.Label(panel, text=time.strftime("%A, %B %d"), bg="#080808", fg="#b8b8b8", font=("DejaVu Sans", 16))
-        date.pack(pady=(0, 26))
-        tk.Label(panel, text="Sandboxed VM is locked", bg="#080808", fg="#9a9a9a", font=("DejaVu Sans", 11)).pack(pady=(0, 18))
-        tk.Button(panel, text="Unlock desktop", command=window.destroy, bg="#31577f", fg="white", relief="flat", padx=20, pady=10).pack()
-
-        def update_clock():
-            if window.winfo_exists():
-                clock.configure(text=time.strftime("%H:%M"))
-                window.after(1000, update_clock)
-
-        window.bind("<Escape>", lambda _event: window.destroy())
-        update_clock()
+    def draw_shortcut_icon(self, canvas, action):
+        canvas.delete("all")
+        canvas.configure(bg="#0b1427")
+        # Give each crisp, hand-drawn logo the same subtle desktop tile.
+        canvas.create_oval(7, 8, 57, 58, fill="#07101e", outline="")
+        canvas.create_oval(5, 4, 57, 56, fill="#172a43", outline="#405979", width=1)
+        canvas.create_oval(8, 7, 54, 53, outline="#263e5d", width=1)
+        if action == "files":
+            canvas.create_polygon(13, 20, 25, 20, 29, 24, 48, 24, 48, 43, 13, 43, fill="#e6a735", outline="#ffdc82", width=1)
+            canvas.create_polygon(13, 25, 49, 25, 45, 43, 16, 43, fill="#ffd36e", outline="#ffe6a3", width=1)
+            canvas.create_line(17, 29, 45, 29, fill="#fff2c8", width=2)
+            canvas.create_line(17, 40, 43, 40, fill="#f2bd4e", width=1)
+        elif action == "chrome":
+            # Three clean color segments, with Google's white-ringed blue center.
+            for color, start in (("#e94235", 30), ("#fbbc04", 150), ("#34a853", 270)):
+                canvas.create_arc(11, 10, 51, 50, start=start, extent=120, style="pieslice", fill=color, outline=color)
+            canvas.create_oval(21, 20, 41, 40, fill="#f7f9fc", outline="")
+            canvas.create_oval(24, 23, 38, 37, fill="#4285f4", outline="#dceaff", width=1)
+            canvas.create_oval(25, 24, 37, 36, outline="#76a9fa", width=1)
+        elif action == "firefox":
+            # Purple globe with the orange fox/flame sweeping around it.
+            canvas.create_oval(14, 14, 48, 48, fill="#713fc4", outline="#a987f0", width=1)
+            canvas.create_arc(17, 18, 46, 47, start=205, extent=245, style="arc", outline="#a98aff", width=3)
+            canvas.create_polygon(15, 33, 11, 23, 19, 25, 24, 13, 29, 20, 40, 15, 38, 23, 50, 22, 44, 29, 48, 35, 40, 35, 36, 44, 28, 48, 20, 44, 16, 39, fill="#ff812e", outline="#ffb24d", width=1, smooth=True)
+            canvas.create_polygon(17, 32, 26, 25, 38, 24, 34, 31, 27, 35, 22, 41, fill="#ffd45e", outline="", smooth=True)
+            canvas.create_oval(23, 31, 40, 45, fill="#7045cf", outline="")
+        elif action == "roblox":
+            canvas.create_polygon(31, 10, 50, 15, 45, 45, 15, 50, 10, 20, fill="#f7f9fc", outline="#ffffff", width=1)
+            canvas.create_polygon(30, 22, 39, 24, 37, 38, 22, 40, 20, 26, fill="#172a43", outline="")
+        elif action == "terminal":
+            canvas.create_rectangle(11, 13, 51, 47, fill="#091525", outline="#63a9ff", width=2)
+            canvas.create_line(18, 22, 25, 29, 18, 36, fill="#eff6ff", width=3, capstyle="round", joinstyle="round")
+            canvas.create_line(30, 37, 42, 37, fill="#69d3a0", width=3, capstyle="round")
+            canvas.create_oval(44, 16, 47, 19, fill="#69d3a0", outline="")
+        elif action == "settings":
+            points = []
+            for index in range(48):
+                angle = math.pi * index / 24 - math.pi / 2
+                radius = 19 if index % 6 in (0, 1, 2) else 15
+                points.extend((31 + math.cos(angle) * radius, 30 + math.sin(angle) * radius))
+            canvas.create_polygon(points, fill="#91b5e2", outline="#d5e5fa", width=1, smooth=True)
+            canvas.create_oval(24, 23, 38, 37, fill="#172a43", outline="#e0edff", width=2)
+        elif action == "editor":
+            canvas.create_rectangle(16, 11, 45, 49, fill="#f5f8ff", outline="#a9c9f4", width=1)
+            canvas.create_polygon(37, 11, 45, 19, 37, 19, fill="#c8dcf7", outline="")
+            for y in (25, 31, 37):
+                canvas.create_line(21, y, 39, y, fill="#6798d0", width=2)
+            canvas.create_line(21, 43, 34, 43, fill="#6798d0", width=2)
+        elif action == "calculator":
+            canvas.create_rectangle(17, 10, 45, 50, fill="#263d5a", outline="#9dc5f3", width=2)
+            canvas.create_rectangle(21, 15, 41, 23, fill="#d9ebff", outline="")
+            for x, y in ((23, 29), (31, 29), (39, 29), (23, 37), (31, 37), (39, 37), (23, 45), (31, 45), (39, 45)):
+                canvas.create_oval(x - 2, y - 2, x + 2, y + 2, fill="#83b7ef" if (x, y) in ((39, 29), (39, 37), (39, 45)) else "#f0f6ff", outline="")
+        factor = max(0.65, min(1.55, float(self.config.get("icon_size", 62)) / 62))
+        canvas.scale("all", 31, 30, factor, factor)
 
     def create_shortcuts(self):
-        shortcut_data = [
-            ("files", "Files", "#ffd06e"), ("firefox", "Firefox", "#ff9b48"),
-            ("chrome", "Chrome", "#66b2ff"), ("roblox", "Roblox Web", "#ffffff"),
-            ("terminal", "Terminal", "#b5d5ff"), ("settings", "Settings", "#b5c8e6"),
-            ("trash", "Recycle Bin", "#a9d2ff"), ("start", "Apps", "#8fc2ff")
+        entries = [
+            ("center", "Stark Center"), ("files", "Files"), ("firefox", "Firefox"),
+            ("chrome", "Google Chrome"), ("roblox", "Roblox (web)"),
+            ("terminal", "Terminal"), ("editor", "Text Editor"),
+            ("calculator", "Calculator"), ("settings", "Settings"), ("notes", "Notes")
         ]
-        for action, label, color in shortcut_data:
-            tile = tk.Frame(self.root, bg="#171717", highlightthickness=1, highlightbackground="#344a66", cursor="hand2")
-            icon = tk.Canvas(tile, width=42, height=42, bg="#171717", highlightthickness=0)
-            icon.pack(pady=(4, 0))
-            if action == "files":
-                icon.create_rectangle(6, 14, 36, 35, fill="#f2c35f", outline="")
-                icon.create_rectangle(7, 10, 20, 16, fill="#ffe39a", outline="")
-            elif action in ("firefox", "chrome"):
-                icon.create_oval(5, 5, 37, 37, fill="#ed574a" if action == "firefox" else "#f2c35f", outline="")
-                if action == "firefox":
-                    icon.create_arc(8, 7, 36, 36, start=205, extent=230, fill="#f79539", outline="", style="pieslice")
-                    icon.create_oval(18, 18, 29, 29, fill="#8e65e8", outline="")
-                else:
-                    icon.create_arc(5, 5, 37, 37, start=30, extent=115, fill="#42b875", outline="", style="pieslice")
-                    icon.create_oval(15, 15, 27, 27, fill="#59a6ff", outline="#ffffff", width=2)
-            elif action == "roblox":
-                icon.create_polygon(15, 7, 35, 15, 27, 35, 7, 27, fill="#ffffff", outline="")
-                icon.create_polygon(17, 17, 25, 20, 22, 28, 14, 25, fill="#111111", outline="")
-            elif action == "terminal":
-                icon.create_rectangle(5, 7, 37, 35, fill="#15243b", outline="#59a6ff", width=2)
-                icon.create_text(19, 21, text=">_", fill="#ffffff", font=("DejaVu Sans Mono", 13, "bold"))
-            else:
-                icon.create_oval(9, 9, 33, 33, fill="#59a6ff", outline="")
-                icon.create_oval(16, 16, 26, 26, fill="#171717", outline="")
-                for angle in range(0, 360, 45):
-                    icon.create_line(21, 4, 21, 10, fill="#b5c8e6", width=3)
-                    icon.create_line(21, 32, 21, 38, fill="#b5c8e6", width=3)
-                    icon.create_line(4, 21, 10, 21, fill="#b5c8e6", width=3)
-                    icon.create_line(32, 21, 38, 21, fill="#b5c8e6", width=3)
-                    break
-            caption = tk.Label(tile, text=label, bg="#171717", fg=color, font=("DejaVu Sans", 9, "bold"), cursor="hand2")
-            caption.pack(fill="x", pady=(0, 5))
+        for action, label in entries:
+            tile = tk.Frame(self.root, bg="#030405", cursor="hand2")
+            icon_size = int(self.config.get("icon_size", 62))
+            icon = tk.Canvas(tile, width=icon_size, height=icon_size, bg="#030405", highlightthickness=0, cursor="hand2")
+            icon.pack()
+            self.draw_shortcut_icon(icon, action)
+            caption = tk.Label(tile, text=label, bg="#0b1427", fg="#e5efff", font=("DejaVu Sans", 9, "bold"), cursor="hand2")
+            caption.pack(pady=(1, 0))
             for widget in (tile, icon, caption):
-                widget.bind("<Button-1>", lambda event, name=action: self.launch(name))
-                widget.bind("<Enter>", lambda event, frame=tile, canvas=icon, text=caption: (frame.configure(bg="#203956", highlightbackground="#83b7ff"), canvas.configure(bg="#203956"), text.configure(bg="#203956")))
-                widget.bind("<Leave>", lambda event, frame=tile, canvas=icon, text=caption: (frame.configure(bg="#171717", highlightbackground="#344a66"), canvas.configure(bg="#171717"), text.configure(bg="#171717")))
+                widget.bind("<Button-1>", lambda _event, name=action: self.launch(name))
+                widget.bind("<Enter>", lambda _event, item=tile, text=caption: (item.configure(bg="#172a43"), text.configure(bg="#172a43")))
+                widget.bind("<Leave>", lambda _event, item=tile, text=caption: (item.configure(bg="#030405"), text.configure(bg="#030405")))
             self.shortcuts.append(tile)
         self.position_shortcuts()
 
     def position_shortcuts(self):
-        rows = max(1, (self.height - 64) // 86)
-        for index, shortcut in enumerate(self.shortcuts):
-            shortcut.place(x=16 + (index // rows) * 124, y=18 + (index % rows) * 86, width=112, height=72)
+        icon_size = int(self.config.get("icon_size", 62))
+        tile_height = icon_size + 28
+        rows = max(1, (self.height - 64) // tile_height)
+        for index, tile in enumerate(self.shortcuts):
+            tile.place(x=14 + (index // rows) * (icon_size + 42), y=12 + (index % rows) * tile_height, width=icon_size + 26, height=tile_height)
 
     def make_window(self, title, width=600, height=440):
         window = tk.Toplevel(self.root)
         window.title(title)
-        window.configure(bg="#111111")
+        window.configure(bg="#f5f8ff")
         width = min(width, max(320, self.width - 150))
         height = min(height, max(260, self.height - 68))
         x = min(max(138, (self.width - width) // 2), max(0, self.width - width - 10))
@@ -787,65 +586,36 @@ class Desktop:
             self.welcome.deiconify()
             self.welcome.lift()
             return
-        self.welcome = self.make_window("Welcome to Sandboxed VM", 760, 500)
-        self.welcome.configure(bg="#111111")
-        pane = tk.Frame(self.welcome, bg="#111111", padx=22, pady=18)
+        self.welcome = self.make_window("Welcome to Sandboxed VM", 680, 480)
+        self.welcome.configure(bg="#f4f7fc")
+        header = tk.Frame(self.welcome, bg="#142944", padx=30, pady=24)
+        header.pack(fill="x")
+        tk.Label(header, text="Welcome to your desktop", bg="#142944", fg="#f2f7ff", font=("DejaVu Sans", 22, "bold"), anchor="w").pack(fill="x")
+        tk.Label(header, text="A real Linux workspace, ready when you are.", bg="#142944", fg="#b7cce5", font=("DejaVu Sans", 11), anchor="w").pack(fill="x", pady=(5, 0))
+        pane = tk.Frame(self.welcome, bg="#f4f7fc", padx=30, pady=20)
         pane.pack(fill="both", expand=True)
-
-        hero = tk.Frame(pane, bg="#1c1c1c", padx=20, pady=14)
-        hero.pack(fill="x", pady=(0, 14))
-        tk.Label(hero, text="Welcome back.", bg="#1c1c1c", fg="#f5f5f5", font=("DejaVu Sans", 20, "bold"), anchor="w").pack(fill="x")
-        tk.Label(hero, text="Your desktop is ready for whatever you want to do next.", bg="#1c1c1c", fg="#b0b0b0", font=("DejaVu Sans", 10), anchor="w").pack(fill="x", pady=(3, 0))
-
-        content = tk.Frame(pane, bg="#111111")
-        content.pack(fill="both", expand=True)
-        apps = tk.Frame(content, bg="#111111")
-        apps.pack(side="left", fill="both", expand=True, padx=(0, 16))
-        tk.Label(apps, text="QUICK LAUNCH", bg="#111111", fg="#a0a0a0", font=("DejaVu Sans", 9, "bold"), anchor="w").pack(fill="x", pady=(0, 7))
-        cards = tk.Frame(apps, bg="#111111")
-        cards.pack(fill="both", expand=True)
-        for index, (action, title, detail, color) in enumerate((
-            ("firefox", "Firefox", "Browse the web", "#e97837"),
-            ("chrome", "Google Chrome", "Browse with Chrome", "#397ac4"),
-            ("files", "File manager", "Open your Documents", "#bd8b28"),
-            ("editor", "Text Editor", "Write and edit files", "#5479a8"),
-            ("terminal", "Terminal", "Use the Linux shell", "#465f86"),
-            ("settings", "Personalize", "Wallpaper and options", "#735ca7"),
-        )):
-            card = tk.Frame(cards, bg="#1b1b1b", highlightthickness=1, highlightbackground="#333333")
-            card.grid(row=index // 2, column=index % 2, sticky="nsew", padx=(0, 8), pady=(0, 8))
-            tk.Label(card, text="●", bg="#1b1b1b", fg=color, font=("DejaVu Sans", 16), anchor="w").pack(fill="x", padx=11, pady=(6, 0))
-            tk.Label(card, text=title, bg="#1b1b1b", fg="#f0f0f0", font=("DejaVu Sans", 10, "bold"), anchor="w").pack(fill="x", padx=12)
-            tk.Label(card, text=detail, bg="#1b1b1b", fg="#aaaaaa", font=("DejaVu Sans", 8), anchor="w").pack(fill="x", padx=12, pady=(1, 8))
-            card.bind("<Button-1>", lambda event, name=action: self.launch(name))
-            for child in card.winfo_children():
-                child.bind("<Button-1>", lambda event, name=action: self.launch(name))
-            card.bind("<Enter>", lambda event, widget=card: widget.configure(highlightbackground="#777777", bg="#242424"))
-            card.bind("<Leave>", lambda event, widget=card: widget.configure(highlightbackground="#333333", bg="#1b1b1b"))
-            for child in card.winfo_children():
-                child.bind("<Enter>", lambda event, widget=card: widget.configure(highlightbackground="#82a9d8"))
-                child.bind("<Leave>", lambda event, widget=card: widget.configure(highlightbackground="#d9e2ee"))
-        for column in range(2):
-            cards.grid_columnconfigure(column, weight=1, uniform="app-card")
-        for row in range(3):
-            cards.grid_rowconfigure(row, weight=1, uniform="app-card")
-
-        side = tk.Frame(content, bg="#1b1b1b", padx=14, pady=12, highlightthickness=1, highlightbackground="#333333")
-        side.pack(side="right", fill="y")
-        tk.Label(side, text="SYSTEM STATUS", bg="#1b1b1b", fg="#a0a0a0", font=("DejaVu Sans", 9, "bold"), anchor="w").pack(fill="x", pady=(0, 8))
+        tk.Label(pane, text="Getting things ready", bg="#f4f7fc", fg="#20344f", font=("DejaVu Sans", 12, "bold"), anchor="w").pack(fill="x", pady=(0, 10))
         self.status_vars = {}
-        for app, label in (("desktop", "Desktop tools"), ("firefox", "Firefox"), ("chrome", "Chrome")):
-            row = tk.Frame(side, bg="#1b1b1b")
-            row.pack(fill="x", pady=5)
-            tk.Label(row, text=label, bg="#1b1b1b", fg="#dddddd", font=("DejaVu Sans", 9, "bold"), anchor="w").pack(fill="x")
+        for app, label in (("desktop", "Desktop tools"), ("firefox", "Mozilla Firefox"), ("chrome", "Google Chrome")):
+            row = tk.Frame(pane, bg="#ffffff", padx=14, pady=8, highlightthickness=1, highlightbackground="#e0e7f0")
+            row.pack(fill="x", pady=3)
+            tk.Label(row, text="●", bg="#ffffff", fg="#3d86c6", font=("DejaVu Sans", 10), width=2).pack(side="left")
+            tk.Label(row, text=label, width=19, bg="#ffffff", fg="#263a55", font=("DejaVu Sans", 10, "bold"), anchor="w").pack(side="left")
             variable = tk.StringVar(value=self.status[app])
             self.status_vars[app] = variable
-            tk.Label(row, textvariable=variable, bg="#1b1b1b", fg="#aaaaaa", font=("DejaVu Sans", 8), anchor="w", wraplength=150, justify="left").pack(fill="x", pady=(2, 0))
-        tk.Frame(side, bg="#333333", height=1).pack(fill="x", pady=9)
-        tk.Label(side, text="Roblox opens the website.\nNative gameplay is not\nsupported on Linux.", bg="#1b1b1b", fg="#aaaaaa", font=("DejaVu Sans", 8), justify="left", anchor="w").pack(fill="x")
-        tk.Button(side, text="Choose a wallpaper", command=self.settings, bg="#edf3fb", fg="#31577f", activebackground="#dce9f8", relief="flat", padx=9, pady=6, cursor="hand2").pack(anchor="w", pady=(10, 0))
-
-        tk.Label(pane, text="SANDBOXED VM  ·  MADE BY " + AUTHOR.upper(), bg="#111111", fg="#777777", font=("DejaVu Sans", 8, "bold"), anchor="e").pack(fill="x", pady=(8, 0))
+            tk.Label(row, textvariable=variable, bg="#ffffff", fg="#60748d", font=("DejaVu Sans", 10), anchor="w", wraplength=290).pack(side="left", fill="x", expand=True)
+        tk.Label(pane, text="Quick launch", bg="#f4f7fc", fg="#20344f", font=("DejaVu Sans", 12, "bold"), anchor="w").pack(fill="x", pady=(14, 8))
+        buttons = tk.Frame(pane, bg="#f4f7fc")
+        buttons.pack(fill="x")
+        for action, label, color in (("center", "Stark Center", "#245ba8"), ("firefox", "Open Firefox", "#245ba8"), ("chrome", "Open Chrome", "#245ba8"), ("files", "Browse files", "#e5edf7")):
+            is_primary = color == "#245ba8"
+            tk.Button(buttons, text=label, command=lambda name=action: self.launch(name), bg=color, fg="white" if is_primary else "#29415f", activebackground="#19457e" if is_primary else "#d5e2f1", activeforeground="white" if is_primary else "#20344f", relief="flat", padx=14, pady=9, cursor="hand2", font=("DejaVu Sans", 10, "bold" if is_primary else "normal")).pack(side="left", padx=(0, 9))
+        tk.Label(pane, text="Tip: open Stark Center for search and workspace tools. Roblox opens the website; native gameplay isn't available on Linux.", bg="#f4f7fc", fg="#65788f", font=("DejaVu Sans", 9), justify="left", anchor="w", wraplength=610).pack(fill="x", pady=(14, 0))
+        show_at_start = tk.BooleanVar(value=self.config.get("show_welcome", True))
+        def set_welcome_preference():
+            self.config["show_welcome"] = show_at_start.get()
+            (BASE / "settings.json").write_text(json.dumps(self.config))
+        tk.Checkbutton(pane, text="Show this setup window next time", variable=show_at_start, command=set_welcome_preference, bg="#f4f7fc", fg="#65788f", activebackground="#f4f7fc", selectcolor="#ffffff", font=("DejaVu Sans", 9)).pack(anchor="w", pady=(6, 0))
 
     def refresh_welcome(self):
         if self.welcome and self.welcome.winfo_exists():
@@ -854,40 +624,408 @@ class Desktop:
 
     def notice(self, title, text):
         window = self.make_window(title, 620, 330)
-        tk.Label(window, text=title, bg="#111111", fg="#f0f0f0", font=("DejaVu Sans", 17, "bold"), anchor="w").pack(fill="x", padx=24, pady=(22, 10))
-        body = tk.Text(window, wrap="word", bg="#111111", fg="#cccccc", relief="flat", padx=24, pady=8, font=("DejaVu Sans", 10))
+        tk.Label(window, text=title, bg="#f5f8ff", fg="#162d4b", font=("DejaVu Sans", 17, "bold"), anchor="w").pack(fill="x", padx=24, pady=(22, 10))
+        body = tk.Text(window, wrap="word", bg="#f5f8ff", fg="#314963", relief="flat", padx=24, pady=8, font=("DejaVu Sans", 10))
         body.pack(fill="both", expand=True)
         body.insert("1.0", text)
         body.configure(state="disabled")
         tk.Button(window, text="Close", command=window.destroy, padx=20, pady=7).pack(pady=14)
 
+    def feature_hub(self):
+        window = self.make_window("STARK CENTER", 760, 520)
+        window.configure(bg="#080b10")
+        top = tk.Frame(window, bg="#101720", padx=24, pady=18)
+        top.pack(fill="x")
+        tk.Label(top, text="STARK  /  CONTROL CENTER", bg="#101720", fg="#f1f5fa", font=("DejaVu Sans", 18, "bold")).pack(anchor="w")
+        tk.Label(top, text="Apps, workspace tools, and quick actions  ·  Ctrl+Alt+Space", bg="#101720", fg="#8b9bad", font=("DejaVu Sans", 9)).pack(anchor="w", pady=(4, 12))
+        search = tk.Entry(top, bg="#080c12", fg="#e9f1fb", insertbackground="white", relief="flat", font=("DejaVu Sans", 11))
+        search.pack(fill="x", ipady=9)
+        search.insert(0, "Search apps and tools…")
+        body = tk.Frame(window, bg="#080b10", padx=22, pady=16)
+        body.pack(fill="both", expand=True)
+        tk.Label(body, text="QUICK LAUNCH", bg="#080b10", fg="#71869d", font=("DejaVu Sans", 8, "bold")).pack(anchor="w", pady=(0, 9))
+        scroll = tk.Canvas(body, bg="#080b10", highlightthickness=0)
+        bar = tk.Scrollbar(body, orient="vertical", command=scroll.yview)
+        scroll.configure(yscrollcommand=bar.set)
+        bar.pack(side="right", fill="y")
+        scroll.pack(side="left", fill="both", expand=True)
+        grid = tk.Frame(scroll, bg="#080b10")
+        grid_window = scroll.create_window((0, 0), window=grid, anchor="nw")
+        grid.bind("<Configure>", lambda _e: scroll.configure(scrollregion=scroll.bbox("all")))
+        scroll.bind("<Configure>", lambda event: scroll.itemconfigure(grid_window, width=event.width))
+        entries = [
+            ("files", "Files", "Browse Documents"), ("firefox", "Firefox", "Web browser"),
+            ("chrome", "Chrome", "Web browser"), ("roblox", "Roblox", "Open website"),
+            ("terminal", "Terminal", "Command line"), ("editor", "Text Editor", "Edit a document"),
+            ("calculator", "Calculator", "Calculator"), ("notes", "Notes", "Autosaved workspace notes"),
+            ("file_search", "Find files", "Search Documents"), ("recent", "Recent", "Recently opened items"),
+            ("calendar", "Calendar", "Month at a glance"), ("clock", "World clock", "Local and UTC time"),
+            ("clipboard", "Clipboard", "Recent copied text"), ("system_info", "System info", "Runtime details"),
+            ("settings", "Personalize", "Wallpaper and motion"), ("backup", "Back up", "Save documents to ZIP"),
+            ("restore", "Restore", "Extract a document backup"), ("export_settings", "Export settings", "Save preferences JSON"),
+            ("import_settings", "Import settings", "Load preferences JSON"), ("custom_shortcut", "Add shortcut", "Create a quick-launch link"),
+            ("lock", "Lock screen", "Hide the desktop"), ("window_switcher", "Windows", "Switch open windows"),
+            ("trash", "Trash a file", "Move a document to Trash"), ("trash_viewer", "Trash folder", "Restore deleted files"),
+            ("screenshot", "Screenshot", "Capture the desktop if supported"),
+        ]
+        entries.extend(("custom_url:" + item.get("url", ""), item.get("label", "Web shortcut"), item.get("url", "")) for item in self.config.get("custom_shortcuts", []))
+        buttons = []
+        for index, (action, label, detail) in enumerate(entries):
+            card = tk.Frame(grid, bg="#101720", padx=12, pady=10, highlightthickness=1, highlightbackground="#1c2938")
+            card.grid(row=index // 3, column=index % 3, sticky="nsew", padx=5, pady=5)
+            button = tk.Button(card, text=label, command=lambda name=action: self.launch(name), anchor="w", bg="#101720", fg="#eaf2fc", activebackground="#192637", activeforeground="white", relief="flat", font=("DejaVu Sans", 10, "bold"), cursor="hand2")
+            button.pack(fill="x")
+            tk.Label(card, text=detail, bg="#101720", fg="#8293a8", anchor="w", font=("DejaVu Sans", 8)).pack(fill="x", pady=(3, 0))
+            buttons.append((card, (label + " " + detail + " " + action).lower()))
+        for column in range(3):
+            grid.grid_columnconfigure(column, weight=1)
+        grid.grid_rowconfigure(7, weight=1)
+        def filter_entries(_event=None):
+            query = search.get().strip().lower()
+            if query == "search apps and tools…":
+                query = ""
+            for card, text in buttons:
+                if query in text:
+                    card.grid()
+                else:
+                    card.grid_remove()
+        search.bind("<KeyRelease>", filter_entries)
+        search.bind("<FocusIn>", lambda _e: search.delete(0, "end") if search.get() == "Search apps and tools…" else None)
+
+    def notes_app(self):
+        path = DOCUMENTS / "Notes.txt"
+        window = self.make_window("Notes — autosaved", 620, 440)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="NOTES  /  autosaves to Documents", bg="#111923", fg="#eaf2fb", padx=16, pady=12, anchor="w", font=("DejaVu Sans", 11, "bold")).pack(fill="x")
+        editor = tk.Text(window, wrap="word", bg="#0a0f16", fg="#d9e4f0", insertbackground="white", selectbackground="#274668", relief="flat", padx=18, pady=16, font=("DejaVu Sans Mono", 10))
+        editor.pack(fill="both", expand=True, padx=10, pady=10)
+        try:
+            editor.insert("1.0", path.read_text(errors="replace"))
+        except OSError:
+            pass
+        def save(_event=None):
+            try:
+                path.write_text(editor.get("1.0", "end-1c"))
+            except OSError as error:
+                self.notify("Notes could not save: " + str(error))
+        editor.bind("<KeyRelease>", save)
+        window.protocol("WM_DELETE_WINDOW", lambda: (save(), window.destroy()))
+
+    def file_search(self):
+        window = self.make_window("Find files", 620, 430)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="SEARCH DOCUMENTS", bg="#111923", fg="#eaf2fb", padx=16, pady=12, anchor="w", font=("DejaVu Sans", 11, "bold")).pack(fill="x")
+        query = tk.Entry(window, bg="#080c12", fg="white", insertbackground="white", relief="flat", font=("DejaVu Sans", 11))
+        query.pack(fill="x", padx=16, pady=12, ipady=8)
+        listing = tk.Listbox(window, bg="#0b1119", fg="#dce7f5", selectbackground="#1f4b70", relief="flat", font=("DejaVu Sans", 10))
+        listing.pack(fill="both", expand=True, padx=16, pady=(0, 14))
+        matches = []
+        def scan(_event=None):
+            listing.delete(0, "end")
+            matches.clear()
+            term = query.get().strip().lower()
+            for path in DOCUMENTS.rglob("*"):
+                if path.is_file() and term in path.name.lower():
+                    matches.append(path)
+                    listing.insert("end", str(path.relative_to(DOCUMENTS)))
+        def open_match(_event=None):
+            selection = listing.curselection()
+            if selection:
+                self.open_document(matches[selection[0]])
+        query.bind("<KeyRelease>", scan)
+        listing.bind("<Double-Button-1>", open_match)
+        scan()
+
+    def open_document(self, path):
+        path = Path(path)
+        if path.is_file():
+            self.record_recent(path)
+            if path.suffix.lower() in (".txt", ".md", ".py", ".html", ".json", ".csv", ".log"):
+                window = self.make_window(path.name, 650, 460)
+                window.configure(bg="#090d13")
+                view = tk.Text(window, wrap="word", bg="#0a0f16", fg="#d9e4f0", insertbackground="white", relief="flat", padx=18, pady=16, font=("DejaVu Sans Mono", 10))
+                view.pack(fill="both", expand=True)
+                try:
+                    view.insert("1.0", path.read_text(errors="replace"))
+                except OSError as error:
+                    view.insert("1.0", str(error))
+                view.configure(state="disabled")
+            else:
+                self.notify("Preview supports text files. File: " + path.name)
+
+    def record_recent(self, path):
+        recent_path = BASE / "recent.json"
+        try:
+            items = json.loads(recent_path.read_text())
+        except (OSError, ValueError):
+            items = []
+        value = str(path)
+        items = [value] + [item for item in items if item != value]
+        recent_path.write_text(json.dumps(items[:30]))
+
+    def recent_files(self):
+        try:
+            items = json.loads((BASE / "recent.json").read_text())
+        except (OSError, ValueError):
+            items = []
+        window = self.make_window("Recent items", 520, 380)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="RECENTLY OPENED", bg="#111923", fg="#eaf2fb", padx=16, pady=12, anchor="w", font=("DejaVu Sans", 11, "bold")).pack(fill="x")
+        listing = tk.Listbox(window, bg="#0b1119", fg="#dce7f5", selectbackground="#1f4b70", relief="flat")
+        listing.pack(fill="both", expand=True, padx=16, pady=16)
+        valid = [Path(item) for item in items if Path(item).is_file()]
+        for item in valid:
+            listing.insert("end", item.name + "  —  " + str(item.parent))
+        listing.bind("<Double-Button-1>", lambda _e: self.open_document(valid[listing.curselection()[0]]) if listing.curselection() else None)
+
+    def calendar_app(self):
+        today = datetime.date.today()
+        window = self.make_window("Calendar", 420, 360)
+        window.configure(bg="#090d13")
+        tk.Label(window, text=today.strftime("%B %Y").upper(), bg="#111923", fg="#eaf2fb", padx=18, pady=16, font=("DejaVu Sans", 16, "bold")).pack(fill="x")
+        tk.Label(window, text=calendar.month(today.year, today.month), bg="#090d13", fg="#a9c5df", justify="left", font=("DejaVu Sans Mono", 13), padx=30, pady=24).pack(anchor="w")
+        tk.Label(window, text="Today: " + today.strftime("%A, %B %d, %Y"), bg="#090d13", fg="#dce7f5", padx=30).pack(anchor="w")
+
+    def clock_app(self):
+        window = self.make_window("World clock", 400, 240)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="TIME", bg="#111923", fg="#eaf2fb", padx=18, pady=14, anchor="w", font=("DejaVu Sans", 12, "bold")).pack(fill="x")
+        local = tk.Label(window, bg="#090d13", fg="#f2f6fc", font=("DejaVu Sans", 22, "bold"), pady=18)
+        local.pack()
+        utc = tk.Label(window, bg="#090d13", fg="#829ab2", font=("DejaVu Sans", 11))
+        utc.pack()
+        def tick():
+            if not window.winfo_exists():
+                return
+            now = datetime.datetime.now()
+            local.configure(text=now.strftime("%H:%M:%S") + "  ·  Local")
+            utc.configure(text=datetime.datetime.now(datetime.timezone.utc).strftime("%H:%M:%S  ·  UTC"))
+            window.after(1000, tick)
+        tick()
+
+    def system_info(self):
+        info = "STARK VM  /  SYSTEM INFORMATION\n\n" + "Platform: {}\nPython: {}\nScreen: {} × {}\nDocuments: {}\nDesktop status: {}\nFirefox: {}\nChrome: {}\n\nThis is a Linux desktop session running inside a sandbox, not a separate Windows installation.".format(platform.platform(), platform.python_version(), self.width, self.height, DOCUMENTS, self.status.get("desktop"), self.status.get("firefox"), self.status.get("chrome"))
+        self.notice("System information", info)
+
+    def clipboard_app(self):
+        try:
+            text = self.root.clipboard_get().strip()
+            history = getattr(self, "clipboard_history", [])
+            if text and (not history or history[0] != text):
+                history.insert(0, text[:1200])
+                self.clipboard_history = history[:20]
+        except tk.TclError:
+            pass
+        items = getattr(self, "clipboard_history", [])
+        window = self.make_window("Clipboard history", 540, 360)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="RECENT CLIPBOARD TEXT  ·  stored for this session", bg="#111923", fg="#eaf2fb", padx=16, pady=12, anchor="w", font=("DejaVu Sans", 10, "bold")).pack(fill="x")
+        listing = tk.Listbox(window, bg="#0b1119", fg="#dce7f5", selectbackground="#1f4b70", relief="flat")
+        listing.pack(fill="both", expand=True, padx=16, pady=16)
+        for item in items:
+            listing.insert("end", item.replace("\\n", " ")[:100])
+        def copy_back(_event=None):
+            if listing.curselection():
+                self.root.clipboard_clear()
+                self.root.clipboard_append(items[listing.curselection()[0]])
+        listing.bind("<Double-Button-1>", copy_back)
+
+    def notify(self, text):
+        popup = tk.Toplevel(self.root)
+        popup.overrideredirect(True)
+        popup.configure(bg="#172535")
+        popup.geometry("360x82+{}+{}".format(max(10, self.width - 380), max(10, self.height - 110)))
+        tk.Label(popup, text="STARK  ·  NOTIFICATION", bg="#172535", fg="#8cb9e2", font=("DejaVu Sans", 8, "bold"), anchor="w", padx=14, pady=8).pack(fill="x")
+        tk.Label(popup, text=text, bg="#172535", fg="#f0f5fb", wraplength=330, justify="left", anchor="w", padx=14).pack(fill="x")
+        popup.after(3500, popup.destroy)
+
+    def lock_screen(self):
+        overlay = tk.Toplevel(self.root)
+        overlay.title("Locked — Sandboxed VM")
+        overlay.configure(bg="#05070a")
+        overlay.geometry("{}x{}+0+0".format(self.width, self.height))
+        overlay.transient(self.root)
+        overlay.grab_set()
+        tk.Label(overlay, text="STARK", bg="#05070a", fg="#dce5f0", font=("DejaVu Sans", 38, "bold")).pack(pady=(self.height // 4, 8))
+        tk.Label(overlay, text=datetime.datetime.now().strftime("%A  ·  %H:%M"), bg="#05070a", fg="#8294a8", font=("DejaVu Sans", 12)).pack(pady=(0, 24))
+        tk.Button(overlay, text="Unlock desktop", command=overlay.destroy, bg="#172535", fg="white", relief="flat", padx=20, pady=10).pack()
+        overlay.bind("<Escape>", lambda _e: overlay.destroy())
+
+    def window_switcher(self):
+        windows = [child for child in self.root.winfo_children() if isinstance(child, tk.Toplevel) and child.winfo_exists()]
+        if not windows:
+            self.notify("No open windows")
+            return
+        window = self.make_window("Open windows", 440, 340)
+        window.configure(bg="#090d13")
+        listing = tk.Listbox(window, bg="#0b1119", fg="#dce7f5", selectbackground="#1f4b70", relief="flat")
+        listing.pack(fill="both", expand=True, padx=16, pady=16)
+        for child in windows:
+            listing.insert("end", child.title())
+        def raise_window(_event=None):
+            if listing.curselection():
+                windows[listing.curselection()[0]].deiconify()
+                windows[listing.curselection()[0]].lift()
+                window.destroy()
+        listing.bind("<Double-Button-1>", raise_window)
+
+    def trash_viewer(self):
+        trash = HERE / "Trash"
+        trash.mkdir(exist_ok=True)
+        window = self.make_window("Trash", 520, 380)
+        window.configure(bg="#090d13")
+        tk.Label(window, text="TRASH  /  restore or permanently delete", bg="#111923", fg="#eaf2fb", padx=16, pady=12, anchor="w", font=("DejaVu Sans", 10, "bold")).pack(fill="x")
+        listing = tk.Listbox(window, bg="#0b1119", fg="#dce7f5", selectbackground="#1f4b70", relief="flat")
+        listing.pack(fill="both", expand=True, padx=16, pady=12)
+        def refresh():
+            listing.delete(0, "end")
+            for item in sorted(trash.iterdir()):
+                listing.insert("end", item.name)
+        actions = tk.Frame(window, bg="#090d13")
+        actions.pack(fill="x", padx=16, pady=(0, 14))
+        def restore():
+            selected = listing.curselection()
+            if not selected:
+                return
+            source = trash / listing.get(selected[0])
+            target = DOCUMENTS / source.name
+            if target.exists():
+                target = DOCUMENTS / (source.stem + "_restored" + source.suffix)
+            shutil.move(str(source), str(target))
+            refresh()
+        def delete_permanently():
+            selected = listing.curselection()
+            if selected:
+                target = trash / listing.get(selected[0])
+                target.unlink(missing_ok=True)
+                refresh()
+        tk.Button(actions, text="Restore to Documents", command=restore, bg="#245ba8", fg="white", relief="flat", padx=10, pady=7).pack(side="left", padx=(0, 8))
+        tk.Button(actions, text="Delete permanently", command=delete_permanently, bg="#192433", fg="#e5edf7", relief="flat", padx=10, pady=7).pack(side="left")
+        refresh()
+
+    def file_trash(self):
+        path = filedialog.askopenfilename(initialdir=str(DOCUMENTS), title="Choose a document to move to Trash")
+        if not path:
+            return
+        trash = HERE / "Trash"
+        trash.mkdir(exist_ok=True)
+        source = Path(path)
+        target = trash / source.name
+        counter = 1
+        while target.exists():
+            target = trash / (source.stem + "_{}".format(counter) + source.suffix)
+            counter += 1
+        shutil.move(str(source), str(target))
+        self.notify("Moved to Trash: " + target.name)
+
+    def save_settings_file(self, importing=False):
+        if importing:
+            path = filedialog.askopenfilename(title="Import settings", filetypes=[("JSON settings", "*.json")])
+            if path:
+                try:
+                    values = json.loads(Path(path).read_text())
+                    if not isinstance(values, dict):
+                        raise ValueError("Settings file must contain a JSON object")
+                    self.config.update(values)
+                    (BASE / "settings.json").write_text(json.dumps(self.config))
+                    self.draw_wallpaper()
+                    self.seed_particles()
+                    self.notify("Settings imported")
+                except (OSError, ValueError) as error:
+                    self.notice("Import failed", str(error))
+        else:
+            path = filedialog.asksaveasfilename(title="Export settings", defaultextension=".json", filetypes=[("JSON settings", "*.json")])
+            if path:
+                Path(path).write_text(json.dumps(self.config, indent=2))
+                self.notify("Settings exported")
+
+    def restore_backup(self):
+        path = filedialog.askopenfilename(title="Choose a document backup", filetypes=[("ZIP backup", "*.zip")])
+        if not path:
+            return
+        try:
+            import zipfile
+            with zipfile.ZipFile(path) as archive:
+                root = DOCUMENTS.resolve()
+                names = archive.namelist()
+                for name in names:
+                    target = (DOCUMENTS / name).resolve()
+                    if os.path.commonpath((str(root), str(target))) != str(root):
+                        raise ValueError("Backup contains an unsafe path")
+                archive.extractall(DOCUMENTS)
+                nested = DOCUMENTS / "Documents"
+                if nested.is_dir():
+                    for child in nested.iterdir():
+                        destination = DOCUMENTS / child.name
+                        if not destination.exists():
+                            shutil.move(str(child), str(destination))
+                    nested.rmdir()
+            self.notify("Backup restored to Documents")
+        except (OSError, ValueError) as error:
+            self.notice("Restore failed", str(error))
+
+    def add_custom_shortcut(self):
+        label = simpledialog.askstring("New shortcut", "Shortcut name:")
+        if not label:
+            return
+        url = simpledialog.askstring("New shortcut", "Website URL (https://…) :")
+        if not url or not url.startswith(("https://", "http://")):
+            self.notify("Enter a valid http:// or https:// address")
+            return
+        shortcuts = self.config.setdefault("custom_shortcuts", [])
+        shortcuts.append({"label": label[:40], "url": url})
+        (BASE / "settings.json").write_text(json.dumps(self.config))
+        self.notify("Shortcut saved. Open Stark Center to find it.")
+
+    def capture_screenshot(self):
+        target = filedialog.asksaveasfilename(title="Save desktop screenshot", defaultextension=".png", filetypes=[("PNG image", "*.png")])
+        if not target:
+            return
+        try:
+            result = subprocess.run(["import", "-window", "root", target], stdout=subprocess.DEVNULL, stderr=subprocess.PIPE, timeout=15)
+            if result.returncode:
+                raise RuntimeError(result.stderr.decode(errors="replace")[-500:] or "Image capture utility is unavailable")
+            self.notify("Screenshot saved")
+        except (OSError, subprocess.SubprocessError, RuntimeError) as error:
+            self.notice("Screenshot unavailable", "This runtime does not provide a desktop capture utility. " + str(error))
+
     def launch(self, action):
+        if action.startswith("custom_url:"):
+            url = action[len("custom_url:"):]
+            browser = self.config.get("browser", "Firefox").lower()
+            custom_profile = BASE / "profiles/custom"
+            custom_profile.mkdir(parents=True, exist_ok=True)
+            if browser == "chrome" and self.status.get("chrome") == "Installed":
+                self.spawn("chrome", [str(APPS / "chrome/opt/google/chrome/google-chrome"), "--user-data-dir=" + str(custom_profile), "--disable-dev-shm-usage", "--no-default-browser-check", url])
+            elif self.status.get("firefox") == "Installed":
+                self.spawn("firefox", [str(APPS / "firefox/firefox"), "--profile", str(custom_profile), url])
+            else:
+                self.show_welcome()
+            return
+        tool_actions = {
+            "center": self.feature_hub, "notes": self.notes_app, "file_search": self.file_search,
+            "recent": self.recent_files, "calendar": self.calendar_app, "clock": self.clock_app,
+            "clipboard": self.clipboard_app, "system_info": self.system_info,
+            "lock": self.lock_screen, "window_switcher": self.window_switcher,
+            "trash": self.file_trash, "trash_viewer": self.trash_viewer, "restore": self.restore_backup,
+            "export_settings": lambda: self.save_settings_file(False),
+            "import_settings": lambda: self.save_settings_file(True),
+            "custom_shortcut": self.add_custom_shortcut, "screenshot": self.capture_screenshot,
+        }
+        if action in tool_actions:
+            tool_actions[action]()
+            return
+        if action == "backup":
+            self.backup()
+            return
         if action == "stop":
             self.close()
             return
         if action == "about":
-            self.notice("About Sandboxed VM", "Sandboxed VM\nMade by 2pro12342\n\nA real Linux desktop session inside CodeHS.\n\nWindow manager: JWM\nFiles: built-in browser with preview and Recycle Bin\nTerminal: in-app command popup\nText editor: Mousepad\nCalculator: Galculator\nBrowsers: Firefox and Google Chrome\n\nThe lock screen is a convenience screen, not password security. Roblox is a website shortcut; native Roblox gameplay is not supported on Linux.\n\nThis project is a Linux sandbox desktop, not a Microsoft Windows installation.")
+            self.notice("About Sandboxed VM", "Sandboxed VM\nMade by 2pro12342\n\nA real Linux desktop session inside CodeHS.\n\nWindow manager: JWM\nFile manager: PCManFM\nTerminal: xterm\nText editor: Mousepad\nCalculator: Galculator\nBrowsers: Firefox and Google Chrome\n\nRoblox is a website shortcut. Native Roblox gameplay is not supported on Linux.\n\nThis project is a Linux sandbox desktop, not a Microsoft Windows installation.")
             return
         if action == "settings":
             self.settings()
-            return
-        if action == "start":
-            self.start_menu()
-            return
-        if action == "trash":
-            self.file_manager(in_trash=True)
-            return
-        if action == "controls":
-            self.controls()
-            return
-        if action == "lock":
-            self.lock_screen()
-            return
-        if action == "files":
-            self.file_manager()
-            return
-        if action == "terminal":
-            self.terminal_popup()
             return
         if not self.ready:
             self.show_welcome()
@@ -924,49 +1062,14 @@ class Desktop:
             args = choices.get(action)
         if not args:
             return
+        if action == "editor":
+            self.record_recent(DOCUMENTS / "Welcome to Sandboxed VM.txt")
         try:
             process = self.spawn(name, args)
             self.root.lower()
             self.root.after(2400, lambda: self.check_launch(name, process))
         except OSError as exc:
             self.notice("Could not open " + action, str(exc))
-
-    def terminal_popup(self):
-        window = self.make_window("Terminal — Sandboxed VM", 650, 390)
-        window.configure(bg="#0b0b0b")
-        output = tk.Text(window, bg="#0b0b0b", fg="#d9e6f5", insertbackground="#ffffff", relief="flat", padx=14, pady=12, font=("DejaVu Sans Mono", 10), wrap="word")
-        output.pack(fill="both", expand=True, padx=8, pady=(8, 0))
-        output.insert("end", "Sandboxed VM terminal · working directory: Documents\nType a command and press Enter. Commands stop after 30 seconds.\n\n")
-        output.configure(state="disabled")
-        entry = tk.Entry(window, bg="#191919", fg="#ffffff", insertbackground="#ffffff", relief="flat", font=("DejaVu Sans Mono", 10))
-        entry.pack(fill="x", padx=8, pady=9, ipady=8)
-
-        def submit(_event=None):
-            command_text = entry.get().strip()
-            if not command_text:
-                return "break"
-            entry.delete(0, "end")
-            entry.configure(state="disabled")
-            output.configure(state="normal")
-            output.insert("end", "$ " + command_text + "\n")
-            output.configure(state="disabled")
-            output.see("end")
-
-            def execute():
-                try:
-                    result = subprocess.run(["/bin/bash", "-lc", command_text], cwd=str(DOCUMENTS), env=environment(), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, timeout=30)
-                    text = result.stdout.decode(errors="replace") or "(command finished with exit code {})".format(result.returncode)
-                except subprocess.TimeoutExpired as exc:
-                    text = (exc.stdout or b"").decode(errors="replace") + "\nCommand timed out after 30 seconds."
-                except OSError as exc:
-                    text = "Could not run command: " + str(exc)
-                self.events.put(("terminal-result", output, text, entry))
-
-            threading.Thread(target=execute, daemon=True).start()
-            return "break"
-
-        entry.bind("<Return>", submit)
-        entry.focus_set()
 
     def check_launch(self, name, process):
         result = process.poll()
@@ -977,25 +1080,53 @@ class Desktop:
             self.notice("Could not open " + name, "The real application exited with code {}.\n\n{}".format(result, log))
 
     def settings(self):
-        window = self.make_window("Settings — Sandboxed VM", 510, 370)
-        frame = tk.Frame(window, bg="#111111", padx=24, pady=22)
+        window = self.make_window("Settings — Sandboxed VM", 620, 500)
+        window.configure(bg="#090d13")
+        header = tk.Frame(window, bg="#101720", padx=24, pady=18)
+        header.pack(fill="x")
+        tk.Label(header, text="Personalize your desktop", bg="#101720", fg="#f2f7ff", font=("DejaVu Sans", 17, "bold")).pack(anchor="w")
+        tk.Label(header, text="Tune the Stark look, motion, and browser preference.", bg="#101720", fg="#91a4b9", font=("DejaVu Sans", 10)).pack(anchor="w", pady=(3, 0))
+        frame = tk.Frame(window, bg="#090d13", padx=24, pady=18)
         frame.pack(fill="both", expand=True)
-        tk.Label(frame, text="Make it yours", font=("DejaVu Sans", 19, "bold"), bg="#111111", fg="#f0f0f0").pack(anchor="w", pady=(0, 18))
-        tk.Label(frame, text="Wallpaper", bg="#111111", fg="#cccccc").pack(anchor="w")
+        options = tk.Frame(frame, bg="#101720", padx=16, pady=13, highlightthickness=1, highlightbackground="#1c2938")
+        options.pack(fill="x")
+        tk.Label(options, text="APPEARANCE  /  MOTION", bg="#101720", fg="#8298ae", font=("DejaVu Sans", 8, "bold")).pack(anchor="w", pady=(0, 8))
+        tk.Label(options, text="Wallpaper", bg="#101720", fg="#e1eaf4", font=("DejaVu Sans", 10, "bold")).pack(anchor="w")
         wallpaper = tk.StringVar(value=self.config["wallpaper"])
-        tk.OptionMenu(frame, wallpaper, "Black", "Blue", "Violet", "Forest").pack(anchor="w", pady=(3, 10))
-        tk.Label(frame, text="Browser for the Roblox website shortcut", bg="#111111", fg="#cccccc").pack(anchor="w")
+        wallpaper_menu = tk.OptionMenu(options, wallpaper, "Stark", "Blue", "Violet", "Forest")
+        wallpaper_menu.configure(bg="#192433", fg="#eaf2fc", activebackground="#25364a", relief="flat", highlightthickness=0, padx=8)
+        wallpaper_menu["menu"].configure(bg="#101720", fg="#eaf2fc")
+        wallpaper_menu.pack(anchor="w", pady=(3, 8))
+        tk.Label(options, text="Browser for the Roblox website shortcut", bg="#101720", fg="#e1eaf4", font=("DejaVu Sans", 10, "bold")).pack(anchor="w")
         browser = tk.StringVar(value=self.config["browser"])
-        tk.OptionMenu(frame, browser, "Firefox", "Chrome").pack(anchor="w", pady=(3, 12))
+        browser_menu = tk.OptionMenu(options, browser, "Firefox", "Chrome")
+        browser_menu.configure(bg="#192433", fg="#eaf2fc", activebackground="#25364a", relief="flat", highlightthickness=0, padx=8)
+        browser_menu["menu"].configure(bg="#101720", fg="#eaf2fc")
+        browser_menu.pack(anchor="w", pady=(3, 0))
+        density = tk.IntVar(value=int(self.config.get("particle_density", 70)))
+        speed = tk.DoubleVar(value=float(self.config.get("particle_speed", 1.0)))
+        icon_scale = tk.IntVar(value=int(self.config.get("icon_size", 62)))
+        tk.Label(options, text="Particle density", bg="#101720", fg="#e1eaf4", font=("DejaVu Sans", 10, "bold")).pack(anchor="w", pady=(10, 0))
+        tk.Scale(options, from_=10, to=180, orient="horizontal", variable=density, bg="#101720", fg="#dce7f5", troughcolor="#080c12", highlightthickness=0, activebackground="#61a9e8", length=300).pack(anchor="w")
+        tk.Label(options, text="Particle speed", bg="#101720", fg="#e1eaf4", font=("DejaVu Sans", 10, "bold")).pack(anchor="w")
+        tk.Scale(options, from_=0.2, to=3.0, resolution=0.1, orient="horizontal", variable=speed, bg="#101720", fg="#dce7f5", troughcolor="#080c12", highlightthickness=0, activebackground="#61a9e8", length=220, showvalue=False).pack(anchor="w")
+        tk.Label(options, text="Desktop icon size", bg="#101720", fg="#e1eaf4", font=("DejaVu Sans", 10, "bold")).pack(anchor="w")
+        tk.Scale(options, from_=42, to=90, orient="horizontal", variable=icon_scale, bg="#101720", fg="#dce7f5", troughcolor="#080c12", highlightthickness=0, activebackground="#61a9e8", length=220, showvalue=False).pack(anchor="w")
         def save():
-            self.config.update(wallpaper=wallpaper.get(), browser=browser.get())
+            self.config.update(wallpaper=wallpaper.get(), browser=browser.get(), particle_density=density.get(), particle_speed=speed.get(), icon_size=icon_scale.get())
             (BASE / "settings.json").write_text(json.dumps(self.config))
             self.draw_wallpaper()
+            self.seed_particles()
+            for tile in self.shortcuts:
+                tile.destroy()
+            self.shortcuts = []
+            self.create_shortcuts()
             window.destroy()
-        row = tk.Frame(frame, bg="#f5f8ff")
-        row.pack(anchor="w", pady=10)
-        tk.Button(row, text="Save settings", command=save, padx=12, pady=7).pack(side="left", padx=(0, 10))
-        tk.Button(row, text="Create document backup", command=self.backup, padx=12, pady=7).pack(side="left")
+        row = tk.Frame(frame, bg="#090d13")
+        row.pack(anchor="w", pady=(14, 0))
+        tk.Button(row, text="Save changes", command=save, bg="#245ba8", fg="white", activebackground="#19457e", activeforeground="white", relief="flat", padx=14, pady=8, cursor="hand2", font=("DejaVu Sans", 10, "bold")).pack(side="left", padx=(0, 8))
+        tk.Button(row, text="Backup", command=self.backup, bg="#192433", fg="#dce7f5", activebackground="#25364a", relief="flat", padx=10, pady=8, cursor="hand2").pack(side="left", padx=(0, 8))
+        tk.Button(row, text="Restore", command=self.restore_backup, bg="#192433", fg="#dce7f5", activebackground="#25364a", relief="flat", padx=10, pady=8, cursor="hand2").pack(side="left")
 
     def backup(self):
         import zipfile
@@ -1003,7 +1134,7 @@ class Desktop:
         with zipfile.ZipFile(str(output), "w", zipfile.ZIP_DEFLATED) as archive:
             for filename in DOCUMENTS.rglob("*"):
                 if filename.is_file() and not filename.is_symlink():
-                    archive.write(str(filename), str(filename.relative_to(HERE)))
+                    archive.write(str(filename), str(filename.relative_to(DOCUMENTS)))
         self.notice("Backup created", "Your documents were saved to:\n\n" + str(output) + "\n\nEnable CodeHS File I/O to show generated files, then download this ZIP from the CodeHS file list.")
 
     def close(self):
