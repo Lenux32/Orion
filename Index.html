@@ -1108,6 +1108,7 @@
         <button class="sidebar-link" type="button" data-sidebar-action="ai"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L14 18l2.2-.8L19 15Z"/></svg></span><span>AI</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="games"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></span><span>Education</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="music"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M9 8l11-2"/></svg></span><span>Music</span></button>
+        <button class="sidebar-link" type="button" data-sidebar-action="chat"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><span>Chat</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="account"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></span><span>Account</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="settings"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Z"/><path d="m19.1 13.7 1.3 1-1.6 2.8-1.6-.6a7.6 7.6 0 0 1-1.5.9l-.3 1.7h-3.2l-.3-1.7a7.6 7.6 0 0 1-1.5-.9l-1.6.6-1.6-2.8 1.3-1a7.2 7.2 0 0 1 0-1.8l-1.3-1 1.6-2.8 1.6.6a7.6 7.6 0 0 1 1.5-.9l.3-1.7h3.2l.3 1.7a7.6 7.6 0 0 1 1.5.9l1.6-.6 1.6 2.8-1.3 1a7.2 7.2 0 0 1 0 1.8Z"/></svg></span><span>Settings</span></button>
       </nav>
@@ -5396,7 +5397,7 @@ ducky-clicker\tI_am_me\t609450`;
         try { localStorage.setItem(customLinksKey, JSON.stringify(links)); } catch { window.alert('Could not save this shortcut in your browser.'); return; }
         renderCustomSidebarLinks();
       });
-      const actions = { ai: '#open-ai', games: '#open-games-toolbar', music: '#open-music', account: '#open-profile', settings: '#open-settings' };
+      const actions = { ai: '#open-ai', games: '#open-games-toolbar', music: '#open-music', chat: '#open-global-chat', account: '#open-profile', settings: '#open-settings' };
       document.querySelectorAll('[data-sidebar-action]').forEach(button => button.addEventListener('click', () => {
         const action = button.dataset.sidebarAction;
         if (action === 'home') {
