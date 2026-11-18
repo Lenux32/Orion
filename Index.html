@@ -1083,6 +1083,20 @@
     .particles::before,.particles::after{display:none!important}
     .particle:nth-child(n+13){display:none!important}
     .particle{top:auto;bottom:-12px;animation-name:particle-rise!important;animation-duration:22s!important;animation-timing-function:linear!important}
+    /* Visit announcement: understated gray card with a clear outline. */
+    .visit-announcement{position:fixed;z-index:90;right:18px;bottom:18px;width:min(340px,calc(100vw - 36px));padding:17px 44px 15px 17px;border:1px solid #777780;border-radius:14px;color:#f1f1f3;background:rgba(48,49,53,.97);box-shadow:0 12px 36px #0009;font-size:13px;line-height:1.5}
+    .visit-announcement h2{margin:0 0 6px;font-size:16px;letter-spacing:-.01em}
+    .visit-announcement p{margin:5px 0;color:#d1d1d5}
+    .visit-announcement-art{display:grid;width:38px;height:38px;float:right;margin:0 0 8px 12px;place-items:center;border:1px solid #ffffff24;border-radius:10px;color:#dedee3;background:#ffffff0b}
+    .visit-announcement-art svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+    .visit-announcement-link{display:inline-flex;align-items:center;gap:6px;margin-top:8px;padding:7px 10px;border:1px solid #ffffff35;border-radius:8px;color:#f1f1f3;background:#ffffff0b;text-decoration:none;font-size:12px;font-weight:650}
+    .visit-announcement-link:hover{background:#ffffff18}
+    .visit-announcement-link:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    .visit-announcement time{display:block;margin-top:9px;color:#aaaab1;font-size:11px}
+    .visit-announcement-close{position:absolute;top:9px;right:9px;display:grid;width:28px;height:28px;place-items:center;border:1px solid #ffffff28;border-radius:8px;color:#fff;background:#ffffff0c;font:inherit;font-size:20px;line-height:1;cursor:pointer}
+    .visit-announcement-close:hover{background:#ffffff20}
+    .visit-announcement-close:focus-visible{outline:2px solid #fff;outline-offset:2px}
+    @media(max-width:480px){.visit-announcement{right:10px;bottom:10px;width:calc(100vw - 20px)}}
   </style>
 </head>
 <body>
@@ -1356,6 +1370,14 @@
       </div>
     </section>
   </main>
+  <aside class="visit-announcement" id="visit-announcement" aria-labelledby="visit-announcement-title">
+    <button class="visit-announcement-close" id="visit-announcement-close" type="button" aria-label="Close announcement">×</button>
+    <span class="visit-announcement-art" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="13" rx="2"/><path d="M8 21h8m-4-4v4M8 10l2.5 2.5L15 8"/><circle cx="17.5" cy="13.5" r="2.5"/></svg></span>
+    <h2 id="visit-announcement-title">Thank you, Leafy!</h2>
+    <p>We’ve added a VM, and the next update is already in the works. We’re aiming to have it ready by tomorrow.</p>
+    <a class="visit-announcement-link" id="visit-announcement-link" href="https://codehs.com/sandbox/grayfrog5641/python-graphics-tkinter-2/run">Open the VM <span aria-hidden="true">↗</span></a>
+    <time id="visit-announcement-time"></time>
+  </aside>
   <script>
     const homeTagline = document.querySelector('#home-tagline');
     const homeTaglines = [
@@ -5575,6 +5597,28 @@ ducky-clicker\tI_am_me\t609450`;
         if (event.key === 'Escape' && !searchOverlay.hidden) closeSearch();
       });
       renderTabs();
+    })();
+  </script>
+  <script>
+    (() => {
+      const announcement = document.querySelector('#visit-announcement');
+      const timestamp = new Date();
+      const time = document.querySelector('#visit-announcement-time');
+      time.dateTime = timestamp.toISOString();
+      time.textContent = 'Shown ' + timestamp.toLocaleString();
+      document.querySelector('#visit-announcement-close').addEventListener('click', () => announcement.remove());
+      document.querySelector('#visit-announcement-link').addEventListener('click', event => {
+        event.preventDefault();
+        const tab = window.open('about:blank', '_blank');
+        if (!tab) return;
+        tab.document.title = 'VM';
+        tab.document.body.style.cssText = 'margin:0;background:#08080b';
+        const frame = tab.document.createElement('iframe');
+        frame.src = event.currentTarget.href;
+        frame.title = 'VM';
+        frame.style.cssText = 'width:100vw;height:100vh;border:0;background:#08080b';
+        tab.document.body.replaceChildren(frame);
+      });
     })();
   </script>
 </body>
