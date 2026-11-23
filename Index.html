@@ -2192,6 +2192,15 @@
       const image = GAME_IMAGE_OVERRIDES.get(gameDuplicateKey(game.name)) || truffledGameImage(game.name) || seededImage || (seraphCover ? SERAPH_COVER_BASE + seraphCover : '') || game.image;
       return { ...game, image, title: game.name, img: image };
     });
+    games.unshift({
+      file: 'gta-zip-wf-launcher.html',
+      name: '🔥 HOT · Grand Theft Auto',
+      image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6ENZzBo0mz0a861FxE2nOUAS6MFRKOMCY27OGxAYLC6y6GPw5GFGHeY:https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/MichaelinGTA5isshown.jpg&s=10',
+      url: 'https://gta.zip.wf/launcher.html',
+      title: '🔥 HOT · Grand Theft Auto',
+      img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl6ENZzBo0mz0a861FxE2nOUAS6MFRKOMCY27OGxAYLC6y6GPw5GFGHeY:https://www.notebookcheck.net/fileadmin/Notebooks/News/_nc5/MichaelinGTA5isshown.jpg&s=10',
+      hot: true
+    });
     games.push({
       file: 'su-battle-royale.html',
       name: 'Su Battle Royale',
@@ -5482,6 +5491,7 @@ ducky-clicker\tI_am_me\t609450`;
             const ga = games.find(item => item.name === a.dataset.gameName);
             const gb = games.find(item => item.name === b.dataset.gameName);
             if (!ga || !gb) return 0;
+            if (ga.hot !== gb.hot) return ga.hot ? -1 : 1;
             const hasArtworkA = Boolean(ga.image) && !ga.image.startsWith('data:image/svg+xml');
             const hasArtworkB = Boolean(gb.image) && !gb.image.startsWith('data:image/svg+xml');
             if (hasArtworkA !== hasArtworkB) return hasArtworkA ? -1 : 1;
