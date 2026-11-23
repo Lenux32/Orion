@@ -3208,6 +3208,10 @@ ducky-clicker\tI_am_me\t609450`;
     document.querySelector('#game-launch-cancel').addEventListener('click', () => closeGameLaunchDialog());
     gameLaunchDialog.addEventListener('click', event => { if (event.target === gameLaunchDialog) closeGameLaunchDialog(); });
     function openGame(game) {
+      if (game?.url) {
+        launchGameInBlank(game, null, true);
+        return;
+      }
       requestGameLaunch(game);
     }
     function openGameInFrame(game) {
