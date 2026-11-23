@@ -1297,11 +1297,31 @@
     .proxy-loading-card p{margin:0;color:#aaa8b3;font-size:13px;line-height:1.5}
     .proxy-loading-card a{display:inline-block;margin-top:13px;color:#d9bcff}
     .proxy-close{position:absolute;z-index:3;top:12px;right:12px;width:40px;height:40px;border:1px solid #ffffff30;border-radius:12px;color:#fff;background:rgba(10,10,12,.78);font-size:23px;cursor:pointer;backdrop-filter:blur(12px)}
+    .proxy-nav-toggle{position:absolute;z-index:5;top:12px;right:60px;min-height:40px;padding:0 12px;border:1px solid #ffffff30;border-radius:12px;color:#fff;background:rgba(10,10,12,.82);font:inherit;font-size:12px;cursor:pointer;backdrop-filter:blur(12px)}
+    .proxy-nav-toggle:hover{background:rgba(35,32,42,.96)}
+    body.proxy-nav-hidden .app-sidebar{display:none!important}
     .proxy-credit{position:absolute;z-index:3;right:12px;bottom:12px;display:flex;align-items:center;gap:7px;max-width:calc(100% - 24px);padding:6px 9px;border:1px solid #ffffff20;border-radius:10px;color:#d5d1dc;background:rgba(8,8,10,.76);font-size:10px;text-decoration:none;backdrop-filter:blur(12px)}
     .proxy-credit img{width:22px;height:22px;border-radius:5px;object-fit:cover}
     .proxy-credit:hover{border-color:#c5a5ff88;color:#fff}
-    @media(prefers-reduced-motion:reduce){.proxy-loading-card,.proxy-close,.proxy-credit{backdrop-filter:none}}
-    </style>
+    .site-app-bar-toggle{position:fixed;z-index:45;top:82px;right:16px;display:grid;width:38px;height:38px;place-items:center;border:1px solid #ffffff28;border-radius:12px;color:#f4efff;background:rgba(15,14,19,.88);box-shadow:0 8px 24px #0008;backdrop-filter:blur(12px);cursor:pointer}
+    .site-app-bar-toggle:hover{border-color:#c5a5ff88;background:#211b2b}
+    .site-app-bar-toggle svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+    body.site-app-bar-hidden .app-sidebar{display:none!important}
+    body.site-app-bar-hidden .site-app-bar-toggle{top:12px;right:50%;transform:translateX(50%)}
+    @media(max-width:700px){.site-app-bar-toggle{top:72px;right:10px;width:35px;height:35px}body.site-app-bar-hidden .site-app-bar-toggle{top:9px}}
+    @media(prefers-reduced-motion:reduce){.proxy-loading-card,.proxy-close,.proxy-credit,.site-app-bar-toggle{backdrop-filter:none}}
+    /* Keep the show/hide arrow right beside the navigation bar. */
+    .app-sidebar>.site-app-bar-toggle{position:static;top:auto;right:auto;transform:none;display:grid;width:36px;height:36px;flex:0 0 36px;margin:0;border-color:#ffffff18;border-radius:11px;background:#ffffff08;box-shadow:none}
+    body.site-app-bar-hidden .app-sidebar>.site-app-bar-toggle{position:fixed;top:12px;right:50%;display:grid;transform:translateX(50%)}
+    @media(max-width:700px){.app-sidebar>.site-app-bar-toggle{width:32px;height:32px;flex-basis:32px}.sidebar-nav{flex:1 1 auto}}
+    @media(max-width:420px){.app-sidebar>.site-app-bar-toggle{width:30px;height:30px;flex-basis:30px}}
+      /* Leave the app-bar toggle reachable after hiding the navigation. */
+    body.site-app-bar-hidden .app-sidebar{display:flex!important;top:12px!important;right:auto!important;left:50%!important;width:52px!important;height:52px!important;min-height:52px!important;gap:0!important;padding:7px!important;justify-content:center!important;overflow:visible!important;transform:translateX(-50%)!important;border:1px solid #333139!important;border-radius:15px!important;background:rgba(12,12,15,.92)!important;box-shadow:0 8px 24px #0009!important}
+    body.site-app-bar-hidden .app-sidebar>:not(.site-app-bar-toggle){display:none!important}
+    body.site-app-bar-hidden .app-sidebar>.site-app-bar-toggle{position:static!important;top:auto!important;right:auto!important;display:grid!important;transform:none!important;margin:0!important}
+    /* Hide the date, battery, and clock status bar site-wide. */
+    .sylune-statusbar{display:none!important}
+  </style>
 </head>
 <body>
   <header class="browser" aria-label="Browser toolbar"><div class="nav" aria-hidden="true"><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6M9 12h11"/></svg><svg class="toolbar-icon" viewBox="0 0 24 24"><path d="M20 11a8 8 0 0 0-14-5L4 8"/><path d="M4 4v4h4M4 13a8 8 0 0 0 14 5l2-2"/><path d="M20 20v-4h-4"/></svg></div><div class="address"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v10a1 1 0 0 1-1 1h-6v-7h-4v7H4a1 1 0 0 1-1-1z"/></svg><span>Stark:home</span><kbd>Ctrl K</kbd></div><div class="mini-player" id="mini-player" hidden><button class="mini-art-button" id="mini-open-music" type="button" title="Open music library" aria-label="Open music library"><span class="mini-vinyl"><img id="mini-art" alt=""></span></button><button class="mini-track" id="mini-track" type="button" title="Open music library"><strong id="mini-title">Nothing playing</strong><small id="mini-subtitle">Choose a song</small></button><label class="mini-progress" aria-label="Track progress"><span id="mini-current-time">0:00</span><input id="mini-seek" type="range" min="0" max="100" value="0" aria-label="Seek within track"><span id="mini-duration">0:00</span></label><div class="mini-controls"><button class="mini-control" id="mini-previous" type="button" aria-label="Previous track" title="Previous track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 5v14M19 6 9 12l10 6z"/></svg></button><button class="mini-control mini-play" id="mini-play" type="button" aria-label="Play" title="Play"><svg class="music-icon music-icon-filled" viewBox="0 0 24 24" aria-hidden="true"><path d="m8 5 11 7-11 7z"/></svg></button><button class="mini-control" id="mini-next" type="button" aria-label="Next track" title="Next track"><svg class="music-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 5v14M5 6l10 6-10 6z"/></svg></button></div></div><button class="mobile-menu-button" id="mobile-menu-toggle" type="button" aria-label="Open apps menu" aria-expanded="false">☰</button><div class="mobile-menu" id="mobile-menu" aria-label="Apps menu"><button type="button" data-mobile-action="search">⌕ Search</button><button type="button" data-mobile-action="games">🎮 Games</button><button type="button" data-mobile-action="music">♫ Music</button><button type="button" data-mobile-action="ai">✦ AI chat</button><button type="button" data-mobile-action="chat">☏ Global chat</button><button type="button" data-mobile-action="tools">⚒ Tools</button><button type="button" data-mobile-action="settings">⚙ Settings</button><button type="button" data-mobile-action="profile">👤 Profile</button><button type="button" data-mobile-action="partners">♡ Partners</button></div><div class="tools"><button class="toolbar-button" id="open-library-search" type="button" title="Search games and music" aria-label="Search games and music"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.8" cy="10.8" r="6.8"/><path d="m16 16 4.5 4.5"/></svg></button><button class="toolbar-button" id="open-games-toolbar" type="button" title="Open Games" aria-label="Open Games"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></button><button class="toolbar-button" id="open-music" type="button" title="Open Music player" aria-label="Open Music player"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="M12 3v10.55A4 4 0 1014 17V7h4V3h-6z"/></svg></button><button class="toolbar-button" id="open-ai" type="button" title="Open AI chat" aria-label="Open AI chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="7" width="14" height="13" rx="3"/><path d="M12 3v4M9 12h.01M15 12h.01M9 16h6M3 12v4M21 12v4"/></svg></button><button class="toolbar-button" id="open-global-chat" type="button" title="Open Global Chat" aria-label="Open Global Chat"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></button><button class="toolbar-button" id="open-notifications" type="button" title="Notifications" aria-label="Open notifications"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/></svg><span class="notification-count" id="notification-count" hidden></span><span class="notification-dot" id="notification-dot" aria-hidden="true"></span></button><button class="toolbar-button" id="open-partners" type="button" title="Partners" aria-label="Open Partners"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3.5 20a5.5 5.5 0 0 1 11 0M14 15a4.5 4.5 0 0 1 6.5 4"/></svg></button><button id="open-leaderboard" type="button" hidden aria-hidden="true">Open leaderboard</button><button class="toolbar-button" id="open-tools" type="button" title="Tools" aria-label="Open Tools"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M14.7 6.3a5 5 0 0 0-6.4 6.4L3 18a2.1 2.1 0 0 0 3 3l5.3-5.3a5 5 0 0 0 6.4-6.4l-3 3-3-3 3-3Z"/><path d="m17 7 2-2 2 2-2 2"/></svg></button><button class="toolbar-button" id="open-settings" type="button" title="Settings" aria-label="Settings"><svg class="toolbar-icon" viewBox="0 0 24 24" style="fill:currentColor;stroke:none" aria-hidden="true"><path d="m18.4 13 .1-1-.1-1 2-1.5-2-3.5-2.4 1a8 8 0 0 0-1.7-1L14 3h-4l-.4 2.9a8 8 0 0 0-1.7 1l-2.4-1-2 3.5 2 1.5-.1 1 .1 1-2 1.5 2 3.5 2.4-1a8 8 0 0 0 1.7 1L10 21h4l.4-2.9a8 8 0 0 0 1.7-1l2.4 1 2-3.5-2-1.5ZM12 15.5a3.5 3.5 0 1 1 0-7 3.5 3.5 0 0 1 0 7Z"/></svg></button><button class="toolbar-button" id="open-profile" type="button" title="Profile" aria-label="Profile"><svg class="toolbar-icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></button></div></header>
@@ -1328,11 +1348,12 @@
         <button class="sidebar-link" type="button" data-sidebar-action="ai" aria-label="AI" title="AI"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L14 18l2.2-.8L19 15Z"/></svg></span><span>AI</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="games" aria-label="Education" title="Education"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></span><span>Education</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="music" aria-label="Music" title="Music"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M9 8l11-2"/></svg></span><span>Music</span></button>
-        <button class="sidebar-link" type="button" data-sidebar-action="proxy" aria-label="Proxy" title="Proxy"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5M16 16l2 2 3-3"/></svg></span><span>Proxy</span></button>
+        <button class="sidebar-link" type="button" data-sidebar-action="proxy" aria-label="Proxy" title="Proxy"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></svg></span><span>Proxy</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="chat" aria-label="Chat" title="Chat"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><span>Chat</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="account" aria-label="Account" title="Account"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></span><span>Account</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="settings" aria-label="Settings" title="Settings"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Z"/><path d="m19.1 13.7 1.3 1-1.6 2.8-1.6-.6a7.6 7.6 0 0 1-1.5.9l-.3 1.7h-3.2l-.3-1.7a7.6 7.6 0 0 1-1.5-.9l-1.6.6-1.6-2.8 1.3-1a7.2 7.2 0 0 1 0-1.8l-1.3-1 1.6-2.8 1.6.6a7.6 7.6 0 0 1 1.5-.9l.3-1.7h3.2l.3 1.7a7.6 7.6 0 0 1 1.5.9l1.6-.6 1.6 2.8-1.3 1a7.2 7.2 0 0 1 0 1.8Z"/></svg></span><span>Settings</span></button>
       </nav>
+      <button class="site-app-bar-toggle" id="site-app-bar-toggle" type="button" aria-label="Hide app bar" aria-expanded="true" title="Hide app bar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg></button>
       <a class="sidebar-join" href="https://discord.gg/unblockedgames" target="_blank" rel="noopener noreferrer"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7 5.4a18 18 0 0 0-4.4-1.4l-.5 1a16 16 0 0 0-5.6 0l-.5-1a18 18 0 0 0-4.4 1.4C1.5 9.5.8 13.5 1.2 17.4a18 18 0 0 0 5.4 2.7l1.2-2a11 11 0 0 1-1.9-.9l.5-.4a12.8 12.8 0 0 0 11.2 0l.5.4a11 11 0 0 1-1.9.9l1.2 2a18 18 0 0 0 5.4-2.7c.5-4.6-.8-8.5-3.1-12Z"/></svg><span>Join Discord</span></a>
       <button class="sidebar-bottom-search" id="sidebar-bottom-search" type="button">⌕ Search or enter URL</button>
     </aside>
@@ -1435,6 +1456,7 @@
         <div class="proxy-loading-card"><img src="https://github.com/Lenux32/Orion/blob/main/download%20-%202026-11-23T141206.551.png?raw=true" alt="Proxy app artwork"><h2 id="proxy-loading-title">Loading Proxy…</h2><p id="proxy-loading-message">Fetching the app source from Lenux32’s Orion repository.</p><a href="https://raw.githubusercontent.com/Lenux32/Orion/refs/heads/main/Proxy" target="_blank" rel="noopener noreferrer">Open source directly</a></div>
       </div>
       <iframe class="proxy-frame" id="proxy-frame" title="Proxy app" allow="clipboard-read; clipboard-write; fullscreen" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+      <button class="proxy-nav-toggle" id="proxy-nav-toggle" type="button" aria-pressed="false">Hide app bar</button>
       <button class="proxy-close" id="proxy-close" type="button" aria-label="Close Proxy" title="Close Proxy">×</button>
       <a class="proxy-credit" href="https://github.com/Lenux32/Orion" target="_blank" rel="noopener noreferrer"><img src="https://github.com/Lenux32/Orion/blob/main/download%20-%202026-11-23T141206.551.png?raw=true" alt=""><span>Proxy source &amp; artwork: Lenux32 · Orion</span></a>
     </section>
@@ -5896,10 +5918,19 @@ ducky-clicker\tI_am_me\t609450`;
         loadProxySource();
       }
       document.querySelector('#open-proxy').addEventListener('click', openProxy);
+      const proxyNavToggle = document.querySelector('#proxy-nav-toggle');
+      proxyNavToggle.addEventListener('click', () => {
+        const hidden = document.body.classList.toggle('proxy-nav-hidden');
+        proxyNavToggle.textContent = hidden ? 'Show app bar' : 'Hide app bar';
+        proxyNavToggle.setAttribute('aria-pressed', String(hidden));
+      });
       document.querySelector('#proxy-close').addEventListener('click', () => {
         proxyPanel.classList.remove('open');
         proxyPanel.hidden = true;
         proxyPanel.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('proxy-nav-hidden');
+        proxyNavToggle.textContent = 'Hide app bar';
+        proxyNavToggle.setAttribute('aria-pressed', 'false');
       });
 
       const sourceUrl = 'https://raw.githubusercontent.com/Lenux32/Orion/refs/heads/main/Chat';
@@ -5968,6 +5999,16 @@ ducky-clicker\tI_am_me\t609450`;
       document.querySelector('#sidebar-bottom-search').addEventListener('click', () => sidebarInput.focus());
       const sidebar = document.querySelector('.app-sidebar');
       const collapseButton = document.querySelector('#sidebar-collapse-toggle');
+      const siteAppBarToggle = document.querySelector('#site-app-bar-toggle');
+      siteAppBarToggle.addEventListener('click', () => {
+        const hidden = document.body.classList.toggle('site-app-bar-hidden');
+        siteAppBarToggle.setAttribute('aria-expanded', String(!hidden));
+        siteAppBarToggle.setAttribute('aria-label', hidden ? 'Show app bar' : 'Hide app bar');
+        siteAppBarToggle.title = hidden ? 'Show app bar' : 'Hide app bar';
+        siteAppBarToggle.innerHTML = hidden
+          ? '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 10 6 6 6-6"/></svg>'
+          : '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 14 6-6 6 6"/></svg>';
+      });
       try {
         if (localStorage.getItem('kitsune-sidebar-collapsed') === 'true') document.body.classList.add('app-sidebar-collapsed');
       } catch { /* Keep the sidebar expanded if storage is unavailable. */ }
