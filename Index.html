@@ -1285,6 +1285,22 @@
     main::after{display:none!important}
     .flag-counter{position:fixed;z-index:30;left:12px;bottom:12px;display:block;max-width:min(150px,calc(100vw - 24px));line-height:0;opacity:.9}
     .flag-counter img{display:block;width:100%;height:auto;border:0}
+    /* Full-screen Proxy app view and its unobtrusive owner credits. */
+    .proxy-panel{position:absolute;z-index:30;inset:0;display:none;overflow:hidden;background:#000;color:#f7f6f8}
+    .proxy-panel.open{display:block}
+    .proxy-frame{position:absolute;inset:0;width:100%;height:100%;border:0;background:#000}
+    .proxy-loading{position:absolute;z-index:1;inset:0;display:grid;place-items:center;padding:24px;background:#000;text-align:center}
+    .proxy-loading[hidden]{display:none}
+    .proxy-loading-card{width:min(380px,100%);padding:25px;border:1px solid #ffffff20;border-radius:18px;background:#111114}
+    .proxy-loading-card img{display:block;width:72px;height:72px;margin:0 auto 15px;border-radius:15px;object-fit:cover}
+    .proxy-loading-card h2{margin:0 0 7px;font-size:20px}
+    .proxy-loading-card p{margin:0;color:#aaa8b3;font-size:13px;line-height:1.5}
+    .proxy-loading-card a{display:inline-block;margin-top:13px;color:#d9bcff}
+    .proxy-close{position:absolute;z-index:3;top:12px;right:12px;width:40px;height:40px;border:1px solid #ffffff30;border-radius:12px;color:#fff;background:rgba(10,10,12,.78);font-size:23px;cursor:pointer;backdrop-filter:blur(12px)}
+    .proxy-credit{position:absolute;z-index:3;right:12px;bottom:12px;display:flex;align-items:center;gap:7px;max-width:calc(100% - 24px);padding:6px 9px;border:1px solid #ffffff20;border-radius:10px;color:#d5d1dc;background:rgba(8,8,10,.76);font-size:10px;text-decoration:none;backdrop-filter:blur(12px)}
+    .proxy-credit img{width:22px;height:22px;border-radius:5px;object-fit:cover}
+    .proxy-credit:hover{border-color:#c5a5ff88;color:#fff}
+    @media(prefers-reduced-motion:reduce){.proxy-loading-card,.proxy-close,.proxy-credit{backdrop-filter:none}}
     </style>
 </head>
 <body>
@@ -1292,6 +1308,7 @@
   <button class="toolbar-reveal" id="toolbar-reveal" type="button" aria-label="Show top toolbar">Show toolbar</button>
   <main>
     <nav class="workspace-tabs" id="workspace-tabs" aria-label="Open tabs" role="tablist"><button class="workspace-new-tab" id="workspace-new-tab" type="button" aria-label="Open a new tab" title="New tab">＋</button></nav>
+    <button id="open-proxy" type="button" hidden aria-hidden="true">Open Proxy</button>
     <section class="search-work-overlay" id="search-work-overlay" aria-hidden="true" hidden>
       <div class="search-work-card" role="status" aria-live="polite"><div class="search-work-spinner" aria-hidden="true"></div><h2 id="search-work-title">Loading…</h2><p id="search-work-message">Searching your request…</p><button class="search-work-close" id="search-work-close" type="button" hidden>Close</button></div>
     </section>
@@ -1311,6 +1328,7 @@
         <button class="sidebar-link" type="button" data-sidebar-action="ai" aria-label="AI" title="AI"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="m12 3 1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8L12 3Z"/><path d="m19 15 .8 2.2L22 18l-2.2.8L19 21l-.8-2.2L14 18l2.2-.8L19 15Z"/></svg></span><span>AI</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="games" aria-label="Education" title="Education"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7.5 8.5h9a4.5 4.5 0 0 1 4.3 5.8l-.8 2.6a2 2 0 0 1-3.1 1l-3-2.1h-3.8l-3 2.1a2 2 0 0 1-3.1-1l-.8-2.6a4.5 4.5 0 0 1 4.3-5.8Z"/><path d="M8 11v4m-2-2h4m7-1h.01m3 2h.01"/></svg></span><span>Education</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="music" aria-label="Music" title="Music"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 18V5l11-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="17" cy="16" r="3"/><path d="M9 8l11-2"/></svg></span><span>Music</span></button>
+        <button class="sidebar-link" type="button" data-sidebar-action="proxy" aria-label="Proxy" title="Proxy"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M8 9h8M8 13h5M16 16l2 2 3-3"/></svg></span><span>Proxy</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="chat" aria-label="Chat" title="Chat"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5 8 8 0 0 1-3.3-.7L4 20l1.3-4.1A7.5 7.5 0 1 1 20 11.5Z"/><path d="M8 11h.01M12 11h.01M16 11h.01"/></svg></span><span>Chat</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="account" aria-label="Account" title="Account"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.5"/><path d="M4.5 21a7.5 7.5 0 0 1 15 0z"/></svg></span><span>Account</span></button>
         <button class="sidebar-link" type="button" data-sidebar-action="settings" aria-label="Settings" title="Settings"><span class="sidebar-link-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 8.25a3.75 3.75 0 1 0 0 7.5 3.75 3.75 0 0 0 0-7.5Z"/><path d="m19.1 13.7 1.3 1-1.6 2.8-1.6-.6a7.6 7.6 0 0 1-1.5.9l-.3 1.7h-3.2l-.3-1.7a7.6 7.6 0 0 1-1.5-.9l-1.6.6-1.6-2.8 1.3-1a7.2 7.2 0 0 1 0-1.8l-1.3-1 1.6-2.8 1.6.6a7.6 7.6 0 0 1 1.5-.9l.3-1.7h3.2l.3 1.7a7.6 7.6 0 0 1 1.5.9l1.6-.6 1.6 2.8-1.3 1a7.2 7.2 0 0 1 0 1.8Z"/></svg></span><span>Settings</span></button>
@@ -1411,6 +1429,14 @@
         <button class="tile featured-game" type="button" data-game-file="bad-ice-cream.html" aria-label="Play Bad Ice Cream"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/bad%20ice%20cream.jpg" alt="" loading="lazy"><span>Bad Ice Cream</span></button>
         <button class="tile featured-game" type="button" data-game-file="basket-bros.html" aria-label="Play Basket Bros"><img src="https://raw.githubusercontent.com/dskjfoisjfsjio/Standalone-games/main/assets/basketbros.png" alt="" loading="lazy"><span>Basket Bros</span></button>
       </nav>
+    </section>
+    <section class="proxy-panel" id="proxy-panel" aria-label="Proxy app" aria-hidden="true" hidden>
+      <div class="proxy-loading" id="proxy-loading" role="status" aria-live="polite">
+        <div class="proxy-loading-card"><img src="https://github.com/Lenux32/Orion/blob/main/download%20-%202026-11-23T141206.551.png?raw=true" alt="Proxy app artwork"><h2 id="proxy-loading-title">Loading Proxy…</h2><p id="proxy-loading-message">Fetching the app source from Lenux32’s Orion repository.</p><a href="https://raw.githubusercontent.com/Lenux32/Orion/refs/heads/main/Proxy" target="_blank" rel="noopener noreferrer">Open source directly</a></div>
+      </div>
+      <iframe class="proxy-frame" id="proxy-frame" title="Proxy app" allow="clipboard-read; clipboard-write; fullscreen" sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-popups-to-escape-sandbox"></iframe>
+      <button class="proxy-close" id="proxy-close" type="button" aria-label="Close Proxy" title="Close Proxy">×</button>
+      <a class="proxy-credit" href="https://github.com/Lenux32/Orion" target="_blank" rel="noopener noreferrer"><img src="https://github.com/Lenux32/Orion/blob/main/download%20-%202026-11-23T141206.551.png?raw=true" alt=""><span>Proxy source &amp; artwork: Lenux32 · Orion</span></a>
     </section>
     <section class="settings-panel" id="settings-panel" aria-label="Settings" aria-hidden="true">
       <div class="settings-inner">
@@ -2373,7 +2399,7 @@
     const settingsPanel = document.querySelector('#settings-panel');
     const settingsStatus = document.querySelector('#settings-status');
     function closeAllPanels() {
-      document.querySelectorAll('.settings-panel, .profile-panel, .global-chat-panel, .partners-panel, .leaderboard-panel, .toolbox-panel, .games-panel, .game-player, .music-panel, .ai-panel').forEach(panel => {
+      document.querySelectorAll('.settings-panel, .profile-panel, .global-chat-panel, .partners-panel, .leaderboard-panel, .toolbox-panel, .games-panel, .game-player, .music-panel, .ai-panel, .proxy-panel').forEach(panel => {
         panel.classList.remove('open');
         panel.setAttribute('aria-hidden', 'true');
       });
@@ -5831,6 +5857,51 @@ ducky-clicker\tI_am_me\t609450`;
   </script>
   <script>
     (() => {
+      const proxySourceUrl = 'https://raw.githubusercontent.com/Lenux32/Orion/refs/heads/main/Proxy';
+      const proxyPanel = document.querySelector('#proxy-panel');
+      const proxyFrame = document.querySelector('#proxy-frame');
+      const proxyLoading = document.querySelector('#proxy-loading');
+      let proxyLoadPromise;
+
+      async function loadProxySource() {
+        if (proxyFrame.dataset.loaded === 'true') return;
+        if (proxyLoadPromise) return proxyLoadPromise;
+        proxyLoadPromise = (async () => {
+          try {
+            const response = await fetch(proxySourceUrl, { cache: 'no-cache' });
+            if (!response.ok) throw new Error('GitHub returned ' + response.status);
+            const source = await response.text();
+            if (!source.trim()) throw new Error('The source file is empty.');
+            const baseTag = '<base href="' + new URL('.', proxySourceUrl).href + '">';
+            proxyFrame.srcdoc = /<head\\b[^>]*>/i.test(source)
+              ? source.replace(/<head\\b[^>]*>/i, head => head + baseTag)
+              : '<!doctype html><head>' + baseTag + '</head>' + source;
+            proxyFrame.dataset.loaded = 'true';
+            proxyLoading.hidden = true;
+          } catch (error) {
+            document.querySelector('#proxy-loading-title').textContent = 'Proxy could not be fetched';
+            document.querySelector('#proxy-loading-message').textContent = 'The source could not be fetched (' + (error.message || 'network or CORS error') + '). You can try opening the source directly.';
+          } finally {
+            proxyLoadPromise = null;
+          }
+        })();
+        return proxyLoadPromise;
+      }
+
+      function openProxy() {
+        closeAllPanels();
+        proxyPanel.hidden = false;
+        proxyPanel.classList.add('open');
+        proxyPanel.setAttribute('aria-hidden', 'false');
+        loadProxySource();
+      }
+      document.querySelector('#open-proxy').addEventListener('click', openProxy);
+      document.querySelector('#proxy-close').addEventListener('click', () => {
+        proxyPanel.classList.remove('open');
+        proxyPanel.hidden = true;
+        proxyPanel.setAttribute('aria-hidden', 'true');
+      });
+
       const sourceUrl = 'https://raw.githubusercontent.com/Lenux32/Orion/refs/heads/main/Chat';
       const frame = document.querySelector('#remote-chat-frame');
       let loading;
@@ -5914,7 +5985,7 @@ ducky-clicker\tI_am_me\t609450`;
       syncSidebarToggle();
       const navViews = {
         games: '#games-panel', music: '#music-panel', ai: '#ai-panel', chat: '#global-chat-panel',
-        account: '#profile-panel', settings: '#settings-panel'
+        account: '#profile-panel', settings: '#settings-panel', proxy: '#proxy-panel'
       };
       const navLinks = [...document.querySelectorAll('.sidebar-nav [data-sidebar-action]')];
       function syncActiveSidebarLink() {
@@ -5963,7 +6034,7 @@ ducky-clicker\tI_am_me\t609450`;
         try { localStorage.setItem(customLinksKey, JSON.stringify(links)); } catch { window.alert('Could not save this shortcut in your browser.'); return; }
         renderCustomSidebarLinks();
       });
-      const actions = { ai: '#open-ai', games: '#open-games-toolbar', music: '#open-music', chat: '#open-global-chat', account: '#open-profile', settings: '#open-settings' };
+      const actions = { ai: '#open-ai', games: '#open-games-toolbar', music: '#open-music', chat: '#open-global-chat', account: '#open-profile', settings: '#open-settings', proxy: '#open-proxy' };
       document.querySelectorAll('[data-sidebar-action]').forEach(button => button.addEventListener('click', () => {
         const action = button.dataset.sidebarAction;
         if (action === 'home') {
@@ -5999,15 +6070,15 @@ ducky-clicker\tI_am_me\t609450`;
       const viewButtons = {
         games: '#open-games-toolbar', music: '#open-music', ai: '#open-ai',
         chat: '#open-global-chat', tools: '#open-tools', settings: '#open-settings',
-        profile: '#open-profile', partners: '#open-partners', leaderboard: '#open-leaderboard'
+        profile: '#open-profile', partners: '#open-partners', leaderboard: '#open-leaderboard', proxy: '#open-proxy'
       };
-      const viewTitles = { games: 'Games', music: 'Music', ai: 'AI chat', chat: 'Chat', tools: 'Tools', settings: 'Settings', profile: 'Account', partners: 'Partners', leaderboard: 'Scores' };
+      const viewTitles = { games: 'Games', music: 'Music', ai: 'AI chat', chat: 'Chat', tools: 'Tools', settings: 'Settings', profile: 'Account', partners: 'Partners', leaderboard: 'Scores', proxy: 'Proxy' };
 
       function currentView() {
         const views = [
           ['games', '#games-panel'], ['music', '#music-panel'], ['ai', '#ai-panel'],
           ['chat', '#global-chat-panel'], ['tools', '#toolbox-panel'], ['settings', '#settings-panel'],
-          ['profile', '#profile-panel'], ['partners', '#partners-panel'], ['leaderboard', '#leaderboard-panel']
+          ['profile', '#profile-panel'], ['partners', '#partners-panel'], ['leaderboard', '#leaderboard-panel'], ['proxy', '#proxy-panel']
         ];
         return views.find(([, selector]) => document.querySelector(selector)?.classList.contains('open'))?.[0] || 'home';
       }
